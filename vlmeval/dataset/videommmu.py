@@ -5,6 +5,7 @@ from huggingface_hub import snapshot_download
 from pathlib import Path
 
 from vlmeval.utils import track_progress_rich
+from tqdm import tqdm
 from ..smp import *
 from ..smp.file import get_intermediate_file_path, get_file_extension
 from .video_base import VideoBaseDataset
@@ -214,7 +215,7 @@ def parse_multi_choice_response(response, all_choices, index2ans):
 
     # Step 2: If no candidates, look for choices with a period after (A. B. C. D.)
     for choice in all_choices:  # e.g., A. B. C. D.
-        if f"{choice}." in response:
+        if f"{choice}." in response or f"{choice}" in response:
             # print(f"Found choice with period after: {choice}")
             candidates.append(choice)
             ans_with_period = True
@@ -461,7 +462,7 @@ class VideoMMMU(VideoBaseDataset):
 
     def prepare_dataset(self,
                         dataset_name='VideoMMMU',
-                        repo_id='lmms-lab/VideoMMMU'):
+                        repo_id='/root/s3/videogpu/zhuyuhan/benchmarks/VideoMMMU'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
@@ -486,10 +487,10 @@ class VideoMMMU(VideoBaseDataset):
                 import zipfile
                 base_dir = Path(pth)
                 target_dir = base_dir / 'videos'
-                target_dir.mkdir(exist_ok=True)
                 zip_files = sorted(base_dir.glob('*.zip'))
 
                 if not target_dir.exists():
+                    target_dir.mkdir(exist_ok=True)
                     for zip_file in zip_files:
                         with zipfile.ZipFile(str(zip_file), 'r') as zip_ref:
                             for member in zip_ref.namelist():
@@ -501,8 +502,9 @@ class VideoMMMU(VideoBaseDataset):
                                     target = target_dir / member
                                     target.parent.mkdir(exist_ok=True)
                                     if not target.exists():
-                                        with source, open(target, 'wb'):
-                                            target.write(source.read())
+                                        with source:
+                                            with open(target, 'wb') as f:
+                                                f.write(source.read())
                     print(
                         'The video file has been restored and stored from the zip file.'
                     )
@@ -557,7 +559,9 @@ class VideoMMMU(VideoBaseDataset):
                     ignore_index=True).reindex(columns=cols).reset_index()
                 df.to_csv(data_file, sep='\t', index=False)
 
-            if modelscope_flag_set():
+            if Path(repo_id).exists():
+                dataset_path = repo_id
+            elif modelscope_flag_set():
                 from modelscope import dataset_snapshot_download
                 dataset_path = dataset_snapshot_download(dataset_id=repo_id)
             else:
@@ -570,7 +574,7 @@ class VideoMMMU(VideoBaseDataset):
 
         return dict(data_file=data_file, root=dataset_path)
 
-    def save_video_frames(self, id_, video_pth, video_llm=False):
+    def save_video_frames(self, id_, video_pth, video_llm=False, verbose=False):
 
         vid_path = osp.join(self.data_root, video_pth)
         import decord
@@ -597,9 +601,11 @@ class VideoMMMU(VideoBaseDataset):
             lock_path = osp.splitext(vid_path)[0] + 'f.lock'
             with portalocker.Lock(lock_path, 'w', timeout=30):
                 if not np.all([osp.exists(p) for p in frame_paths]):
-                    images = [vid[i].asnumpy() for i in indices]
-                    images = [Image.fromarray(arr) for arr in images]
-                    for im, pth in zip(images, frame_paths):
+                    # 使用进度条按帧读取与保存，方便观测单个视频内部的处理进度
+                    images = []
+                    for frame_idx in tqdm(indices, desc=f"Reading frames for {id_}", disable=not verbose):
+                        images.append(Image.fromarray(vid[frame_idx].asnumpy()))
+                    for im, pth in tqdm(zip(images, frame_paths), total=len(frame_paths), desc=f"Saving frames for {id_}", disable=not verbose):
                         if not osp.exists(pth):
                             im.save(pth)
 
@@ -685,6 +691,8 @@ class VideoMMMU(VideoBaseDataset):
                 ans[idx]['parsed_pred'] for idx in data['index']
             ]
             dump(data, storage)
+        else:
+            print(f"{storage} already exists")
 
         score = aggregate_results([row for _, row in load(storage).iterrows()])
         score_pth = get_intermediate_file_path(storage, '_score', 'csv')

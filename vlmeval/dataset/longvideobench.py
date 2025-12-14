@@ -104,7 +104,7 @@ class LongVideoBench(VideoBaseDataset):
     def supported_datasets(cls):
         return ['LongVideoBench']
 
-    def prepare_dataset(self, dataset_name='LongVideoBench', repo_id='longvideobench/LongVideoBench'):
+    def prepare_dataset(self, dataset_name='LongVideoBench', repo_id='/root/s3/videogpu/zhuyuhan/benchmarks/LongVideoBench'):
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
             if not osp.exists(data_file):
@@ -144,7 +144,9 @@ class LongVideoBench(VideoBaseDataset):
 
                 data_file.to_csv(osp.join(pth, f'{dataset_name}.tsv'), sep='\t', index=False)
 
-            if modelscope_flag_set():
+            if Path(repo_id).exists():
+                dataset_path = repo_id
+            elif modelscope_flag_set():
                 from modelscope import dataset_snapshot_download
                 dataset_snapshot_download(dataset_id=repo_id)
             else:
@@ -198,7 +200,7 @@ class LongVideoBench(VideoBaseDataset):
         data_file = osp.join(dataset_path, f'{dataset_name}.tsv')
         return dict(data_file=data_file, root=dataset_path)
 
-    def save_video_frames(self, video_path, video_llm=False):
+    def save_video_frames(self, video_path, video_llm=False, verbose=False):
 
         vid_path = osp.join(self.data_root, video_path)
         import decord
@@ -225,9 +227,10 @@ class LongVideoBench(VideoBaseDataset):
             lock_path = osp.splitext(vid_path)[0] + '.lock'
             with portalocker.Lock(lock_path, 'w', timeout=30):
                 if not np.all([osp.exists(p) for p in frame_paths]):
-                    images = [vid[i].asnumpy() for i in indices]
-                    images = [Image.fromarray(arr) for arr in images]
-                    for im, pth in zip(images, frame_paths):
+                    images = []
+                    for frame_idx in tqdm(indices, desc=f"Reading frames for {video_path[:-4]}", disable=not verbose):
+                        images.append(Image.fromarray(vid[frame_idx].asnumpy()))
+                    for im, pth in tqdm(zip(images, frame_paths), total=len(frame_paths), desc=f"Saving frames for {video_path[:-4]}", disable=not verbose):
                         if not osp.exists(pth) and not video_llm:
                             im.save(pth)
 

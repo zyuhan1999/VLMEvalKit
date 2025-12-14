@@ -26,6 +26,8 @@ def build_judge(**kwargs):
             'qwen-72b': 'Qwen/Qwen2.5-72B-Instruct',
             'deepseek': 'deepseek-ai/DeepSeek-V3',
             'llama31-8b': 'meta-llama/Llama-3.1-8B-Instruct',
+            'qwen3-30b-a3b-instruct-2507': 'Qwen/Qwen3-30B-A3B-Instruct-2507',
+            'qwen3-235b-a22b-instruct-2507': 'Qwen/Qwen3-235B-A22B-Instruct-2507',
         }
         model_version = model_map[model] if model in model_map else model
     else:

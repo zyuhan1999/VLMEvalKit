@@ -77,7 +77,16 @@ def infer_data_api(model, work_dir, model_name, dataset, samples_dict={}, api_np
     return res
 
 
-def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, api_nproc=4, use_vllm=False):
+def infer_data(
+        model,
+        model_name,
+        work_dir,
+        dataset,
+        out_file,
+        verbose=False,
+        api_nproc=4,
+        use_vllm=False,
+        assigned_indices=None):
     res = load(out_file) if osp.exists(out_file) else {}
     rank, world_size = get_rank_and_world_size()
     dataset_name = dataset.dataset_name
@@ -86,7 +95,11 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
     samples = list(dataset.videos) if getattr(dataset, 'pack', False) else list(range(len(dataset.data)))
     sample_map = {i: s for i, s in zip(sample_indices, samples)}
 
-    sample_indices_sub = sample_indices[rank::world_size]
+    if assigned_indices is not None:
+        sample_indices_sub = assigned_indices
+    else:
+        sample_indices_sub = sample_indices[rank::world_size]
+
     if np.all([idx in res for idx in sample_indices_sub]):
         return model
     sample_indices_subrem = [x for x in sample_indices_sub if x not in res]
@@ -133,7 +146,7 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         )
         setattr(model, 'VIDEO_LLM', False)
 
-    for i, idx in tqdm(enumerate(sample_indices_subrem)):
+    for i, idx in tqdm(enumerate(sample_indices_subrem), total=len(sample_indices_subrem), desc=f"[Rank{rank}]"):
         if idx in res:
             continue
         if getattr(model, 'nframe', None) is not None and getattr(model, 'nframe', 0) > 0:
@@ -198,7 +211,12 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         if (i + 1) % 20 == 0:
             dump(res, out_file)
 
-    res = {k: res[k] for k in sample_indices_sub}
+    # For the default (non-dynamic) scheduling strategy, keep only the samples
+    # belonging to this rank. When dynamic load balancing is enabled
+    # (assigned_indices is not None), we keep all cached results in this file,
+    # since different ranks may take over unfinished samples from others.
+    if assigned_indices is None:
+        res = {k: res[k] for k in sample_indices_sub}
     dump(res, out_file)
     return model
 
@@ -224,6 +242,49 @@ def infer_data_job_video(
     tmpl = osp.join(work_dir, '{}' + f'{world_size}_{osp.splitext(result_file_name)[0]}.pkl')
     out_file = tmpl.format(rank)
 
+    # -------- Dynamic load-balancing for video inference --------
+    # We support resuming from previous partial results (per-rank pkl files)
+    # while re-balancing the remaining samples evenly across all ranks.
+    # Existing results in 0_*.pkl, 1_*.pkl, ... will be respected and kept.
+    assigned_indices = None
+    if world_size > 1:
+        # Build a global task list and remove all indices that have already
+        # been processed by any rank (according to existing per-rank pkl files).
+        if rank == 0:
+            # All ranks share the same dataset, so we can safely construct the
+            # global index list on rank 0 and then broadcast the assignment.
+            sample_indices = (
+                list(dataset.videos)
+                if getattr(dataset, 'pack', False)
+                else list(dataset.data['index'])
+            )
+
+            done_indices = set()
+            for i in range(world_size):
+                part_file = tmpl.format(i)
+                if osp.exists(part_file):
+                    part_res = load(part_file)
+                    done_indices.update(part_res.keys())
+
+            remaining_indices = [idx for idx in sample_indices if idx not in done_indices]
+            print(f"===== Done {len(done_indices)} | Remaining {len(remaining_indices)} | Total {len(sample_indices)} ======")
+
+            # Evenly assign remaining indices to each rank in a round-robin way.
+            assigned_indices_all = [[] for _ in range(world_size)]
+            for j, idx in enumerate(remaining_indices):
+                assigned_indices_all[j % world_size].append(idx)
+        else:
+            assigned_indices_all = None
+
+        # Synchronize the assignment to all ranks if distributed is initialized.
+        if dist.is_available() and dist.is_initialized():
+            obj_list = [assigned_indices_all]
+            dist.broadcast_object_list(obj_list, src=0)
+            assigned_indices_all = obj_list[0]
+
+        if assigned_indices_all is not None:
+            assigned_indices = assigned_indices_all[rank]
+
     model = infer_data(
         model=model,
         model_name=model_name,
@@ -232,7 +293,8 @@ def infer_data_job_video(
         out_file=out_file,
         verbose=verbose,
         api_nproc=api_nproc,
-        use_vllm=use_vllm)
+        use_vllm=use_vllm,
+        assigned_indices=assigned_indices)
 
     if world_size > 1:
         dist.barrier()

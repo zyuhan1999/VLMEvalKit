@@ -3,6 +3,8 @@ import os
 import subprocess
 from functools import partial
 
+# os.environ["TORCH_DISTRIBUTED_DEBUG"] = "DETAIL"
+# os.environ["TORCH_NCCL_ASYNC_ERROR_HANDLING"] = "1"
 
 # GET the number of GPUs on the node without importing libs like torch
 def get_gpu_list():
@@ -26,7 +28,7 @@ LOCAL_RANK = int(os.environ.get("LOCAL_RANK",1))
 GPU_LIST = get_gpu_list()
 if LOCAL_WORLD_SIZE > 1 and len(GPU_LIST):
     NGPU = len(GPU_LIST)
-    assert NGPU >= LOCAL_WORLD_SIZE, "The number of processes should be less than or equal to the number of GPUs"
+    assert NGPU >= LOCAL_WORLD_SIZE, f"The number of processes should be less than or equal to the number of GPUs: {NGPU} >= {LOCAL_WORLD_SIZE}"
     GPU_PER_PROC = NGPU // LOCAL_WORLD_SIZE
     DEVICE_START_IDX = GPU_PER_PROC * LOCAL_RANK
     CUDA_VISIBLE_DEVICES = [str(i) for i in GPU_LIST[DEVICE_START_IDX: DEVICE_START_IDX + GPU_PER_PROC]]
@@ -298,6 +300,9 @@ def main():
                     if dataset is None:
                         logger.error(f'Dataset {dataset_name} is not valid, will be skipped. ')
                         continue
+
+                # print(f"Prepare {dataset_name} done!")
+                # continue
 
                 # Handling Multi-Turn Dataset
                 result_file = osp.join(pred_root, result_file_base)

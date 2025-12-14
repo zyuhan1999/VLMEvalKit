@@ -37,6 +37,10 @@ videomme_dataset = {
     'Video-MME_8frame': partial(VideoMME, dataset='Video-MME', nframe=8),
     'Video-MME_64frame': partial(VideoMME, dataset='Video-MME', nframe=64),
     'Video-MME_8frame_subs': partial(VideoMME, dataset='Video-MME', nframe=8, use_subtitle=True),
+    'Video-MME_2fps': partial(VideoMME, dataset='Video-MME', fps=2.0),
+    'Video-MME_short_2fps': partial(VideoMME, dataset='Video-MME', fps=2.0, duration_filter='short'),
+    'Video-MME_medium_2fps': partial(VideoMME, dataset='Video-MME', fps=2.0, duration_filter='medium'),
+    'Video-MME_long_2fps': partial(VideoMME, dataset='Video-MME', fps=2.0, duration_filter='long'),
     'Video-MME_1fps': partial(VideoMME, dataset='Video-MME', fps=1.0),
     'Video-MME_0.5fps': partial(VideoMME, dataset='Video-MME', fps=0.5),
     'Video-MME_0.5fps_subs': partial(VideoMME, dataset='Video-MME', fps=0.5, use_subtitle=True),
@@ -45,6 +49,7 @@ videomme_dataset = {
 videommmu_dataset = {
     'VideoMMMU_8frame': partial(VideoMMMU, dataset='VideoMMMU', nframe=8),
     'VideoMMMU_64frame': partial(VideoMMMU, dataset='VideoMMMU', nframe=64),
+    'VideoMMMU_2fps': partial(VideoMMMU, dataset='VideoMMMU', fps=2.0),
     'VideoMMMU_1fps': partial(VideoMMMU, dataset='VideoMMMU', fps=1.0),
     'VideoMMMU_0.5fps': partial(VideoMMMU, dataset='VideoMMMU', fps=0.5),
 }
@@ -53,9 +58,18 @@ longvideobench_dataset = {
     'LongVideoBench_8frame': partial(LongVideoBench, dataset='LongVideoBench', nframe=8),
     'LongVideoBench_8frame_subs': partial(LongVideoBench, dataset='LongVideoBench', nframe=8, use_subtitle=True),
     'LongVideoBench_64frame': partial(LongVideoBench, dataset='LongVideoBench', nframe=64),
+    'LongVideoBench_2fps': partial(LongVideoBench, dataset='LongVideoBench', fps=2.0),
     'LongVideoBench_1fps': partial(LongVideoBench, dataset='LongVideoBench', fps=1.0),
     'LongVideoBench_0.5fps': partial(LongVideoBench, dataset='LongVideoBench', fps=0.5),
     'LongVideoBench_0.5fps_subs': partial(LongVideoBench, dataset='LongVideoBench', fps=0.5, use_subtitle=True)
+}
+
+lvbench_dataset = {
+    'LVBench_8frame': partial(LVBench, dataset='LVBench', nframe=8),
+    'LVBench_64frame': partial(LVBench, dataset='LVBench', nframe=64),
+    'LVBench_2fps': partial(LVBench, dataset='LVBench', fps=2.0),
+    'LVBench_1fps': partial(LVBench, dataset='LVBench', fps=1.0),
+    'LVBench_0.5fps': partial(LVBench, dataset='LVBench', fps=0.5),
 }
 
 mlvu_dataset = {
@@ -210,6 +224,7 @@ supported_video_datasets = {}
 
 dataset_groups = [
     mmbench_video_dataset, mvbench_dataset, videomme_dataset, videommmu_dataset, longvideobench_dataset,
+    lvbench_dataset,
     mlvu_dataset, tempcompass_dataset, cgbench_dataset, worldsense_dataset, tamperbench_dataset,
     megabench_dataset, qbench_video_dataset, moviechat1k_dataset, vdc_dataset, video_holmes_dataset, vcrbench_dataset,
     cg_av_counting_dataset, video_mmlu_dataset, egoexobench_dataset, dream_1k_dataset, video_tt_dataset,

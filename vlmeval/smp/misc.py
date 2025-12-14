@@ -79,6 +79,11 @@ def bincount(lst):
     return bins
 
 def get_cache_path(repo_id, branch='main', repo_type='datasets'):
+    # 如果输入是本地路径，直接返回
+    p = Path(repo_id)
+    if p.exists():
+        return str(p)
+
     try:
         if modelscope_flag_set():
             from modelscope.hub.file_download import create_temporary_directory_and_cache

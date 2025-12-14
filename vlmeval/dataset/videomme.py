@@ -49,16 +49,40 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
     TYPE = 'Video-MCQ'
 
-    def __init__(self, dataset='Video-MME', use_subtitle=False, nframe=0, fps=-1):
-        super().__init__(dataset=dataset, nframe=nframe, fps=fps)
+    def __init__(self, dataset='Video-MME', use_subtitle=False, nframe=0, fps=-1, duration_filter=None):
+        """
+        Args:
+            dataset (str): 数据集名称，默认为 'Video-MME'
+            use_subtitle (bool): 是否使用字幕
+            nframe (int): 采样帧数（与 fps 互斥）
+            fps (int): 采样帧率（与 nframe 互斥）
+            duration_filter (str | None): 只评估某一时长子集。
+                可选值：'short'、'medium'、'long'；为 None 时不过滤，默认全量评估。
+        """
         self.use_subtitle = use_subtitle
         self.dataset_name = dataset
+        self.duration_filter = duration_filter
+
+        super().__init__(dataset=dataset, nframe=nframe, fps=fps)
+
+        # 只评估指定 duration 子集（short / medium / long）
+        if self.duration_filter is not None:
+            assert 'duration' in self.data, 'duration 字段不存在，无法按时长子集过滤'
+            assert self.duration_filter in ['short', 'medium', 'long'], \
+                f'不支持的 duration_filter: {self.duration_filter}, 仅支持 short / medium / long。'
+
+            self.data = self.data[self.data['duration'] == self.duration_filter].reset_index(drop=True)
+
+            # 重新根据子集数据更新 videos 列表
+            videos = list(set(self.data['video']))
+            videos.sort()
+            self.videos = videos
 
     @classmethod
     def supported_datasets(cls):
         return ['Video-MME']
 
-    def prepare_dataset(self, dataset_name='Video-MME', repo_id='lmms-lab/Video-MME'):
+    def prepare_dataset(self, dataset_name='Video-MME', repo_id='/root/s3/videogpu/zhuyuhan/benchmarks/Video-MME'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
@@ -141,7 +165,9 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
                 data_file.to_csv(osp.join(pth, f'{dataset_name}.tsv'), sep='\t', index=False)
 
-            if modelscope_flag_set():
+            if Path(repo_id).exists():
+                dataset_path = repo_id
+            elif modelscope_flag_set():
                 from modelscope import dataset_snapshot_download
                 dataset_path = dataset_snapshot_download(dataset_id=repo_id)
             else:
@@ -153,7 +179,7 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
         return dict(data_file=data_file, root=dataset_path)
 
-    def save_video_frames(self, video, video_llm=False):
+    def save_video_frames(self, video, video_llm=False, verbose=False):
 
         vid_path = osp.join(self.data_root, 'video', video + '.mp4')
         import decord
@@ -180,9 +206,10 @@ Respond with only the letter (A, B, C, or D) of the correct option.
             lock_path = osp.splitext(vid_path)[0] + '.lock'
             with portalocker.Lock(lock_path, 'w', timeout=30):
                 if not np.all([osp.exists(p) for p in frame_paths]):
-                    images = [vid[i].asnumpy() for i in indices]
-                    images = [Image.fromarray(arr) for arr in images]
-                    for im, pth in zip(images, frame_paths):
+                    images = []
+                    for frame_idx in tqdm(indices, desc=f"Reading frames for {video}", disable=not verbose):
+                        images.append(Image.fromarray(vid[frame_idx].asnumpy()))
+                    for im, pth in tqdm(zip(images, frame_paths), total=len(frame_paths), desc=f"Saving frames for {video}", disable=not verbose):
                         if not osp.exists(pth):
                             im.save(pth)
 
