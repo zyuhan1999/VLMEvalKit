@@ -2,6 +2,7 @@ from ...smp import *
 from .multiple_choice import extract_answer_from_item
 import numpy as np
 import re
+import ast
 
 FAIL_MSG = 'Failed to obtain answer via API.'
 
@@ -117,11 +118,10 @@ def get_dimension_rating(data_path):
 
 
 def extract_option(model, input_item, dataset_name):
-    options = input_item['question'].split('\n')[1:]
-    for id, option in enumerate(options):
-        option_id = chr(ord('A') + id) + '.'
-        if option.find(option_id) >= 0:
-            input_item[chr(ord('A') + id)] = option[option.find(option_id) + len(option_id):].strip('. \n')
+    candidates = ast.literal_eval(input_item['candidates'])
+    for c in candidates:
+        key, value = re.match(r'([A-Z])\.\s*(.*)', c).groups()
+        input_item[key] = value
     return extract_answer_from_item(model, input_item, dataset_name)['opt']
 
 

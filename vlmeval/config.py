@@ -1590,6 +1590,7 @@ qwen2vl_series = {
         max_pixels=768 * 28 * 28,
         total_pixels=24576 * 28 * 28,
         use_custom_prompt=False,
+        use_vllm=True,
     ),
     "Qwen2.5-VL-7B-Instruct-AWQ": partial(
         Qwen2VLChat,
@@ -1994,6 +1995,27 @@ interns1_series = {}
 for group in interns1_groups:
     interns1_series.update(group)
 
+videochat_o3_series = {
+    "VideoChat_o3_7B_sft_600": partial(
+        Qwen2VLChat,
+        model_path="/root/s3/videogpu/videochat-o3/ckpt/SFT-600",
+        use_custom_prompt=False,
+        min_pixels=128 * 28 * 28,
+        max_pixels=768 * 28 * 28,
+        total_pixels=16384 * 28 * 28,
+        use_vllm=False
+    ),
+    "VideoChat_o3_7B_sft_1466": partial(
+        Qwen2VLChat,
+        model_path="/root/s3/videogpu/videochat-o3/ckpt/SFT-1466",
+        use_custom_prompt=False,
+        min_pixels=128 * 28 * 28,
+        max_pixels=768 * 28 * 28,
+        total_pixels=16384 * 28 * 28,
+        use_vllm=False
+    ),
+}
+
 videochat3_series = {
     "VideoChat3_4B_train_stage2_llava_video_academic": partial(
         VideoChat3,
@@ -2042,7 +2064,55 @@ videochat3_series = {
         presence_penalty=1.5,
         top_p=0.8,
         top_k=20
-    )
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216/20251216180246/hf-258",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=16384,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_t1": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_t1/20251221144855/hf-232",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=16384,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_t1_fps1": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_t1_fps1/20251221012714/hf-609",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=16384,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_t1": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_t1/20251221225003/hf-897",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=16384,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
 }
     
 supported_VLM = {}
@@ -2061,7 +2131,7 @@ model_groups = [
     long_vita_series, ristretto_series, kimi_series, aguvis_series, hawkvl_series,
     flash_vl, kimi_vllm_series, oryx_series, treevgr_series, varco_vision_series, qtunevl_series, 
     xvl_series, thyme_series, logics_series, cosmos_series, keye_series, qianfanvl_series, 
-    lfm2vl_series, rbdashmm_api_series_lmdeploy, interns1_series, insight_v_series, videochat3_series
+    lfm2vl_series, rbdashmm_api_series_lmdeploy, interns1_series, insight_v_series, videochat3_series, videochat_o3_series
 ]
 
 for grp in model_groups:

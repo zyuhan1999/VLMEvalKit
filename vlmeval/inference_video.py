@@ -208,7 +208,7 @@ def infer_data(
             print(response, flush=True)
 
         res[idx] = response
-        if (i + 1) % 20 == 0:
+        if (i + 1) % 10 == 0:
             dump(res, out_file)
 
     # For the default (non-dynamic) scheduling strategy, keep only the samples
@@ -262,6 +262,7 @@ def infer_data_job_video(
             done_indices = set()
             for i in range(world_size):
                 part_file = tmpl.format(i)
+                print(f"===== Part File {part_file} ======")
                 if osp.exists(part_file):
                     part_res = load(part_file)
                     done_indices.update(part_res.keys())

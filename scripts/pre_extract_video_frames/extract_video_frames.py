@@ -1,6 +1,6 @@
 import argparse
 import os
-from vlmeval.dataset import build_dataset, VideoMMMU, VideoMME, LongVideoBench, LVBench
+from vlmeval.dataset import build_dataset, VideoMMMU, VideoMME, LongVideoBench, LVBench, MMVU, TOMATO
 from tqdm import tqdm
 
 def parse_args():
@@ -25,7 +25,8 @@ def run_videomme(dataset):
     print(f"[Info] Frames will be saved under {os.environ['LMUData']}/images/<dataset>/... ")
 
     # Iterate over each row, mimicking the logic used in `VideoMMMU.build_prompt`
-    for i, (_, line) in enumerate(data.iterrows()):
+    # for i, (_, line) in enumerate(data.iterrows()):
+    for i, (_, line) in enumerate(data.iloc[::-1].iterrows()):
         video_pth = line["video"] if "video" in line else None
 
         print(f"[{i+1}/{len(data)}] Extracting frames for video...")
@@ -76,11 +77,36 @@ def run_lvbench(dataset):
 
     # Iterate over each row, mimicking the logic used in `VideoMMMU.build_prompt`
     for i, (_, line) in enumerate(data.iterrows()):
-        print(line)
         video_pth = line["video_path"] if "video" in line else None
 
         print(f"[{i+1}/{len(data)}] Extracting frames for video...")
 
+        dataset.save_video_frames(video_pth, verbose=True)
+
+    print("[Done] Frame extraction finished.")
+
+def run_mmvu(dataset):
+    data = dataset.data
+    print(f"[Info] Total samples to process: {len(data)}")
+    print(f"[Info] Frames will be saved under {os.environ['LMUData']}/images/<dataset>/... ")
+
+    # Iterate over each row, mimicking the logic used in `VideoMMMU.build_prompt`
+    for i, (_, line) in enumerate(data.iterrows()):
+        video_pth = line['video']
+        print(f"[{i+1}/{len(data)}] Extracting frames for video: {video_pth}...")
+        dataset.save_video_frames(video_pth, verbose=True)
+
+    print("[Done] Frame extraction finished.")
+
+def run_tomato(dataset):
+    data = dataset.data
+    print(f"[Info] Total samples to process: {len(data)}")
+    print(f"[Info] Frames will be saved under {os.environ['LMUData']}/images/<dataset>/... ")
+
+    # Iterate over each row, mimicking the logic used in `VideoMMMU.build_prompt`
+    for i, (_, line) in enumerate(data.iterrows()):
+        video_pth = line['video']
+        print(f"[{i+1}/{len(data)}] Extracting frames for video: {video_pth}...")
         dataset.save_video_frames(video_pth, verbose=True)
 
     print("[Done] Frame extraction finished.")
@@ -111,6 +137,10 @@ def main():
         run_longvideobench(dataset)
     elif isinstance(dataset, LVBench):
         run_lvbench(dataset)
+    elif isinstance(dataset, MMVU):
+        run_mmvu(dataset)
+    elif isinstance(dataset, TOMATO):
+        run_tomato(dataset)
     else:
         raise ValueError(f"Dataset '{args.dataset}' is not supported.")
 

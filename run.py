@@ -246,7 +246,7 @@ def main():
         import torch.distributed as dist
         dist.init_process_group(
             backend='nccl',
-            timeout=datetime.timedelta(seconds=int(os.environ.get('DIST_TIMEOUT', 3600)))
+            timeout=datetime.timedelta(seconds=int(os.environ.get('DIST_TIMEOUT', 10000)))
         )
 
     for _, model_name in enumerate(args.model):
@@ -308,6 +308,9 @@ def main():
                 result_file = osp.join(pred_root, result_file_base)
                 # Reuse the previous prediction file if exists
                 if RANK == 0 and len(prev_pred_roots):
+                    print('='*10)
+                    print(pred_root_meta, eval_id, model_name, dataset_name)
+                    print('='*10)
                     prepare_reuse_files(
                         pred_root_meta=pred_root_meta, eval_id=eval_id, model_name=model_name,
                         dataset_name=dataset_name, reuse=args.reuse, reuse_aux=args.reuse_aux
@@ -365,48 +368,6 @@ def main():
                     judge_kwargs['retry'] = args.retry
                 if args.judge is not None:
                     judge_kwargs['model'] = args.judge
-                else:
-                    print(dataset_name)
-                    if dataset.TYPE in ['MCQ', 'Y/N', 'MCQ_MMMU_Pro'] or listinstr(
-                        ['moviechat1k', 'mme-reasoning'], dataset_name.lower()
-                    ):
-                        if listinstr(['WeMath', 'MME-Reasoning'], dataset_name):
-                            judge_kwargs['model'] = 'gpt-4o-mini'
-                        elif listinstr(['VisuLogic'], dataset_name):
-                            judge_kwargs['model'] = 'exact_matching'
-                        else:
-                            judge_kwargs['model'] = 'chatgpt-0125'
-                    elif listinstr(['MMVet', 'LLaVABench', 'MMBench_Video'], dataset_name):
-                        if listinstr(['LLaVABench_KO'], dataset_name):
-                            judge_kwargs['model'] = 'gpt-4o-0806'
-                        else:
-                            judge_kwargs['model'] = 'gpt-4-turbo'
-                    elif listinstr(['VGRPBench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['MathVista', 'MathVerse', 'MathVision', 'DynaMath', 'VL-RewardBench', 'LogicVista', 'MOAT', 'OCR_Reasoning'], dataset_name):  # noqa: E501
-                        judge_kwargs['model'] = 'gpt-4o-mini'
-                    elif listinstr(['OlympiadBench'], dataset_name):
-                        use_api_judger = judge_kwargs.get("olympiad_use_api_judger", False)
-                        if use_api_judger:
-                            judge_kwargs['model'] = 'gpt-4o-mini'
-                    elif listinstr(['MMLongBench', 'MMDU', 'DUDE', 'SLIDEVQA', 'MIA-Bench', 'WildVision', 'MMAlignBench', 'MM-IFEval'], dataset_name):  # noqa: E501
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['ChartMimic'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['VDC'], dataset_name):
-                        judge_kwargs['model'] = 'llama31-8b'
-                    elif listinstr(['Video_MMLU_QA', 'Video_MMLU_CAP'], dataset_name):
-                        judge_kwargs['model'] = 'qwen-72b'
-                    elif listinstr(['MMVMBench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['CVQA_EN', 'CVQA_LOC'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4.1'
-                    elif listinstr(['M4Bench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['AyaVisionBench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4.1'
-                    elif listinstr(['MathCanvas'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4.1-2025-04-14'
 
                 if args.use_verifier:
                     judge_kwargs['use_verifier'] = True

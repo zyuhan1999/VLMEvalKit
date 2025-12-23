@@ -1,6 +1,7 @@
 from ..smp import *
 from .video_base import VideoBaseDataset
 import subprocess
+import re
 
 class LVBench(VideoBaseDataset):
 
@@ -27,8 +28,9 @@ class LVBench(VideoBaseDataset):
     TYPE = 'Video-MCQ'
     SYS = ''
 
-    def __init__(self, dataset: str = 'LVBench', nframe: int = 0, fps: float = -1):
+    def __init__(self, dataset: str = 'LVBench', nframe: int = 0, fps: float = -1, frames_limit=2048):
         self.dataset_name = dataset
+        self.frames_limit = frames_limit # following Qwen3-VL, impose a cap of 2,048 frames per video 
         super().__init__(dataset=dataset, nframe=nframe, fps=fps)
 
     @classmethod
@@ -38,7 +40,7 @@ class LVBench(VideoBaseDataset):
     def prepare_dataset(
         self,
         dataset_name: str = 'LVBench',
-        repo_id: str = '/mnt/shared-storage-user/zhuyuhan/temp_datasets/LVBench',
+        repo_id: str = '/root/s3/videogpu/zhuyuhan/benchmarks/LVBench',
     ):
         """
         准备 LVBench 数据集。
@@ -152,7 +154,7 @@ class LVBench(VideoBaseDataset):
         """
         根据 nframe 或 fps 从视频中抽帧，支持 AV1（使用 PyAV 解码）。
         """
-        def get_frames_and_fps(path):
+        def get_video_info(path):
             cmd = [
                 "ffprobe", "-v", "error",
                 "-select_streams", "v:0",
@@ -168,15 +170,22 @@ class LVBench(VideoBaseDataset):
             num, den = info["avg_frame_rate"].split("/")
             fps = float(num) / float(den)
 
-            return frames, fps
+            cmd = [
+                "ffprobe", "-v", "error",
+                "-show_entries", "format=duration",
+                "-of", "default=noprint_wrappers=1:nokey=1",
+                path,
+            ]
+            duration = float(subprocess.check_output(cmd).decode().strip())
+
+            return frames, fps, duration
 
         import av
 
         vid_path = osp.join(self.data_root, video_path)
-        print('video path: ', vid_path)
 
-        n_frames, fps = get_frames_and_fps(vid_path)
-        video_info = {'fps': fps, 'n_frames': n_frames}
+        n_frames, fps, duration = get_video_info(vid_path)
+        video_info = {'fps': fps, 'n_frames': n_frames, 'duration': duration}
 
         # ---- 计算抽帧 index ----
         if self.nframe > 0 and self.fps < 0:
@@ -186,34 +195,39 @@ class LVBench(VideoBaseDataset):
         elif self.fps > 0:
             total_duration = n_frames / fps
             required_frames = int(total_duration * self.fps)
-            step_size = fps / self.fps
-            indices = [int(i * step_size) for i in range(required_frames)]
-            frame_paths = self.frame_paths_fps(video_path[:-4], len(indices))
+            if required_frames > self.frames_limit: # 不能超过帧上限
+                print(f"Warning: Video `{video_path}` requires {required_frames} frames with {self.fps} fps. Truncating to {self.frames_limit} frames.")
+                step_size = n_frames / (self.frames_limit + 1)
+                indices = [int(i * step_size) for i in range(1, self.frames_limit + 1)]
+                frame_root = osp.join(self.frame_root, video_path[:-4])
+                os.makedirs(frame_root, exist_ok=True)
+                frame_paths = [osp.join(frame_root, self.frame_tmpl.format(i, self.frames_limit)) for i in range(1, self.frames_limit + 1)]
+            else:
+                step_size = fps / self.fps
+                indices = [int(i * step_size) for i in range(required_frames)]
+                frame_paths = self.frame_paths_fps(video_path[:-4], len(indices))
         else:
             raise ValueError('Either nframe > 0 or fps > 0 must be set.')
 
         needed = set(indices)
 
         if not np.all([osp.exists(p) for p in frame_paths]):
-            lock_path = osp.splitext(vid_path)[0] + '.lock'
-            with portalocker.Lock(lock_path, 'w', timeout=30):
-                if not np.all([osp.exists(p) for p in frame_paths]):
-                    container = av.open(vid_path)
-                    stream = container.streams.video[0]
-                    images = []
+            if not np.all([osp.exists(p) for p in frame_paths]):
+                container = av.open(vid_path)
+                stream = container.streams.video[0]
+                images = []
 
-                    frame_iter = enumerate(container.decode(stream))
-                    for idx, frame in tqdm(frame_iter, 
-                                        total=n_frames, 
-                                        desc=f"Extracting frames for {video_path}", 
-                                        disable=not verbose):
-                        if idx in needed:
-                            out_idx = indices.index(idx)
-                            pth = frame_paths[out_idx]
-                            if not osp.exists(pth):
-                                frame.to_image().save(pth)
+                frame_iter = enumerate(container.decode(stream))
+                for idx, frame in tqdm(frame_iter, 
+                                    total=n_frames, 
+                                    desc=f"Extracting frames for {video_path}"):
+                    if idx in needed:
+                        out_idx = indices.index(idx)
+                        pth = frame_paths[out_idx]
+                        if not osp.exists(pth):
+                            frame.to_image().save(pth)
 
-                    container.close()
+                container.close()
 
         return frame_paths, indices, video_info
 
@@ -231,37 +245,60 @@ class LVBench(VideoBaseDataset):
 
         message = [dict(type='text', value=self.SYS)]
         if video_llm:
-            message.append(dict(type='video', value=osp.join(self.data_root, line['video_path'])))
+            assert self.fps > 0
+            # 如果视频帧数达到限制，则使用限制帧数和视频时长计算实际 FPS
+            actual_fps = self.frames_limit / video_info['duration'] if len(frames) == self.frames_limit else self.fps
+            message.append(dict(
+                type='video', value=frames, sample_fps=actual_fps,
+                min_pixels=1*2*2*16*16,
+                max_pixels=640*32*32, # The maximum number of tokens per frame was set to 640
+                total_pixels=224000*4*16*16, # total number of video tokens did not exceed 224K
+            ))
         else:
             for im in frames:
                 message.append(dict(type='image', value=im))
 
-        # LVBench 的问题文本本身已包含选项 (A/B/C/D)
-        prompt = line['question'] + "\nPlease select the best answer from the options above and directly provide the letter representing your choice without giving any explanation."
+        assert '(A)' in line['question']
+        question = line['question'].split("(A)", 1)[0]
+        options = "(A)" + line['question'].split("(A)", 1)[1]
+
+        prompt = "\n".join([
+            "Select the best answer to the following multiple-choice question based on the video.",
+            "Respond with only the letter (A, B, C, or D) of the correct option.",
+            f"Question: {question}",
+            "Possible answer choices:",
+            f"{options}",
+            "The best answer is:",
+        ])
+        # print(prompt)
         message.append(dict(type='text', value=prompt))
         return message
 
     @staticmethod
     def _polish_answer(ans: str) -> str:
-        """
-        参考 LVBench 官方 `answer_util.polish_answer`，
-        将模型输出归一化为单个大写字母（若可能）。
-        """
-        ans = (ans or '').strip()
         if not ans:
             return ''
+        
+        text = ans.strip().upper()
 
-        ans = ans.split(')')[0].strip()
+        # 1. 匹配格式化选项，如 (A), [A], A), A.
+        medium_patterns = [
+            r'\(([ABCD])\)',         # (A)
+            r'\[([ABCD])\]',         # [A]
+            r'\b([ABCD])[\.\)]',     # A.  或  A)
+            r'[:\s]\s*([ABCD])\b',   # : A   或   空格 A
+        ]
+        for p in medium_patterns:
+            m = re.search(p, text)
+            if m:
+                return m.group(1)
 
-        if '(' in ans:
-            try:
-                ans = ans.split('(')[1].strip()
-            except Exception:
-                pass
+        # 3. 最后兜底：找独立单字母 A/B/C/D（避免匹配单词）
+        # 要求前后是非字母，即不是 Apple、Cat 这种单词内部字母
+        m = re.search(r'(?<![A-Z])([ABCD])(?![A-Z])', text)
+        if m:
+            return m.group(1)
 
-        ans = ans.split(' ')[0].strip()
-        if len(ans) > 0:
-            return ans[0].upper()
         return ''
 
     # It returns a dictionary
@@ -271,18 +308,131 @@ class LVBench(VideoBaseDataset):
         直接复刻 LVBench 官方的评测逻辑：
         - 读取 `<model>_LVBench.xlsx/tsv` 或 json，其中包含 prediction 列；
         - 与 TSV 中的 answer 比较，统计整体与各 question_type 的准确率。
+        同时：
+        - 将归一化后的预测结果写回到 eval_file 的 `pred` 列（若存在则覆盖）；
+        - 将各类别以及 overall 的准确率写入一个额外的 `_metrics.csv` 文件。
         """
-        from ..smp.file import get_file_extension
+        from ..smp.file import get_file_extension, get_intermediate_file_path
+        from .utils import build_judge, DEBUG_MESSAGE, extract_answer_from_item
+        import warnings
 
         assert get_file_extension(eval_file) in ['xlsx', 'json', 'tsv'], (
             'data file should be an supported format (xlsx/json/tsv) file'
         )
 
+        # 读取预测文件
         data = load(eval_file)
         # 兼容 Excel / TSV：确保 prediction/answer/question_type 存在
         assert 'prediction' in data and 'answer' in data and 'question_type' in data, (
             'LVBench evaluation requires `prediction`, `answer`, and `question_type` columns.'
         )
+
+        # === 1. 生成归一化后的预测列，并写回到 eval_file ===
+        # 若指定了 judge model，则使用 LLM Judge 从 prediction 中抽取最终选项；
+        # 否则沿用原先的规则解析逻辑（_polish_answer）。
+        model_name = judge_kwargs.get('model', 'exact_matching')
+        if model_name == 'exact_matching' or model_name is None:
+            judge_model = None
+        else:
+            judge_model = None
+            try:
+                judge_model = build_judge(**judge_kwargs)
+                if hasattr(judge_model, 'working') and (not judge_model.working()):
+                    warnings.warn('Judge model is not working properly, will use rule-based parsing for evaluation')
+                    warnings.warn(DEBUG_MESSAGE)
+                    judge_model = None
+            except Exception as e:
+                warnings.warn(f'Failed to build judge model ({model_name}), will use rule-based parsing: {type(e)}: {e}')
+                warnings.warn(DEBUG_MESSAGE)
+                judge_model = None
+
+        def _normalize_pred_rule(x):
+            if pd.isna(x):
+                return ''
+            return cls._polish_answer(str(x))
+
+        def _parse_question_options(q: str):
+            """
+            从包含 (A)/(B)/(C)/(D) 的题干中解析出：
+            - question_text: 纯问题（不含选项）
+            - options: dict, e.g. {'A': '...', 'B': '...'}
+            解析失败则 options 为空 dict。
+            """
+            if not isinstance(q, str):
+                q = '' if pd.isna(q) else str(q)
+            if '(A)' not in q:
+                return q.strip(), {}
+            matches = list(re.finditer(r'\(([ABCD])\)', q))
+            if len(matches) < 2:
+                return q.strip(), {}
+            question_text = q[:matches[0].start()].strip()
+            options = {}
+            for i, m in enumerate(matches):
+                ch = m.group(1)
+                start = m.end()
+                end = matches[i + 1].start() if i + 1 < len(matches) else len(q)
+                opt_text = q[start:end].strip()
+                if opt_text:
+                    options[ch] = opt_text
+            return question_text, options
+
+        if judge_model is None:
+            # Rule-based parsing path
+            data['pred'] = data['prediction'].apply(_normalize_pred_rule)
+        else:
+            # LLM-judge parsing path (with caching)
+            assert 'question' in data, (
+                'LVBench LLM-judge evaluation requires `question` column to parse (A)/(B)/(C)/(D) options.'
+            )
+
+            safe_model_name = re.sub(r'[^a-zA-Z0-9._-]+', '_', str(model_name))
+            judge_cache_file = get_intermediate_file_path(
+                eval_file, f'_judge_{safe_model_name}', target_format='pkl'
+            )
+            judge_cache = {}
+
+            preds = []
+            updated_cache = False
+            for _, row in data.iterrows():
+                idx = row.get('index', None)
+                if idx is not None and idx in judge_cache:
+                    preds.append(judge_cache[idx])
+                    continue
+
+                pred_raw = row.get('prediction', '')
+                if pred_raw is None or (isinstance(pred_raw, float) and pd.isna(pred_raw)) or pd.isna(pred_raw):
+                    opt = ''
+                else:
+                    pred_text = str(pred_raw)
+                    q_text, options = _parse_question_options(row.get('question', ''))
+                    # 若无法解析选项，则退化为原规则解析
+                    if not options:
+                        opt = cls._polish_answer(pred_text)
+                    else:
+                        item = {'question': q_text if q_text else str(row.get('question', '')), 'prediction': pred_text}
+                        for ch, txt in options.items():
+                            item[ch] = txt
+                        try:
+                            opt = extract_answer_from_item(judge_model, item, dataset_name='LVBench')['opt']
+                        except Exception:
+                            opt = ''
+
+                opt = (opt or '').strip().upper()
+                # LVBench 的 GT 为 A/B/C/D；其它输出（如 Z）按“无法解析”处理，保持与旧逻辑一致（不计入统计）
+                if opt not in ['A', 'B', 'C', 'D']:
+                    opt = ''
+
+                preds.append(opt)
+                if idx is not None:
+                    judge_cache[idx] = opt
+                    updated_cache = True
+
+            if updated_cache:
+                dump(judge_cache, judge_cache_file)
+            data['pred'] = preds
+
+        # 直接覆盖保存到原 eval_file（格式由后缀决定）
+        dump(data, eval_file)
 
         total_qa_num = 0
         right_num = 0
@@ -290,15 +440,16 @@ class LVBench(VideoBaseDataset):
         category_total = defaultdict(int)
 
         for _, row in data.iterrows():
-            pred_raw = row.get('prediction', None)
-            if pd.isna(pred_raw):
-                continue
-            gt = str(row['answer']).strip().upper()
-            if not gt:
+            # 使用已归一化后的 `pred` 列进行评测
+            pred = row.get('pred', '')
+            if not isinstance(pred, str):
+                pred = str(pred) if not pd.isna(pred) else ''
+            pred = pred.strip().upper()
+            if not pred:
                 continue
 
-            pred = cls._polish_answer(str(pred_raw))
-            if not pred:
+            gt = str(row['answer']).strip().upper()
+            if not gt:
                 continue
 
             equal = (pred == gt)
@@ -346,5 +497,23 @@ class LVBench(VideoBaseDataset):
 
         acc = float(right_num) / total_qa_num if total_qa_num > 0 else 0.0
         category_acc.update({'acc': acc})
+
+        # === 2. 将最终评测结果写入一个独立的 CSV 文件 ===
+        # 使用统一的中间文件命名工具，并显式指定为 csv 格式
+        metrics_file = get_intermediate_file_path(eval_file, '_metrics', target_format='csv')
+        metrics_rows = []
+        for key, v in category_acc.items():
+            # 若有统计信息，则一并写出；否则只写准确率
+            metrics_rows.append(
+                dict(
+                    category=key,
+                    accuracy=float(v),
+                    right=int(category_right.get(key, 0)),
+                    total=int(category_total.get(key, 0)),
+                )
+            )
+        metrics_df = pd.DataFrame(metrics_rows)
+        metrics_df.to_csv(metrics_file, index=False)
+
         return category_acc
 

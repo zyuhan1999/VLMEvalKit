@@ -5,6 +5,7 @@ import sys
 import warnings
 import math
 import logging
+import re
 
 import torch
 from transformers import StoppingCriteria
@@ -208,7 +209,14 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             temperature=temperature,
             repetition_penalty=repetition_penalty,
         )
-        self.system_prompt = system_prompt
+        # self.system_prompt = system_prompt
+        self.system_prompt = """You are an intelligent video assistant.
+Your task is to answer the user's multiple-choice question based on the provided video.
+First, carefully analyze the video content, identifying key events, visual details, and temporal sequences relevant to the question.
+Then, think step-by-step to deduce the correct answer, explicitly referencing evidence from the video to support your reasoning.
+Output your thinking process within `<think>` and `</think>` tags.
+Finally, output the selected option letter within `<answer>` and `</answer>` tags.
+"""
         self.verbose = verbose
         self.post_process = post_process
         self.fps = kwargs.pop('fps', 2)
@@ -231,7 +239,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
                 raise err
             MODEL_CLS = Qwen2_5OmniForConditionalGeneration
             self.processor = Qwen2_5OmniProcessor.from_pretrained(model_path)
-        elif listinstr(['2.5', '2_5', 'qwen25', 'mimo'], model_path.lower()):
+        elif listinstr(['2.5', '2_5', 'qwen25', 'mimo', 'videochat-o3'], model_path.lower()):
             from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
             MODEL_CLS = Qwen2_5_VLForConditionalGeneration
             self.processor = AutoProcessor.from_pretrained(model_path)
@@ -288,7 +296,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             self.device = 'cuda'
         else:
             self.model = MODEL_CLS.from_pretrained(
-                model_path, torch_dtype='auto', device_map="auto", attn_implementation='flash_attention_2'
+                model_path, torch_dtype=torch.bfloat16, device_map="auto", attn_implementation='flash_attention_2'
             )
             self.model.eval()
 
@@ -315,16 +323,20 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
                 if self.total_pixels is not None:
                     item['total_pixels'] = self.total_pixels
             elif s['type'] == 'video':
-                item = {
-                    'type': 'video',
-                    'video': ensure_video_url(s['value'])
-                }
+                if isinstance(s['value'], list):
+                    item = {
+                        'type': 'video',
+                        'video': [ensure_image_url(v) for v in s['value']],
+                        'sample_fps': 2.0,
+                    }
                 if self.min_pixels is not None:
                     item['min_pixels'] = self.min_pixels
                 if self.max_pixels is not None:
                     item['max_pixels'] = self.max_pixels
                 if self.total_pixels is not None:
                     item['total_pixels'] = self.total_pixels
+                if 'sample_fps' in item:
+                    pass
                 if self.fps is not None:
                     item['fps'] = self.fps
                 elif self.nframe is not None:
@@ -479,23 +491,26 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )
         response = out[0]
-        if self.post_process:
-            resp = response.split('\\boxed{')[-1]
-            lt = len(resp)
-            counter, end = 1, None
-            for i in range(lt):
-                if resp[i] == '{':
-                    counter += 1
-                elif resp[i] == '}':
-                    counter -= 1
-                if counter == 0:
-                    end = i
-                    break
-                elif i == lt - 1:
-                    end = lt
-                    break
-            if end is not None:
-                response = resp[:end]
+        # if self.post_process:
+        #     resp = response.split('\\boxed{')[-1]
+        #     lt = len(resp)
+        #     counter, end = 1, None
+        #     for i in range(lt):
+        #         if resp[i] == '{':
+        #             counter += 1
+        #         elif resp[i] == '}':
+        #             counter -= 1
+        #         if counter == 0:
+        #             end = i
+        #             break
+        #         elif i == lt - 1:
+        #             end = lt
+        #             break
+        #     if end is not None:
+        #         response = resp[:end]
+        match = re.search(r"<answer>\s*(.*?)\s*</answer>", response, re.S)
+        if match:
+            response = match.group(1).strip()
 
         if self.verbose:
             print(f'\033[32m{response}\033[0m')

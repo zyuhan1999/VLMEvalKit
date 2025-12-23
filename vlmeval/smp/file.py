@@ -510,27 +510,35 @@ def prepare_reuse_files(pred_root_meta, eval_id, model_name, dataset_name, reuse
     if len(files):
         pass
     else:
+        # for root in prev_pred_roots[::-1]:
+        #     fs = ls(root, match=f'{model_name}_{dataset_name}.')
+        #     if len(fs):
+        #         if len(fs) > 1:
+        #             warnings.warn(f'Multiple candidates in {root}: {fs}. Will use {fs[0]}')
+        #         prev_file = fs[0]
+        #         prev_aux_files = fetch_aux_files(prev_file)
+        #         break
+        # if prev_file is not None:
+        #     warnings.warn(f'--reuse is set, will reuse prediction file {prev_file}')
+        #     os.system(f'cp {prev_file} {work_dir}')
+        if not reuse_aux:
+            warnings.warn(f'--reuse-aux is not set, all auxiliary files in {work_dir} are removed. ')
+            os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*openai*")}')
+            os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*csv")}')
+            os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*json")}')
+            os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*pkl")}')
+            os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*gpt*")}')
         for root in prev_pred_roots[::-1]:
             fs = ls(root, match=f'{model_name}_{dataset_name}.')
-            if len(fs):
-                if len(fs) > 1:
-                    warnings.warn(f'Multiple candidates in {root}: {fs}. Will use {fs[0]}')
-                prev_file = fs[0]
+            for fs_idx in range(len(fs)):
+                prev_file = fs[fs_idx]
+                if prev_file is not None:
+                    print(f'--reuse is set, will reuse prediction file {prev_file}')
+                    os.system(f'cp {prev_file} {work_dir}')
+                
                 prev_aux_files = fetch_aux_files(prev_file)
-                break
-        if prev_file is not None:
-            warnings.warn(f'--reuse is set, will reuse prediction file {prev_file}')
-            os.system(f'cp {prev_file} {work_dir}')
-
-    if not reuse_aux:
-        warnings.warn(f'--reuse-aux is not set, all auxiliary files in {work_dir} are removed. ')
-        os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*openai*")}')
-        os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*csv")}')
-        os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*json")}')
-        os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*pkl")}')
-        os.system(f'rm -rf {osp.join(work_dir, f"{model_name}_{dataset_name}_*gpt*")}')
-    elif prev_aux_files is not None:
-        for f in prev_aux_files:
-            os.system(f'cp {f} {work_dir}')
-            warnings.warn(f'--reuse-aux is set, will reuse auxiliary file {f}')
+                if reuse_aux and prev_aux_files is not None:
+                    for f in prev_aux_files:
+                        os.system(f'cp {f} {work_dir}')
+                        print(f'--reuse-aux is set, will reuse auxiliary file {f}')
     return
