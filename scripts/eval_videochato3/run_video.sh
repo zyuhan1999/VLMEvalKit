@@ -23,7 +23,7 @@ torchrun --nproc-per-node=8 --master_port=16666 run.py \
   --reuse
 
 python run.py \
-    --data Video-MME_short_2fps \
-    --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216 \
+    --data MMVU_2fps_limit_768 \
+    --model VideoChat_o3_7B_sft_1466 \
     --verbose --reuse --mode eval \
     --judge qwen3-235b-a22b-instruct-2507

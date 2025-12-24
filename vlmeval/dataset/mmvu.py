@@ -282,7 +282,7 @@ class MMVU(VideoBaseDataset):
                 value=frames,
                 sample_fps=actual_fps,
                 min_pixels=1 * 2 * 2 * 16 * 16,
-                max_pixels=640 * 32 * 32,
+                max_pixels=768 * 32 * 32,
                 total_pixels=224000 * 4 * 16 * 16,
             ))
         else:

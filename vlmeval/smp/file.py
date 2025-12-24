@@ -541,4 +541,6 @@ def prepare_reuse_files(pred_root_meta, eval_id, model_name, dataset_name, reuse
                     for f in prev_aux_files:
                         os.system(f'cp {f} {work_dir}')
                         print(f'--reuse-aux is set, will reuse auxiliary file {f}')
+            if len(fs) > 0:
+                break
     return

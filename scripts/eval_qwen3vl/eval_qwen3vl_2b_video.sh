@@ -1,9 +1,9 @@
 #!/bin/bash
 set -ex
 export LMUData="/mnt/shared-storage-user/zhuyuhan/LMUData"
-export LMUData="/root/s3/videogpu/zhuyuhan/LMUData"
-bash /mnt/shared-storage-user/zhuyuhan/mount_anything.sh
-export LOCAL_LLM="/mnt/shared-storage-user/intern7shared/share_ckpt_hf/Qwen3-235B-A22B-Instruct-2507"
+# export LMUData="/root/s3/videogpu/zhuyuhan/LMUData"
+# bash /mnt/shared-storage-user/zhuyuhan/mount_anything.sh
+# export LOCAL_LLM="/mnt/shared-storage-user/intern7shared/share_ckpt_hf/Qwen3-235B-A22B-Instruct-2507"
 cd /mnt/shared-storage-user/zhuyuhan/videochat3/VLMEvalKit
 
 

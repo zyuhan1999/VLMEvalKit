@@ -8,17 +8,24 @@ export LOCAL_LLM="/mnt/shared-storage-user/intern7shared/share_ckpt_hf/Qwen3-235
 
 cd /mnt/shared-storage-user/zhuyuhan/videochat3/VLMEvalKit
 
-torchrun --nproc-per-node=8 run.py \
+torchrun --nproc-per-node=8 --master_port=10492 run.py \
   --data MMBench_DEV_EN_V11 RealWorldQA AI2D_TEST MMStar MMMU_DEV_VAL OCRBench ChartQA_TEST DocVQA_VAL InfoVQA_VAL MathVista_MINI MathVision_MINI \
-  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_t1 \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp \
   --verbose \
   --reuse \
   --mode infer
 
 python run.py \
   --data MMBench_DEV_EN_V11 RealWorldQA AI2D_TEST MMStar MMMU_DEV_VAL MathVista_MINI MathVision_MINI \
-  --model VideoChat3_4B_train_stage2_llava_video_academic \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_caprl2mrecap2 \
   --verbose \
   --reuse \
   --mode eval \
   --judge qwen3-235b-a22b-instruct-2507
+
+python run.py \
+  --data OCRBench ChartQA_TEST DocVQA_VAL InfoVQA_VAL \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_caprl2mrecap2 \
+  --verbose \
+  --reuse \
+  --mode eval

@@ -2,7 +2,7 @@
 set -ex
 
 # >>> conda initialize >>>
-export PATH="/mnt/shared-storage-user/zhuyuhan/miniconda3/bin:$PATH"
+export PATH="/mnt/shared-cstorage-user/zhuyuhan/miniconda3/bin:$PATH"
 __conda_setup="$('/mnt/shared-storage-user/zhuyuhan/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -18,7 +18,7 @@ conda deactivate
 conda activate videochat3
 # <<< conda initialize <<<
 
-export LMUData="/mnt/shared-storage-user/zhuyuhan/LMUData"
+export LMUData="/root/s3/videogpu/zhuyuhan/LMUData"
 bash /mnt/shared-storage-user/zhuyuhan/mount_anything.sh
 
 cd /mnt/shared-storage-user/zhuyuhan/videochat3/VLMEvalKit
@@ -31,4 +31,3 @@ torchrun --nproc-per-node=8 run.py \
   --model $MODEL \
   --verbose \
   --reuse \
-  --judge qwen3-30b-a3b-instruct-2507
