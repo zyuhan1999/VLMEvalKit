@@ -228,6 +228,34 @@ tomato_dataset = {
     'TOMATO_0.5fps': partial(TOMATO, dataset='TOMATO', fps=0.5),
 }
 
+minerva_dataset = {
+    'Minerva_8frame': partial(Minerva, dataset='Minerva', nframe=8),
+    'Minerva_16frame': partial(Minerva, dataset='Minerva', nframe=16),
+    'Minerva_1fps': partial(Minerva, dataset='Minerva', fps=1.0),
+    'Minerva_2fps': partial(Minerva, dataset='Minerva', fps=2.0),
+}
+
+timelens_dataset = {
+    'TimeLens_2fps': partial(TimeLens, dataset='TimeLens', fps=2.0),
+    'TimeLens_1fps': partial(TimeLens, dataset='TimeLens', fps=1.0),
+    'TimeLens_Charades_2fps': partial(TimeLens_Charades, dataset='TimeLens_Charades', fps=2.0),
+    'TimeLens_ActivityNet_2fps': partial(TimeLens_ActivityNet, dataset='TimeLens_ActivityNet', fps=2.0),
+    'TimeLens_QVHighlights_2fps': partial(TimeLens_QVHighlights, dataset='TimeLens_QVHighlights', fps=2.0),
+}
+
+motionbench_dataset = {
+    'MotionBench_8frame': partial(MotionBench, dataset='MotionBench', nframe=8),
+    'MotionBench_16frame': partial(MotionBench, dataset='MotionBench', nframe=16),
+    'MotionBench_1fps': partial(MotionBench, dataset='MotionBench', fps=1.0),
+    'MotionBench_2fps': partial(MotionBench, dataset='MotionBench', fps=2.0),
+}
+
+vue_tr_dataset = {
+    'VUE_TR_2fps': partial(VUE_TR, dataset='VUE_TR', fps=2.0),
+    'VUE_TR_1fps': partial(VUE_TR, dataset='VUE_TR', fps=1.0),
+    'VUE_TR_8frame': partial(VUE_TR, dataset='VUE_TR', nframe=8),
+}
+
 dream_1k_dataset = {
     'DREAM-1K_8frame': partial(DREAM, dataset='DREAM-1K', nframe=8),
     'DREAM-1K_64frame': partial(DREAM, dataset='DREAM-1K', nframe=64),
@@ -244,7 +272,7 @@ dataset_groups = [
     mlvu_dataset, tempcompass_dataset, cgbench_dataset, worldsense_dataset, tamperbench_dataset,
     megabench_dataset, qbench_video_dataset, moviechat1k_dataset, vdc_dataset, video_holmes_dataset, vcrbench_dataset,
     cg_av_counting_dataset, video_mmlu_dataset, egoexobench_dataset, dream_1k_dataset, video_tt_dataset,
-    vsibench_dataset, mmvu_dataset, tomato_dataset
+    vsibench_dataset, mmvu_dataset, tomato_dataset, minerva_dataset, timelens_dataset, motionbench_dataset, vue_tr_dataset
 ]
 
 for grp in dataset_groups:

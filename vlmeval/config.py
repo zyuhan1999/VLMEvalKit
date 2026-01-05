@@ -1182,7 +1182,7 @@ qwen3vl_series = {
         use_custom_prompt=False,
         use_vllm=False,
         temperature=0.7, 
-        max_new_tokens=16384,
+        max_new_tokens=4096,
         repetition_penalty=1.0,
         presence_penalty=1.5,
         top_p=0.8,
@@ -1194,7 +1194,7 @@ qwen3vl_series = {
         use_custom_prompt=False,
         use_vllm=False,
         temperature=0.7, 
-        max_new_tokens=16384,
+        max_new_tokens=4096,
         repetition_penalty=1.0,
         presence_penalty=1.5,
         top_p=0.8,
@@ -2014,6 +2014,15 @@ videochat_o3_series = {
         total_pixels=16384 * 28 * 28,
         use_vllm=False
     ),
+    "VideoChat_o3_7B_general_clue_sft_3913": partial(
+        Qwen2VLChat,
+        model_path="/root/s3/videogpu/videochat-o3/ckpt/general_clue-SFT-3913",
+        use_custom_prompt=False,
+        min_pixels=128 * 28 * 28,
+        max_pixels=768 * 28 * 28,
+        total_pixels=16384 * 28 * 28,
+        use_vllm=False
+    ),
 }
 
 videochat3_series = {
@@ -2128,6 +2137,114 @@ videochat3_series = {
     "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp": partial(
         VideoChat3,
         model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp/20251221232401/hf-909",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_mixcap": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_mixcap/20251226010459/hf-354",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_smit": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_smit/20251224020852/hf-310",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_vript": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_vript/20251225014437/hf-360",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video/20251225003059/hf-1443",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl2": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl2/20251228211244/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl2",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_cc3m_v2": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_cc3m_v2/20251229031009/hf-909",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl2_vtlr": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl2_vtlr/20251230022622/hf-909",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_no_stage1-2": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_no_stage1-2/20260103015002/hf-909/",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl_vtlr_2": partial(
+        VideoChat3,
+        model_path="/root/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl_vtlr_2/20260103014008/hf-909",
         use_custom_prompt=False,
         use_vllm=False,
         temperature=0.7, 

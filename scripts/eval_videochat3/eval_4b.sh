@@ -18,6 +18,8 @@ conda deactivate
 conda activate videochat3
 # <<< conda initialize <<<
 
+export PATH=/mnt/shared-storage-user/zhuyuhan/bin:$PATH
+
 export LMUData="/root/s3/videogpu/zhuyuhan/LMUData"
 bash /mnt/shared-storage-user/zhuyuhan/mount_anything.sh
 
@@ -30,4 +32,4 @@ torchrun --nproc-per-node=8 run.py \
   --data $DATASETS \
   --model $MODEL \
   --verbose \
-  --reuse \
+  --reuse

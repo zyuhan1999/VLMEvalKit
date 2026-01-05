@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 
-export LMUData="/mnt/shared-storage-user/zhuyuhan/LMUData"
-# export LMUData="/root/s3/videogpu/zhuyuhan/LMUData"
+# export LMUData="/mnt/shared-storage-user/zhuyuhan/LMUData"
+export LMUData="/root/s3/videogpu/zhuyuhan/LMUData"
 # export LOCAL_LLM="/mnt/shared-storage-user/intern7shared/share_ckpt_hf/Qwen3-235B-A22B-Instruct-2507"
 bash /mnt/shared-storage-user/zhuyuhan/mount_anything.sh
 
@@ -17,13 +17,19 @@ cd /mnt/shared-storage-user/zhuyuhan/videochat3/VLMEvalKit
 #   --reuse
 
 torchrun --nproc-per-node=8 --master_port=16666 run.py \
-  --data VideoMMMU_2fps_limit_768 MMVU_2fps_limit_768 \
-  --model VideoChat_o3_7B_sft_600 \
+  --data Video-MME_2fps_limit_768 LongVideoBench_2fps_limit_768 MMVU_2fps_limit_768 \
+  --model VideoChat_o3_7B_general_clue_sft_3913 \
+  --verbose \
+  --reuse
+
+torchrun --nproc-per-node=8 --master_port=18888 run.py \
+  --data VideoMMMU_2fps_limit_768 LVBench_2fps_limit_768 \
+  --model VideoChat_o3_7B_general_clue_sft_3913 \
   --verbose \
   --reuse
 
 python run.py \
     --data MMVU_2fps_limit_768 \
-    --model VideoChat_o3_7B_sft_1466 \
+    --model VideoChat_o3_7B_general_clue_sft_3913 \
     --verbose --reuse --mode eval \
     --judge qwen3-235b-a22b-instruct-2507

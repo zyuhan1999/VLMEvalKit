@@ -63,6 +63,10 @@ from .videommmu import VideoMMMU
 from .vsibench import VSIBench
 from .mmvu import MMVU
 from .tomato import TOMATO
+from .minerva import Minerva
+from .timelens import TimeLens, TimeLens_ActivityNet, TimeLens_Charades, TimeLens_QVHighlights
+from .motionbench import MotionBench
+from .vidi_vue_tr import VUE_TR
 
 from .EgoExoBench.egoexobench import EgoExoBench_MCQ
 from .videott import VideoTT
@@ -243,7 +247,10 @@ VIDEO_DATASET = [
     Video_MMLU_CAP, Video_MMLU_QA,
     Video_Holmes, VCRBench, CGAVCounting,
     EgoExoBench_MCQ, DREAM, VideoTT, VideoMMMU, VSIBench, MMVU
-    , TOMATO
+    , TOMATO, Minerva
+    , TimeLens, TimeLens_ActivityNet, TimeLens_Charades, TimeLens_QVHighlights
+    , MotionBench
+    , VUE_TR
 
 ]
 

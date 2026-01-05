@@ -1,5 +1,6 @@
 import torch
 import torch.distributed as dist
+import glob
 from vlmeval.config import supported_VLM
 from vlmeval.utils import track_progress_rich
 from vlmeval.smp import *
@@ -118,7 +119,14 @@ def infer_data(
     # (In VLMEvalKit, we use torchrun to launch multiple model instances on a single node).
     # To bypass this problem, we unset `WORLD_SIZE` before building the model to not use TP parallel.
     ws_bak = os.environ.pop('WORLD_SIZE', None)
-    model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    if dist.is_initialized():
+        if dist.get_rank() == 0:
+            model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+        dist.barrier()
+        if dist.get_rank() != 0:
+            model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    else:
+        model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
     if ws_bak:
         os.environ['WORLD_SIZE'] = ws_bak
 
@@ -208,8 +216,7 @@ def infer_data(
             print(response, flush=True)
 
         res[idx] = response
-        if (i + 1) % 10 == 0:
-            dump(res, out_file)
+        dump(res, out_file)
 
     # For the default (non-dynamic) scheduling strategy, keep only the samples
     # belonging to this rank. When dynamic load balancing is enabled
@@ -239,7 +246,8 @@ def infer_data_job_video(
     if osp.exists(result_file):
         return model
 
-    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{osp.splitext(result_file_name)[0]}.pkl')
+    stem = osp.splitext(result_file_name)[0]
+    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{stem}.pkl')
     out_file = tmpl.format(rank)
 
     # -------- Dynamic load-balancing for video inference --------
@@ -247,6 +255,11 @@ def infer_data_job_video(
     # while re-balancing the remaining samples evenly across all ranks.
     # Existing results in 0_*.pkl, 1_*.pkl, ... will be respected and kept.
     assigned_indices = None
+    # NOTE: Historical partial files include world_size in their filename
+    # (e.g., 08_xxx.pkl, 18_xxx.pkl for world_size=8). When resuming with a
+    # different world_size, we should still be able to discover and reuse them.
+    existing_part_files = []
+    existing_cache = {}
     if world_size > 1:
         # Build a global task list and remove all indices that have already
         # been processed by any rank (according to existing per-rank pkl files).
@@ -260,12 +273,22 @@ def infer_data_job_video(
             )
 
             done_indices = set()
-            for i in range(world_size):
-                part_file = tmpl.format(i)
-                print(f"===== Part File {part_file} ======")
-                if osp.exists(part_file):
+            # Discover any historical per-rank partial files for this job,
+            # regardless of the world_size used to generate them.
+            # Pattern matches: <prefix>_<stem>.pkl, where prefix can be "08", "14", ...
+            existing_part_files = sorted(glob.glob(osp.join(work_dir, f'*_{stem}.pkl')))
+            if len(existing_part_files):
+                print(f"===== Found {len(existing_part_files)} existing part files (any world_size) ======")
+                for part_file in existing_part_files:
+                    print(f"===== Part File {part_file} ======")
+                    if not osp.exists(part_file):
+                        continue
                     part_res = load(part_file)
-                    done_indices.update(part_res.keys())
+                    if isinstance(part_res, dict):
+                        existing_cache.update(part_res)
+                        done_indices.update(part_res.keys())
+            else:
+                print("===== Found 0 existing part files ======")
 
             remaining_indices = [idx for idx in sample_indices if idx not in done_indices]
             print(f"===== Done {len(done_indices)} | Remaining {len(remaining_indices)} | Total {len(sample_indices)} ======")
@@ -301,9 +324,16 @@ def infer_data_job_video(
         dist.barrier()
 
     if rank == 0:
-        data_all = {}
+        # Merge results from:
+        # 1) any historical partial files (any world_size), and
+        # 2) current run's partial files (current world_size).
+        data_all = dict(existing_cache)
+        part_files_to_cleanup = set(existing_part_files)
         for i in range(world_size):
-            data_all.update(load(tmpl.format(i)))
+            part_file = tmpl.format(i)
+            if osp.exists(part_file):
+                data_all.update(load(part_file))
+                part_files_to_cleanup.add(part_file)
 
         meta = dataset.data
         if dataset_name == 'MMBench-Video' and getattr(dataset, 'pack', False):
@@ -317,6 +347,11 @@ def infer_data_job_video(
                 meta.pop('image')
 
         dump(meta, result_file)
-        for i in range(world_size):
-            os.remove(tmpl.format(i))
+        # Clean up all partial files we used for this job (both historical and current).
+        for part_file in sorted(part_files_to_cleanup):
+            try:
+                if osp.exists(part_file):
+                    os.remove(part_file)
+            except Exception as e:
+                print(f"[WARN] Failed to remove partial file {part_file}: {e}")
     return model

@@ -1,5 +1,6 @@
 import torch
 import torch.distributed as dist
+import glob
 from vlmeval.config import supported_VLM
 from vlmeval.utils import track_progress_rich
 from vlmeval.smp import *
@@ -80,7 +81,17 @@ def infer_data_api(model, work_dir, model_name, dataset, index_set=None, api_npr
     return res
 
 
-def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, api_nproc=4, use_vllm=False):
+def infer_data(
+    model,
+    model_name,
+    work_dir,
+    dataset,
+    out_file,
+    verbose=False,
+    api_nproc=4,
+    use_vllm=False,
+    assigned_indices=None,
+):
     dataset_name = dataset.dataset_name
     prev_file = f'{work_dir}/{model_name}_{dataset_name}_PREV.pkl'
     res = load(prev_file) if osp.exists(prev_file) else {}
@@ -88,10 +99,14 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         res.update(load(out_file))
 
     rank, world_size = get_rank_and_world_size()
-    sheet_indices = list(range(rank, len(dataset), world_size))
-    lt = len(sheet_indices)
-    data = dataset.data.iloc[sheet_indices]
-    data_indices = [i for i in data['index']]
+    if assigned_indices is not None:
+        data = dataset.data[dataset.data['index'].isin(assigned_indices)]
+        data_indices = list(data['index'])
+    else:
+        sheet_indices = list(range(rank, len(dataset), world_size))
+        data = dataset.data.iloc[sheet_indices]
+        data_indices = [i for i in data['index']]
+    lt = len(data_indices)
 
     # If finished, will exit without building the model
     all_finished = True
@@ -100,7 +115,10 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         if idx not in res:
             all_finished = False
     if all_finished:
-        res = {k: res[k] for k in data_indices}
+        # For dynamic load-balancing, keep all cached results in this file,
+        # since different ranks may take over unfinished samples from others.
+        if assigned_indices is None:
+            res = {k: res[k] for k in data_indices}
         dump(res, out_file)
         return model
 
@@ -121,7 +139,14 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
     # (In VLMEvalKit, we use torchrun to launch multiple model instances on a single node).
     # To bypass this problem, we unset `WORLD_SIZE` before building the model to not use TP parallel.
     ws_bak = os.environ.pop('WORLD_SIZE', None)
-    model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    if dist.is_initialized():
+        if dist.get_rank() == 0:
+            model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+        dist.barrier()
+        if dist.get_rank() != 0:
+            model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    else:
+        model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
     if ws_bak:
         os.environ['WORLD_SIZE'] = ws_bak
 
@@ -138,7 +163,8 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         for idx in indices:
             assert idx in supp
         res.update(supp)
-        res = {k: res[k] for k in data_indices}
+        if assigned_indices is None:
+            res = {k: res[k] for k in data_indices}
         dump(res, out_file)
         return model
     else:
@@ -171,10 +197,14 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
             print(response, flush=True)
 
         res[idx] = response
-        if (i + 1) % 10 == 0:
-            dump(res, out_file)
+        dump(res, out_file)
 
-    res = {k: res[k] for k in data_indices}
+    # For the default (non-dynamic) scheduling strategy, keep only the samples
+    # belonging to this rank. When dynamic load balancing is enabled
+    # (assigned_indices is not None), we keep all cached results in this file,
+    # since different ranks may take over unfinished samples from others.
+    if assigned_indices is None:
+        res = {k: res[k] for k in data_indices}
     dump(res, out_file)
     return model
 
@@ -205,19 +235,84 @@ def infer_data_job(
         if world_size > 1:
             dist.barrier()
 
-    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{dataset_name}.pkl')
+    # Use result file stem (model_name + dataset_name) as job identifier to avoid collisions.
+    # Backward compatible: we will also discover legacy part files named by dataset only.
+    stem = osp.splitext(osp.basename(result_file))[0]
+    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{stem}.pkl')
     out_file = tmpl.format(rank)
+
+    # -------- Dynamic load-balancing for image inference --------
+    # Support resuming from previous partial results (per-rank pkl files)
+    # while re-balancing the remaining samples evenly across all ranks.
+    assigned_indices = None
+    existing_part_files = []
+    existing_cache = {}
+    if rank == 0:
+        sample_indices = list(dataset.data['index'])
+        done_indices = set()
+
+        # Discover any historical per-rank partial files for this job,
+        # regardless of the world_size used to generate them.
+        # 1) new naming: *_{stem}.pkl
+        # 2) legacy naming: *_{dataset_name}.pkl
+        part_files_new = sorted(glob.glob(osp.join(work_dir, f'*_{stem}.pkl')))
+        part_files_legacy = sorted(glob.glob(osp.join(work_dir, f'*_{dataset_name}.pkl')))
+        # Keep order-stable while de-duplicating
+        existing_part_files = []
+        seen = set()
+        for pf in (part_files_new + part_files_legacy):
+            if pf not in seen:
+                existing_part_files.append(pf)
+                seen.add(pf)
+
+        if len(existing_part_files):
+            print(f"===== Found {len(existing_part_files)} existing part files (any world_size) ======")
+            for part_file in existing_part_files:
+                print(f"===== Part File {part_file} ======")
+                if not osp.exists(part_file):
+                    continue
+                part_res = load(part_file)
+                if isinstance(part_res, dict):
+                    existing_cache.update(part_res)
+                    done_indices.update(part_res.keys())
+        else:
+            print("===== Found 0 existing part files ======")
+
+        remaining_indices = [idx for idx in sample_indices if idx not in done_indices]
+        print(f"===== Done {len(done_indices)} | Remaining {len(remaining_indices)} | Total {len(sample_indices)} ======")
+
+        assigned_indices_all = [[] for _ in range(world_size)]
+        for j, idx in enumerate(remaining_indices):
+            assigned_indices_all[j % world_size].append(idx)
+    else:
+        assigned_indices_all = None
+
+    if world_size > 1 and dist.is_available() and dist.is_initialized():
+        obj_list = [assigned_indices_all]
+        dist.broadcast_object_list(obj_list, src=0)
+        assigned_indices_all = obj_list[0]
+
+    if assigned_indices_all is not None:
+        assigned_indices = assigned_indices_all[rank]
 
     model = infer_data(
         model=model, work_dir=work_dir, model_name=model_name, dataset=dataset,
-        out_file=out_file, verbose=verbose, api_nproc=api_nproc, use_vllm=use_vllm)
+        out_file=out_file, verbose=verbose, api_nproc=api_nproc, use_vllm=use_vllm,
+        assigned_indices=assigned_indices)
     if world_size > 1:
         dist.barrier()
 
     if rank == 0:
-        data_all = {}
+        # Merge results from:
+        # 1) any historical partial files (any world_size), and
+        # 2) current run's partial files (current world_size).
+        data_all = dict(existing_cache)
+        part_files_to_cleanup = set(existing_part_files)
         for i in range(world_size):
-            data_all.update(load(tmpl.format(i)))
+            part_file = tmpl.format(i)
+            if osp.exists(part_file):
+                data_all.update(load(part_file))
+                part_files_to_cleanup.add(part_file)
 
         data = dataset.data
         for x in data['index']:
@@ -261,8 +356,13 @@ def infer_data_job(
             data.pop('image')
 
         dump(data, result_file)
-        for i in range(world_size):
-            os.remove(tmpl.format(i))
+        # Clean up all partial files we used for this job (both historical and current).
+        for part_file in sorted(part_files_to_cleanup):
+            try:
+                if osp.exists(part_file):
+                    os.remove(part_file)
+            except Exception as e:
+                print(f"[WARN] Failed to remove partial file {part_file}: {e}")
     if world_size > 1:
         dist.barrier()
     return model

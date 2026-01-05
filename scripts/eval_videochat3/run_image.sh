@@ -10,22 +10,26 @@ cd /mnt/shared-storage-user/zhuyuhan/videochat3/VLMEvalKit
 
 torchrun --nproc-per-node=8 --master_port=10492 run.py \
   --data MMBench_DEV_EN_V11 RealWorldQA AI2D_TEST MMStar MMMU_DEV_VAL OCRBench ChartQA_TEST DocVQA_VAL InfoVQA_VAL MathVista_MINI MathVision_MINI \
-  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl_vtlr_2 \
   --verbose \
   --reuse \
   --mode infer
 
-python run.py \
-  --data MMBench_DEV_EN_V11 RealWorldQA AI2D_TEST MMStar MMMU_DEV_VAL MathVista_MINI MathVision_MINI \
-  --model VideoChat3_4B_train_stage2_llava_video_academic_caprl2mrecap2 \
+torchrun --nproc-per-node=8 --master_port=10888 run.py \
+  --data OCRBench ChartQA_TEST DocVQA_VAL InfoVQA_VAL \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl_vtlr_2 \
   --verbose \
-  --reuse \
-  --mode eval \
-  --judge qwen3-235b-a22b-instruct-2507
+  --reuse
 
 python run.py \
   --data OCRBench ChartQA_TEST DocVQA_VAL InfoVQA_VAL \
-  --model VideoChat3_4B_train_stage2_llava_video_academic_caprl2mrecap2 \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_cc3m_v2 \
+  --verbose \
+  --reuse
+
+python run.py \
+  --data OCRBench ChartQA_TEST DocVQA_VAL InfoVQA_VAL \
+  --model VideoChat3_4B_train_stage2_llava_video_academic_shortcotqa20251216_bee_image_temp_caprl2 \
   --verbose \
   --reuse \
   --mode eval
