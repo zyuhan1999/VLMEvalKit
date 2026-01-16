@@ -105,7 +105,7 @@ class LongVideoBench(VideoBaseDataset):
     def supported_datasets(cls):
         return ['LongVideoBench']
 
-    def prepare_dataset(self, dataset_name='LongVideoBench', repo_id='/root/s3/videogpu/zhuyuhan/benchmarks/LongVideoBench'):
+    def prepare_dataset(self, dataset_name='LongVideoBench', repo_id='/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/LongVideoBench'):
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
             if not osp.exists(data_file):

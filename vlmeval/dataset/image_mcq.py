@@ -260,8 +260,8 @@ class ImageMCQDataset(ImageBaseDataset):
             circular = True
 
         model = judge_kwargs.get('model', 'exact_matching')
-        assert model in ['chatgpt-0125', 'exact_matching', 'gpt-4-0125', 'qwen3-30b-a3b-instruct-2507', 'qwen3-235b-a22b-instruct-2507']
-        name_str_map = {'chatgpt-0125': 'openai', 'gpt-4-0125': 'gpt4', 'qwen3-30b-a3b-instruct-2507': 'qwen3', 'qwen3-235b-a22b-instruct-2507': 'qwen3'}
+        assert model in ['chatgpt-0125', 'exact_matching', 'gpt-4-0125', 'qwen3-30b-a3b-instruct-2507', 'qwen3-235b-a22b-instruct-2507', 'qwen3-235b-a22b-thinking-2507']
+        name_str_map = {'chatgpt-0125': 'openai', 'gpt-4-0125': 'gpt4', 'qwen3-30b-a3b-instruct-2507': 'qwen3', 'qwen3-235b-a22b-instruct-2507': 'qwen3', 'qwen3-235b-a22b-thinking-2507': 'qwen3'}
         name_str = name_str_map[model] if model in name_str_map else model
 
         if model == 'exact_matching':

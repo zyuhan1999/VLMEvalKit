@@ -2,6 +2,7 @@ from ..smp import *
 import os
 import sys
 from .base import BaseAPI
+import re
 
 APIBASES = {
     'OFFICIAL': 'https://api.openai.com/v1/chat/completions',
@@ -160,7 +161,6 @@ class OpenAIWrapper(BaseAPI):
                 self.api_base = os.environ.get('BOYUE_API_BASE')
                 self.key = os.environ.get('BOYUE_API_KEY')
 
-        self.logger.info(f'Using API Base: {self.api_base}; API Key: {self.key}')
 
     # inputs can be a lvl-2 nested list: [content1, content2, content3, ...]
     # content can be a string or a list of image & text
@@ -231,15 +231,25 @@ class OpenAIWrapper(BaseAPI):
             payload.pop('n')
             payload['reasoning_effort'] = 'high'
 
-        response = requests.post(
-            self.api_base,
-            headers=headers, data=json.dumps(payload), timeout=self.timeout * 1.1)
+        if "10.140.158.153:1020" in self.api_base:
+            # ailab的逆天api不支持格式化content, 还得给他重写
+            assert len(payload["messages"][0]["content"]) == 1
+            payload["messages"][0]["content"] = payload["messages"][0]["content"][0]["text"] + "/no_think"
+            response = requests.post(
+                self.api_base,
+                headers=headers, json=payload, timeout=self.timeout * 1.1, verify=False)
+        else:
+            response = requests.post(
+                self.api_base,
+                headers=headers, data=json.dumps(payload), timeout=self.timeout * 1.1, verify=False)
         ret_code = response.status_code
         ret_code = 0 if (200 <= int(ret_code) < 300) else ret_code
         answer = self.fail_msg
         try:
             resp_struct = json.loads(response.text)
             answer = resp_struct['choices'][0]['message']['content'].strip()
+            if "10.140.158.153:1020" in self.api_base:
+                answer = re.sub(r"<think>.*?</think>\s*", "", answer, flags=re.S)
         except Exception as err:
             if self.verbose:
                 self.logger.error(f'{type(err)}: {err}')

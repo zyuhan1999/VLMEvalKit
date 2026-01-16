@@ -26,7 +26,7 @@ class _VUE_TR_Paths:
 
 
 def _default_vue_tr_root() -> str:
-    return os.environ.get('VUE_TR_ROOT', '/root/s3/videogpu/zhuyuhan/benchmarks/vidi/VUE_TR')
+    return os.environ.get('VUE_TR_ROOT', '/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/vidi/VUE_TR')
 
 
 def _default_vue_tr_videos_dir_under_root(root: str) -> str:
@@ -293,7 +293,7 @@ class VUE_TR(VideoBaseDataset):
     """
     VUE-TR: Video temporal retrieval benchmark.
     Ground truth is provided in `VUE-TR_ground_truth.json`.
-    Videos are expected under `VUE_TR_VIDEOS_DIR` (default: /mnt/shared-storage-user/zhuyuhan/temp_datasets/vidi/videos).
+    Videos are expected under `VUE_TR_VIDEOS_DIR`.
     Note: videos may be partially downloaded; dataset building will not fail on missing videos,
     but `build_prompt` will raise if a requested video file is missing.
     """

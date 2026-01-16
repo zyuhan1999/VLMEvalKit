@@ -129,7 +129,7 @@ class MMVU(VideoBaseDataset):
         Prepare MMVU dataset from a local checkout.
         You can set MMVU_ROOT env var to point to the official repo directory.
         """
-        dataset_path = repo_id or os.environ.get('MMVU_ROOT', None) or '/root/s3/videogpu/zhuyuhan/benchmarks/MMVU'
+        dataset_path = repo_id or os.environ.get('MMVU_ROOT', None) or '/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/MMVU'
         dataset_path = str(dataset_path)
 
         if not osp.exists(dataset_path):

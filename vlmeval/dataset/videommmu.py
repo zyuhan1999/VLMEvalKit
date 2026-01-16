@@ -464,7 +464,7 @@ class VideoMMMU(VideoBaseDataset):
 
     def prepare_dataset(self,
                         dataset_name='VideoMMMU',
-                        repo_id='/root/s3/videogpu/zhuyuhan/benchmarks/VideoMMMU'):
+                        repo_id='/nvme/zhuyuhan/videogpu/zhuyuhan/benchmarks/VideoMMMU'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')

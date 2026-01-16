@@ -83,7 +83,7 @@ Respond with only the letter (A, B, C, or D) of the correct option.
     def supported_datasets(cls):
         return ['Video-MME']
 
-    def prepare_dataset(self, dataset_name='Video-MME', repo_id='/root/s3/videogpu/zhuyuhan/benchmarks/Video-MME'):
+    def prepare_dataset(self, dataset_name='Video-MME', repo_id='/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/Video-MME'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
@@ -283,7 +283,7 @@ Respond with only the letter (A, B, C, or D) of the correct option.
         score_file = get_intermediate_file_path(eval_file, '_score')
 
         model = judge_kwargs.get('model', 'exact_matching')
-        assert model in ['chatgpt-0125', 'exact_matching', 'gpt-4-0125', 'qwen3-235b-a22b-instruct-2507']
+        assert model in ['chatgpt-0125', 'exact_matching', 'gpt-4-0125', 'qwen3-235b-a22b-instruct-2507', 'qwen3-235b-a22b-thinking-2507']
 
         if model == 'exact_matching':
             model = None

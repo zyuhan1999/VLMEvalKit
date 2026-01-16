@@ -40,7 +40,7 @@ class LVBench(VideoBaseDataset):
     def prepare_dataset(
         self,
         dataset_name: str = 'LVBench',
-        repo_id: str = '/root/s3/videogpu/zhuyuhan/benchmarks/LVBench',
+        repo_id: str = '/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/LVBench',
     ):
         """
         准备 LVBench 数据集。

@@ -126,7 +126,7 @@ class TOMATO(VideoBaseDataset):
         dataset_path = (
             repo_id
             or os.environ.get('TOMATO_ROOT', None)
-            or '/root/s3/videogpu/zhuyuhan/benchmarks/TOMATO'
+            or '/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/TOMATO'
         )
         dataset_path = str(dataset_path)
 
