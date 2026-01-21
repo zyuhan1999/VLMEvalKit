@@ -29,7 +29,7 @@ class _MinervaPaths:
 
 def _default_minerva_root() -> str:
     # User-provided default path for this workspace; can be overridden via env var.
-    return os.environ.get('MINERVA_ROOT', '/root/s3/videogpu/zhuyuhan/benchmarks/Minerva').strip()
+    return os.environ.get('MINERVA_ROOT', '/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/Minerva').strip()
 
 
 def _canonicalize_title(s: str) -> str:

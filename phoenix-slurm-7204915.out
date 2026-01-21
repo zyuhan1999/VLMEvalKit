@@ -1,0 +1,1367 @@
+fusermount: entry for /mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan not found in /etc/mtab
+bucket zhuyuhan is mounted at /mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan
+fusermount: entry for /mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3 not found in /etc/mtab
+bucket videochat3 is mounted at /mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3
+W0120 12:34:03.288000 92122 site-packages/torch/distributed/run.py:792] 
+W0120 12:34:03.288000 92122 site-packages/torch/distributed/run.py:792] *****************************************
+W0120 12:34:03.288000 92122 site-packages/torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0120 12:34:03.288000 92122 site-packages/torch/distributed/run.py:792] *****************************************
+RANK: 1, LOCAL_RANK: 1, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 1
+RANK: 0, LOCAL_RANK: 0, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 0
+RANK: 2, LOCAL_RANK: 2, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 2
+RANK: 3, LOCAL_RANK: 3, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 3
+RANK: 4, LOCAL_RANK: 4, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 4
+RANK: 5, LOCAL_RANK: 5, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 5
+RANK: 7, LOCAL_RANK: 7, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 7
+RANK: 6, LOCAL_RANK: 6, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 6
+[2026-01-20 12:34:25] WARNING - RUN - run.py: main - 221: --reuse is set, will reuse the latest prediction & temporary pickle files
+[rank2]:[W120 12:34:26.052055447 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank6]:[W120 12:34:26.052057220 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 6]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W120 12:34:26.052055554 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W120 12:34:26.052120428 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank7]:[W120 12:34:26.052605699 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 7]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank4]:[W120 12:34:26.055220258 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 4]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W120 12:34:26.059510993 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank5]:[W120 12:34:26.072503634 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 5]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+==========
+./outputs/VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5 T20260120_Gf2bb1025 VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5 MMVU_2fps
+==========
+===== Found 0 existing part files ======
+===== Done 0 | Remaining 1000 | Total 1000 ======
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.78s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.57s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.66s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.93s/it]
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+[Rank0]:   0%|          | 0/125 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+The video shows a **low-angle shot** of a city street at night, capturing the buildings and streetlights from a perspective that emphasizes the height and grandeur of the structures.
+E
+Answer: Medieval Climate Anomaly
+[Rank0]:   1%|          | 1/125 [00:04<09:31,  4.61s/it]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][Rank0]:   2%|▏         | 2/125 [00:05<05:31,  2.69s/it][Rank0]:   2%|▏         | 3/125 [00:10<07:16,  3.58s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,  6.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,  6.29s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,  6.35s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,  6.36s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,C
+The video shows the use of a backhoe loader for digging and moving soil. The backhoe loader is actively digging and lifting soil, which is a common excavation method in construction or landscaping. 
+
+Answer: Backhoe loader excavation
+  6.36s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,  6.36s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:06<00:12,  6.30s/it][Rank0]:   3%|▎         | 4/125 [00:13<06:26,  3.19s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:06,  6.92s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:07,  7.03s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:07,  7.02s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:06,  7.00s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:07,  7.00s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:07,  7.02s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:07,  7.02s/it][Rank0]:   4%|▍         | 5/125 [00:19<08:33,  4.28s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.39s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.02s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.41s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.43s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.40s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.41s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.03s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.44s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  4.41s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:15<00:00,  5.05s/it]
+B
+The circuit implements a bandpass filter.
+A
+A
+The video shows a 3D rendering of a human head with a brain, and the algorithm used is likely a 3D modeling or rendering algorithm, possibly a ray - casting or ray - marching algorithm, as it creates the realistic brain structure and lighting effects.
+
+Final short answer: Ray - casting or ray - marching algorithm
+The physical variable changed in the animation is the **angle of the beam**. The animation shows a beam of light (or a similar physical entity) being reflected off a mirror, with the angle of incidence and reflection being adjusted to demonstrate the principle of reflection. The angle of the beam is the key variable being modified. 
+
+**Final Answer: Angle of the beam**
+The video shows the process of washing a plate with a sponge and water.
+carbon
+A
+The type of loading shown in the video is considered a **static** load.
+
+Answer: static
+C
+C
+[Rank2]:   0%|          | 0/125 [00:00<?, ?it/s][Rank5]:   0%|          | 0/125 [00:00<?, ?it/s][Rank3]:   0%|          | 0/125 [00:00<?, ?it/s][Rank1]:   0%|          | 0/125 [00:00<?, ?it/s][Rank6]:   0%|          | 0/125 [00:00<?, ?it/s][Rank7]:   0%|          | 0/125 [00:00<?, ?it/s][Rank4]:   0%|          | 0/125 [00:00<?, ?it/s][Rank0]:   5%|▍         | 6/125 [00:21<07:19,  3.69s/it][Rank7]:   1%|          | 1/125 [00:05<10:31,  5.10s/it][Rank3]:   1%|          | 1/125 [00:05<10:45,  5.20s/it][Rank1]:   1%|          | 1/125 [00:05<12:19,  5.96s/it][Rank2]:   1%|          | 1/125 [00:06<12:42,  6.15s/it][Rank4]:   1%|          | 1/125 [00:06<13:06,  6.34s/it][Rank1]:   2%|▏         | 2/125 [00:08<07:39,  3.74s/it][Rank3]:   2%|▏         | 2/125 [00:09<09:31,  4.65s/it][Rank5]:   1%|          | 1/125 [00:10<21:31, 10.42s/it][Rank2]:   2%|▏         | 2/125 [00:10<10:54,  5.32s/it][Rank4]:   2%|▏         | 2/125 [00:10<10:52,  5.31s/it][Rank0]:   6%|▌         | 7/125 [00:31<10E
+A
+C
+B
+B
+D
+B
+B
+The video shows a robot performing a soccer match. The robot is equipped with a camera and sensors, and it is using a soccer ball. The algorithm shown in the video is likely related to robotic soccer, specifically the **Kheopsy** algorithm, which is a soccer robot developed by the University of Tokyo. The robot is designed to play soccer autonomously, and the video demonstrates its capabilities in a match setting.
+
+Final Answer: **Kheopsy**
+C
+force majeure
+B
+The trend illustrated in the video can lead to increased **urban sprawl** (a city development phenomenon).
+
+Final short answer: **urban sprawl**
+atom
+C
+C
+C
+A
+:49,  5.51s/it][Rank1]:   2%|▏         | 3/125 [00:11<06:55,  3.41s/it][Rank3]:   2%|▏         | 3/125 [00:13<08:33,  4.21s/it][Rank5]:   2%|▏         | 2/125 [00:13<12:19,  6.01s/it][Rank0]:   6%|▋         | 8/125 [00:33<08:47,  4.51s/it][Rank7]:   2%|▏         | 2/125 [00:13<14:23,  7.02s/it][Rank2]:   2%|▏         | 3/125 [00:14<09:02,  4.45s/it][Rank1]:   3%|▎         | 4/125 [00:15<07:14,  3.59s/it][Rank2]:   3%|▎         | 4/125 [00:15<06:43,  3.33s/it][Rank6]:   1%|          | 1/125 [00:16<33:52, 16.39s/it][Rank0]:   7%|▋         | 9/125 [00:36<07:50,  4.06s/it][Rank6]:   2%|▏         | 2/125 [00:20<18:11,  8.87s/it][Rank5]:   2%|▏         | 3/125 [00:20<13:31,  6.65s/it][Rank4]:   2%|▏         | 3/125 [00:21<15:25,  7.59s/it][Rank6]:   2%|▏         | 3/125 [00:22<11:43,  5.77s/it][Rank5]:   3%|▎         | 4/125 [00:22<09:19,  4.63s/it][Rank4]:   3%|▎         | 4/125 [00:22<10:15,  5.09s/it][Rank7]:   2%|▏         | 3/125 [00:23<17:11,  8.46s/it][Rank0]The substance added is **iodine**.
+Merkel
+C
+E
+B
+B
+D
+B
+Based on the content and techniques of the film, its narrative perspective is **third-person perspective**.
+A
+C
+B
+The treaty signed in the video involves 191 countries and has had a profound impact on economic, social, and political aspects.
+
+Answer: 191
+A
+B
+D
+C. Realism
+:   8%|▊         | 10/125 [00:44<09:45,  5.09s/it][Rank3]:   3%|▎         | 4/125 [00:24<14:07,  7.00s/it][Rank6]:   3%|▎         | 4/125 [00:24<09:16,  4.60s/it][Rank5]:   4%|▍         | 5/125 [00:25<07:58,  3.99s/it][Rank2]:   4%|▍         | 5/125 [00:26<11:51,  5.93s/it][Rank7]:   3%|▎         | 4/125 [00:27<13:04,  6.48s/it][Rank0]:   9%|▉         | 11/125 [00:47<08:36,  4.53s/it][Rank5]:   5%|▍         | 6/125 [00:27<06:40,  3.37s/it][Rank6]:   4%|▍         | 5/125 [00:27<07:41,  3.84s/it][Rank1]:   4%|▍         | 5/125 [00:27<13:32,  6.77s/it][Rank6]:   5%|▍         | 6/125 [00:30<06:48,  3.43s/it][Rank2]:   5%|▍         | 6/125 [00:30<10:39,  5.37s/it][Rank5]:   6%|▌         | 7/125 [00:30<06:43,  3.42s/it][Rank1]:   5%|▍         | 6/125 [00:30<11:07,  5.61s/it][Rank4]:   4%|▍         | 5/125 [00:31<12:44,  6.37s/it][Rank6]:   6%|▌         | 7/125 [00:32<06:12,  3.16s/it][Rank5]:   6%|▋         | 8/125 [00:32<05:41,  2.92s/it][Rank3]:   4%|▍         A
+Based on the video, the phenomenon (labor supply curve shifting to the right) will cause the labor demand curve to shift to the left.
+
+Answer: left
+D
+C
+D
+C. Localization Strategy
+D
+E
+B
+B
+E
+C
+To determine the role of water droplets on the composite material surface, we analyze the video:  
+
+1. Observe the context: The scene involves a composite material surface (e.g., a panel or structure) and a person interacting with it.  
+2. Identify the action: Water droplets are applied to the surface, and the person appears to use them for a specific purpose.  
+3. Infer the function: In such contexts, water droplets on composite materials often serve as a **cleaning agent** (to remove dust, debris, or contaminants) or a **moistening agent** (to prepare the surface for subsequent steps, like bonding or painting).  
+
+Given the setup and typical industrial practices, the most logical answer is that the water droplets act as a **cleaning agent**.  
+
+Final short answer: cleaning agent
+C
+Based on the video, the main symptom in the early stages of the disease is **swelling**.
+C
+stand
+| 5/125 [00:32<15:06,  7.56s/it][Rank4]:   5%|▍         | 6/125 [00:33<09:40,  4.88s/it][Rank1]:   6%|▌         | 7/125 [00:33<08:59,  4.58s/it][Rank2]:   6%|▌         | 7/125 [00:34<09:18,  4.73s/it][Rank6]:   6%|▋         | 8/125 [00:34<05:16,  2.70s/it][Rank3]:   5%|▍         | 6/125 [00:34<11:05,  5.59s/it][Rank5]:   7%|▋         | 9/125 [00:35<05:20,  2.76s/it][Rank1]:   6%|▋         | 8/125 [00:35<07:16,  3.73s/it][Rank4]:   6%|▌         | 7/125 [00:35<08:06,  4.12s/it][Rank5]:   8%|▊         | 10/125 [00:36<04:26,  2.32s/it][Rank4]:   6%|▋         | 8/125 [00:37<06:22,  3.27s/it][Rank7]:   4%|▍         | 5/125 [00:38<16:20,  8.17s/it][Rank6]:   7%|▋         | 9/125 [00:38<06:09,  3.19s/it][Rank0]:  10%|▉         | 12/125 [00:59<12:51,  6.83s/it][Rank6]:   8%|▊         | 10/125 [00:40<05:03,  2.64s/it][Rank3]:   6%|▌         | 7/125 [00:40<11:01,  5.60s/it][Rank7]:   5%|▍         | 6/125 [00:40<12:10,  6.14s/it][Rank7]:   6%|▌         | 7/125 [00:42<09:C
+C
+E
+B
+A
+A
+In the video, the white substance forming on the coiled wire is elemental **iodine**.
+
+Answer: iodine
+40
+D
+B
+D
+A
+C
+E
+B
+The first step of the process is called **"Create a new list"**.
+The physical instrument utilized in the experiment is called a **vibrating reed**.
+14,  4.70s/it][Rank2]:   6%|▋         | 8/125 [00:43<11:48,  6.05s/it][Rank1]:   7%|▋         | 9/125 [00:43<09:54,  5.13s/it][Rank4]:   7%|▋         | 9/125 [00:43<08:21,  4.32s/it][Rank0]:  10%|█         | 13/125 [01:04<11:53,  6.37s/it][Rank3]:   6%|▋         | 8/125 [00:44<10:08,  5.20s/it][Rank4]:   8%|▊         | 10/125 [00:45<06:39,  3.47s/it][Rank7]:   6%|▋         | 8/125 [00:46<08:46,  4.50s/it][Rank0]:  11%|█         | 14/125 [01:08<10:08,  5.48s/it][Rank5]:   9%|▉         | 11/125 [00:48<10:11,  5.36s/it][Rank1]:   8%|▊         | 10/125 [00:49<10:29,  5.47s/it][Rank0]:  12%|█▏        | 15/125 [01:10<08:20,  4.55s/it][Rank2]:   7%|▋         | 9/125 [00:50<12:33,  6.50s/it][Rank6]:   9%|▉         | 11/125 [00:50<09:49,  5.17s/it][Rank3]:   7%|▋         | 9/125 [00:51<11:09,  5.77s/it][Rank0]:  13%|█▎        | 16/125 [01:11<06:35,  3.63s/it][Rank2]:   8%|▊         | 10/125 [00:52<09:42,  5.07s/it][Rank7]:   7%|▋         | 9/125 [00:52<09:44,  5.0D
+C
+A
+Answer: normal
+E
+C
+B
+B
+To determine the standard deviation of the voltage measurements, we analyze the graph. The standard deviation is represented by the error bars. By observing the vertical spread of the error bars, we can estimate the standard deviation. The error bars show a consistent spread around the mean voltage, and the typical range of the error bars indicates a standard deviation of approximately 5 microvolts.
+
+Answer: 5
+Brewster's
+The video demonstrates the **shaking** effect.
+C
+probationary period
+The formula mass of the white powder (sodium carbonate, Na₂CO₃) is 105.99 grams per mole.
+
+Answer: 105.99
+smaller
+C
+D
+4s/it][Rank5]:  10%|▉         | 12/125 [00:53<09:35,  5.09s/it][Rank0]:  14%|█▎        | 17/125 [01:13<05:16,  2.93s/it][Rank3]:   8%|▊         | 10/125 [00:55<09:49,  5.13s/it][Rank4]:   9%|▉         | 11/125 [00:55<10:41,  5.62s/it][Rank1]:   9%|▉         | 11/125 [00:56<11:10,  5.88s/it][Rank5]:  10%|█         | 13/125 [00:56<08:30,  4.56s/it][Rank0]:  14%|█▍        | 18/125 [01:17<06:06,  3.43s/it][Rank3]:   9%|▉         | 11/125 [00:58<08:22,  4.41s/it][Rank2]:   9%|▉         | 11/125 [00:58<10:13,  5.38s/it][Rank5]:  11%|█         | 14/125 [00:58<07:07,  3.85s/it][Rank7]:   8%|▊         | 10/125 [00:59<10:38,  5.55s/it][Rank0]:  15%|█▌        | 19/125 [01:19<05:20,  3.02s/it][Rank5]:  12%|█▏        | 15/125 [01:00<05:42,  3.11s/it][Rank4]:  10%|▉         | 12/125 [01:01<10:42,  5.69s/it][Rank0]:  16%|█▌        | 20/125 [01:21<04:42,  2.69s/it][Rank5]:  13%|█▎        | 16/125 [01:02<05:18,  2.92s/it][Rank3]:  10%|▉         | 12/125 [01:03<08:C
+B
+The video shows a process where a liquid material is poured into a mold containing a fiber-reinforced base. The liquid is then allowed to cure, forming a composite material with the embedded fibers.
+B
+B
+The cylinder functions as a **capacitor**.
+The gangway arm in the video is most likely operated using a(n) **hydraulic** power system.
+The climate change that triggers the phenomenon shown in the video is called the Dust Bowl.
+
+Final short answer: Dust Bowl
+E. forest
+Based on the test shown in the video, the doctor is assessing the integrity of spinal nerve root level **L4**.
+shortest path
+Consideration
+The video shows a robot with one rotational joint and three prismatic joints. 
+
+Final answer: 3
+A, B, C, D, E
+A
+B
+The method is referred to as "mountain top mining" or "mountain top removal mining," as the crew is working at the peak of a mountain. 
+
+Final short answer: **mountain top mining**
+47,  4.67s/it][Rank2]:  10%|▉         | 12/125 [01:03<10:02,  5.33s/it][Rank0]:  17%|█▋        | 21/125 [01:24<04:23,  2.53s/it][Rank1]:  10%|▉         | 12/125 [01:04<12:20,  6.56s/it][Rank4]:  10%|█         | 13/125 [01:04<09:00,  4.83s/it][Rank4]:  11%|█         | 14/125 [01:05<06:53,  3.72s/it][Rank3]:  10%|█         | 13/125 [01:06<08:03,  4.32s/it][Rank0]:  18%|█▊        | 22/125 [01:27<04:51,  2.83s/it][Rank5]:  14%|█▎        | 17/125 [01:07<06:22,  3.54s/it][Rank3]:  11%|█         | 14/125 [01:07<06:05,  3.29s/it][Rank1]:  10%|█         | 13/125 [01:08<10:30,  5.63s/it][Rank4]:  12%|█▏        | 15/125 [01:08<06:04,  3.31s/it][Rank1]:  11%|█         | 14/125 [01:09<08:01,  4.34s/it][Rank5]:  14%|█▍        | 18/125 [01:09<05:32,  3.11s/it][Rank6]:  10%|▉         | 12/125 [01:09<17:34,  9.34s/it][Rank3]:  12%|█▏        | 15/125 [01:10<05:27,  2.98s/it][Rank7]:   9%|▉         | 11/125 [01:10<13:48,  7.27s/it][Rank4]:  13%|█▎        | 16/125 B
+The algorithm being illustrated is a binary search algorithm.
+D
+B
+autonomic
+B
+C
+D
+even
+commensalism
+A
+Based on the apparatus demonstrated in the video, this is a simple **wind** generator.
+
+Answer: wind
+In the illustration shown in the video, this short story demonstrates the theory known as the **self-fulfilling prophecy hypothesis**.
+
+Final short answer: **self-fulfilling prophecy**
+D
+D
+D
+A
+[01:12<06:28,  3.57s/it][Rank2]:  10%|█         | 13/125 [01:12<11:48,  6.33s/it][Rank1]:  12%|█▏        | 15/125 [01:13<07:36,  4.15s/it][Rank6]:  10%|█         | 13/125 [01:13<14:07,  7.57s/it][Rank2]:  11%|█         | 14/125 [01:13<08:57,  4.84s/it][Rank5]:  15%|█▌        | 19/125 [01:13<06:00,  3.40s/it][Rank6]:  11%|█         | 14/125 [01:15<11:05,  5.99s/it][Rank2]:  12%|█▏        | 15/125 [01:16<07:29,  4.09s/it][Rank4]:  14%|█▎        | 17/125 [01:15<06:33,  3.64s/it][Rank7]:  10%|▉         | 12/125 [01:16<13:06,  6.96s/it][Rank1]:  13%|█▎        | 16/125 [01:16<07:18,  4.02s/it][Rank6]:  12%|█▏        | 15/125 [01:16<08:21,  4.56s/it][Rank0]:  18%|█▊        | 23/125 [01:37<08:13,  4.83s/it][Rank5]:  16%|█▌        | 20/125 [01:17<06:12,  3.55s/it][Rank1]:  14%|█▎        | 17/125 [01:17<05:40,  3.15s/it][Rank0]:  19%|█▉        | 24/125 [01:38<06:21,  3.78s/it][Rank3]:  13%|█▎        | 16/125 [01:18<08:29,  4.67s/it][Rank6]:  13%|█B
+D
+Answer: 1
+D
+C
+centrifugal
+A
+Bottom-up Dynamic Programming
+B
+C
+A
+blue
+B
+width
+G
+A
+▎        | 16/125 [01:19<07:21,  4.05s/it][Rank7]:  10%|█         | 13/125 [01:20<11:03,  5.92s/it][Rank0]:  20%|██        | 25/125 [01:40<05:34,  3.34s/it][Rank1]:  14%|█▍        | 18/125 [01:21<05:42,  3.20s/it][Rank6]:  14%|█▎        | 17/125 [01:21<06:03,  3.37s/it][Rank7]:  11%|█         | 14/125 [01:22<08:53,  4.81s/it][Rank2]:  13%|█▎        | 16/125 [01:22<08:44,  4.81s/it][Rank1]:  15%|█▌        | 19/125 [01:23<04:54,  2.78s/it][Rank6]:  14%|█▍        | 18/125 [01:23<05:04,  2.84s/it][Rank7]:  12%|█▏        | 15/125 [01:23<06:53,  3.76s/it][Rank2]:  14%|█▎        | 17/125 [01:23<06:44,  3.75s/it][Rank1]:  16%|█▌        | 20/125 [01:24<04:20,  2.48s/it][Rank7]:  13%|█▎        | 16/125 [01:25<05:37,  3.09s/it][Rank5]:  17%|█▋        | 21/125 [01:26<08:52,  5.12s/it][Rank7]:  14%|█▎        | 17/125 [01:26<04:49,  2.68s/it][Rank4]:  14%|█▍        | 18/125 [01:26<10:24,  5.84s/it][Rank7]:  14%|█▍        | 18/125 [01:28<04:07,  2E
+E
+B
+Based on the dietary habits and pathological changes shown in the animation, the character is highly likely to develop **gout** if further inflammatory responses occur.
+
+Answer: gout
+B
+D
+Answer: left upper quadrant
+The doctor is assessing the knee reflex.
+A
+The first signal in the video is a square wave. For a square wave, the Fourier series coefficients are non-zero only at the odd harmonics of the fundamental frequency.
+
+Answer: odd
+C
+D
+C
+Answer: second
+A
+D
+C
+.32s/it][Rank5]:  18%|█▊        | 22/125 [01:29<07:36,  4.43s/it][Rank2]:  14%|█▍        | 18/125 [01:29<07:48,  4.38s/it][Rank0]:  21%|██        | 26/125 [01:49<08:21,  5.06s/it][Rank1]:  17%|█▋        | 21/125 [01:29<05:35,  3.22s/it][Rank5]:  18%|█▊        | 23/125 [01:30<05:47,  3.41s/it][Rank1]:  18%|█▊        | 22/125 [01:32<05:08,  3.00s/it][Rank0]:  22%|██▏       | 27/125 [01:52<07:05,  4.34s/it][Rank5]:  19%|█▉        | 24/125 [01:33<05:49,  3.47s/it][Rank1]:  18%|█▊        | 23/125 [01:34<04:29,  2.65s/it][Rank7]:  15%|█▌        | 19/125 [01:34<06:15,  3.54s/it][Rank3]:  14%|█▎        | 17/125 [01:36<15:31,  8.63s/it][Rank7]:  16%|█▌        | 20/125 [01:37<05:29,  3.14s/it][Rank1]:  19%|█▉        | 24/125 [01:37<04:39,  2.77s/it][Rank5]:  20%|██        | 25/125 [01:40<07:30,  4.51s/it][Rank1]:  20%|██        | 25/125 [01:41<05:17,  3.17s/it][Rank3]:  14%|█▍        | 18/125 [01:41<13:23,  7.51s/it][Rank6]:  15%|█▌ A
+C
+C
+E
+B
+A
+A
+E
+B
+A
+sympathetic
+C
+To determine the bandwidth, we analyze the graph. The x - axis label shows “Bandwidth (kHz)”, and the curve peaks at a value that can be read from the graph. The peak of the curve corresponds to the bandwidth, which is approximately 20 kHz.
+
+Answer: 20
+D
+E
+Catastrophic
+       | 19/125 [01:43<14:10,  8.03s/it][Rank0]:  22%|██▏       | 28/125 [02:03<10:13,  6.33s/it][Rank1]:  21%|██        | 26/125 [01:44<05:04,  3.08s/it][Rank4]:  15%|█▌        | 19/125 [01:44<16:30,  9.35s/it][Rank6]:  16%|█▌        | 20/125 [01:45<10:45,  6.15s/it][Rank7]:  17%|█▋        | 21/125 [01:45<08:00,  4.62s/it][Rank2]:  15%|█▌        | 19/125 [01:45<13:38,  7.73s/it][Rank1]:  22%|██▏       | 27/125 [01:46<04:40,  2.86s/it][Rank4]:  16%|█▌        | 20/125 [01:47<12:47,  7.31s/it][Rank1]:  22%|██▏       | 28/125 [01:47<03:44,  2.32s/it][Rank7]:  18%|█▊        | 22/125 [01:47<06:52,  4.00s/it][Rank0]:  23%|██▎       | 29/125 [02:08<09:44,  6.09s/it][Rank5]:  21%|██        | 26/125 [01:49<09:41,  5.88s/it][Rank2]:  16%|█▌        | 20/125 [01:53<13:44,  7.85s/it][Rank5]:  22%|██▏       | 27/125 [01:53<08:27,  5.18s/it][Rank6]:  17%|█▋        | 21/125 [01:54<12:09,  7.02s/it][Rank4]:  17%|█▋        | 21/125 [01:54A
+B
+The horizontal wooden beams shown in the video are called **rafters**.
+C
+B
+Due to the environment shown in the video, the clay deposits in that area are likely to be highly **saturated**.
+
+Answer: saturated
+C
+C
+Based on the symptoms depicted in the video, the individuals are most likely experiencing the disorder known as schizophrenia.
+
+Answer: schizophrenia
+B
+C
+E
+The red line drawn from Salem to Eugene indicates that adding this edge would create a **cycle**.
+
+Final short answer: **cycle**
+Conduction
+spinal cord
+The image shows a close-up of soil with visible roots and small debris. The soil appears to be moist and rich in organic matter, suggesting it could be a type of garden or agricultural soil, possibly loam or a similar fertile soil type. 
+
+Final short answer: **Loam or similar fertile soil**.
+The structure in the video is known as the **Eiffel Tower**. 
+
+Final short answer: **Eiffel Tower**
+<12:46,  7.37s/it][Rank6]:  18%|█▊        | 22/125 [01:55<09:17,  5.41s/it][Rank3]:  15%|█▌        | 19/125 [01:56<17:09,  9.72s/it][Rank5]:  22%|██▏       | 28/125 [01:56<07:19,  4.53s/it][Rank0]:  24%|██▍       | 30/125 [02:17<10:49,  6.84s/it][Rank7]:  18%|█▊        | 23/125 [01:57<09:54,  5.83s/it][Rank2]:  17%|█▋        | 21/125 [01:58<12:08,  7.00s/it][Rank4]:  18%|█▊        | 22/125 [01:59<11:09,  6.50s/it][Rank3]:  16%|█▌        | 20/125 [02:00<14:01,  8.02s/it][Rank5]:  23%|██▎       | 29/125 [02:00<07:05,  4.43s/it][Rank2]:  18%|█▊        | 22/125 [02:00<09:42,  5.65s/it][Rank7]:  19%|█▉        | 24/125 [02:01<08:34,  5.09s/it][Rank6]:  18%|█▊        | 23/125 [02:03<10:23,  6.11s/it][Rank1]:  23%|██▎       | 29/125 [02:04<10:41,  6.68s/it][Rank0]:  25%|██▍       | 31/125 [02:24<10:59,  7.01s/it][Rank6]:  19%|█▉        | 24/125 [02:05<08:16,  4.92s/it][Rank4]:  18%|█▊        | 23/125 [02:05<11:04,  6.51s/it][RaA
+D
+D
+C
+flexion test
+The middle bulb requires a(n) resistor to operate properly in a DC circuit.
+
+Final short answer: resistor
+GABA
+A
+A
+A
+D
+Answer: elements
+Based on the video, the tested solid substance is most likely **iodine**. The dark, crystalline substance and the blue flame it produces are characteristic of iodine reacting with a reducing agent.
+
+Answer: iodine
+D
+brain
+C
+nk2]:  18%|█▊        | 23/125 [02:05<09:11,  5.41s/it][Rank2]:  19%|█▉        | 24/125 [02:07<07:21,  4.37s/it][Rank4]:  19%|█▉        | 24/125 [02:09<09:37,  5.71s/it][Rank7]:  20%|██        | 25/125 [02:10<10:24,  6.24s/it][Rank1]:  24%|██▍       | 30/125 [02:12<11:13,  7.09s/it][Rank7]:  21%|██        | 26/125 [02:12<08:36,  5.21s/it][Rank2]:  20%|██        | 25/125 [02:13<07:58,  4.78s/it][Rank5]:  24%|██▍       | 30/125 [02:13<10:59,  6.94s/it][Rank4]:  20%|██        | 25/125 [02:13<08:49,  5.30s/it][Rank0]:  26%|██▌       | 32/125 [02:35<12:28,  8.05s/it][Rank5]:  25%|██▍       | 31/125 [02:15<08:32,  5.45s/it][Rank2]:  21%|██        | 26/125 [02:15<06:42,  4.07s/it][Rank4]:  21%|██        | 26/125 [02:16<07:43,  4.68s/it][Rank6]:  20%|██        | 25/125 [02:17<11:54,  7.15s/it][Rank0]:  26%|██▋       | 33/125 [02:39<10:19,  6.73s/it][Rank4]:  22%|██▏       | 27/125 [02:19<06:31,  4.00s/it][Rank5]:  26%|██▌A
+C
+E
+E
+C
+B
+B
+C
+cutting
+D
+The incident shown in the video illustrates the impact on financial markets and highlights the concept of **market risk**.
+
+Answer: market risk
+C
+A
+To determine the shortest distance from node 'a' to node 'g', we analyze the graph’s structure and edge weights:  
+
+1. **Identify direct paths**:  
+   - Path 1: \( a \to b \to c \to d \to e \to g \)  
+     - Weights: \( 3 + 2 + 4 + 3 + 2 = 14 \)  
+   - Path 2: \( a \to b \to c \to f \to g \)  
+     - Weights: \( 3 + 2 + 4 + 2 = 11 \)  
+
+2. **Check for shorter indirect paths**:  
+   No other paths (e.g., via node 'h') have lower total weights than 11.  
+
+Thus, the shortest distance from 'a' to 'g' is 11.  
+
+Answer: 11
+The worst-case time complexity of the shown algorithm is O(n), as indicated in the text: "In the worst case, the algorithm takes O(n) time."
+
+Answer: O(n)
+B
+       | 32/125 [02:20<08:13,  5.31s/it][Rank1]:  25%|██▍       | 31/125 [02:20<11:41,  7.47s/it][Rank2]:  22%|██▏       | 27/125 [02:21<07:19,  4.49s/it][Rank7]:  22%|██▏       | 27/125 [02:21<10:04,  6.16s/it][Rank0]:  27%|██▋       | 34/125 [02:42<08:42,  5.74s/it][Rank2]:  22%|██▏       | 28/125 [02:22<05:47,  3.59s/it][Rank1]:  26%|██▌       | 32/125 [02:22<09:03,  5.84s/it][Rank7]:  22%|██▏       | 28/125 [02:23<07:51,  4.86s/it][Rank1]:  26%|██▋       | 33/125 [02:24<07:03,  4.61s/it][Rank0]:  28%|██▊       | 35/125 [02:45<07:21,  4.90s/it][Rank2]:  23%|██▎       | 29/125 [02:25<05:18,  3.32s/it][Rank4]:  22%|██▏       | 28/125 [02:25<07:34,  4.69s/it][Rank6]:  21%|██        | 26/125 [02:26<12:35,  7.63s/it][Rank0]:  29%|██▉       | 36/125 [02:49<06:45,  4.55s/it][Rank3]:  17%|█▋        | 21/125 [02:29<24:57, 14.40s/it][Rank7]:  23%|██▎       | 29/125 [02:30<09:06,  5.69s/it][Rank2]:  24%|██▍    C
+E
+B
+Answer: induced pluripotent stem cells
+D
+A
+A
+C
+The man's behavior could be classified as harassment under workplace law.
+short-term
+alluvial
+The algorithm demonstrated in the video is **self-driving car navigation**.
+Answer: Augmented Reality
+C
+C
+E
+   | 30/125 [02:33<07:28,  4.72s/it][Rank4]:  23%|██▎       | 29/125 [02:33<09:00,  5.63s/it][Rank3]:  18%|█▊        | 22/125 [02:34<19:50, 11.56s/it][Rank2]:  25%|██▍       | 31/125 [02:37<06:52,  4.39s/it][Rank1]:  27%|██▋       | 34/125 [02:37<10:45,  7.09s/it][Rank0]:  30%|██▉       | 37/125 [02:57<08:25,  5.74s/it][Rank6]:  22%|██▏       | 27/125 [02:39<14:49,  9.08s/it][Rank6]:  22%|██▏       | 28/125 [02:42<11:40,  7.22s/it][Rank1]:  28%|██▊       | 35/125 [02:43<10:02,  6.69s/it][Rank6]:  23%|██▎       | 29/125 [02:44<09:06,  5.70s/it][Rank3]:  18%|█▊        | 23/125 [02:44<18:55, 11.13s/it][Rank0]:  30%|███       | 38/125 [03:05<09:08,  6.31s/it][Rank5]:  26%|██▋       | 33/125 [02:45<17:16, 11.27s/it][Rank5]:  27%|██▋       | 34/125 [02:47<12:41,  8.37s/it][Rank3]:  19%|█▉        | 24/125 [02:47<14:29,  8.61s/it][Rank5]:  28%|██▊       | 35/125 [02:48<09:21,  6.24s/it][Rank1]:  29%|██▉       | 3Answer: GAN
+The video shows a setup resembling the **Mössbauer** experiment, which uses a source and absorber to study the nuclear resonance of atoms in a solid. The red and blue blocks represent the source and absorber components, respectively. 
+
+Final answer: **Mössbauer**
+A
+B
+A
+D
+E
+A
+E
+right
+The dark filaments in the video represent the visualization of **neural networks**.
+The viral infection diagnosed in the video was identified through two successive diagnostic methods, and the virus is COVID-19.
+
+COVID-19
+C
+A
+6
+D
+6/125 [02:48<09:22,  6.32s/it][Rank4]:  24%|██▍       | 30/125 [02:50<14:11,  8.97s/it][Rank2]:  26%|██▌       | 32/125 [02:50<11:12,  7.23s/it][Rank2]:  26%|██▋       | 33/125 [02:51<08:12,  5.36s/it][Rank3]:  20%|██        | 25/125 [02:52<12:40,  7.61s/it][Rank7]:  24%|██▍       | 30/125 [02:52<16:51, 10.64s/it][Rank0]:  31%|███       | 39/125 [03:13<09:38,  6.72s/it][Rank6]:  24%|██▍       | 30/125 [02:53<10:54,  6.89s/it][Rank1]:  30%|██▉       | 37/125 [02:54<09:01,  6.15s/it][Rank5]:  29%|██▉       | 36/125 [02:54<09:17,  6.27s/it][Rank3]:  21%|██        | 26/125 [02:54<09:52,  5.99s/it][Rank4]:  25%|██▍       | 31/125 [02:54<12:00,  7.67s/it][Rank6]:  25%|██▍       | 31/125 [02:56<08:58,  5.72s/it][Rank5]:  30%|██▉       | 37/125 [02:57<07:35,  5.18s/it][Rank3]:  22%|██▏       | 27/125 [02:57<08:04,  4.94s/it][Rank6]:  26%|██▌       | 32/125 [02:57<06:40,  4.31s/it][Rank0]:  32%|███▏      | 40/Star Product
+C
+A
+E
+B
+C
+Based on the content shown in the video, the subject’s response indicates the integrity of cranial nerve II and **cranial nerve III**.
+The control system type of the temperature controller is a(n) PID control system.
+E
+A
+The fingernails and toenails depicted in the animation are related with **nail growth** phenomenon.
+
+Final short answer: **nail growth**
+cancer
+Malaysia
+C
+E
+electric
+125 [03:18<08:48,  6.22s/it][Rank3]:  22%|██▏       | 28/125 [02:58<06:11,  3.83s/it][Rank1]:  30%|███       | 38/125 [02:59<08:19,  5.74s/it][Rank5]:  30%|███       | 38/125 [02:59<06:12,  4.28s/it][Rank2]:  27%|██▋       | 34/125 [03:00<09:23,  6.20s/it][Rank7]:  25%|██▍       | 31/125 [03:01<15:33,  9.93s/it][Rank4]:  26%|██▌       | 32/125 [03:01<11:24,  7.37s/it][Rank1]:  31%|███       | 39/125 [03:02<07:01,  4.91s/it][Rank0]:  33%|███▎      | 41/125 [03:22<07:58,  5.69s/it][Rank5]:  31%|███       | 39/125 [03:02<05:43,  4.00s/it][Rank2]:  28%|██▊       | 35/125 [03:02<07:48,  5.21s/it][Rank6]:  26%|██▋       | 33/125 [03:03<07:20,  4.79s/it][Rank1]:  32%|███▏      | 40/125 [03:04<05:53,  4.16s/it][Rank7]:  26%|██▌       | 32/125 [03:05<12:33,  8.10s/it][Rank5]:  32%|███▏      | 40/125 [03:05<05:05,  3.60s/it][Rank5]:  33%|███▎      | 41/125 [03:07<04:08,  2.96s/it][Rank1]:  33%|███▎ E
+A
+A
+rubber
+C
+glands
+B
+A
+C
+D
+C
+D
+B
+A
+D
+A
+     | 41/125 [03:07<05:20,  3.81s/it][Rank7]:  26%|██▋       | 33/125 [03:09<10:48,  7.05s/it][Rank0]:  34%|███▎      | 42/125 [03:29<08:34,  6.20s/it][Rank1]:  34%|███▎      | 42/125 [03:10<04:54,  3.55s/it][Rank0]:  34%|███▍      | 43/125 [03:33<07:18,  5.35s/it][Rank5]:  34%|███▎      | 42/125 [03:14<05:48,  4.20s/it][Rank0]:  35%|███▌      | 44/125 [03:35<05:51,  4.34s/it][Rank4]:  26%|██▋       | 33/125 [03:15<14:10,  9.24s/it][Rank5]:  34%|███▍      | 43/125 [03:16<05:04,  3.72s/it][Rank7]:  27%|██▋       | 34/125 [03:16<10:46,  7.11s/it][Rank0]:  36%|███▌      | 45/125 [03:37<04:52,  3.66s/it][Rank4]:  27%|██▋       | 34/125 [03:18<11:10,  7.37s/it][Rank1]:  34%|███▍      | 43/125 [03:19<06:58,  5.10s/it][Rank4]:  28%|██▊       | 35/125 [03:19<08:18,  5.54s/it][Rank3]:  23%|██▎       | 29/125 [03:19<14:20,  8.96s/it][Rank0]:  37%|███▋      | 46/125 [03:40<04:25,  3.36s/it][Rank4]GFP
+antenna
+The diameter of the graph is **3**.
+The video shows a biological mechanism involving the movement of a structure resembling a mouth or jaw, which is characteristic of an insect's mouthpart mechanism. Based on the visual elements and the context, this mechanism is referred to as an **insect mouthpart mechanism**.
+
+**Final Answer: insect mouthpart mechanism**
+B
+E
+C
+Amino acid
+The instructor uses the method of solving a Rubik's Cube by breaking it down into layers, starting with the top layer, and then systematically solving each subsequent layer, ensuring that the solved pieces are not disturbed while solving the next layer.
+A
+C
+4004
+intermediate
+The demonstrated new algorithm is an upgraded version of the previous algorithm.
+C
+:  29%|██▉       | 36/125 [03:20<06:17,  4.24s/it][Rank5]:  35%|███▌      | 44/125 [03:22<05:39,  4.19s/it][Rank3]:  24%|██▍       | 30/125 [03:22<11:11,  7.07s/it][Rank7]:  28%|██▊       | 35/125 [03:22<09:55,  6.62s/it][Rank1]:  35%|███▌      | 44/125 [03:23<06:26,  4.77s/it][Rank2]:  29%|██▉       | 36/125 [03:24<14:49, 10.00s/it][Rank5]:  36%|███▌      | 45/125 [03:25<05:06,  3.83s/it][Rank0]:  38%|███▊      | 47/125 [03:45<05:20,  4.10s/it][Rank2]:  30%|██▉       | 37/125 [03:26<11:13,  7.65s/it][Rank6]:  27%|██▋       | 34/125 [03:26<15:21, 10.12s/it][Rank6]:  28%|██▊       | 35/125 [03:27<11:06,  7.40s/it][Rank4]:  30%|██▉       | 37/125 [03:27<07:31,  5.14s/it][Rank7]:  29%|██▉       | 36/125 [03:28<09:25,  6.35s/it][Rank4]:  30%|███       | 38/125 [03:29<05:48,  4.01s/it][Rank1]:  36%|███▌      | 45/125 [03:29<07:07,  5.34s/it][Rank4]:  31%|███       | 39/125 [03:31<04:48,  3.35s/iA
+A
+D
+C
+Answer: weight
+A
+E
+E
+D
+The girl needs to align the forces so they pass through her **center of mass**.
+
+Answer: center of mass
+Cells highlighted in yellow and brown in the video are thought to play a role in detecting **sweet** taste patterns.
+A. Minimalism
+Based on the technology demonstrated in the video, the machine improves power quality by eliminating harmonics from the electrical grid.
+
+Final short answer: harmonics
+C
+E
+B
+t][Rank6]:  29%|██▉       | 36/125 [03:31<09:22,  6.32s/it][Rank7]:  30%|██▉       | 37/125 [03:31<07:55,  5.41s/it][Rank3]:  25%|██▍       | 31/125 [03:31<12:01,  7.67s/it][Rank2]:  30%|███       | 38/125 [03:31<09:58,  6.88s/it][Rank5]:  37%|███▋      | 46/125 [03:31<06:17,  4.77s/it][Rank1]:  37%|███▋      | 46/125 [03:32<06:05,  4.63s/it][Rank0]:  38%|███▊      | 48/125 [03:53<06:29,  5.06s/it][Rank6]:  30%|██▉       | 37/125 [03:33<07:24,  5.05s/it][Rank5]:  38%|███▊      | 47/125 [03:34<05:08,  3.95s/it][Rank2]:  31%|███       | 39/125 [03:35<08:35,  5.99s/it][Rank1]:  38%|███▊      | 47/125 [03:36<05:42,  4.39s/it][Rank5]:  38%|███▊      | 48/125 [03:36<04:39,  3.63s/it][Rank4]:  32%|███▏      | 40/125 [03:36<05:49,  4.12s/it][Rank0]:  39%|███▉      | 49/125 [03:57<06:02,  4.77s/it][Rank2]:  32%|███▏      | 40/125 [03:37<06:55,  4.88s/it][Rank4]:  33%|███▎      | 41/125 [0Bell
+C
+polymerization
+E
+A
+C
+A
+C
+In the experiment, the slits in one of the plates primarily serve to reduce the formation of **interference patterns**.
+
+Answer: interference patterns
+C
+C
+C
+B
+E
+A
+A
+3:37<04:26,  3.17s/it][Rank2]:  33%|███▎      | 41/125 [03:38<05:06,  3.65s/it][Rank7]:  30%|███       | 38/125 [03:38<08:34,  5.91s/it][Rank6]:  30%|███       | 38/125 [03:39<08:00,  5.53s/it][Rank5]:  39%|███▉      | 49/125 [03:40<04:37,  3.66s/it][Rank3]:  26%|██▌       | 32/125 [03:41<13:02,  8.41s/it][Rank6]:  31%|███       | 39/125 [03:41<06:17,  4.39s/it][Rank1]:  38%|███▊      | 48/125 [03:42<06:20,  4.94s/it][Rank4]:  34%|███▎      | 42/125 [03:44<05:39,  4.09s/it][Rank7]:  31%|███       | 39/125 [03:44<08:30,  5.94s/it][Rank6]:  32%|███▏      | 40/125 [03:44<05:36,  3.96s/it][Rank4]:  34%|███▍      | 43/125 [03:46<04:50,  3.55s/it][Rank5]:  40%|████      | 50/125 [03:46<05:29,  4.40s/it][Rank7]:  32%|███▏      | 40/125 [03:47<07:11,  5.08s/it][Rank1]:  39%|███▉      | 49/125 [03:47<06:16,  4.96s/it][Rank5]:  41%|████      | 51/125 [03:48<04:29,  3.64s/it][Rank6]:  33%|██�A
+D
+B
+A
+Answer: spores
+B
+A
+Spiral galaxies with a central bar structure are designated with the letters **SB**.
+Tear
+texture
+D
+right
+E
+D
+E
+��▎      | 41/125 [03:49<05:50,  4.17s/it][Rank5]:  42%|████▏     | 52/125 [03:50<03:41,  3.03s/it][Rank7]:  33%|███▎      | 41/125 [03:51<06:32,  4.67s/it][Rank4]:  35%|███▌      | 44/125 [03:52<05:51,  4.34s/it][Rank6]:  34%|███▎      | 42/125 [03:54<06:22,  4.61s/it][Rank3]:  26%|██▋       | 33/125 [03:55<15:14,  9.94s/it][Rank4]:  36%|███▌      | 45/125 [03:55<05:12,  3.91s/it][Rank0]:  40%|████      | 50/125 [04:16<11:22,  9.10s/it][Rank2]:  34%|███▎      | 42/125 [03:56<11:11,  8.09s/it][Rank2]:  34%|███▍      | 43/125 [03:58<08:18,  6.09s/it][Rank0]:  41%|████      | 51/125 [04:18<08:34,  6.95s/it][Rank3]:  27%|██▋       | 34/125 [03:58<12:09,  8.02s/it][Rank3]:  28%|██▊       | 35/125 [03:59<08:56,  5.97s/it][Rank7]:  34%|███▎      | 42/125 [03:59<08:11,  5.92s/it][Rank3]:  29%|██▉       | 36/125 [04:00<06:45,  4.55s/it][Rank6]:  34%|███▍      | 43/125 [04:01<07:11,  5.26sE
+D
+C
+E
+cable
+B
+gravel bed
+In the industrial process demonstrated in the video, the material laid onto the mold is referred to as **plastic**.
+
+Answer: plastic
+E
+A
+B
+India
+E
+A
+B
+E
+/it][Rank0]:  42%|████▏     | 52/125 [04:23<07:53,  6.49s/it][Rank6]:  35%|███▌      | 44/125 [04:05<06:33,  4.86s/it][Rank4]:  37%|███▋      | 46/125 [04:05<07:34,  5.76s/it][Rank1]:  40%|████      | 50/125 [04:06<11:20,  9.07s/it][Rank6]:  36%|███▌      | 45/125 [04:07<05:14,  3.93s/it][Rank5]:  42%|████▏     | 53/125 [04:08<09:00,  7.50s/it][Rank4]:  38%|███▊      | 47/125 [04:08<06:29,  4.99s/it][Rank3]:  30%|██▉       | 37/125 [04:09<08:24,  5.73s/it][Rank2]:  35%|███▌      | 44/125 [04:10<10:53,  8.06s/it][Rank4]:  38%|███▊      | 48/125 [04:11<05:22,  4.18s/it][Rank6]:  37%|███▋      | 46/125 [04:11<05:12,  3.95s/it][Rank2]:  36%|███▌      | 45/125 [04:12<08:19,  6.25s/it][Rank6]:  38%|███▊      | 47/125 [04:13<04:23,  3.37s/it][Rank0]:  42%|████▏     | 53/125 [04:33<09:00,  7.51s/it][Rank3]:  30%|███       | 38/125 [04:13<07:39,  5.28s/it][Rank1]:  41%|████ C
+A
+Based on the pathological changes depicted in the video, this condition is referred to as **Cirrhosis**.
+C
+The boy reaches the end of the cycling track in the video. 
+
+Final short answer: the end of the track.
+The electronic component constructed in the video is a **LED circuit**. The experimenter used a battery, wires, and an LED to create a simple circuit, which is a common project for introducing basic electronics concepts. 
+
+**Final Answer: LED circuit**
+D
+To determine the answer, we analyze the context of structural stability in construction. Walls with high surface areas can provide more support and stability. In the video, the wall is part of a structure that appears to be in a state of construction or stabilization. A high surface area helps distribute loads and resist forces, so the wall should have a high surface area.
+
+Answer: area
+A
+A
+C
+D
+C
+A
+D
+     | 51/125 [04:14<10:44,  8.71s/it][Rank4]:  39%|███▉      | 49/125 [04:15<05:12,  4.12s/it][Rank1]:  42%|████▏     | 52/125 [04:15<07:56,  6.53s/it][Rank3]:  31%|███       | 39/125 [04:16<06:24,  4.48s/it][Rank6]:  38%|███▊      | 48/125 [04:17<04:33,  3.55s/it][Rank5]:  43%|████▎     | 54/125 [04:18<09:50,  8.31s/it][Rank7]:  34%|███▍      | 43/125 [04:18<13:11,  9.65s/it][Rank3]:  32%|███▏      | 40/125 [04:19<05:48,  4.09s/it][Rank0]:  43%|████▎     | 54/125 [04:40<08:39,  7.31s/it][Rank3]:  33%|███▎      | 41/125 [04:20<04:28,  3.20s/it][Rank6]:  39%|███▉      | 49/125 [04:20<04:24,  3.48s/it][Rank4]:  40%|████      | 50/125 [04:20<05:48,  4.65s/it][Rank5]:  44%|████▍     | 55/125 [04:21<07:52,  6.75s/it][Rank2]:  37%|███▋      | 46/125 [04:21<09:18,  7.07s/it][Rank7]:  35%|███▌      | 44/125 [04:22<10:36,  7.86s/it][Rank4]:  41%|████      | 51/125 [04:22<04:39, visual
+Answer: 6
+B
+A
+C
+D
+A
+Based on the video, the material used is most likely a **non-stick surface** (e.g., Teflon-coated or silicone-based cookware). The smooth texture and the ease of sliding the pan and food are indicative of this material.
+A
+Answer: nucleus
+The cognitive science experiment shown in the video is called the "Stroop Test".
+A
+A
+A
+Based on the scenes and environment shown in the video, the most likely geological hazard these vehicles may encounter is landslides.
+
+Final short answer: landslides
+intima
+ 3.78s/it][Rank2]:  38%|███▊      | 47/125 [04:23<06:57,  5.36s/it][Rank3]:  34%|███▎      | 42/125 [04:23<04:17,  3.10s/it][Rank7]:  36%|███▌      | 45/125 [04:23<08:04,  6.06s/it][Rank1]:  42%|████▏     | 53/125 [04:24<08:25,  7.02s/it][Rank4]:  42%|████▏     | 52/125 [04:24<03:43,  3.06s/it][Rank3]:  34%|███▍      | 43/125 [04:24<03:32,  2.60s/it][Rank5]:  45%|████▍     | 56/125 [04:25<06:48,  5.92s/it][Rank0]:  44%|████▍     | 55/125 [04:45<07:45,  6.65s/it][Rank6]:  40%|████      | 50/125 [04:26<05:14,  4.20s/it][Rank0]:  45%|████▍     | 56/125 [04:46<05:47,  5.04s/it][Rank3]:  35%|███▌      | 44/125 [04:27<03:20,  2.48s/it][Rank7]:  37%|███▋      | 46/125 [04:27<06:57,  5.28s/it][Rank0]:  46%|████▌     | 57/125 [04:48<04:27,  3.93s/it][Rank6]:  41%|████      | 51/125 [04:28<04:17,  3.49s/it][Rank1]:  43%|████▎     | 54/125 [04:28<07:27,  6.31s/it][Rank5]: B
+Considering the visuals shown in the video, they suggest a common network issue related to **Wi-Fi connectivity**.
+
+Answer: Wi-Fi connectivity
+Answer: channelizing
+The workers are aiming to decrease the amount of **strain** of the structure. 
+
+Final short answer: **strain**
+A
+The ionic cause of the color in the solution after the reaction is the presence of copper ions (copper(II) ions).
+B
+Rupture
+film's thickness
+C
+C
+lift
+hypothalamus
+Achievement
+Amplitude Modulation (AM)
+ 46%|████▌     | 57/125 [04:29<06:06,  5.39s/it][Rank2]:  38%|███▊      | 48/125 [04:30<07:39,  5.97s/it][Rank3]:  36%|███▌      | 45/125 [04:31<03:58,  2.98s/it][Rank1]:  44%|████▍     | 55/125 [04:32<06:18,  5.41s/it][Rank7]:  38%|███▊      | 47/125 [04:32<06:59,  5.37s/it][Rank1]:  45%|████▍     | 56/125 [04:32<04:41,  4.08s/it][Rank5]:  46%|████▋     | 58/125 [04:34<05:41,  5.09s/it][Rank6]:  42%|████▏     | 52/125 [04:34<05:15,  4.32s/it][Rank0]:  46%|████▋     | 58/125 [04:54<05:16,  4.73s/it][Rank2]:  39%|███▉      | 49/125 [04:35<07:16,  5.75s/it][Rank7]:  38%|███▊      | 48/125 [04:36<06:13,  4.85s/it][Rank5]:  47%|████▋     | 59/125 [04:36<04:47,  4.35s/it][Rank0]:  47%|████▋     | 59/125 [04:56<04:16,  3.89s/it][Rank1]:  46%|████▌     | 57/125 [04:37<04:46,  4.22s/it][Rank5]:  48%|████▊     | 60/125 [04:37<03:41,  3.40s/it][Rank6]:  42%|███B
+joystick
+C
+A
+D
+B
+0
+The robot uses 6 degrees of freedom to complete the task.
+Thermoelectric Effect
+A
+E
+C
+POMC
+A
+D
+█▏     | 53/125 [04:38<04:49,  4.03s/it][Rank0]:  48%|████▊     | 60/125 [04:58<03:31,  3.25s/it][Rank1]:  46%|████▋     | 58/125 [04:38<03:42,  3.32s/it][Rank4]:  42%|████▏     | 53/125 [04:38<07:54,  6.59s/it][Rank7]:  39%|███▉      | 49/125 [04:39<05:32,  4.37s/it][Rank0]:  49%|████▉     | 61/125 [04:59<02:52,  2.70s/it][Rank3]:  37%|███▋      | 46/125 [04:40<06:24,  4.87s/it][Rank1]:  47%|████▋     | 59/125 [04:40<03:08,  2.86s/it][Rank5]:  49%|████▉     | 61/125 [04:41<03:38,  3.42s/it][Rank0]:  50%|████▉     | 62/125 [05:02<02:47,  2.65s/it][Rank1]:  48%|████▊     | 60/125 [04:42<02:47,  2.58s/it][Rank4]:  43%|████▎     | 54/125 [04:42<06:47,  5.74s/it][Rank7]:  40%|████      | 50/125 [04:43<05:06,  4.08s/it][Rank3]:  38%|███▊      | 47/125 [04:43<05:46,  4.44s/it][Rank4]:  44%|████▍     | 55/125 [04:45<05:41,  4.88s/it][Rank3]:  38%|███▊      | 4D
+subject to video
+A
+A
+Based on the events shown in the video, to address potential issues, these companies formed a **joint task force**.
+
+Answer: joint task force
+A
+E
+The video shows groups of people engaging in various activities, such as playing with frisbees and participating in team sports. These activities challenge the dominant assumption of **individualism** by emphasizing collaboration, teamwork, and collective action. 
+
+Final short answer: **individualism**
+A
+D
+A
+The type of motor most likely used at the top of the robot is a **steering motor**.
+
+Answer: steering motor
+A
+D
+A
+8/125 [04:46<04:47,  3.73s/it][Rank5]:  50%|████▉     | 62/125 [04:46<04:11,  3.99s/it][Rank1]:  49%|████▉     | 61/125 [04:46<03:18,  3.11s/it][Rank6]:  43%|████▎     | 54/125 [04:46<06:29,  5.48s/it][Rank1]:  50%|████▉     | 62/125 [04:49<02:59,  2.85s/it][Rank5]:  50%|█████     | 63/125 [04:49<03:40,  3.55s/it][Rank6]:  44%|████▍     | 55/125 [04:49<05:26,  4.66s/it][Rank3]:  39%|███▉      | 49/125 [04:49<04:46,  3.76s/it][Rank7]:  41%|████      | 51/125 [04:50<06:16,  5.09s/it][Rank4]:  45%|████▍     | 56/125 [04:50<05:46,  5.02s/it][Rank6]:  45%|████▍     | 56/125 [04:51<04:31,  3.94s/it][Rank0]:  50%|█████     | 63/125 [05:12<04:53,  4.74s/it][Rank1]:  50%|█████     | 63/125 [04:52<03:02,  2.94s/it][Rank2]:  40%|████      | 50/125 [04:52<11:25,  9.14s/it][Rank6]:  46%|████▌     | 57/125 [04:53<03:32,  3.12s/it][Rank4]:  46%|████▌     | 57/125 [04:This data structure is called a **stack**.
+
+Answer: stack
+B
+The algorithm being demonstrated is the **Floyd-Warshall algorithm**.
+D
+B. Crystallization
+D
+C
+To determine the next node after visiting node "1", we analyze the algorithm flow:  
+
+1. Locate the step where node "1" is visited.  
+2. Follow the arrow originating from node "1" in the diagram.  
+
+The arrow from node "1" points to node "2".  
+
+Answer: 2
+C
+D
+A
+C
+BRI
+E
+C
+55<05:22,  4.75s/it][Rank3]:  40%|████      | 50/125 [04:55<05:32,  4.44s/it][Rank6]:  46%|████▋     | 58/125 [04:56<03:28,  3.11s/it][Rank1]:  51%|█████     | 64/125 [04:57<03:48,  3.74s/it][Rank4]:  46%|████▋     | 58/125 [04:58<04:48,  4.30s/it][Rank7]:  42%|████▏     | 52/125 [04:59<07:31,  6.18s/it][Rank2]:  41%|████      | 51/125 [05:00<10:31,  8.53s/it][Rank4]:  47%|████▋     | 59/125 [05:00<04:07,  3.76s/it][Rank6]:  47%|████▋     | 59/125 [05:00<03:58,  3.61s/it][Rank2]:  42%|████▏     | 52/125 [05:01<07:42,  6.34s/it][Rank7]:  42%|████▏     | 53/125 [05:02<06:22,  5.31s/it][Rank5]:  51%|█████     | 64/125 [05:03<06:59,  6.88s/it][Rank4]:  48%|████▊     | 60/125 [05:05<04:32,  4.20s/it][Rank5]:  52%|█████▏    | 65/125 [05:06<05:44,  5.73s/it][Rank0]:  51%|█████     | 64/125 [05:27<08:08,  8.01s/it][Rank5]:  53%|█████▎    | 66/125 [05:09<0B
+To determine the number of parent pointers followed during the `find(2)` operation, we analyze the process in the provided diagram:  
+
+1. Locate the `find(2)` operation in the diagram.  
+2. Trace the path from node `2` to its representative (`1`):  
+   - Node `2` → Node `3` (first parent pointer).  
+   - Node `3` → Node `5` (second parent pointer).  
+   - Node `5` → Node `1` (third parent pointer, which is the representative).  
+
+Thus, the number of parent pointers followed is 3.  
+
+Answer: 3
+A
+C
+The phenomenon shown in the video is the pupil of the human eye reacting to light. The pupil constricts (narrowing) when exposed to bright light, which is a natural response to protect the retina from overexposure.
+IgE
+D
+sodium hydroxide
+The algorithm being illustrated is the **Euclidean algorithm** for finding the greatest common divisor (GCD).
+To determine the number of swap operations, we analyze the video’s visual cues. The sequence progresses through 16 steps, with each step showing a swap. By counting the distinct swap actions across all frames, we identify there are 16 swap operations in total. 
+
+Answer: 16
+A, B, C, D, E
+D
+Answer: accident
+The video shows a person experiencing symptoms such as difficulty breathing, wheezing, and an open mouth, which are characteristic of asthma. The most likely underlying condition causing the initial insomnia is **asthma**. 
+
+Answer: Asthma
+A
+4:38,  4.73s/it][Rank6]:  48%|████▊     | 60/125 [05:10<05:50,  5.39s/it][Rank3]:  41%|████      | 51/125 [05:12<09:49,  7.96s/it][Rank3]:  42%|████▏     | 52/125 [05:13<07:17,  6.00s/it][Rank7]:  43%|████▎     | 54/125 [05:14<08:30,  7.20s/it][Rank5]:  54%|█████▎    | 67/125 [05:14<04:41,  4.86s/it][Rank5]:  54%|█████▍    | 68/125 [05:16<03:44,  3.94s/it][Rank1]:  52%|█████▏    | 65/125 [05:16<08:19,  8.32s/it][Rank2]:  42%|████▏     | 53/125 [05:17<11:06,  9.25s/it][Rank5]:  55%|█████▌    | 69/125 [05:18<03:08,  3.37s/it][Rank6]:  49%|████▉     | 61/125 [05:18<06:28,  6.08s/it][Rank4]:  49%|████▉     | 61/125 [05:18<07:10,  6.73s/it][Rank4]:  50%|████▉     | 62/125 [05:21<05:51,  5.58s/it][Rank2]:  43%|████▎     | 54/125 [05:21<09:13,  7.80s/it][Rank5]:  56%|█████▌    | 70/125 [05:21<03:10,  3.46s/it][Rank6]:  50%|████▉     | 62/125 [05:Answer: Bacteria
+C
+A
+The items displayed are legally considered **fireworks**.
+dust
+A
+A
+A
+C
+The model shows the mechanics of a four-stroke engine.
+B
+D
+E
+B
+C
+23<06:04,  5.78s/it][Rank7]:  44%|████▍     | 55/125 [05:23<09:03,  7.77s/it][Rank5]:  57%|█████▋    | 71/125 [05:24<02:57,  3.29s/it][Rank2]:  44%|████▍     | 55/125 [05:24<07:26,  6.37s/it][Rank7]:  45%|████▍     | 56/125 [05:25<06:49,  5.94s/it][Rank0]:  52%|█████▏    | 65/125 [05:46<11:08, 11.14s/it][Rank7]:  46%|████▌     | 57/125 [05:26<05:08,  4.54s/it][Rank2]:  45%|████▍     | 56/125 [05:26<05:46,  5.02s/it][Rank6]:  50%|█████     | 63/125 [05:27<05:31,  5.34s/it][Rank3]:  42%|████▏     | 53/125 [05:28<10:17,  8.58s/it][Rank5]:  58%|█████▊    | 72/125 [05:28<03:00,  3.40s/it][Rank7]:  46%|████▋     | 58/125 [05:29<04:30,  4.03s/it][Rank1]:  53%|█████▎    | 66/125 [05:30<09:46,  9.94s/it][Rank7]:  47%|████▋     | 59/125 [05:31<03:47,  3.44s/it][Rank3]:  43%|████▎     | 54/125 [05:31<08:23,  7.09s/it][Rank2]:  46%|████▌     | 57/125 upper
+At-rest
+sensory
+A
+C
+E
+C
+B
+D
+D
+B
+A
+The rod in the video mainly carries a negative charge.
+C
+C
+[05:31<05:44,  5.07s/it][Rank7]:  48%|████▊     | 60/125 [05:32<03:04,  2.84s/it][Rank1]:  54%|█████▎    | 67/125 [05:34<07:47,  8.07s/it][Rank7]:  49%|████▉     | 61/125 [05:34<02:38,  2.47s/it][Rank3]:  44%|████▍     | 55/125 [05:34<06:46,  5.80s/it][Rank2]:  46%|████▋     | 58/125 [05:35<05:00,  4.49s/it][Rank3]:  45%|████▍     | 56/125 [05:35<05:11,  4.51s/it][Rank2]:  47%|████▋     | 59/125 [05:36<03:58,  3.62s/it][Rank1]:  54%|█████▍    | 68/125 [05:37<06:16,  6.61s/it][Rank0]:  53%|█████▎    | 66/125 [05:58<11:17, 11.49s/it][Rank3]:  46%|████▌     | 57/125 [05:39<04:53,  4.31s/it][Rank5]:  58%|█████▊    | 73/125 [05:39<05:02,  5.81s/it][Rank1]:  55%|█████▌    | 69/125 [05:41<05:23,  5.77s/it][Rank4]:  50%|█████     | 63/125 [05:41<10:09,  9.84s/it][Rank6]:  51%|█████     | 64/125 [05:42<08:11,  8.06s/it][Rank3]:  46%|████▋     | 5Answer: 2.5
+A
+E
+To determine the most appropriate antidote, we analyze the context of detoxification and restoration of damaged structures. The video shows a patient with a damaged organ (likely a liver, given the context of detoxification and the presence of a liver in the image). In medical scenarios, **S-adenosylmethionine (SAMe)** is a well - known compound used for liver detoxification and restoration of liver function. 
+
+Given the video's focus on detoxification and liver - related restoration, the most appropriate antidote is S - adenosylmethionine. 
+
+S - adenosylmethionine
+C
+E
+C
+C
+B
+A
+To determine the number of information bits, we analyze the visual elements:  
+
+1. The video shows a “Codeword” with two distinct visual patterns (a blue square and a red square) and a “Verification Pattern” with a green square.  
+2. In the context of verification methods like **Reed - Solomon codes** (a common error - correction code), a codeword is structured with a fixed number of information bits plus redundancy bits. Here, the two distinct visual elements (blue and red squares) represent the information bits.  
+
+Thus, the number of information bits is 2.  
+
+Answer: 2
+E
+C
+The finished product in the video will most likely be used as the building's **exterior wall**.
+C
+8/125 [05:43<04:36,  4.12s/it][Rank4]:  51%|█████     | 64/125 [05:44<07:51,  7.73s/it][Rank7]:  50%|████▉     | 62/125 [05:44<05:00,  4.76s/it][Rank3]:  47%|████▋     | 59/125 [05:44<03:35,  3.27s/it][Rank2]:  48%|████▊     | 60/125 [05:45<05:30,  5.08s/it][Rank6]:  52%|█████▏    | 65/125 [05:45<06:40,  6.67s/it][Rank7]:  50%|█████     | 63/125 [05:46<04:05,  3.96s/it][Rank6]:  53%|█████▎    | 66/125 [05:48<05:26,  5.53s/it][Rank4]:  52%|█████▏    | 65/125 [05:48<06:45,  6.76s/it][Rank3]:  48%|████▊     | 60/125 [05:49<04:03,  3.74s/it][Rank2]:  49%|████▉     | 61/125 [05:50<05:23,  5.06s/it][Rank0]:  54%|█████▎    | 67/125 [06:10<11:22, 11.76s/it][Rank4]:  53%|█████▎    | 66/125 [05:51<05:35,  5.69s/it][Rank3]:  49%|████▉     | 61/125 [05:51<03:32,  3.32s/it][Rank6]:  54%|█████▎    | 67/125 [05:53<05:07,  5.30s/it][Rank2]:  50%|████▉E
+D
+15
+D. Hydrolysis
+A
+A
+The economic crisis described is the Great Depression.
+
+Final short answer: The Great Depression
+The man is adjusting a **mirror** to analyze the physical phenomenon.  
+Answer: mirror
+D
+Answer: protein
+RL
+B
+C
+B
+A
+     | 62/125 [05:53<04:42,  4.48s/it][Rank0]:  54%|█████▍    | 68/125 [06:13<08:35,  9.04s/it][Rank6]:  54%|█████▍    | 68/125 [05:54<03:51,  4.07s/it][Rank1]:  56%|█████▌    | 70/125 [05:54<07:18,  7.97s/it][Rank2]:  50%|█████     | 63/125 [05:54<03:45,  3.64s/it][Rank4]:  54%|█████▎    | 67/125 [05:55<04:53,  5.06s/it][Rank5]:  59%|█████▉    | 74/125 [05:55<07:28,  8.80s/it][Rank6]:  55%|█████▌    | 69/125 [05:56<03:08,  3.37s/it][Rank2]:  51%|█████     | 64/125 [05:57<03:14,  3.18s/it][Rank6]:  56%|█████▌    | 70/125 [05:57<02:37,  2.86s/it][Rank0]:  55%|█████▌    | 69/125 [06:17<07:08,  7.65s/it][Rank1]:  57%|█████▋    | 71/125 [05:58<06:00,  6.68s/it][Rank0]:  56%|█████▌    | 70/125 [06:18<05:07,  5.59s/it][Rank7]:  51%|█████     | 64/125 [05:58<06:35,  6.49s/it][Rank3]:  50%|████▉     | 62/125 [05:59<04:55,  4.69s/it][Rank0]:  57%A
+A
+C
+Answer: n^2
+Fiscal policy
+B
+A
+The medical professional is performing a medical examination involving the stretching of the **hamstring** muscle.
+The cell type observed in the video is **red blood cells**.
+Adiabatic process
+C
+The most likely underlying condition causing these signs is **multiple sclerosis**. The video shows a person experiencing muscle weakness, difficulty walking, and potential coordination issues, which are common symptoms of multiple sclerosis. The presence of a wheelchair and the individual's posture further suggest a neurological condition affecting mobility.
+water pressure
+C
+|█████▋    | 71/125 [06:20<03:55,  4.36s/it][Rank3]:  50%|█████     | 63/125 [06:02<04:06,  3.98s/it][Rank3]:  51%|█████     | 64/125 [06:03<03:10,  3.12s/it][Rank5]:  60%|██████    | 75/125 [06:04<07:26,  8.93s/it][Rank6]:  57%|█████▋    | 71/125 [06:07<04:30,  5.01s/it][Rank3]:  52%|█████▏    | 65/125 [06:08<03:44,  3.75s/it][Rank0]:  58%|█████▊    | 72/125 [06:30<05:25,  6.14s/it][Rank6]:  58%|█████▊    | 72/125 [06:10<03:52,  4.38s/it][Rank3]:  53%|█████▎    | 66/125 [06:12<03:36,  3.68s/it][Rank7]:  52%|█████▏    | 65/125 [06:14<09:17,  9.30s/it][Rank3]:  54%|█████▎    | 67/125 [06:14<03:20,  3.46s/it][Rank2]:  52%|█████▏    | 65/125 [06:16<08:04,  8.07s/it][Rank1]:  58%|█████▊    | 72/125 [06:17<09:21, 10.59s/it][Rank3]:  54%|█████▍    | 68/125 [06:18<03:26,  3.63s/it][Rank3]:  55%|█████▌    | 69/125 [06:20<02:46,  2The video shows a person using an allergy test kit, which is labeled "Penicillin Allergy Test." Based on the context and the label, the class of antibiotics being tested for an allergy is **Penicillin**.
+
+Final Answer: **Penicillin**
+C
+O(n)
+To determine the total weight of the minimum spanning tree, we first identify the minimum spanning tree using the given graph. The graph has 7 nodes with the following edge weights:  
+
+- AB: 2  
+- BC: 2  
+- CD: 1  
+- DE: 3  
+- EG: 1  
+- EH: 1  
+- EH: 1 (repeated edge, likely a typo; assuming distinct edges)  
+- EH: 1 (repeated, so we consider unique edges)  
+
+Using Kruskal’s algorithm (sorting edges by weight and adding the smallest without forming cycles):  
+1. CD (1)  
+2. EG (1)  
+3. EH (1)  
+4. AB (2)  
+5. BC (2)  
+6. DE (3)  
+
+Summing these weights: \( 1 + 1 + 1 + 2 + 2 + 3 = 10 \).  
+
+Answer: 10
+D
+A
+B
+A
+A
+1.3 million
+C
+E
+E
+The characters in the video primarily demonstrate a **collaborative** leadership style.
+D
+.97s/it][Rank5]:  61%|██████    | 76/125 [06:23<09:40, 11.85s/it][Rank3]:  56%|█████▌    | 70/125 [06:23<02:47,  3.05s/it][Rank0]:  58%|█████▊    | 73/125 [06:44<07:16,  8.39s/it][Rank4]:  54%|█████▍    | 68/125 [06:24<11:40, 12.28s/it][Rank0]:  59%|█████▉    | 74/125 [06:45<05:15,  6.19s/it][Rank6]:  58%|█████▊    | 73/125 [06:26<06:46,  7.81s/it][Rank3]:  57%|█████▋    | 71/125 [06:27<02:51,  3.18s/it][Rank5]:  62%|██████▏   | 77/125 [06:27<07:36,  9.52s/it][Rank2]:  53%|█████▎    | 66/125 [06:27<08:55,  9.07s/it][Rank7]:  53%|█████▎    | 66/125 [06:28<10:27, 10.64s/it][Rank1]:  58%|█████▊    | 73/125 [06:29<09:34, 11.04s/it][Rank1]:  59%|█████▉    | 74/125 [06:31<06:52,  8.09s/it][Rank0]:  60%|██████    | 75/125 [06:51<05:07,  6.14s/it][Rank3]:  58%|█████▊    | 72/125 [06:31<03:13,  3.66s/it][Rank0]:  61%|██████ To determine the rotation direction, observe the stepper motor in the video. The motor’s rotor turns in a clockwise direction. 
+
+Answer: clockwise
+A
+E
+C
+B
+B
+The shortest distance from node 'a' to node 'h' is 2.
+C
+D
+sum
+schizophrenia
+C
+E
+C
+   | 76/125 [06:53<04:07,  5.04s/it][Rank7]:  54%|█████▎    | 67/125 [06:34<08:52,  9.18s/it][Rank1]:  60%|██████    | 75/125 [06:34<05:34,  6.69s/it][Rank7]:  54%|█████▍    | 68/125 [06:35<06:26,  6.79s/it][Rank7]:  55%|█████▌    | 69/125 [06:36<04:43,  5.06s/it][Rank1]:  61%|██████    | 76/125 [06:36<04:19,  5.30s/it][Rank7]:  56%|█████▌    | 70/125 [06:38<03:41,  4.03s/it][Rank4]:  55%|█████▌    | 69/125 [06:39<12:06, 12.98s/it][Rank5]:  62%|██████▏   | 78/125 [06:39<08:01, 10.25s/it][Rank0]:  62%|██████▏   | 77/125 [07:00<04:19,  5.41s/it][Rank2]:  54%|█████▎    | 67/125 [06:40<09:43, 10.05s/it][Rank4]:  56%|█████▌    | 70/125 [06:41<09:00,  9.83s/it][Rank1]:  62%|██████▏   | 77/125 [06:42<04:17,  5.36s/it][Rank0]:  62%|██████▏   | 78/125 [07:02<03:31,  4.51s/it][Rank5]:  63%|██████▎   | 79/125 [06:42<06:08,  8.02s/iB
+upward
+B
+Hemophilia
+B
+B
+D
+organic
+The machine shown in the video is most effective at compacting sandy soils. 
+
+Final short answer: sandy soils
+C
+B
+A
+C
+First line
+VSB
+t][Rank6]:  59%|█████▉    | 74/125 [06:42<08:51, 10.42s/it][Rank4]:  57%|█████▋    | 71/125 [06:43<06:37,  7.36s/it][Rank2]:  54%|█████▍    | 68/125 [06:43<07:35,  7.99s/it][Rank6]:  60%|██████    | 75/125 [06:44<06:27,  7.75s/it][Rank3]:  58%|█████▊    | 73/125 [06:44<05:31,  6.38s/it][Rank1]:  62%|██████▏   | 78/125 [06:44<03:35,  4.58s/it][Rank2]:  55%|█████▌    | 69/125 [06:46<05:56,  6.37s/it][Rank1]:  63%|██████▎   | 79/125 [06:46<02:53,  3.78s/it][Rank4]:  58%|█████▊    | 72/125 [06:47<05:37,  6.37s/it][Rank7]:  57%|█████▋    | 71/125 [06:47<05:10,  5.75s/it][Rank1]:  64%|██████▍   | 80/125 [06:48<02:23,  3.18s/it][Rank2]:  56%|█████▌    | 70/125 [06:49<04:54,  5.36s/it][Rank7]:  58%|█████▊    | 72/125 [06:50<04:13,  4.78s/it][Rank1]:  65%|██████▍   | 81/125 [06:50<02:03,  2.81s/it][Rank7]:  58%|█████▊ C
+The worst-case inputs for the demonstrated algorithm are pairs of consecutive numbers from the Fibonacci sequence. 
+
+Final short answer: Fibonacci sequence
+The liquid added to the beaker is known as **iodine solution**.
+source
+C
+intravenous atropine
+A
+D
+E
+The warehouse utilizes a **horizontal** AS/RS, which is designed for handling the shown objects in the video.
+Answer: soil
+Answer: sonar
+C
+The character is most likely suffering from a cold or flu.
+   | 73/125 [06:51<03:08,  3.62s/it][Rank2]:  57%|█████▋    | 71/125 [06:52<04:18,  4.78s/it][Rank5]:  64%|██████▍   | 80/125 [06:52<06:31,  8.69s/it][Rank3]:  59%|█████▉    | 74/125 [06:54<06:25,  7.57s/it][Rank0]:  63%|██████▎   | 79/125 [07:16<05:40,  7.40s/it][Rank1]:  66%|██████▌   | 82/125 [06:56<02:45,  3.84s/it][Rank4]:  58%|█████▊    | 73/125 [06:58<06:39,  7.68s/it][Rank0]:  64%|██████▍   | 80/125 [07:18<04:14,  5.66s/it][Rank6]:  61%|██████    | 76/125 [06:59<08:02,  9.85s/it][Rank5]:  65%|██████▍   | 81/125 [06:59<05:55,  8.09s/it][Rank0]:  65%|██████▍   | 81/125 [07:22<03:48,  5.18s/it][Rank5]:  66%|██████▌   | 82/125 [07:02<04:47,  6.70s/it][Rank3]:  60%|██████    | 75/125 [07:03<06:28,  7.77s/it][Rank1]:  66%|██████▋   | 83/125 [07:04<03:33,  5.09s/it][Rank0]:  66%|██████▌   | 82/125 [07:25<03:12, The equivalent spring constant in the second experiment was 3 N/m, which is 1.5 times the value of the first experiment (2 N/m).
+C
+C
+D
+D
+E
+mucus
+C
+E
+The demonstrated discharge type is **arc** discharge.
+Prokaryotic
+D
+C
+Second
+C
+ 4.48s/it][Rank5]:  66%|██████▋   | 83/125 [07:05<03:46,  5.38s/it][Rank6]:  62%|██████▏   | 77/125 [07:05<07:00,  8.76s/it][Rank7]:  59%|█████▉    | 74/125 [07:05<05:48,  6.84s/it][Rank2]:  58%|█████▊    | 72/125 [07:05<06:29,  7.34s/it][Rank4]:  59%|█████▉    | 74/125 [07:06<06:42,  7.89s/it][Rank7]:  60%|██████    | 75/125 [07:07<04:28,  5.37s/it][Rank5]:  67%|██████▋   | 84/125 [07:09<03:31,  5.16s/it][Rank3]:  61%|██████    | 76/125 [07:12<06:38,  8.13s/it][Rank3]:  62%|██████▏   | 77/125 [07:13<04:48,  6.02s/it][Rank0]:  66%|██████▋   | 83/125 [07:33<03:57,  5.64s/it][Rank7]:  61%|██████    | 76/125 [07:13<04:36,  5.65s/it][Rank0]:  67%|██████▋   | 84/125 [07:34<02:52,  4.21s/it][Rank4]:  60%|██████    | 75/125 [07:14<06:33,  7.87s/it][Rank3]:  62%|██████▏   | 78/125 [07:14<03:35,  4.58s/it][Rank6]:  62%|█�In the video, the yellow blob-like object most likely represents an **ocean wave**.
+
+Answer: ocean wave
+B
+FDM
+D
+A
+D
+A
+D
+Gaussian
+C
+To determine the linear velocity of the smaller circle at its edge, we analyze the video:  
+
+1. Locate the smaller circle: It is the blue - rimmed circle on the right.  
+2. Observe its motion: The smaller circle rotates, and its edge moves along a circular path.  
+3. Infer the velocity: Since the question asks for the linear velocity at the edge, and from the context of the video (where the smaller circle’s edge is in motion), we identify the value.  
+
+Answer: 6
+Lease Agreement
+Covalent bond formation
+The mechanism shown in the video is known as a **crank - slider** mechanism.
+
+Answer: crank - slider
+�████▏   | 78/125 [07:14<07:01,  8.96s/it][Rank1]:  67%|██████▋   | 84/125 [07:15<04:33,  6.68s/it][Rank0]:  68%|██████▊   | 85/125 [07:35<02:12,  3.32s/it][Rank4]:  61%|██████    | 76/125 [07:16<05:03,  6.20s/it][Rank4]:  62%|██████▏   | 77/125 [07:17<03:40,  4.58s/it][Rank6]:  63%|██████▎   | 79/125 [07:17<05:25,  7.07s/it][Rank2]:  58%|█████▊    | 73/125 [07:17<07:34,  8.74s/it][Rank4]:  62%|██████▏   | 78/125 [07:18<02:44,  3.49s/it][Rank2]:  59%|█████▉    | 74/125 [07:18<05:27,  6.41s/it][Rank6]:  64%|██████▍   | 80/125 [07:19<04:03,  5.42s/it][Rank5]:  68%|██████▊   | 85/125 [07:19<04:22,  6.57s/it][Rank7]:  62%|██████▏   | 77/125 [07:20<04:49,  6.03s/it][Rank4]:  63%|██████▎   | 79/125 [07:21<02:37,  3.43s/it][Rank6]:  65%|██████▍   | 81/125 [07:22<03:36,  4.92s/it][Rank2]:  60%|██████    | 75/C
+C
+Human-Computer Interaction
+C
+Answer: saltatory
+DHT
+parody
+C
+The drilling rig is called "Hansens".
+The ordering technique in the video is called a **salad bar**.
+A
+The biomaterial is often used in surgical settings as a(n) **sealing** agent.
+
+Final short answer: sealing
+endosymbiotic
+B
+125 [07:23<04:51,  5.83s/it][Rank5]:  69%|██████▉   | 86/125 [07:23<03:47,  5.82s/it][Rank6]:  66%|██████▌   | 82/125 [07:24<02:47,  3.91s/it][Rank3]:  63%|██████▎   | 79/125 [07:25<04:54,  6.40s/it][Rank6]:  66%|██████▋   | 83/125 [07:25<02:07,  3.05s/it][Rank4]:  64%|██████▍   | 80/125 [07:25<02:42,  3.61s/it][Rank1]:  68%|██████▊   | 85/125 [07:26<05:18,  7.96s/it][Rank3]:  64%|██████▍   | 80/125 [07:26<03:38,  4.86s/it][Rank6]:  67%|██████▋   | 84/125 [07:26<01:39,  2.43s/it][Rank5]:  70%|██████▉   | 87/125 [07:26<03:10,  5.02s/it][Rank7]:  62%|██████▏   | 78/125 [07:28<05:10,  6.60s/it][Rank0]:  69%|██████▉   | 86/125 [07:49<04:16,  6.57s/it][Rank6]:  68%|██████▊   | 85/125 [07:30<01:52,  2.81s/it][Rank1]:  69%|██████▉   | 86/125 [07:30<04:34,  7.03s/it][Rank1]:  70%|██████▉   | 87/125 [07:34<03:46stock
+The video shows a character with buds on their head experiencing symptoms during a sleep cycle. The symptoms are most likely related to a dream or a sleep-related event, but the specific type of sleep is not explicitly mentioned. However, the symptoms appear to occur during a light or REM sleep stage, as the character is in a relaxed state with eyes closed.
+
+Final short answer: **light sleep** or **REM sleep**.
+lung
+Pythagoras
+takers
+A
+The phenomenon of refraction occurs when the laser passes through the plastic block. The light bends as it enters the different medium (air to plastic), causing the visible change in direction of the laser beam. 
+
+Answer: refraction
+D
+The visual effects are based on the phenomenon known as **optical illusion**.
+C
+The process depicted in the video, monitored in real-time by a computer, is **automated food processing** (specifically, the automated production of "DORADA" - labeled food items).
+D
+A
+C
+The video shows a data structure where each node has two children. The degree of a node is the number of its children. Since each node has exactly two children, the minimum degree \( t \) of the shown data structure is 2.
+
+Final short answer: 2
+,  5.95s/it][Rank4]:  65%|██████▍   | 81/125 [07:34<03:49,  5.22s/it][Rank7]:  63%|██████▎   | 79/125 [07:35<04:59,  6.52s/it][Rank1]:  70%|███████   | 88/125 [07:35<02:47,  4.51s/it][Rank0]:  70%|██████▉   | 87/125 [07:57<04:23,  6.93s/it][Rank7]:  64%|██████▍   | 80/125 [07:39<04:30,  6.01s/it][Rank3]:  65%|██████▍   | 81/125 [07:40<05:34,  7.60s/it][Rank0]:  70%|███████   | 88/125 [08:01<03:42,  6.02s/it][Rank3]:  66%|██████▌   | 82/125 [07:42<04:15,  5.95s/it][Rank6]:  69%|██████▉   | 86/125 [07:42<03:43,  5.72s/it][Rank7]:  65%|██████▍   | 81/125 [07:42<03:41,  5.04s/it][Rank4]:  66%|██████▌   | 82/125 [07:42<04:25,  6.17s/it][Rank7]:  66%|██████▌   | 82/125 [07:44<02:49,  3.94s/it][Rank3]:  66%|██████▋   | 83/125 [07:44<03:22,  4.82s/it][Rank4]:  66%|██████▋   | 83/125 [07:44<03:24,  4.88s/it][RaThe video shows a camera with a lens and a shutter mechanism. The shutter is likely a **mechanical shutter** or a **electronic shutter**, but given the design and context, it is most likely a **mechanical shutter**. 
+
+**Final Answer: Mechanical Shutter**
+A
+gastroesophageal
+C
+The short film aligns with the expressive style of **realism** in literature. 
+
+**Final Answer: realism**
+C
+To determine which object reaches the bottom first, we analyze the video:  
+
+1. Identify the objects: A red cube, a green sphere, and a yellow sphere.  
+2. Observe their descent: The red cube falls first, followed by the green sphere, then the yellow sphere.  
+
+Answer: red cube
+D
+A
+C
+D
+GABA
+Answer: 100
+B
+nk5]:  70%|███████   | 88/125 [07:45<05:33,  9.00s/it][Rank0]:  71%|███████   | 89/125 [08:05<03:14,  5.39s/it][Rank7]:  66%|██████▋   | 83/125 [07:45<02:13,  3.17s/it][Rank3]:  67%|██████▋   | 84/125 [07:45<02:32,  3.73s/it][Rank7]:  67%|██████▋   | 84/125 [07:46<01:42,  2.49s/it][Rank2]:  61%|██████    | 76/125 [07:46<09:06, 11.15s/it][Rank2]:  62%|██████▏   | 77/125 [07:47<06:28,  8.10s/it][Rank6]:  70%|██████▉   | 87/125 [07:48<03:36,  5.71s/it][Rank7]:  68%|██████▊   | 85/125 [07:49<01:43,  2.60s/it][Rank3]:  68%|██████▊   | 85/125 [07:49<02:32,  3.80s/it][Rank2]:  62%|██████▏   | 78/125 [07:50<04:59,  6.38s/it][Rank4]:  67%|██████▋   | 84/125 [07:50<03:25,  5.02s/it][Rank2]:  63%|██████▎   | 79/125 [07:52<03:55,  5.12s/it][Rank6]:  70%|███████   | 88/125 [07:53<03:23,  5.51s/it][Rank2]:  64%|██�C
+To solve this, we use the length contraction formula from special relativity: \( L = L_0 \sqrt{1 - \frac{v^2}{c^2}} \), where \( L_0 \) is the proper length (length at rest).  
+
+1. Identify \( L_0 \): The video shows the spacecraft’s length at rest is 5 m.  
+2. Plug into the formula: \( 4 = 5 \sqrt{1 - \frac{v^2}{c^2}} \).  
+3. Solve for \( \sqrt{1 - \frac{v^2}{c^2}} \): \( \frac{4}{5} = \sqrt{1 - \frac{v^2}{c^2}} \).  
+4. Square both sides: \( \left( \frac{4}{5} \right)^2 = 1 - \frac{v^2}{c^2} \) → \( \frac{16}{25} = 1 - \frac{v^2}{c^2} \).  
+5. Solve for \( \frac{v^2}{c^2} \): \( \frac{v^2}{c^2} = 1 - \frac{16}{25} = \frac{9}{25} \).  
+6. Take the square root: \( \frac{v}{c} = \sqrt{\frac{9}{25}} = \frac{3}{5} = 0.6 \).  
+
+
+Answer: 0.600
+C
+C
+E
+The phenomenon illustrated in the video is called a gene expression.
+
+Final short answer: expression
+The device simulates a **headset**.
+The algorithm shown in the video is called **Pomodoro**.
+In the video, the patient indicates a deformity known as **clubfoot**.
+
+Answer: clubfoot
+B
+C
+B
+E
+The device's motion is primarily driven by **wind**.
+��███▍   | 80/125 [07:54<03:10,  4.23s/it][Rank2]:  65%|██████▍   | 81/125 [07:56<02:31,  3.43s/it][Rank1]:  71%|███████   | 89/125 [07:57<05:52,  9.80s/it][Rank2]:  66%|██████▌   | 82/125 [07:58<02:10,  3.03s/it][Rank3]:  69%|██████▉   | 86/125 [07:59<03:31,  5.42s/it][Rank7]:  69%|██████▉   | 86/125 [07:59<03:06,  4.79s/it][Rank5]:  71%|███████   | 89/125 [07:59<06:19, 10.54s/it][Rank2]:  66%|██████▋   | 83/125 [08:00<01:59,  2.84s/it][Rank4]:  68%|██████▊   | 85/125 [08:01<04:32,  6.81s/it][Rank0]:  72%|███████▏  | 90/125 [08:21<05:04,  8.69s/it][Rank7]:  70%|██████▉   | 87/125 [08:01<02:39,  4.20s/it][Rank3]:  70%|██████▉   | 87/125 [08:02<03:00,  4.74s/it][Rank0]:  73%|███████▎  | 91/125 [08:24<03:54,  6.89s/it][Rank6]:  71%|███████   | 89/125 [08:05<04:26,  7.39s/it][Rank5]:  72%|██████�D
+The video shows a team using a direct method known as **hand** pumping. 
+
+Answer: hand
+C
+E
+A
+E
+E
+C
+To determine which boy is matched with girl C, we analyze the "Engaged" table. In the table, the row for "Girl C" shows the "Boy" column as "David".
+
+Answer: David
+E
+D
+C
+E
+B
+��▏  | 90/125 [08:05<05:27,  9.34s/it][Rank7]:  70%|███████   | 88/125 [08:05<02:32,  4.13s/it][Rank0]:  74%|███████▎  | 92/125 [08:28<03:22,  6.13s/it][Rank4]:  69%|██████▉   | 86/125 [08:09<04:39,  7.16s/it][Rank6]:  72%|███████▏  | 90/125 [08:10<04:02,  6.93s/it][Rank7]:  71%|███████   | 89/125 [08:11<02:39,  4.44s/it][Rank4]:  70%|██████▉   | 87/125 [08:11<03:38,  5.76s/it][Rank1]:  72%|███████▏  | 90/125 [08:11<06:28, 11.10s/it][Rank1]:  73%|███████▎  | 91/125 [08:13<04:47,  8.44s/it][Rank2]:  67%|██████▋   | 84/125 [08:14<04:15,  6.22s/it][Rank4]:  70%|███████   | 88/125 [08:15<03:16,  5.32s/it][Rank3]:  70%|███████   | 88/125 [08:16<04:40,  7.58s/it][Rank7]:  72%|███████▏  | 90/125 [08:16<02:49,  4.83s/it][Rank1]:  74%|███████▎  | 92/125 [08:16<03:43,  6.77s/it][Rank5]:  73%|███████B
+The primary mode of heat transfer in the video demonstration is conduction.
+C
+D
+C
+A
+A
+Answer: west
+D
+A
+metal flow
+B
+D
+artery
+▎  | 91/125 [08:17<05:39, 10.00s/it][Rank0]:  74%|███████▍  | 93/125 [08:37<03:42,  6.95s/it][Rank2]:  68%|██████▊   | 85/125 [08:18<03:35,  5.39s/it][Rank4]:  71%|███████   | 89/125 [08:18<02:37,  4.36s/it][Rank3]:  71%|███████   | 89/125 [08:18<03:29,  5.82s/it][Rank4]:  72%|███████▏  | 90/125 [08:20<02:11,  3.75s/it][Rank0]:  75%|███████▌  | 94/125 [08:41<03:03,  5.93s/it][Rank6]:  73%|███████▎  | 91/125 [08:21<04:30,  7.96s/it][Rank2]:  69%|██████▉   | 86/125 [08:21<03:09,  4.86s/it][Rank0]:  76%|███████▌  | 95/125 [08:42<02:14,  4.49s/it][Rank2]:  70%|██████▉   | 87/125 [08:24<02:38,  4.17s/it][Rank1]:  74%|███████▍  | 93/125 [08:24<03:49,  7.17s/it][Rank3]:  72%|███████▏  | 90/125 [08:26<03:55,  6.72s/it][Rank5]:  74%|███████▎  | 92/125 [08:28<05:38, 10.27s/it][Rank1]:  75%|██████�C
+A
+D
+A
+B
+Chemical
+B
+The device is an example of a steam engine.
+The shown approach is an example of a(n) **backpropagation** algorithm.
+
+Answer: backpropagation
+The woman's action of throwing the ball creates a legal obligation known as a **trespass**.
+C
+derivational
+D
+D
+��▌  | 94/125 [08:28<03:08,  6.09s/it][Rank7]:  73%|███████▎  | 91/125 [08:28<03:54,  6.90s/it][Rank0]:  77%|███████▋  | 96/125 [08:49<02:33,  5.30s/it][Rank6]:  74%|███████▎  | 92/125 [08:30<04:32,  8.26s/it][Rank5]:  74%|███████▍  | 93/125 [08:30<04:13,  7.91s/it][Rank4]:  73%|███████▎  | 91/125 [08:31<03:19,  5.87s/it][Rank1]:  76%|███████▌  | 95/125 [08:31<02:34,  5.16s/it][Rank5]:  75%|███████▌  | 94/125 [08:31<03:04,  5.95s/it][Rank4]:  74%|███████▎  | 92/125 [08:34<02:44,  4.99s/it][Rank6]:  74%|███████▍  | 93/125 [08:35<03:54,  7.31s/it][Rank1]:  77%|███████▋  | 96/125 [08:36<02:24,  4.97s/it][Rank6]:  75%|███████▌  | 94/125 [08:36<02:47,  5.41s/it][Rank4]:  74%|███████▍  | 93/125 [08:36<02:13,  4.17s/it][Rank7]:  74%|███████▎  | 92/125 [08:36<04:00,  7.30s/it][Rank4]:  75%|██�In the video, the bioreactor is used to produce **oxygen**.
+
+Answer: oxygen
+The demonstrated data structure is a binary search tree (BST).
+A
+Answer: diode
+Answer: camouflage
+D
+To find the average number of bits per character, we use the formula: Average bits per character = Total bits / Total characters.  
+
+- Total bits = 1024  
+- Total characters = 1024  
+
+So, 1024 / 1024 = 1.  
+
+
+Answer: 1
+B
+crystal lattice
+A
+Based on the video, the black virus is described as "Cytotoxic T cells".
+C
+To determine the economic cycle phase, analyze the urban landscape: the video shows a bustling city with heavy traffic, dense commercial buildings, and active infrastructure. This indicates high economic activity, consumer demand, and business operations. Such characteristics align with the **expansion phase** of the economic cycle, where growth is robust, employment is strong, and investment is active.
+
+Final Answer: Expansion phase
+The man's condition in the video is known as **spina bifida**. 
+
+Final short answer: **spina bifida**
+��████▌  | 94/125 [08:38<01:48,  3.50s/it][Rank5]:  76%|███████▌  | 95/125 [08:38<03:06,  6.22s/it][Rank2]:  70%|███████   | 88/125 [08:38<04:30,  7.32s/it][Rank7]:  74%|███████▍  | 93/125 [08:39<03:14,  6.07s/it][Rank1]:  78%|███████▊  | 97/125 [08:40<02:11,  4.70s/it][Rank2]:  71%|███████   | 89/125 [08:40<03:23,  5.66s/it][Rank7]:  75%|███████▌  | 94/125 [08:40<02:19,  4.49s/it][Rank3]:  73%|███████▎  | 91/125 [08:40<05:02,  8.88s/it][Rank5]:  77%|███████▋  | 96/125 [08:41<02:28,  5.13s/it][Rank0]:  78%|███████▊  | 97/125 [09:02<03:30,  7.52s/it][Rank6]:  76%|███████▌  | 95/125 [08:42<02:47,  5.59s/it][Rank5]:  78%|███████▊  | 97/125 [08:44<02:05,  4.48s/it][Rank6]:  77%|███████▋  | 96/125 [08:44<02:14,  4.65s/it][Rank1]:  78%|███████▊  | 98/125 [08:45<02:12,  4.91s/it][Rank3]:  74%The motor type shown in the video is most likely a **brushless** motor.
+
+Answer: brushless
+E
+C
+Input
+nucleus
+E
+B
+iodine
+C
+The medical professional is demonstrating a surgical procedure using the **laparoscopic** technique.
+
+Answer: laparoscopic
+B
+B
+E
+B
+|███████▎  | 92/125 [08:45<04:15,  7.74s/it][Rank6]:  78%|███████▊  | 97/125 [08:46<01:48,  3.88s/it][Rank7]:  76%|███████▌  | 95/125 [08:46<02:30,  5.02s/it][Rank4]:  76%|███████▌  | 95/125 [08:47<02:34,  5.14s/it][Rank5]:  78%|███████▊  | 98/125 [08:47<01:53,  4.19s/it][Rank5]:  79%|███████▉  | 99/125 [08:49<01:27,  3.38s/it][Rank0]:  78%|███████▊  | 98/125 [09:09<03:22,  7.49s/it][Rank4]:  77%|███████▋  | 96/125 [08:49<02:06,  4.37s/it][Rank6]:  78%|███████▊  | 98/125 [08:50<01:44,  3.88s/it][Rank3]:  74%|███████▍  | 93/125 [08:51<03:43,  6.98s/it][Rank7]:  77%|███████▋  | 96/125 [08:51<02:18,  4.77s/it][Rank4]:  78%|███████▊  | 97/125 [08:51<01:40,  3.59s/it][Rank4]:  78%|███████▊  | 98/125 [08:54<01:28,  3.29s/it][Rank2]:  72%|███████▏  | 90/125 [08:54<04:45,  8.16s/it][Answer: n
+A
+E
+A
+B
+C
+Based on the experiments and observations described, the metal being demonstrated is most likely **aluminum**.
+
+Answer: aluminum
+E
+B
+The man's demonstration is an example of a(n) **sorting** algorithm.
+
+Final short answer: sorting
+B
+C
+A
+Rank3]:  75%|███████▌  | 94/125 [08:54<03:05,  5.99s/it][Rank7]:  78%|███████▊  | 97/125 [08:55<02:07,  4.57s/it][Rank4]:  79%|███████▉  | 99/125 [08:55<01:08,  2.62s/it][Rank5]:  80%|████████  | 100/125 [08:57<01:58,  4.72s/it][Rank7]:  78%|███████▊  | 98/125 [08:58<01:53,  4.20s/it][Rank4]:  80%|████████  | 100/125 [09:00<01:26,  3.45s/it][Rank1]:  79%|███████▉  | 99/125 [09:02<03:42,  8.54s/it][Rank6]:  79%|███████▉  | 99/125 [09:02<02:44,  6.31s/it][Rank3]:  76%|███████▌  | 95/125 [09:03<03:23,  6.78s/it][Rank1]:  80%|████████  | 100/125 [09:04<02:42,  6.51s/it][Rank0]:  79%|███████▉  | 99/125 [09:26<04:30, 10.42s/it][Rank7]:  79%|███████▉  | 99/125 [09:06<02:20,  5.39s/it][Rank0]:  80%|████████  | 100/125 [09:27<03:11,  7.64s/it][Rank4]:  81%|████████  | 101/125 [09:08<01The process where the red square moves along a path and connects with different blue squares is called a **pathfinding algorithm**. 
+
+Answer: pathfinding algorithm
+D
+The type of substance presented in the video is **rice**.
+B
+C
+B
+Acyclic
+B
+D
+A
+A
+B
+The video shows a sequence of words in different colors, which visually represents the concept of **color coding** in linguistics, often used to differentiate between parts of speech, grammatical categories, or other linguistic features. 
+
+**Answer: Color Coding**
+C
+:51,  4.64s/it][Rank3]:  77%|███████▋  | 96/125 [09:08<02:58,  6.15s/it][Rank3]:  78%|███████▊  | 97/125 [09:09<02:09,  4.63s/it][Rank6]:  80%|████████  | 100/125 [09:09<02:39,  6.39s/it][Rank1]:  81%|████████  | 101/125 [09:09<02:29,  6.25s/it][Rank3]:  78%|███████▊  | 98/125 [09:10<01:40,  3.72s/it][Rank7]:  80%|████████  | 100/125 [09:11<02:09,  5.18s/it][Rank5]:  81%|████████  | 101/125 [09:12<03:06,  7.77s/it][Rank3]:  79%|███████▉  | 99/125 [09:12<01:19,  3.07s/it][Rank7]:  81%|████████  | 101/125 [09:13<01:39,  4.17s/it][Rank2]:  73%|███████▎  | 91/125 [09:13<06:24, 11.31s/it][Rank0]:  81%|████████  | 101/125 [09:34<02:57,  7.39s/it][Rank4]:  82%|████████▏ | 102/125 [09:15<02:03,  5.37s/it][Rank6]:  81%|████████  | 101/125 [09:15<02:30,  6.28s/it][Rank2]:  74%|███████�A
+secretion of insulin
+Silica
+D
+C
+Radiation
+convection
+D
+C
+lower esophageal
+Based on the incident described in the video, this natural event would be classified as an example of a **flood**.
+
+Answer: flood
+A
+The green gear on the long rod needs to rotate clockwise to make the short central rod rotate counterclockwise.
+��  | 92/125 [09:16<04:49,  8.78s/it][Rank3]:  80%|████████  | 100/125 [09:17<01:34,  3.77s/it][Rank4]:  82%|████████▏ | 103/125 [09:17<01:41,  4.60s/it][Rank0]:  82%|████████▏ | 102/125 [09:38<02:22,  6.21s/it][Rank5]:  82%|████████▏ | 102/125 [09:18<02:48,  7.32s/it][Rank7]:  82%|████████▏ | 102/125 [09:19<01:46,  4.65s/it][Rank6]:  82%|████████▏ | 102/125 [09:20<02:17,  5.97s/it][Rank3]:  81%|████████  | 101/125 [09:20<01:25,  3.56s/it][Rank5]:  82%|████████▏ | 103/125 [09:21<02:11,  5.96s/it][Rank1]:  82%|████████▏ | 102/125 [09:22<03:10,  8.29s/it][Rank5]:  83%|████████▎ | 104/125 [09:23<01:39,  4.73s/it][Rank0]:  82%|████████▏ | 103/125 [09:43<02:09,  5.89s/it][Rank2]:  74%|███████▍  | 93/125 [09:23<04:29,  8.43s/it][Rank0]:  83%|████████▎ | 104/125 [09:45<01:37,  4.B
+C
+E. the seller
+C
+A
+A
+compression
+The movement of tiny white dots in the video represents **water droplets**.
+E
+D
+C
+A
+The stepper motor in the video has 5 pole(s).
+
+Answer: 5
+B
+66s/it][Rank7]:  82%|████████▏ | 103/125 [09:25<01:54,  5.20s/it][Rank6]:  82%|████████▏ | 103/125 [09:26<02:12,  6.05s/it][Rank1]:  82%|████████▏ | 103/125 [09:27<02:35,  7.05s/it][Rank2]:  75%|███████▌  | 94/125 [09:27<03:35,  6.94s/it][Rank3]:  82%|████████▏ | 102/125 [09:27<01:42,  4.47s/it][Rank4]:  83%|████████▎ | 104/125 [09:27<02:09,  6.14s/it][Rank6]:  83%|████████▎ | 104/125 [09:27<01:35,  4.55s/it][Rank0]:  84%|████████▍ | 105/125 [09:49<01:33,  4.68s/it][Rank3]:  82%|████████▏ | 103/125 [09:31<01:34,  4.28s/it][Rank5]:  84%|████████▍ | 105/125 [09:31<01:58,  5.91s/it][Rank6]:  84%|████████▍ | 105/125 [09:31<01:26,  4.31s/it][Rank0]:  85%|████████▍ | 106/125 [09:52<01:15,  3.95s/it][Rank7]:  83%|████████▎ | 104/125 [09:32<02:03,  5.87s/it][Rank4]:  84%|█�Answer: nucleus
+rubber
+The animal in the video employs the antipredator strategy known as **hiding**.
+D
+Amino acid chain
+The final stage of the video shows the modulation method as **FM** (Frequency Modulation), as indicated by the label on the display. 
+
+**Answer: FM**
+B
+A
+B
+A
+C
+H+
+B
+��██████▍ | 105/125 [09:34<02:07,  6.38s/it][Rank6]:  85%|████████▍ | 106/125 [09:34<01:15,  3.99s/it][Rank5]:  85%|████████▍ | 106/125 [09:35<01:40,  5.28s/it][Rank7]:  84%|████████▍ | 105/125 [09:35<01:37,  4.87s/it][Rank0]:  86%|████████▌ | 107/125 [09:56<01:11,  4.00s/it][Rank2]:  76%|███████▌  | 95/125 [09:36<03:52,  7.75s/it][Rank1]:  83%|████████▎ | 104/125 [09:37<02:48,  8.03s/it][Rank6]:  86%|████████▌ | 107/125 [09:38<01:10,  3.94s/it][Rank4]:  85%|████████▍ | 106/125 [09:39<01:53,  5.97s/it][Rank2]:  77%|███████▋  | 96/125 [09:40<03:06,  6.42s/it][Rank7]:  85%|████████▍ | 106/125 [09:40<01:31,  4.84s/it][Rank3]:  83%|████████▎ | 104/125 [09:40<02:00,  5.76s/it][Rank2]:  78%|███████▊  | 97/125 [09:41<02:17,  4.92s/it][Rank5]:  86%|████████▌ | 107/12D
+D
+The video shows a network setup with multiple nodes connected by cables, forming a mesh-like structure. This demonstrates a **mesh** network topology.
+
+Answer: mesh
+Answer: Leading
+A
+C
+D
+The person is determining the map's **scale**.
+Transverse
+D
+C
+B
+E
+D
+5 [09:44<01:52,  6.24s/it][Rank2]:  78%|███████▊  | 98/125 [09:44<01:55,  4.28s/it][Rank0]:  86%|████████▋ | 108/125 [10:05<01:34,  5.53s/it][Rank2]:  79%|███████▉  | 99/125 [09:47<01:37,  3.76s/it][Rank6]:  86%|████████▋ | 108/125 [09:47<01:31,  5.38s/it][Rank5]:  86%|████████▋ | 108/125 [09:48<01:37,  5.71s/it][Rank0]:  87%|████████▋ | 109/125 [10:08<01:18,  4.92s/it][Rank3]:  84%|████████▍ | 105/125 [09:49<02:12,  6.61s/it][Rank7]:  86%|████████▌ | 107/125 [09:49<01:50,  6.11s/it][Rank1]:  84%|████████▍ | 105/125 [09:49<03:05,  9.29s/it][Rank4]:  86%|████████▌ | 107/125 [09:50<02:13,  7.40s/it][Rank6]:  87%|████████▋ | 109/125 [09:51<01:17,  4.85s/it][Rank7]:  86%|████████▋ | 108/125 [09:52<01:28,  5.23s/it][Rank3]:  85%|████████▍ | 106/125 [09:52<01:48,  5.70s/it][RCoronavirus
+To determine the peak level decrease, we analyze the signal analyzer’s display. In the video, the peak level on the signal analyzer drops from approximately -30 dB to -33 dB. The difference is \( -30 - (-33) = 3 \) dB. 
+
+Answer: 3
+C
+D
+rolling
+E
+In the biological process described in the video, the brown substance depicted is **mold**.  
+
+Answer: mold
+A
+D
+C
+D
+C
+E
+ank4]:  86%|████████▋ | 108/125 [09:53<01:45,  6.19s/it][Rank1]:  85%|████████▍ | 106/125 [09:53<02:27,  7.79s/it][Rank5]:  87%|████████▋ | 109/125 [09:54<01:31,  5.74s/it][Rank0]:  88%|████████▊ | 110/125 [10:14<01:18,  5.26s/it][Rank7]:  87%|████████▋ | 109/125 [09:55<01:13,  4.62s/it][Rank1]:  86%|████████▌ | 107/125 [09:56<01:54,  6.35s/it][Rank2]:  80%|████████  | 100/125 [09:57<02:26,  5.86s/it][Rank0]:  89%|████████▉ | 111/125 [10:18<01:05,  4.66s/it][Rank0]:  90%|████████▉ | 112/125 [10:20<00:49,  3.84s/it][Rank0]:  90%|█████████ | 113/125 [10:21<00:38,  3.22s/it][Rank3]:  86%|████████▌ | 107/125 [10:03<02:08,  7.13s/it][Rank2]:  81%|████████  | 101/125 [10:03<02:17,  5.73s/it][Rank6]:  88%|████████▊ | 110/125 [10:03<01:48,  7.21s/it][Rank1]:  86%|█████respiratory auscultation
+A
+Answer: oil
+D
+E
+Rb atoms
+D
+A
+Answer: X-ray machine
+D
+A
+A
+E
+███▋ | 108/125 [10:04<01:55,  6.81s/it][Rank5]:  88%|████████▊ | 110/125 [10:05<01:50,  7.34s/it][Rank0]:  91%|█████████ | 114/125 [10:26<00:39,  3.62s/it][Rank4]:  87%|████████▋ | 109/125 [10:06<02:11,  8.20s/it][Rank7]:  88%|████████▊ | 110/125 [10:07<01:41,  6.74s/it][Rank1]:  87%|████████▋ | 109/125 [10:08<01:31,  5.72s/it][Rank2]:  82%|████████▏ | 102/125 [10:09<02:14,  5.84s/it][Rank0]:  92%|█████████▏| 115/125 [10:29<00:34,  3.49s/it][Rank6]:  89%|████████▉ | 111/125 [10:10<01:39,  7.13s/it][Rank6]:  90%|████████▉ | 112/125 [10:11<01:09,  5.32s/it][Rank2]:  82%|████████▏ | 103/125 [10:12<01:52,  5.12s/it][Rank7]:  89%|████████▉ | 111/125 [10:13<01:31,  6.53s/it][Rank0]:  93%|█████████▎| 116/125 [10:33<00:33,  3.76s/it][Rank5]:  89%|████████▉ | 111/D
+C
+tweeter
+Structural
+Hall
+C
+C
+Answer: 45
+C
+C
+The left prong in a polarized electrical plug corresponds to the **neutral** conductor.
+A
+B
+125 [10:13<01:48,  7.73s/it][Rank1]:  88%|████████▊ | 110/125 [10:14<01:27,  5.81s/it][Rank7]:  90%|████████▉ | 112/125 [10:14<01:02,  4.83s/it][Rank6]:  90%|█████████ | 113/125 [10:14<00:55,  4.59s/it][Rank1]:  89%|████████▉ | 111/125 [10:17<01:12,  5.16s/it][Rank5]:  90%|████████▉ | 112/125 [10:19<01:31,  7.03s/it][Rank3]:  86%|████████▋ | 108/125 [10:19<02:49,  9.96s/it][Rank1]:  90%|████████▉ | 112/125 [10:19<00:55,  4.25s/it][Rank7]:  90%|█████████ | 113/125 [10:20<01:01,  5.09s/it][Rank3]:  87%|████████▋ | 109/125 [10:22<02:03,  7.73s/it][Rank2]:  83%|████████▎ | 104/125 [10:22<02:18,  6.58s/it][Rank1]:  90%|█████████ | 113/125 [10:22<00:47,  3.93s/it][Rank6]:  91%|█████████ | 114/125 [10:25<01:12,  6.56s/it][Rank2]:  84%|████████▍ | 105/125 [10:26<01:57,  5.86A
+A
+D
+C
+B
+D
+The video shows a person using a smartphone with a fitness app. The app is likely used to track and analyze physical activity, such as steps taken, calories burned, or other fitness metrics. The problem the video tries to solve is related to monitoring and improving physical activity levels, possibly for health and wellness purposes. 
+
+Final short answer: **The video tries to solve the problem of monitoring and improving physical activity levels for health and wellness.**
+B
+D
+E
+E
+The display of objects in the video description is considered a(n) **display** to treat.
+A, B, C, D, E
+A
+s/it][Rank1]:  91%|█████████ | 114/125 [10:27<00:43,  3.95s/it][Rank4]:  88%|████████▊ | 110/125 [10:27<02:58, 11.87s/it][Rank7]:  91%|█████████ | 114/125 [10:29<01:09,  6.33s/it][Rank2]:  85%|████████▍ | 106/125 [10:30<01:36,  5.08s/it][Rank1]:  92%|█████████▏| 115/125 [10:30<00:37,  3.76s/it][Rank7]:  92%|█████████▏| 115/125 [10:31<00:51,  5.16s/it][Rank0]:  94%|█████████▎| 117/125 [10:52<01:05,  8.19s/it][Rank6]:  92%|█████████▏| 115/125 [10:33<01:08,  6.90s/it][Rank0]:  94%|█████████▍| 118/125 [10:55<00:46,  6.59s/it][Rank1]:  93%|█████████▎| 116/125 [10:35<00:37,  4.19s/it][Rank0]:  95%|█████████▌| 119/125 [10:56<00:29,  4.90s/it][Rank6]:  93%|█████████▎| 116/125 [10:36<00:51,  5.70s/it][Rank5]:  90%|█████████ | 113/125 [10:37<02:04, 10.36s/it][D
+A
+B
+The video shows a coffee shop with a sign that reads "Workplace Diversity" and "Equal Pay for Equal Work," along with a mention of the "Equal Pay Act." Therefore, the coffee shop is supporting workplace diversity and complying with the **Equal Pay Act**.
+
+Answer: Equal Pay Act
+continuous
+Stroop
+The green balloon represents the **oxygen** in the model.
+The video shows the process of **evaporation** phenomenon.
+D
+The animation depicts a series of historical events leading up to the French Revolution. The most likely major historical event to occur following these events is the **American Revolution**.
+
+Final short answer: **American Revolution**
+The demonstrated problem is an example of **blind spot**.
+B
+The video illustrates the process of **kidney stone removal** surgery.
+Rank0]:  96%|█████████▌| 120/125 [10:57<00:19,  3.89s/it][Rank4]:  89%|████████▉ | 111/125 [10:38<02:42, 11.61s/it][Rank4]:  90%|████████▉ | 112/125 [10:39<01:49,  8.43s/it][Rank2]:  86%|████████▌ | 107/125 [10:39<01:52,  6.25s/it][Rank7]:  93%|█████████▎| 116/125 [10:39<00:52,  5.86s/it][Rank7]:  94%|█████████▎| 117/125 [10:41<00:38,  4.83s/it][Rank6]:  94%|█████████▎| 117/125 [10:41<00:44,  5.62s/it][Rank3]:  88%|████████▊ | 110/125 [10:42<02:53, 11.56s/it][Rank7]:  94%|█████████▍| 118/125 [10:43<00:27,  3.92s/it][Rank6]:  94%|█████████▍| 118/125 [10:43<00:31,  4.47s/it][Rank0]:  97%|█████████▋| 121/125 [11:03<00:18,  4.54s/it][Rank4]:  90%|█████████ | 113/125 [10:44<01:29,  7.49s/it][Rank6]:  95%|█████████▌| 119/125 [10:44<00:20,  3.48s/it][Rank7]:Answer: liquid
+The device uses a **gyroscopic** control system.
+Answer: laparotomy
+E
+To determine the polarization angle \( \theta \) when the voltage reading is 1.865 V, we analyze the graph:  
+
+1. Locate the voltage value of 1.865 V on the vertical axis (Voltage (V)).  
+2. Trace horizontally to find the corresponding point on the curve, then trace vertically down to the horizontal axis (Polarization Angle (°)).  
+3. The graph shows that 1.865 V aligns with a polarization angle of approximately 60°.  
+
+Answer: 60
+C
+growth
+Neolithic
+A
+The next coming phase is **The next coming phase is the next phase**.
+E
+C
+shellfish
+  95%|█████████▌| 119/125 [10:45<00:21,  3.51s/it][Rank1]:  94%|█████████▎| 117/125 [10:50<00:58,  7.33s/it][Rank4]:  91%|█████████ | 114/125 [10:50<01:16,  6.97s/it][Rank0]:  98%|█████████▊| 122/125 [11:10<00:15,  5.21s/it][Rank3]:  89%|████████▉ | 111/125 [10:52<02:34, 11.02s/it][Rank5]:  91%|█████████ | 114/125 [10:52<02:09, 11.77s/it][Rank1]:  94%|█████████▍| 118/125 [10:52<00:40,  5.85s/it][Rank3]:  90%|████████▉ | 112/125 [10:53<01:44,  8.06s/it][Rank6]:  96%|█████████▌| 120/125 [10:54<00:25,  5.19s/it][Rank7]:  96%|█████████▌| 120/125 [10:54<00:24,  4.90s/it][Rank1]:  95%|█████████▌| 119/125 [10:57<00:33,  5.51s/it][Rank3]:  90%|█████████ | 113/125 [10:57<01:21,  6.79s/it][Rank7]:  97%|█████████▋| 121/125 [10:57<00:17,  4.47s/it][Rank2]:  86%|�5
+E
+mechanical
+The content depicted in this simple animation carries a **positive** tone.
+The drug can bypass first metabolism, thereby increasing its systemic bioavailability.
+C
+A
+A
+D
+Phase 3
+C
+testosterone
+D
+��███████▋ | 108/125 [10:57<02:50, 10.01s/it][Rank6]:  97%|█████████▋| 121/125 [10:58<00:19,  4.88s/it][Rank1]:  96%|█████████▌| 120/125 [10:58<00:21,  4.34s/it][Rank2]:  87%|████████▋ | 109/125 [11:00<02:01,  7.62s/it][Rank5]:  92%|█████████▏| 115/125 [11:00<01:45, 10.58s/it][Rank0]:  98%|█████████▊| 123/125 [11:20<00:13,  6.67s/it][Rank1]:  97%|█████████▋| 121/125 [11:03<00:17,  4.38s/it][Rank4]:  92%|█████████▏| 115/125 [11:04<01:32,  9.28s/it][Rank2]:  88%|████████▊ | 110/125 [11:06<01:48,  7.25s/it][Rank3]:  91%|█████████ | 114/125 [11:07<01:24,  7.72s/it][Rank0]:  99%|█████████▉| 124/125 [11:28<00:06,  6.96s/it][Rank1]:  98%|█████████▊| 122/125 [11:09<00:14,  4.86s/it][Rank7]:  98%|█████████▊| 122/125 [11:09<00:20,  6.75s/it][Rank2]:  89%|██B
+heat
+C
+██████▉ | 111/125 [11:09<01:26,  6.15s/it][Rank5]:  93%|█████████▎| 116/125 [11:10<01:34, 10.47s/it][Rank2]:  90%|████████▉ | 112/125 [11:12<01:06,  5.13s/it][Rank0]: 100%|██████████| 125/125 [11:32<00:00,  6.22s/it][Rank0]: 100%|██████████| 125/125 [11:32<00:00,  5.54s/it]
+Answer: hand - washing
+The term for the process of co-ordination of efforts to change the poor outcomes in the video is **community-based participatory research (CBPR)**. 
+
+Final short answer: **CBPR**
+Nausea
+E
+C
+The maximum number of comparisons needed to find the target using the shown algorithm is \( n \).
+
+Answer: \( n \)
+The video shows the process of **evaporation** phenomenon.
+Right rotation
+The fluid in the video is called milk.
+A
+The utilized method in the video is called **sweat wrestling**.
+C
+C
+[Rank4]:  93%|█████████▎| 116/125 [11:13<01:21,  9.00s/it][Rank6]:  98%|█████████▊| 122/125 [11:14<00:24,  8.24s/it][Rank1]:  98%|█████████▊| 123/125 [11:14<00:10,  5.06s/it][Rank2]:  90%|█████████ | 113/125 [11:15<00:53,  4.42s/it][Rank5]:  94%|█████████▎| 117/125 [11:18<01:16,  9.60s/it][Rank1]:  99%|█████████▉| 124/125 [11:18<00:04,  4.74s/it][Rank5]:  94%|█████████▍| 118/125 [11:19<00:50,  7.15s/it][Rank7]:  98%|█████████▊| 123/125 [11:19<00:15,  7.72s/it][Rank6]:  98%|█████████▊| 123/125 [11:19<00:14,  7.42s/it][Rank3]:  92%|█████████▏| 115/125 [11:20<01:34,  9.48s/it][Rank5]:  95%|█████████▌| 119/125 [11:21<00:33,  5.53s/it][Rank7]:  99%|█████████▉| 124/125 [11:21<00:06,  6.02s/it][Rank1]: 100%|██████████| 125/125 [11:22<00:00,  4.27s/it][Rank1]: 100%|██████████| 125/125 [11:22<00:00,  5.46s/it]
+B
+filtration
+A
+D
+Answer: spider
+A
+Answer: botulinum toxin
+B
+[Rank6]:  99%|█████████▉| 124/125 [11:22<00:05,  5.98s/it][Rank3]:  93%|█████████▎| 116/125 [11:22<01:04,  7.12s/it][Rank5]:  96%|█████████▌| 120/125 [11:24<00:23,  4.70s/it][Rank5]:  97%|█████████▋| 121/125 [11:25<00:14,  3.66s/it][Rank2]:  91%|█████████ | 114/125 [11:27<01:12,  6.55s/it][Rank4]:  94%|█████████▎| 117/125 [11:26<01:23, 10.46s/it][Rank5]:  98%|█████████▊| 122/125 [11:27<00:09,  3.18s/it][Rank6]: 100%|██████████| 125/125 [11:30<00:00,  6.50s/it][Rank6]: 100%|██████████| 125/125 [11:30<00:00,  5.52s/it]
+The number of chromosomes in each daughter cell after division is the same as the original cell, which is 4.
+E
+depth-first
+A
+B
+[Rank5]:  98%|█████████▊| 123/125 [11:30<00:06,  3.17s/it][Rank4]:  94%|█████████▍| 118/125 [11:30<00:59,  8.52s/it][Rank5]:  99%|█████████▉| 124/125 [11:34<00:03,  3.42s/it][Rank3]:  94%|█████████▎| 117/125 [11:35<01:11,  8.94s/it][Rank5]: 100%|██████████| 125/125 [11:35<00:00,  2.78s/it][Rank5]: 100%|██████████| 125/125 [11:35<00:00,  5.57s/it]
+A
+1975
+The video illustrates the concept of **water filtration**.
+E
+[Rank4]:  95%|█████████▌| 119/125 [11:36<00:45,  7.54s/it][Rank4]:  96%|█████████▌| 120/125 [11:38<00:29,  5.91s/it][Rank3]:  94%|█████████▍| 118/125 [11:39<00:51,  7.30s/it][Rank7]: 100%|██████████| 125/125 [11:39<00:00,  9.61s/it][Rank7]: 100%|██████████| 125/125 [11:39<00:00,  5.60s/it]
+rise of the city-states
+Answer: nodes
+The phenomenon in the video is called **spontaneous combustion**.
+C
+D
+D
+A
+cardiovascular events
+The movement of the lady on the left at the beginning of the video is to prevent a person from falling.
+
+Final short answer: a person from falling
+thick
+forceps
+distance
+compression
+[Rank4]:  97%|█████████▋| 121/125 [11:40<00:18,  4.68s/it][Rank2]:  92%|█████████▏| 115/125 [11:40<01:27,  8.73s/it][Rank3]:  95%|█████████▌| 119/125 [11:44<00:39,  6.64s/it][Rank2]:  93%|█████████▎| 116/125 [11:44<01:06,  7.35s/it][Rank3]:  96%|█████████▌| 120/125 [11:45<00:24,  4.97s/it][Rank3]:  97%|█████████▋| 121/125 [11:48<00:17,  4.45s/it][Rank2]:  94%|█████████▎| 117/125 [11:57<01:10,  8.86s/it][Rank4]:  98%|█████████▊| 122/125 [11:57<00:25,  8.60s/it][Rank3]:  98%|█████████▊| 122/125 [11:59<00:18,  6.26s/it][Rank3]:  98%|█████████▊| 123/125 [12:00<00:09,  4.77s/it][Rank4]:  98%|█████████▊| 123/125 [12:03<00:15,  7.69s/it][Rank3]:  99%|█████████▉| 124/125 [12:07<00:05,  5.42s/it][Rank4]:  99%|█████████▉| 124/125 [12:08<00:06,  6.83s/D
+it][Rank3]: 100%|██████████| 125/125 [12:09<00:00,  4.40s/it][Rank3]: 100%|██████████| 125/125 [12:09<00:00,  5.83s/it]
+B
+[Rank4]: 100%|██████████| 125/125 [12:12<00:00,  6.17s/it][Rank4]: 100%|██████████| 125/125 [12:12<00:00,  5.86s/it]
+The algorithm demonstrated in the video is called **SIFT** (Scale-Invariant Feature Transform).
+D
+open
+The Battle of Midway
+forceps
+Cocaine
+jaw
+B
+[Rank2]:  94%|█████████▍| 118/125 [12:13<01:16, 10.96s/it][Rank2]:  95%|█████████▌| 119/125 [12:16<00:52,  8.75s/it][Rank2]:  96%|█████████▌| 120/125 [12:17<00:32,  6.48s/it][Rank2]:  97%|█████████▋| 121/125 [12:21<00:22,  5.55s/it][Rank2]:  98%|█████████▊| 122/125 [12:27<00:17,  5.78s/it][Rank2]:  98%|█████████▊| 123/125 [12:31<00:10,  5.20s/it][Rank2]:  99%|█████████▉| 124/125 [12:34<00:04,  4.55s/it][Rank2]: 100%|██████████| 125/125 [12:41<00:00,  5.25s/it][Rank2]: 100%|██████████| 125/125 [12:41<00:00,  6.09s/it]
+[2026-01-20 12:47:41] INFO - RUN - run.py: main - 378: {'nproc': 4, 'verbose': True, 'retry': 3}

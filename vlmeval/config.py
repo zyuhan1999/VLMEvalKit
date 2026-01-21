@@ -2326,6 +2326,102 @@ videochat3_series = {
         top_p=0.8,
         top_k=20
     ),
+    "VideoChat3_4B_train_stage2_image_video_minisft_v3_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_image_video_minisft_v3_lr8e-5_vtlr2e-5/20260115215050/hf-343",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_image_video_minisft_v4_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_image_video_minisft_v4_lr8e-5_vtlr2e-5/20260116175518/hf-534",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_debugbase2_bee_image_minisft_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_debugbase2_bee_image_minisft_lr8e-5_vtlr2e-5/20260117150041/hf-198",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_debugbase1_bee_image_minisft_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_debugbase1_bee_image_minisft_lr8e-5_vtlr2e-5/20260117145748/hf-198",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_debugbase3_bee_image_minisft_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_debugbase3_bee_image_minisft_lr8e-5_vtlr2e-5/20260118003313/hf-198",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_image_video_minisft_v5_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_image_video_minisft_v5_lr8e-5_vtlr2e-5/20260118014953/hf-515",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_image_video_minisft_v6_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_image_video_minisft_v6_lr8e-5_vtlr2e-5/20260118161523/hf-489",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
+    "VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5": partial(
+        VideoChat3,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3/checkpoints/stage2/VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5/20260119210436/hf-198",
+        use_custom_prompt=False,
+        use_vllm=False,
+        temperature=0.7, 
+        max_new_tokens=4096,
+        repetition_penalty=1.0,
+        presence_penalty=1.5,
+        top_p=0.8,
+        top_k=20
+    ),
 }
     
 supported_VLM = {}

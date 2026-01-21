@@ -1,0 +1,1571 @@
+fusermount: entry for /mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan not found in /etc/mtab
+bucket zhuyuhan is mounted at /mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan
+fusermount: entry for /mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3 not found in /etc/mtab
+bucket videochat3 is mounted at /mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3
+W0120 12:34:02.792000 25087 site-packages/torch/distributed/run.py:792] 
+W0120 12:34:02.792000 25087 site-packages/torch/distributed/run.py:792] *****************************************
+W0120 12:34:02.792000 25087 site-packages/torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0120 12:34:02.792000 25087 site-packages/torch/distributed/run.py:792] *****************************************
+RANK: 2, LOCAL_RANK: 2, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 2RANK: 1, LOCAL_RANK: 1, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 1
+
+RANK: 0, LOCAL_RANK: 0, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 0
+RANK: 4, LOCAL_RANK: 4, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 4
+RANK: 3, LOCAL_RANK: 3, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 3
+RANK: 7, LOCAL_RANK: 7, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 7
+RANK: 6, LOCAL_RANK: 6, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 6
+RANK: 5, LOCAL_RANK: 5, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 5
+[2026-01-20 12:34:25] WARNING - RUN - run.py: main - 221: --reuse is set, will reuse the latest prediction & temporary pickle files
+[rank0]:[W120 12:34:25.516211328 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank7]:[W120 12:34:25.516224311 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 7]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W120 12:34:25.520228421 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W120 12:34:25.521300936 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank6]:[W120 12:34:25.521409395 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 6]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank5]:[W120 12:34:25.522045277 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 5]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank4]:[W120 12:34:25.531024964 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 4]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank2]:[W120 12:34:25.537601098 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+==========
+./outputs/VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5 T20260120_Gf2bb1025 VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5 TOMATO_2fps
+==========
+===== Found 0 existing part files ======
+===== Done 0 | Remaining 1484 | Total 1484 ======
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.90s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.79s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  1.82s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.09s/it]
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+[Rank0]:   0%|          | 0/186 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+A
+E. 2
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][Rank0]:   1%|          | 1/186 [00:04<15:15,  4.95s/it][Rank0]:   1%|          | 2/186 [00:09<14:56,  4.87s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.47s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.62s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.68s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.68s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.63s/it]Loading checkpoint shards:  33%|███▎     B
+B
+C
+B
+C
+D. 3
+E. 4
+ | 1/3 [00:08<00:17,  8.68s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.68s/it][Rank0]:   2%|▏         | 3/186 [00:14<14:20,  4.70s/it][Rank0]:   2%|▏         | 4/186 [00:16<11:17,  3.72s/it][Rank0]:   3%|▎         | 5/186 [00:17<08:09,  2.70s/it][Rank0]:   3%|▎         | 6/186 [00:18<06:02,  2.01s/it][Rank0]:   4%|▍         | 7/186 [00:18<04:48,  1.61s/it][Rank0]:   4%|▍         | 8/186 [00:19<04:00,  1.35s/it][Rank0]:   5%|▍         | 9/186 [00:20<03:49,  1.30s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.34s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:17<00:08,  8.57s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:17<00:08,  8.57s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:17<00:08,  8.61s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:17<00:08,  8.55s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:17<00:08,  8.55s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:17<00:08,  8.57s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.29s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.15s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.24s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.27s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.14s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.25s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.16s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.16s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.24s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.14s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.16s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.16s/it]
+C
+A
+A
+A
+E. 4
+E. 2
+A
+A
+A
+B. 8
+B. 6
+B. 2
+[Rank5]:   0%|          | 0/185 [00:00<?, ?it/s][Rank3]:   0%|          | 0/186 [00:00<?, ?it/s][Rank4]:   0%|          | 0/185 [00:00<?, ?it/s][Rank6]:   0%|          | 0/185 [00:00<?, ?it/s][Rank2]:   0%|          | 0/186 [00:00<?, ?it/s][Rank7]:   0%|          | 0/185 [00:00<?, ?it/s][Rank1]:   0%|          | 0/186 [00:00<?, ?it/s][Rank0]:   5%|▌         | 10/186 [00:25<06:47,  2.32s/it][Rank6]:   1%|          | 1/185 [00:04<13:49,  4.51s/it][Rank7]:   1%|          | 1/185 [00:05<17:39,  5.76s/it][Rank5]:   1%|          | 1/185 [00:06<19:03,  6.22s/it][Rank4]:   1%|          | 1/185 [00:06<19:14,  6.27s/it][Rank1]:   1%|          | 1/186 [00:06<19:13,  6.24s/it][Rank2]:   1%|          | 1/186 [00:06<19:32,  6.34s/it][Rank3]:   1%|          | 1/186 [00:06<20:40,  6.70s/it][Rank0]:   6%|▌         | 11/186 [00:31<09:48,  3.37s/it][Rank6]:   1%|          | 2/185 [00:09<14:32,  4.77s/it][Rank7]:   1%|          | 2/185 [00:09<14:43,  4.83s/it][Rank2]:   1%|          | 2/186 [00:10<14:51,  B. 3
+B
+E. 3
+B
+B
+C. 5
+B
+C
+C. 1
+C
+C
+B
+B
+A
+A
+B
+C
+D
+4.84s/it][Rank3]:   1%|          | 2/186 [00:10<14:55,  4.87s/it][Rank6]:   2%|▏         | 3/185 [00:10<09:06,  3.00s/it][Rank1]:   1%|          | 2/186 [00:10<15:31,  5.06s/it][Rank7]:   2%|▏         | 3/185 [00:10<08:52,  2.92s/it][Rank6]:   2%|▏         | 4/185 [00:10<06:07,  2.03s/it][Rank5]:   1%|          | 2/185 [00:10<16:23,  5.37s/it][Rank7]:   2%|▏         | 4/185 [00:11<06:03,  2.01s/it][Rank6]:   3%|▎         | 5/185 [00:11<04:36,  1.54s/it][Rank4]:   1%|          | 2/185 [00:11<17:28,  5.73s/it][Rank7]:   3%|▎         | 5/185 [00:11<04:28,  1.49s/it][Rank0]:   6%|▋         | 12/186 [00:35<10:40,  3.68s/it][Rank6]:   3%|▎         | 6/185 [00:12<03:39,  1.23s/it][Rank7]:   3%|▎         | 6/185 [00:12<03:40,  1.23s/it][Rank6]:   4%|▍         | 7/185 [00:12<02:59,  1.01s/it][Rank7]:   4%|▍         | 7/185 [00:13<02:59,  1.01s/it][Rank2]:   2%|▏         | 3/186 [00:13<12:36,  4.13s/it][Rank6]:   4%|▍         | 8/185 [00:13<02:54,  1.02it/s][Rank7]:   4%|▍ B
+B
+E. 2
+E. 3
+B
+B
+C
+C
+B
+B
+B
+B
+B
+D. 5
+A
+B. 6
+C
+        | 8/185 [00:13<02:38,  1.11it/s][Rank3]:   2%|▏         | 3/186 [00:13<13:05,  4.29s/it][Rank2]:   2%|▏         | 4/186 [00:14<08:35,  2.83s/it][Rank6]:   5%|▍         | 9/185 [00:14<02:43,  1.08it/s][Rank7]:   5%|▍         | 9/185 [00:14<02:32,  1.16it/s][Rank3]:   2%|▏         | 4/186 [00:14<08:48,  2.90s/it][Rank1]:   2%|▏         | 3/186 [00:14<14:15,  4.68s/it][Rank2]:   3%|▎         | 5/186 [00:14<06:04,  2.02s/it][Rank3]:   3%|▎         | 5/186 [00:15<06:11,  2.05s/it][Rank1]:   2%|▏         | 4/186 [00:15<09:29,  3.13s/it][Rank2]:   3%|▎         | 6/186 [00:15<04:41,  1.57s/it][Rank5]:   2%|▏         | 3/185 [00:15<15:31,  5.12s/it][Rank3]:   3%|▎         | 6/186 [00:15<04:48,  1.60s/it][Rank4]:   2%|▏         | 3/185 [00:16<15:31,  5.12s/it][Rank1]:   3%|▎         | 5/186 [00:16<06:47,  2.25s/it][Rank2]:   4%|▍         | 7/186 [00:16<03:48,  1.28s/it][Rank0]:   7%|▋         | 13/186 [00:39<10:57,  3.80s/it][Rank3]:   4%|▍         | 7/186 [00:C
+B
+C
+E. 4
+C
+C
+C
+C
+C
+C. 2
+E. 2
+E. 1
+B
+C. 2
+D. 2
+C
+C
+16<03:42,  1.24s/it][Rank5]:   2%|▏         | 4/185 [00:16<10:13,  3.39s/it][Rank4]:   2%|▏         | 4/185 [00:16<09:55,  3.29s/it][Rank3]:   4%|▍         | 8/186 [00:17<03:03,  1.03s/it][Rank1]:   3%|▎         | 6/186 [00:16<05:15,  1.75s/it][Rank6]:   5%|▌         | 10/185 [00:17<04:11,  1.44s/it][Rank2]:   4%|▍         | 8/186 [00:17<03:23,  1.14s/it][Rank4]:   3%|▎         | 5/185 [00:17<06:58,  2.32s/it][Rank5]:   3%|▎         | 5/185 [00:17<07:19,  2.44s/it][Rank1]:   4%|▍         | 7/186 [00:17<04:00,  1.34s/it][Rank4]:   3%|▎         | 6/185 [00:17<05:11,  1.74s/it][Rank3]:   5%|▍         | 9/186 [00:17<02:45,  1.07it/s][Rank2]:   5%|▍         | 9/186 [00:17<03:07,  1.06s/it][Rank5]:   3%|▎         | 6/185 [00:18<05:32,  1.86s/it][Rank1]:   4%|▍         | 8/186 [00:18<03:30,  1.18s/it][Rank4]:   4%|▍         | 7/185 [00:18<04:12,  1.42s/it][Rank5]:   4%|▍         | 7/185 [00:18<04:16,  1.44s/it][Rank1]:   5%|▍         | 9/186 [00:19<03:08,  1.06s/it]C
+E. 4
+B
+C. 4
+C
+E. 2
+E. 4
+C
+B. 3
+E. 1
+C. 2
+C
+A
+A. 7
+E. 1
+B. 3
+C. 2
+B
+[Rank5]:   4%|▍         | 8/185 [00:19<03:33,  1.21s/it][Rank4]:   4%|▍         | 8/185 [00:19<03:44,  1.27s/it][Rank4]:   5%|▍         | 9/185 [00:19<03:01,  1.03s/it][Rank0]:   8%|▊         | 14/186 [00:43<10:47,  3.77s/it][Rank2]:   5%|▌         | 10/186 [00:20<04:05,  1.40s/it][Rank5]:   5%|▍         | 9/185 [00:20<03:16,  1.11s/it][Rank7]:   5%|▌         | 10/185 [00:20<06:50,  2.35s/it][Rank3]:   5%|▌         | 10/186 [00:20<04:10,  1.42s/it][Rank1]:   5%|▌         | 10/186 [00:21<04:08,  1.41s/it][Rank6]:   6%|▌         | 11/185 [00:21<07:07,  2.46s/it][Rank4]:   5%|▌         | 10/185 [00:22<04:15,  1.46s/it][Rank5]:   5%|▌         | 10/185 [00:22<04:41,  1.61s/it][Rank7]:   6%|▌         | 11/185 [00:23<07:23,  2.55s/it][Rank0]:   8%|▊         | 15/186 [00:46<10:21,  3.63s/it][Rank3]:   6%|▌         | 11/186 [00:24<07:03,  2.42s/it][Rank2]:   6%|▌         | 11/186 [00:24<07:11,  2.47s/it][Rank1]:   6%|▌         | 11/186 [00:26<07:08,  2.45s/it][Rank6]C
+B
+C. 4
+E. 1
+C
+C
+B. 5
+B. 6
+B
+A
+B. 3
+B. 5
+C
+C. 3
+A
+E. 2
+C
+:   6%|▋         | 12/185 [00:26<08:49,  3.06s/it][Rank0]:   9%|▊         | 16/186 [00:49<10:01,  3.54s/it][Rank7]:   6%|▋         | 12/185 [00:26<08:21,  2.90s/it][Rank4]:   6%|▌         | 11/185 [00:27<07:33,  2.61s/it][Rank5]:   6%|▌         | 11/185 [00:27<07:26,  2.57s/it][Rank3]:   6%|▋         | 12/186 [00:28<08:21,  2.88s/it][Rank2]:   6%|▋         | 12/186 [00:29<08:53,  3.07s/it][Rank1]:   6%|▋         | 12/186 [00:30<09:01,  3.11s/it][Rank7]:   7%|▋         | 13/185 [00:30<09:08,  3.19s/it][Rank0]:   9%|▉         | 17/186 [00:54<10:32,  3.74s/it][Rank4]:   6%|▋         | 12/185 [00:31<08:22,  2.91s/it][Rank6]:   7%|▋         | 13/185 [00:31<10:25,  3.64s/it][Rank3]:   7%|▋         | 13/186 [00:32<08:55,  3.10s/it][Rank5]:   6%|▋         | 12/185 [00:32<09:38,  3.34s/it][Rank2]:   7%|▋         | 13/186 [00:34<10:15,  3.56s/it][Rank4]:   7%|▋         | 13/185 [00:34<08:49,  3.08s/it][Rank7]:   8%|▊         | 14/185 [00:34<09:58,  3.50s/it][Rank1]:   B
+E. 3
+B. 3
+E. 3
+A. 8
+C. 3
+C. 4
+B
+C
+A. 3
+E. 4
+C. 7
+B
+C
+B
+E. 6
+C
+7%|▋         | 13/186 [00:35<10:07,  3.51s/it][Rank0]:  10%|▉         | 18/186 [00:58<11:00,  3.93s/it][Rank6]:   8%|▊         | 14/185 [00:36<11:27,  4.02s/it][Rank5]:   7%|▋         | 13/185 [00:37<10:21,  3.61s/it][Rank3]:   8%|▊         | 14/186 [00:37<10:22,  3.62s/it][Rank7]:   8%|▊         | 15/185 [00:38<09:46,  3.45s/it][Rank4]:   8%|▊         | 14/185 [00:38<09:19,  3.27s/it][Rank2]:   8%|▊         | 14/186 [00:38<11:13,  3.92s/it][Rank1]:   8%|▊         | 14/186 [00:38<10:17,  3.59s/it][Rank0]:  10%|█         | 19/186 [01:03<11:24,  4.10s/it][Rank6]:   8%|▊         | 15/185 [00:39<10:59,  3.88s/it][Rank5]:   8%|▊         | 14/185 [00:41<11:05,  3.89s/it][Rank3]:   8%|▊         | 15/186 [00:41<10:55,  3.83s/it][Rank1]:   8%|▊         | 15/186 [00:42<10:15,  3.60s/it][Rank7]:   9%|▊         | 16/185 [00:42<10:25,  3.70s/it][Rank4]:   8%|▊         | 15/185 [00:42<10:11,  3.60s/it][Rank2]:   8%|▊         | 15/186 [00:42<11:14,  3.94s/it][Rank6]:   9%|�D. 3
+C. 6
+C
+D. 2
+D
+A
+B
+C
+B
+A. 3
+B
+E. 10
+E
+D
+D
+B
+A
+��         | 16/185 [00:43<10:52,  3.86s/it][Rank0]:  11%|█         | 20/186 [01:07<11:52,  4.29s/it][Rank5]:   8%|▊         | 15/185 [00:45<10:42,  3.78s/it][Rank3]:   9%|▊         | 16/186 [00:45<10:34,  3.73s/it][Rank1]:   9%|▊         | 16/186 [00:45<09:55,  3.50s/it][Rank4]:   9%|▊         | 16/185 [00:45<09:49,  3.49s/it][Rank2]:   9%|▊         | 16/186 [00:45<10:26,  3.68s/it][Rank7]:   9%|▉         | 17/185 [00:46<10:30,  3.75s/it][Rank5]:   9%|▊         | 16/185 [00:48<10:29,  3.72s/it][Rank6]:   9%|▉         | 17/185 [00:48<11:53,  4.25s/it][Rank0]:  11%|█▏        | 21/186 [01:12<12:19,  4.48s/it][Rank2]:   9%|▉         | 17/186 [00:49<10:22,  3.68s/it][Rank1]:   9%|▉         | 17/186 [00:49<10:21,  3.68s/it][Rank3]:   9%|▉         | 17/186 [00:50<11:32,  4.10s/it][Rank4]:   9%|▉         | 17/185 [00:50<10:50,  3.87s/it][Rank7]:  10%|▉         | 18/185 [00:51<11:54,  4.28s/it][Rank5]:   9%|▉         | 17/185 [00:53<11:22,  4.06s/it][Rank1]:  10%|▉B
+D
+B
+B
+E
+C
+C
+D. 4
+D
+C
+D
+C. 4
+C. 2
+D
+D
+D
+A
+         | 18/186 [00:53<10:23,  3.71s/it][Rank6]:  10%|▉         | 18/185 [00:53<12:42,  4.57s/it][Rank3]:  10%|▉         | 18/186 [00:54<11:22,  4.07s/it][Rank2]:  10%|▉         | 18/186 [00:54<10:55,  3.90s/it][Rank0]:  12%|█▏        | 22/186 [01:17<12:43,  4.65s/it][Rank4]:  10%|▉         | 18/185 [00:54<10:53,  3.91s/it][Rank7]:  10%|█         | 19/185 [00:56<11:46,  4.26s/it][Rank2]:  10%|█         | 19/186 [00:57<10:51,  3.90s/it][Rank1]:  10%|█         | 19/186 [00:57<10:45,  3.87s/it][Rank6]:  10%|█         | 19/185 [00:57<12:11,  4.40s/it][Rank3]:  10%|█         | 19/186 [00:58<11:31,  4.14s/it][Rank5]:  10%|▉         | 18/185 [00:58<12:13,  4.39s/it][Rank4]:  10%|█         | 19/185 [00:59<11:09,  4.04s/it][Rank0]:  12%|█▏        | 23/186 [01:23<13:10,  4.85s/it][Rank7]:  11%|█         | 20/185 [01:00<11:39,  4.24s/it][Rank5]:  10%|█         | 19/185 [01:02<11:46,  4.25s/it][Rank6]:  11%|█         | 20/185 [01:02<12:28,  4.53s/it][Rank4]:  11%|█C
+D
+D
+D. 6
+E
+E
+D
+E
+E
+D. 2
+E
+B. 2
+C. 9
+E
+B
+B
+         | 20/185 [01:03<11:32,  4.20s/it][Rank1]:  11%|█         | 20/186 [01:03<12:29,  4.52s/it][Rank2]:  11%|█         | 20/186 [01:04<12:37,  4.57s/it][Rank3]:  11%|█         | 20/186 [01:04<12:48,  4.63s/it][Rank0]:  13%|█▎        | 24/186 [01:27<13:02,  4.83s/it][Rank7]:  11%|█▏        | 21/185 [01:04<11:44,  4.30s/it][Rank6]:  11%|█▏        | 21/185 [01:06<11:58,  4.38s/it][Rank5]:  11%|█         | 20/185 [01:07<12:11,  4.43s/it][Rank2]:  11%|█▏        | 21/186 [01:07<11:43,  4.26s/it][Rank3]:  11%|█▏        | 21/186 [01:07<11:49,  4.30s/it][Rank4]:  11%|█▏        | 21/185 [01:07<11:30,  4.21s/it][Rank1]:  11%|█▏        | 21/186 [01:08<12:05,  4.39s/it][Rank0]:  13%|█▎        | 25/186 [01:33<13:26,  5.01s/it][Rank7]:  12%|█▏        | 22/185 [01:10<12:29,  4.60s/it][Rank5]:  11%|█▏        | 21/185 [01:11<11:46,  4.31s/it][Rank6]:  12%|█▏        | 22/185 [01:11<12:17,  4.52s/it][Rank3]:  12%|█▏        | 22/186 [01:12<12:03,  4.41s/iC
+B. 8
+C. 7
+D. 3
+E
+D
+C. 3
+B
+C
+C
+D
+D
+E
+C
+B
+C
+D. 7
+t][Rank4]:  12%|█▏        | 22/185 [01:12<11:40,  4.30s/it][Rank2]:  12%|█▏        | 22/186 [01:12<12:21,  4.52s/it][Rank1]:  12%|█▏        | 22/186 [01:12<12:20,  4.52s/it][Rank0]:  14%|█▍        | 26/186 [01:37<12:50,  4.81s/it][Rank7]:  12%|█▏        | 23/185 [01:15<12:46,  4.73s/it][Rank0]:  15%|█▍        | 27/186 [01:39<10:12,  3.85s/it][Rank5]:  12%|█▏        | 22/185 [01:16<12:28,  4.59s/it][Rank1]:  12%|█▏        | 23/186 [01:16<11:50,  4.36s/it][Rank6]:  12%|█▏        | 23/185 [01:16<12:45,  4.73s/it][Rank4]:  12%|█▏        | 23/185 [01:17<12:18,  4.56s/it][Rank3]:  12%|█▏        | 23/186 [01:17<12:37,  4.65s/it][Rank2]:  12%|█▏        | 23/186 [01:17<12:38,  4.65s/it][Rank0]:  15%|█▌        | 28/186 [01:41<08:37,  3.28s/it][Rank0]:  16%|█▌        | 29/186 [01:41<06:35,  2.52s/it][Rank0]:  16%|█▌        | 30/186 [01:42<04:51,  1.87s/it][Rank0]:  17%|█▋        | 31/186 [01:42<03:53,  1.51s/it][Rank7]:  13%|█▎        |B
+C. 3
+D
+D. 3
+D. 2
+D. 9
+C. 3
+B
+B
+D. 2
+D. 6
+C
+E
+D. 6
+C. 1
+B
+ 24/185 [01:19<12:40,  4.72s/it][Rank6]:  13%|█▎        | 24/185 [01:20<11:48,  4.40s/it][Rank0]:  17%|█▋        | 32/186 [01:43<03:29,  1.36s/it][Rank5]:  12%|█▏        | 23/185 [01:21<12:08,  4.50s/it][Rank1]:  13%|█▎        | 24/186 [01:21<11:38,  4.31s/it][Rank0]:  18%|█▊        | 33/186 [01:44<03:05,  1.21s/it][Rank2]:  13%|█▎        | 24/186 [01:22<12:45,  4.73s/it][Rank4]:  13%|█▎        | 24/185 [01:22<12:44,  4.75s/it][Rank3]:  13%|█▎        | 24/186 [01:22<13:04,  4.84s/it][Rank6]:  14%|█▎        | 25/185 [01:24<11:16,  4.23s/it][Rank0]:  18%|█▊        | 34/186 [01:48<05:15,  2.07s/it][Rank5]:  13%|█▎        | 24/185 [01:25<12:13,  4.56s/it][Rank7]:  14%|█▎        | 25/185 [01:25<13:29,  5.06s/it][Rank7]:  14%|█▍        | 26/185 [01:26<09:46,  3.69s/it][Rank1]:  13%|█▎        | 25/186 [01:26<12:37,  4.71s/it][Rank7]:  15%|█▍        | 27/185 [01:26<07:17,  2.77s/it][Rank2]:  13%|█▎        | 25/186 [01:27<12:35,  4.69s/it]B
+C
+D
+B
+B
+B
+E
+B
+E
+B. 5
+C
+C. 5
+E
+B
+D
+D
+E
+[Rank7]:  15%|█▌        | 28/185 [01:27<05:24,  2.07s/it][Rank6]:  14%|█▍        | 26/185 [01:27<10:24,  3.93s/it][Rank7]:  16%|█▌        | 29/185 [01:27<04:08,  1.60s/it][Rank3]:  13%|█▎        | 25/186 [01:27<13:05,  4.88s/it][Rank4]:  14%|█▎        | 25/185 [01:27<12:58,  4.86s/it][Rank6]:  15%|█▍        | 27/185 [01:28<07:43,  2.93s/it][Rank7]:  16%|█▌        | 30/185 [01:28<03:25,  1.32s/it][Rank6]:  15%|█▌        | 28/185 [01:28<05:43,  2.19s/it][Rank6]:  16%|█▌        | 29/185 [01:28<04:11,  1.61s/it][Rank7]:  17%|█▋        | 31/185 [01:29<02:54,  1.13s/it][Rank7]:  17%|█▋        | 32/185 [01:29<02:24,  1.06it/s][Rank6]:  16%|█▌        | 30/185 [01:29<03:28,  1.35s/it][Rank6]:  17%|█▋        | 31/185 [01:30<02:43,  1.06s/it][Rank5]:  14%|█▎        | 25/185 [01:30<12:16,  4.60s/it][Rank4]:  14%|█▍        | 26/185 [01:30<11:06,  4.19s/it][Rank6]:  17%|█▋        | 32/185 [01:30<02:24,  1.06it/s][Rank4]:  15%|█▍        | 2C
+D. 8
+A
+C. 2
+C
+B. 4
+D. 5
+C
+C. 5
+B
+B
+C. 1
+C
+C
+E
+B
+B
+7/185 [01:31<08:14,  3.13s/it][Rank3]:  14%|█▍        | 26/186 [01:31<11:55,  4.47s/it][Rank1]:  14%|█▍        | 26/186 [01:31<12:43,  4.77s/it][Rank3]:  15%|█▍        | 27/186 [01:31<08:35,  3.24s/it][Rank4]:  15%|█▌        | 28/185 [01:31<06:23,  2.45s/it][Rank2]:  14%|█▍        | 26/186 [01:32<12:38,  4.74s/it][Rank1]:  15%|█▍        | 27/186 [01:32<09:15,  3.49s/it][Rank1]:  15%|█▌        | 28/186 [01:32<06:54,  2.62s/it][Rank5]:  14%|█▍        | 26/185 [01:33<10:37,  4.01s/it][Rank2]:  15%|█▍        | 27/186 [01:33<09:34,  3.61s/it][Rank3]:  15%|█▌        | 28/186 [01:33<07:04,  2.69s/it][Rank2]:  15%|█▌        | 28/186 [01:33<06:57,  2.64s/it][Rank5]:  15%|█▍        | 27/185 [01:33<07:49,  2.97s/it][Rank3]:  16%|█▌        | 29/186 [01:33<05:26,  2.08s/it][Rank1]:  16%|█▌        | 29/186 [01:33<05:38,  2.15s/it][Rank5]:  15%|█▌        | 28/185 [01:34<05:47,  2.21s/it][Rank7]:  18%|█▊        | 33/185 [01:33<05:00,  1.98s/it][C
+D
+C. 9
+E
+A
+B
+B
+C
+D
+C
+D
+C
+D. 6
+B. 2
+C
+B
+Rank2]:  16%|█▌        | 29/186 [01:34<05:22,  2.05s/it][Rank4]:  16%|█▌        | 29/185 [01:34<06:12,  2.39s/it][Rank5]:  16%|█▌        | 29/185 [01:34<04:15,  1.63s/it][Rank3]:  16%|█▌        | 30/186 [01:34<04:15,  1.64s/it][Rank2]:  16%|█▌        | 30/186 [01:34<04:00,  1.54s/it][Rank1]:  16%|█▌        | 30/186 [01:34<04:30,  1.73s/it][Rank4]:  16%|█▌        | 30/185 [01:34<04:41,  1.81s/it][Rank3]:  17%|█▋        | 31/186 [01:34<03:15,  1.26s/it][Rank6]:  18%|█▊        | 33/185 [01:34<04:44,  1.87s/it][Rank5]:  16%|█▌        | 30/185 [01:34<03:24,  1.32s/it][Rank2]:  17%|█▋        | 31/186 [01:34<03:09,  1.22s/it][Rank3]:  17%|█▋        | 32/186 [01:35<02:31,  1.02it/s][Rank4]:  17%|█▋        | 31/185 [01:35<03:37,  1.41s/it][Rank1]:  17%|█▋        | 31/186 [01:35<03:37,  1.40s/it][Rank4]:  17%|█▋        | 32/185 [01:35<02:54,  1.14s/it][Rank1]:  17%|█▋        | 32/186 [01:35<02:52,  1.12s/it][Rank5]:  17%|█▋        | 31/D. 1
+A
+A
+C
+B. 5
+C
+B
+B
+B. 3
+C. 3
+C
+B. 5
+B
+D. 2
+C
+D. 1
+C
+185 [01:35<03:11,  1.25s/it][Rank0]:  19%|█▉        | 35/186 [01:59<11:36,  4.61s/it][Rank2]:  17%|█▋        | 32/186 [01:36<03:13,  1.26s/it][Rank5]:  17%|█▋        | 32/185 [01:36<02:39,  1.04s/it][Rank3]:  18%|█▊        | 33/186 [01:38<04:05,  1.61s/it][Rank6]:  18%|█▊        | 34/185 [01:38<06:06,  2.43s/it][Rank1]:  18%|█▊        | 33/186 [01:39<04:41,  1.84s/it][Rank2]:  18%|█▊        | 33/186 [01:39<04:47,  1.88s/it][Rank5]:  18%|█▊        | 33/185 [01:41<05:50,  2.31s/it][Rank4]:  18%|█▊        | 33/185 [01:42<07:03,  2.79s/it][Rank7]:  18%|█▊        | 34/185 [01:42<09:44,  3.87s/it][Rank1]:  18%|█▊        | 34/186 [01:42<05:45,  2.27s/it][Rank3]:  18%|█▊        | 34/186 [01:42<06:28,  2.56s/it][Rank0]:  19%|█▉        | 36/186 [02:07<13:58,  5.59s/it][Rank2]:  18%|█▊        | 34/186 [01:45<07:58,  3.15s/it][Rank4]:  18%|█▊        | 34/185 [01:47<08:43,  3.47s/it][Rank5]:  18%|█▊        | 34/185 [01:47<08:36,  3.42s/it][RaB
+A
+C. 0
+C
+C. 0
+C. Down.
+B. 2
+D. 7
+B
+E. 2
+D. 3
+D. Left then Down.
+C
+C
+B
+B. Rightwards then upwards.
+nk6]:  19%|█▉        | 35/185 [01:48<11:23,  4.56s/it][Rank7]:  19%|█▉        | 35/185 [01:51<13:23,  5.36s/it][Rank0]:  20%|█▉        | 37/186 [02:14<15:18,  6.16s/it][Rank1]:  19%|█▉        | 35/186 [01:53<12:06,  4.81s/it][Rank0]:  20%|██        | 38/186 [02:16<12:11,  4.94s/it][Rank3]:  19%|█▉        | 35/186 [01:53<12:41,  5.04s/it][Rank0]:  21%|██        | 39/186 [02:20<10:55,  4.46s/it][Rank5]:  19%|█▉        | 35/185 [01:57<13:27,  5.38s/it][Rank2]:  19%|█▉        | 35/186 [01:58<15:16,  6.07s/it][Rank6]:  19%|█▉        | 36/185 [01:58<15:51,  6.38s/it][Rank4]:  19%|█▉        | 35/185 [01:58<14:41,  5.87s/it][Rank7]:  19%|█▉        | 36/185 [01:59<15:44,  6.34s/it][Rank0]:  22%|██▏       | 40/186 [02:23<09:47,  4.02s/it][Rank6]:  20%|██        | 37/185 [02:01<13:02,  5.29s/it][Rank7]:  20%|██        | 37/185 [02:02<12:42,  5.15s/it][Rank3]:  19%|█▉        | 36/186 [02:02<15:10,  6.07s/it][Rank0]:  22%|██▏       | 4C
+A
+D. First to the left then to the right.
+C. Downwards then rightwards.
+E. 6
+A
+A
+A. Upwards then downwards.
+A
+D. 8
+D. 5
+A
+A
+C. Leftwards then rightwards.
+B
+E
+1/186 [02:25<08:34,  3.55s/it][Rank1]:  19%|█▉        | 36/186 [02:04<17:00,  6.81s/it][Rank7]:  21%|██        | 38/185 [02:05<11:04,  4.52s/it][Rank6]:  21%|██        | 38/185 [02:05<12:10,  4.97s/it][Rank0]:  23%|██▎       | 42/186 [02:29<08:24,  3.50s/it][Rank4]:  19%|█▉        | 36/185 [02:07<16:40,  6.72s/it][Rank3]:  20%|█▉        | 37/186 [02:08<15:14,  6.14s/it][Rank7]:  21%|██        | 39/185 [02:08<10:09,  4.18s/it][Rank0]:  23%|██▎       | 43/186 [02:31<07:52,  3.30s/it][Rank6]:  21%|██        | 39/185 [02:08<10:44,  4.41s/it][Rank2]:  19%|█▉        | 36/186 [02:09<18:54,  7.56s/it][Rank5]:  19%|█▉        | 36/185 [02:09<18:25,  7.42s/it][Rank6]:  22%|██▏       | 40/185 [02:10<09:04,  3.76s/it][Rank7]:  22%|██▏       | 40/185 [02:10<08:49,  3.65s/it][Rank0]:  24%|██▎       | 44/186 [02:34<07:17,  3.08s/it][Rank3]:  20%|██        | 38/186 [02:11<12:34,  5.10s/it][Rank4]:  20%|██        | 37/185 [02:11<14:20,  5C. Right.
+A
+C
+A
+A. Downwards then rightwards.
+A. Downwards then leftwards.
+E. 2
+D. First to the right then to the left.
+C
+E. Downwards then rightwards.
+C. Rightwards then downwards.
+B. Leftwards then upwards.
+C
+D. First to the left then to the right.
+C
+C. Upwards then leftwards.
+C. Down.
+.81s/it][Rank5]:  20%|██        | 37/185 [02:13<15:10,  6.15s/it][Rank0]:  24%|██▍       | 45/186 [02:37<06:52,  2.93s/it][Rank4]:  21%|██        | 38/185 [02:14<12:07,  4.95s/it][Rank3]:  21%|██        | 39/186 [02:14<11:02,  4.51s/it][Rank6]:  22%|██▏       | 41/185 [02:14<08:49,  3.68s/it][Rank7]:  22%|██▏       | 41/185 [02:14<08:37,  3.60s/it][Rank1]:  20%|█▉        | 37/186 [02:14<19:14,  7.75s/it][Rank5]:  21%|██        | 38/185 [02:16<13:02,  5.32s/it][Rank6]:  23%|██▎       | 42/185 [02:17<08:03,  3.38s/it][Rank0]:  25%|██▍       | 46/186 [02:40<07:27,  3.19s/it][Rank7]:  23%|██▎       | 42/185 [02:17<08:27,  3.55s/it][Rank3]:  22%|██▏       | 40/186 [02:17<10:19,  4.24s/it][Rank4]:  21%|██        | 39/185 [02:18<11:18,  4.65s/it][Rank1]:  20%|██        | 38/186 [02:18<16:17,  6.61s/it][Rank2]:  20%|█▉        | 37/186 [02:19<20:40,  8.32s/it][Rank6]:  23%|██▎       | 43/185 [02:19<07:28,  3.16s/it][Rank5]A
+B. Leftwards then upwards.
+B
+D. Downwards then upwards
+C
+A
+C
+E
+C
+A
+C. Rightwards then upwards.
+A
+C. Up.
+B
+B
+C
+:  21%|██        | 39/185 [02:20<11:41,  4.81s/it][Rank7]:  23%|██▎       | 43/185 [02:20<07:30,  3.17s/it][Rank0]:  25%|██▌       | 47/186 [02:43<07:19,  3.16s/it][Rank4]:  22%|██▏       | 40/185 [02:20<09:44,  4.03s/it][Rank3]:  22%|██▏       | 41/186 [02:20<09:14,  3.83s/it][Rank1]:  21%|██        | 39/186 [02:21<13:17,  5.43s/it][Rank6]:  24%|██▍       | 44/185 [02:22<07:10,  3.05s/it][Rank5]:  22%|██▏       | 40/185 [02:22<09:57,  4.12s/it][Rank0]:  26%|██▌       | 48/186 [02:46<06:34,  2.86s/it][Rank4]:  22%|██▏       | 41/185 [02:22<08:25,  3.51s/it][Rank2]:  20%|██        | 38/186 [02:22<16:46,  6.80s/it][Rank7]:  24%|██▍       | 44/185 [02:23<07:21,  3.13s/it][Rank3]:  23%|██▎       | 42/186 [02:23<08:15,  3.44s/it][Rank1]:  22%|██▏       | 40/186 [02:23<11:15,  4.63s/it][Rank0]:  26%|██▋       | 49/186 [02:48<06:26,  2.82s/it][Rank5]:  22%|██▏       | 41/185 [02:25<09:04,  3.78s/it][Rank4]:  23%B. Downwards then leftwards.
+D. Downwards then rightwards.
+A
+C
+A
+A
+C
+C
+A
+C
+A
+B
+E. Upwards then downwards.
+C
+B
+D. Downwards then rightwards.
+|██▎       | 42/185 [02:26<08:10,  3.43s/it][Rank6]:  24%|██▍       | 45/185 [02:26<07:32,  3.23s/it][Rank3]:  23%|██▎       | 43/186 [02:26<07:51,  3.30s/it][Rank7]:  24%|██▍       | 45/185 [02:26<07:23,  3.17s/it][Rank1]:  22%|██▏       | 41/186 [02:26<09:46,  4.05s/it][Rank2]:  21%|██        | 39/186 [02:26<14:28,  5.91s/it][Rank0]:  27%|██▋       | 50/186 [02:51<06:33,  2.89s/it][Rank5]:  23%|██▎       | 42/185 [02:28<08:25,  3.53s/it][Rank6]:  25%|██▍       | 46/185 [02:28<07:04,  3.05s/it][Rank3]:  24%|██▎       | 44/186 [02:29<07:32,  3.19s/it][Rank7]:  25%|██▍       | 46/185 [02:29<07:08,  3.08s/it][Rank1]:  23%|██▎       | 42/186 [02:29<08:55,  3.72s/it][Rank4]:  23%|██▎       | 43/185 [02:29<08:17,  3.50s/it][Rank2]:  22%|██▏       | 40/186 [02:30<12:34,  5.17s/it][Rank0]:  27%|██▋       | 51/186 [02:55<06:43,  2.99s/it][Rank6]:  25%|██▌       | 47/185 [02:32<07:10,  3.12s/it][Rank3]:  24%|�C
+B. Leftwards then downwards.
+B
+A
+B
+C. Leftwards then downwards.
+C
+C
+B. Downwards then leftwards.
+A. Leftwards then rightwards
+C. Upwards then rightwards.
+C. Downwards then leftwards.
+B
+C. Downwards then leftwards.
+C
+C. Leftwards then downwards.
+��█▍       | 45/186 [02:32<07:27,  3.17s/it][Rank2]:  22%|██▏       | 41/186 [02:33<11:06,  4.60s/it][Rank5]:  23%|██▎       | 43/185 [02:34<09:50,  4.16s/it][Rank1]:  23%|██▎       | 43/186 [02:34<09:28,  3.98s/it][Rank4]:  24%|██▍       | 44/185 [02:34<08:51,  3.77s/it][Rank7]:  25%|██▌       | 47/185 [02:34<08:43,  3.79s/it][Rank6]:  26%|██▌       | 48/185 [02:36<07:55,  3.47s/it][Rank3]:  25%|██▍       | 46/186 [02:36<08:02,  3.45s/it][Rank2]:  23%|██▎       | 42/186 [02:36<10:03,  4.19s/it][Rank4]:  24%|██▍       | 45/185 [02:36<08:02,  3.44s/it][Rank1]:  24%|██▎       | 44/186 [02:37<08:48,  3.72s/it][Rank5]:  24%|██▍       | 44/185 [02:37<09:14,  3.93s/it][Rank7]:  26%|██▌       | 48/185 [02:38<08:20,  3.65s/it][Rank2]:  23%|██▎       | 43/186 [02:39<08:39,  3.63s/it][Rank6]:  26%|██▋       | 49/185 [02:39<07:28,  3.30s/it][Rank4]:  25%|██▍       | 46/185 [02:39<07:20,  3.17s/it][Rank3]:  25%|�C. Rightwards then downwards.
+C. Move to the right.
+A. Downwards then rightwards.
+B
+A
+C
+D
+C
+A
+A
+D
+A. Upwards then downwards.
+C
+A
+C
+B. Upwards then rightwards.
+��█▌       | 47/186 [02:39<07:53,  3.40s/it][Rank1]:  24%|██▍       | 45/186 [02:40<08:03,  3.43s/it][Rank0]:  28%|██▊       | 52/186 [03:03<10:15,  4.59s/it][Rank5]:  24%|██▍       | 45/185 [02:40<08:21,  3.58s/it][Rank7]:  26%|██▋       | 49/185 [02:40<07:24,  3.27s/it][Rank4]:  25%|██▌       | 47/185 [02:41<06:31,  2.84s/it][Rank2]:  24%|██▎       | 44/186 [02:41<07:52,  3.33s/it][Rank3]:  26%|██▌       | 48/186 [02:41<06:55,  3.01s/it][Rank6]:  27%|██▋       | 50/185 [02:41<06:53,  3.06s/it][Rank1]:  25%|██▍       | 46/186 [02:42<07:19,  3.14s/it][Rank0]:  28%|██▊       | 53/186 [03:06<08:51,  4.00s/it][Rank5]:  25%|██▍       | 46/185 [02:42<07:31,  3.25s/it][Rank7]:  27%|██▋       | 50/185 [02:43<07:01,  3.12s/it][Rank2]:  24%|██▍       | 45/186 [02:43<07:00,  2.99s/it][Rank4]:  26%|██▌       | 48/185 [02:43<06:08,  2.69s/it][Rank3]:  26%|██▋       | 49/186 [02:44<06:17,  2.75s/it][Rank6]:  28%|�D
+A. Rightwards then upwards.
+C. Upwards then rightwards.
+B
+B
+B
+C
+C. Leftwards then upwards.
+B
+E. Upwards then leftwards.
+A
+A
+A
+B
+A
+A
+��█▊       | 51/185 [02:44<06:25,  2.87s/it][Rank1]:  25%|██▌       | 47/186 [02:44<06:50,  2.96s/it][Rank0]:  29%|██▉       | 54/186 [03:08<07:51,  3.57s/it][Rank5]:  25%|██▌       | 47/185 [02:45<06:56,  3.02s/it][Rank7]:  28%|██▊       | 51/185 [02:45<06:16,  2.81s/it][Rank2]:  25%|██▍       | 46/186 [02:46<06:42,  2.87s/it][Rank3]:  27%|██▋       | 50/186 [02:46<06:14,  2.75s/it][Rank4]:  26%|██▋       | 49/185 [02:47<06:41,  2.95s/it][Rank5]:  26%|██▌       | 48/185 [02:48<06:59,  3.06s/it][Rank6]:  28%|██▊       | 52/185 [02:48<07:17,  3.29s/it][Rank1]:  26%|██▌       | 48/186 [02:48<07:10,  3.12s/it][Rank0]:  30%|██▉       | 55/186 [03:12<07:46,  3.56s/it][Rank7]:  28%|██▊       | 52/185 [02:49<07:04,  3.19s/it][Rank2]:  25%|██▌       | 47/186 [02:49<06:42,  2.89s/it][Rank3]:  27%|██▋       | 51/186 [02:49<06:29,  2.89s/it][Rank4]:  27%|██▋       | 50/185 [02:50<06:26,  2.86s/it][Rank1]:  26%|�B. Rightwards then upwards.
+A
+A
+B. Leftwards then upwards.
+C
+C. Leftwards then upwards.
+B
+B
+D
+B. Rightwards then upwards.
+C. Upwards then leftwards.
+A. Move further.
+C. Downwards then rightwards.
+C. Rightwards then upwards.
+C
+B
+��█▋       | 49/186 [02:50<06:37,  2.90s/it][Rank5]:  26%|██▋       | 49/185 [02:51<06:50,  3.02s/it][Rank6]:  29%|██▊       | 53/185 [02:51<07:02,  3.20s/it][Rank0]:  30%|███       | 56/186 [03:14<07:13,  3.33s/it][Rank2]:  26%|██▌       | 48/186 [02:52<06:31,  2.84s/it][Rank4]:  28%|██▊       | 51/185 [02:52<06:08,  2.75s/it][Rank7]:  29%|██▊       | 53/185 [02:52<07:03,  3.21s/it][Rank1]:  27%|██▋       | 50/186 [02:53<06:20,  2.80s/it][Rank0]:  31%|███       | 57/186 [03:17<06:43,  3.12s/it][Rank5]:  27%|██▋       | 50/185 [02:54<06:43,  2.99s/it][Rank6]:  29%|██▉       | 54/185 [02:54<06:49,  3.13s/it][Rank2]:  26%|██▋       | 49/186 [02:54<06:17,  2.76s/it][Rank3]:  28%|██▊       | 52/186 [02:54<07:48,  3.49s/it][Rank4]:  28%|██▊       | 52/185 [02:55<06:01,  2.72s/it][Rank7]:  29%|██▉       | 54/185 [02:55<06:43,  3.08s/it][Rank1]:  27%|██▋       | 51/186 [02:56<06:08,  2.73s/it][Rank5]:  28%|�A
+C
+A. Leftwards then upwards.
+E. Leftwards then upwards.
+C
+A
+A
+C
+C. Upwards then rightwards.
+C. Leftwards then downwards.
+D. Upwards then leftwards.
+A
+C. Stay still.
+B
+C
+C
+��█▊       | 51/185 [02:57<06:34,  2.94s/it][Rank6]:  30%|██▉       | 55/185 [02:57<06:33,  3.03s/it][Rank4]:  29%|██▊       | 53/185 [02:57<05:40,  2.58s/it][Rank2]:  27%|██▋       | 50/186 [02:57<06:18,  2.78s/it][Rank0]:  31%|███       | 58/186 [03:21<06:55,  3.25s/it][Rank3]:  28%|██▊       | 53/186 [02:57<07:25,  3.35s/it][Rank7]:  30%|██▉       | 55/185 [02:58<06:37,  3.06s/it][Rank5]:  28%|██▊       | 52/185 [03:00<06:31,  2.94s/it][Rank6]:  30%|███       | 56/185 [03:00<06:35,  3.06s/it][Rank2]:  27%|██▋       | 51/186 [03:00<06:21,  2.83s/it][Rank4]:  29%|██▉       | 54/185 [03:00<05:59,  2.75s/it][Rank3]:  29%|██▉       | 54/186 [03:00<07:00,  3.19s/it][Rank0]:  32%|███▏      | 59/186 [03:24<06:40,  3.15s/it][Rank1]:  28%|██▊       | 52/186 [03:01<07:43,  3.46s/it][Rank7]:  30%|███       | 56/185 [03:01<06:34,  3.06s/it][Rank5]:  29%|██▊       | 53/185 [03:02<06:21,  2.89s/it][Rank0]:  32%A
+A
+A
+B
+B. Leftwards then upwards.
+A
+C
+A
+C
+C
+C
+D
+C
+C. Downwards then upwards
+B. Leftwards then upwards.
+E. Downwards then rightwards.
+|███▏      | 60/186 [03:26<06:11,  2.94s/it][Rank6]:  31%|███       | 57/185 [03:03<06:21,  2.98s/it][Rank4]:  30%|██▉       | 55/185 [03:03<05:53,  2.72s/it][Rank1]:  28%|██▊       | 53/186 [03:03<07:12,  3.25s/it][Rank7]:  31%|███       | 57/185 [03:04<06:15,  2.93s/it][Rank3]:  30%|██▉       | 55/186 [03:04<07:14,  3.32s/it][Rank4]:  30%|███       | 56/185 [03:05<05:28,  2.54s/it][Rank5]:  29%|██▉       | 54/185 [03:05<06:12,  2.84s/it][Rank2]:  28%|██▊       | 52/186 [03:05<07:50,  3.51s/it][Rank0]:  33%|███▎      | 61/186 [03:29<05:57,  2.86s/it][Rank6]:  31%|███▏      | 58/185 [03:06<06:15,  2.96s/it][Rank1]:  29%|██▉       | 54/186 [03:06<06:39,  3.03s/it][Rank3]:  30%|███       | 56/186 [03:06<06:42,  3.10s/it][Rank7]:  31%|███▏      | 58/185 [03:07<06:18,  2.98s/it][Rank4]:  31%|███       | 57/185 [03:08<05:28,  2.57s/it][Rank5]:  30%|██▉       | 55/185 [03:08<05:58,  2.76s/it][RankB
+A
+C
+A. Leftwards then rightwards.
+A
+D. Rightwards then upwards.
+B
+B
+B. Upwards then rightwards.
+E
+B
+E
+E. Rightwards then upwards.
+C
+C
+2]:  28%|██▊       | 53/186 [03:08<07:09,  3.23s/it][Rank3]:  31%|███       | 57/186 [03:08<06:00,  2.79s/it][Rank0]:  33%|███▎      | 62/186 [03:32<06:04,  2.94s/it][Rank6]:  32%|███▏      | 59/185 [03:08<06:09,  2.93s/it][Rank1]:  30%|██▉       | 55/186 [03:09<06:24,  2.93s/it][Rank5]:  30%|███       | 56/185 [03:10<05:39,  2.63s/it][Rank7]:  32%|███▏      | 59/185 [03:10<06:27,  3.08s/it][Rank6]:  32%|███▏      | 60/185 [03:11<05:36,  2.69s/it][Rank4]:  31%|███▏      | 58/185 [03:11<05:45,  2.72s/it][Rank2]:  29%|██▉       | 54/186 [03:11<06:58,  3.17s/it][Rank3]:  31%|███       | 58/186 [03:11<06:00,  2.81s/it][Rank0]:  34%|███▍      | 63/186 [03:35<06:09,  3.00s/it][Rank1]:  30%|███       | 56/186 [03:12<06:30,  3.00s/it][Rank5]:  31%|███       | 57/185 [03:13<05:32,  2.60s/it][Rank6]:  33%|███▎      | 61/185 [03:14<05:42,  2.76s/it][Rank4]:  32%|███▏      | 59/185 [03:14<05:57, B
+D
+C. Downwards then upwards
+B. Rightwards then upwards.
+A
+B
+A
+E
+B
+C. Downwards then rightwards.
+C
+E. Moving Left.
+C
+C
+C
+C
+ 2.84s/it][Rank3]:  32%|███▏      | 59/186 [03:14<05:45,  2.72s/it][Rank2]:  30%|██▉       | 55/186 [03:14<07:01,  3.22s/it][Rank0]:  34%|███▍      | 64/186 [03:38<05:52,  2.89s/it][Rank7]:  32%|███▏      | 60/185 [03:14<07:05,  3.40s/it][Rank1]:  31%|███       | 57/186 [03:15<06:30,  3.03s/it][Rank5]:  31%|███▏      | 58/185 [03:16<05:44,  2.71s/it][Rank3]:  32%|███▏      | 60/186 [03:16<05:22,  2.56s/it][Rank4]:  32%|███▏      | 60/185 [03:16<05:36,  2.69s/it][Rank2]:  30%|███       | 56/186 [03:17<06:33,  3.03s/it][Rank6]:  34%|███▎      | 62/185 [03:17<05:57,  2.90s/it][Rank0]:  35%|███▍      | 65/186 [03:40<05:40,  2.81s/it][Rank7]:  33%|███▎      | 61/185 [03:18<07:11,  3.48s/it][Rank1]:  31%|███       | 58/186 [03:18<06:42,  3.15s/it][Rank5]:  32%|███▏      | 59/185 [03:19<05:54,  2.82s/it][Rank3]:  33%|███▎      | 61/186 [03:19<05:24,  2.60s/it][Rank2]:  31%|███       |A. Moving Right.
+A
+B. Moving Up.
+D
+C
+A
+A
+B
+A
+B. Leftwards then upwards.
+C
+B
+A
+D. Upwards then leftwards.
+C. Upwards then rightwards.
+E. Moving Closer.
+ 57/186 [03:19<06:02,  2.81s/it][Rank4]:  33%|███▎      | 61/185 [03:19<05:41,  2.76s/it][Rank6]:  34%|███▍      | 63/185 [03:19<05:41,  2.80s/it][Rank0]:  35%|███▌      | 66/186 [03:43<05:35,  2.79s/it][Rank5]:  32%|███▏      | 60/185 [03:21<05:25,  2.61s/it][Rank3]:  33%|███▎      | 62/186 [03:21<05:06,  2.47s/it][Rank7]:  34%|███▎      | 62/185 [03:21<06:59,  3.41s/it][Rank1]:  32%|███▏      | 59/186 [03:21<06:31,  3.08s/it][Rank4]:  34%|███▎      | 62/185 [03:21<05:27,  2.66s/it][Rank6]:  35%|███▍      | 64/185 [03:22<05:20,  2.65s/it][Rank2]:  31%|███       | 58/186 [03:22<06:21,  2.98s/it][Rank7]:  34%|███▍      | 63/185 [03:23<06:10,  3.03s/it][Rank3]:  34%|███▍      | 63/186 [03:23<05:08,  2.51s/it][Rank4]:  34%|███▍      | 63/185 [03:24<05:03,  2.49s/it][Rank1]:  32%|███▏      | 60/186 [03:24<06:02,  2.88s/it][Rank0]:  36%|███▌      | 67/186 [03:47<06:22,  3.21s/it][RaC
+C. Upwards then leftwards.
+C. Moving Left.
+C
+A
+C
+E. Moving Up.
+D. Upwards then rightwards
+C
+A
+E. Moving Down.
+C
+C. Leftwards then downwards.
+E
+D. Moving Closer.
+nk5]:  33%|███▎      | 61/185 [03:24<05:49,  2.82s/it][Rank6]:  35%|███▌      | 65/185 [03:24<05:08,  2.57s/it][Rank2]:  32%|███▏      | 59/186 [03:26<06:54,  3.26s/it][Rank4]:  35%|███▍      | 64/185 [03:26<05:12,  2.58s/it][Rank3]:  34%|███▍      | 64/186 [03:26<05:21,  2.63s/it][Rank5]:  34%|███▎      | 62/185 [03:27<05:34,  2.72s/it][Rank1]:  33%|███▎      | 61/186 [03:27<06:08,  2.95s/it][Rank7]:  35%|███▍      | 64/185 [03:27<06:33,  3.25s/it][Rank0]:  37%|███▋      | 68/186 [03:50<06:21,  3.24s/it][Rank6]:  36%|███▌      | 66/185 [03:28<06:07,  3.09s/it][Rank2]:  32%|███▏      | 60/186 [03:29<06:14,  2.98s/it][Rank4]:  35%|███▌      | 65/185 [03:29<05:06,  2.55s/it][Rank0]:  37%|███▋      | 69/186 [03:52<05:26,  2.79s/it][Rank5]:  34%|███▍      | 63/185 [03:29<05:38,  2.77s/it][Rank7]:  35%|███▌      | 65/185 [03:29<05:57,  2.98s/it][Rank3]:  35%|███▍      | 65/D. Moving Closer.
+D. Leftwards then rightwards.
+B. Moving Down.
+B
+C. Moving Right.
+C. Upwards then leftwards.
+A
+C
+C
+E
+D. Upwards then rightwards.
+C. Moving Closer.
+C
+B. Moving Down.
+A
+A
+186 [03:30<05:48,  2.88s/it][Rank1]:  33%|███▎      | 62/186 [03:30<06:14,  3.02s/it][Rank0]:  38%|███▊      | 70/186 [03:55<05:14,  2.71s/it][Rank2]:  33%|███▎      | 61/186 [03:32<06:13,  2.99s/it][Rank6]:  36%|███▌      | 67/185 [03:32<06:30,  3.31s/it][Rank5]:  35%|███▍      | 64/185 [03:32<05:39,  2.81s/it][Rank1]:  34%|███▍      | 63/186 [03:33<06:06,  2.98s/it][Rank4]:  36%|███▌      | 66/185 [03:33<06:03,  3.05s/it][Rank7]:  36%|███▌      | 66/185 [03:33<06:19,  3.19s/it][Rank6]:  37%|███▋      | 68/185 [03:34<05:41,  2.92s/it][Rank2]:  33%|███▎      | 62/186 [03:34<05:56,  2.87s/it][Rank3]:  35%|███▌      | 66/186 [03:34<06:41,  3.34s/it][Rank5]:  35%|███▌      | 65/185 [03:35<05:50,  2.92s/it][Rank7]:  36%|███▌      | 67/185 [03:36<05:50,  2.97s/it][Rank1]:  34%|███▍      | 64/186 [03:36<05:59,  2.95s/it][Rank4]:  36%|███▌      | 67/185 [03:36<05:58,  3.04s/it][RankB. Leftwards then downwards.
+C
+E. Upwards then downwards.
+C. Moving Further.
+C
+A
+D
+B
+B
+D
+E. Moving Closer.
+E
+D. Moving Further.
+B. Backward
+C
+3]:  36%|███▌      | 67/186 [03:36<05:48,  2.93s/it][Rank0]:  38%|███▊      | 71/186 [04:00<06:25,  3.35s/it][Rank2]:  34%|███▍      | 63/186 [03:37<05:40,  2.76s/it][Rank6]:  37%|███▋      | 69/185 [03:38<06:09,  3.18s/it][Rank1]:  35%|███▍      | 65/186 [03:38<05:39,  2.80s/it][Rank0]:  39%|███▊      | 72/186 [04:02<05:40,  2.99s/it][Rank6]:  38%|███▊      | 70/185 [03:39<04:50,  2.53s/it][Rank4]:  37%|███▋      | 68/185 [03:39<05:59,  3.07s/it][Rank3]:  37%|███▋      | 68/186 [03:39<05:51,  2.98s/it][Rank5]:  36%|███▌      | 66/185 [03:39<06:23,  3.22s/it][Rank7]:  37%|███▋      | 68/185 [03:39<06:18,  3.23s/it][Rank1]:  35%|███▌      | 66/186 [03:41<05:24,  2.71s/it][Rank4]:  37%|███▋      | 69/185 [03:41<05:07,  2.65s/it][Rank2]:  34%|███▍      | 64/186 [03:41<06:30,  3.20s/it][Rank0]:  39%|███▉      | 73/186 [04:05<05:58,  3.17s/it][Rank3]:  37%|███▋      | 69/18B. Upwards then leftwards.
+C. Upwards then leftwards.
+A
+D. Upwards then rightwards.
+E
+C
+B
+D
+B
+D. Rightwards then upwards.
+C
+C. Forward
+B
+C. Rightwards then upwards.
+B. Leftwards then downwards.
+C
+6 [03:42<05:46,  2.96s/it][Rank1]:  36%|███▌      | 67/186 [03:42<04:40,  2.36s/it][Rank5]:  36%|███▌      | 67/185 [03:42<06:13,  3.17s/it][Rank7]:  37%|███▋      | 69/185 [03:42<06:09,  3.19s/it][Rank6]:  38%|███▊      | 71/185 [03:42<05:22,  2.83s/it][Rank4]:  38%|███▊      | 70/185 [03:43<05:02,  2.63s/it][Rank2]:  35%|███▍      | 65/186 [03:43<06:06,  3.03s/it][Rank3]:  38%|███▊      | 70/186 [03:45<05:28,  2.83s/it][Rank1]:  37%|███▋      | 68/186 [03:45<04:54,  2.49s/it][Rank0]:  40%|███▉      | 74/186 [04:09<06:00,  3.22s/it][Rank4]:  38%|███▊      | 71/185 [03:46<04:49,  2.54s/it][Rank3]:  38%|███▊      | 71/186 [03:47<04:50,  2.53s/it][Rank6]:  39%|███▉      | 72/185 [03:47<06:09,  3.27s/it][Rank0]:  40%|████      | 75/186 [04:10<05:00,  2.70s/it][Rank5]:  37%|███▋      | 68/185 [03:47<06:57,  3.57s/it][Rank7]:  38%|███▊      | 70/185 [03:47<07:01,  3.67s/it][Rank2]C. Downwards then rightwards
+C
+C
+A. Away from the camera.
+C
+C
+C
+C
+A
+D. Downwards then leftwards
+C
+A
+E
+C. Downwards then leftwards
+C
+:  35%|███▌      | 66/186 [03:48<06:46,  3.38s/it][Rank1]:  37%|███▋      | 69/186 [03:49<05:26,  2.79s/it][Rank3]:  39%|███▊      | 72/186 [03:49<04:42,  2.48s/it][Rank4]:  39%|███▉      | 72/185 [03:49<05:26,  2.89s/it][Rank0]:  41%|████      | 76/186 [04:13<05:13,  2.85s/it][Rank6]:  39%|███▉      | 73/185 [03:50<06:05,  3.27s/it][Rank5]:  37%|███▋      | 69/185 [03:51<06:55,  3.58s/it][Rank2]:  36%|███▌      | 67/186 [03:51<06:33,  3.31s/it][Rank1]:  38%|███▊      | 70/186 [03:51<05:10,  2.68s/it][Rank7]:  38%|███▊      | 71/185 [03:51<07:16,  3.83s/it][Rank5]:  38%|███▊      | 70/185 [03:52<05:36,  2.93s/it][Rank3]:  39%|███▉      | 73/186 [03:52<05:02,  2.68s/it][Rank4]:  39%|███▉      | 73/185 [03:53<05:41,  3.05s/it][Rank2]:  37%|███▋      | 68/186 [03:53<06:01,  3.06s/it][Rank5]:  38%|███▊      | 71/185 [03:54<05:02,  2.66s/it][Rank3]:  40%|███▉      | 74/186 A
+E
+B
+B. Away from the camera.
+E. Rightwards then upwards.
+B. Leftwards then upwards.
+A
+D
+C
+A
+A
+B. No movement
+A. Towards the camera.
+B
+B
+B. Away from the camera.
+[03:54<04:33,  2.44s/it][Rank4]:  40%|████      | 74/185 [03:54<04:42,  2.55s/it][Rank0]:  41%|████▏     | 77/186 [04:18<06:03,  3.33s/it][Rank7]:  39%|███▉      | 72/185 [03:55<06:57,  3.69s/it][Rank6]:  40%|████      | 74/185 [03:55<06:57,  3.76s/it][Rank1]:  38%|███▊      | 71/186 [03:55<05:51,  3.06s/it][Rank2]:  37%|███▋      | 69/186 [03:55<05:26,  2.79s/it][Rank5]:  39%|███▉      | 72/185 [03:57<04:58,  2.64s/it][Rank1]:  39%|███▊      | 72/186 [03:57<05:20,  2.81s/it][Rank2]:  38%|███▊      | 70/186 [03:58<04:58,  2.57s/it][Rank0]:  42%|████▏     | 78/186 [04:21<05:55,  3.29s/it][Rank3]:  40%|████      | 75/186 [03:58<05:15,  2.84s/it][Rank7]:  39%|███▉      | 73/185 [03:58<06:33,  3.51s/it][Rank4]:  41%|████      | 75/185 [03:59<05:47,  3.16s/it][Rank2]:  38%|███▊      | 71/186 [04:00<04:34,  2.39s/it][Rank5]:  39%|███▉      | 73/185 [04:00<05:13,  2.80s/it][RankB. Towards the camera.
+D. Rightwards.
+A. Downwards then leftwards
+E
+A
+C
+A
+C. Down.
+B. Towards the camera.
+C. First to the right then to the left.
+C
+A
+A
+B. Towards the camera.
+E
+6]:  41%|████      | 75/185 [04:00<07:32,  4.12s/it][Rank7]:  40%|████      | 74/185 [04:00<05:41,  3.07s/it][Rank0]:  42%|████▏     | 79/186 [04:24<05:33,  3.11s/it][Rank2]:  39%|███▊      | 72/186 [04:00<03:38,  1.92s/it][Rank3]:  41%|████      | 76/186 [04:01<05:21,  2.92s/it][Rank5]:  40%|████      | 74/185 [04:01<04:26,  2.40s/it][Rank4]:  41%|████      | 76/185 [04:02<05:29,  3.02s/it][Rank1]:  39%|███▉      | 73/186 [04:02<06:38,  3.53s/it][Rank6]:  41%|████      | 76/185 [04:03<06:41,  3.68s/it][Rank7]:  41%|████      | 75/185 [04:03<05:41,  3.11s/it][Rank3]:  41%|████▏     | 77/186 [04:03<05:06,  2.81s/it][Rank4]:  42%|████▏     | 77/185 [04:04<04:55,  2.73s/it][Rank2]:  39%|███▉      | 73/186 [04:04<04:27,  2.37s/it][Rank0]:  43%|████▎     | 80/186 [04:27<05:42,  3.23s/it][Rank5]:  41%|████      | 75/185 [04:06<05:36,  3.06s/it][Rank6]:  42%|████▏  C. Forward
+D. First to the right then to the left.
+B
+B. Rightwards.
+B. Down.
+B. Upwards then downwards.
+C
+C
+B
+A
+A. Leftwards.
+B. First to the left then to the right.
+B
+A
+B
+   | 77/185 [04:06<06:23,  3.55s/it][Rank2]:  40%|███▉      | 74/186 [04:06<04:33,  2.44s/it][Rank7]:  41%|████      | 76/185 [04:07<05:54,  3.26s/it][Rank1]:  40%|███▉      | 74/186 [04:07<07:06,  3.80s/it][Rank0]:  44%|████▎     | 81/186 [04:30<05:35,  3.19s/it][Rank4]:  42%|████▏     | 78/185 [04:07<05:12,  2.92s/it][Rank3]:  42%|████▏     | 78/186 [04:07<05:29,  3.05s/it][Rank1]:  40%|████      | 75/186 [04:08<05:39,  3.06s/it][Rank5]:  41%|████      | 76/185 [04:08<05:12,  2.87s/it][Rank6]:  42%|████▏     | 78/185 [04:08<05:52,  3.29s/it][Rank1]:  41%|████      | 76/186 [04:09<04:39,  2.54s/it][Rank0]:  44%|████▍     | 82/186 [04:33<05:28,  3.16s/it][Rank7]:  42%|████▏     | 77/185 [04:10<05:53,  3.27s/it][Rank3]:  42%|████▏     | 79/186 [04:10<05:26,  3.05s/it][Rank2]:  40%|████      | 75/186 [04:11<05:46,  3.13s/it][Rank5]:  42%|████▏     | 77/185 [04:11C. Downwards.
+B. Leftwards.
+C
+C
+B. Leftwards.
+B
+C. First to the right then to the left.
+B. Moving Forward.
+B. Leftwards.
+D. Rightwards.
+D. Rightwards.
+C. Upwards.
+B. First to the right then to the left.
+B. Downwards.
+B. Leftwards.
+<05:12,  2.89s/it][Rank4]:  43%|████▎     | 79/185 [04:12<06:26,  3.64s/it][Rank6]:  43%|████▎     | 79/185 [04:13<06:16,  3.55s/it][Rank7]:  42%|████▏     | 78/185 [04:13<05:40,  3.18s/it][Rank3]:  43%|████▎     | 80/186 [04:13<05:25,  3.07s/it][Rank1]:  41%|████▏     | 77/186 [04:14<05:30,  3.04s/it][Rank5]:  42%|████▏     | 78/185 [04:15<05:35,  3.14s/it][Rank2]:  41%|████      | 76/186 [04:15<06:03,  3.31s/it][Rank0]:  45%|████▍     | 83/186 [04:38<06:19,  3.68s/it][Rank4]:  43%|████▎     | 80/185 [04:15<05:53,  3.37s/it][Rank6]:  43%|████▎     | 80/185 [04:16<05:58,  3.41s/it][Rank7]:  43%|████▎     | 79/185 [04:17<06:04,  3.43s/it][Rank3]:  44%|████▎     | 81/186 [04:17<05:48,  3.32s/it][Rank1]:  42%|████▏     | 78/186 [04:17<05:47,  3.22s/it][Rank5]:  43%|████▎     | 79/185 [04:19<05:52,  3.33s/it][Rank4]:  44%|████▍     | 81/185 [04:19<05:58C. First to the left then to the right.
+C
+A. Leftwards.
+C
+C
+C
+D. Rightwards.
+A. Leftwards.
+C. Leftwards.
+D
+E
+B. Moving Forward.
+C. Not Moving.
+C
+C. Not Moving.
+,  3.45s/it][Rank2]:  41%|████▏     | 77/186 [04:19<06:24,  3.53s/it][Rank6]:  44%|████▍     | 81/185 [04:19<06:00,  3.47s/it][Rank1]:  42%|████▏     | 79/186 [04:20<05:16,  2.96s/it][Rank7]:  43%|████▎     | 80/185 [04:20<05:35,  3.19s/it][Rank3]:  44%|████▍     | 82/186 [04:20<05:43,  3.30s/it][Rank0]:  45%|████▌     | 84/186 [04:44<07:20,  4.32s/it][Rank5]:  43%|████▎     | 80/185 [04:22<05:45,  3.29s/it][Rank7]:  44%|████▍     | 81/185 [04:22<05:04,  2.93s/it][Rank4]:  44%|████▍     | 82/185 [04:22<05:55,  3.45s/it][Rank2]:  42%|████▏     | 78/186 [04:22<06:13,  3.46s/it][Rank1]:  43%|████▎     | 80/186 [04:23<05:12,  2.95s/it][Rank6]:  44%|████▍     | 82/185 [04:23<05:53,  3.44s/it][Rank3]:  45%|████▍     | 83/186 [04:24<05:47,  3.37s/it][Rank1]:  44%|████▎     | 81/186 [04:25<04:52,  2.78s/it][Rank7]:  44%|████▍     | 82/185 [04:25<05:10,  3C. Upwards.
+A. Downwards.
+C. Moving Backward.
+A. Right.
+A. Moving Forward.
+A
+A. Upwards.
+A
+E. Upwards then downwards.
+C. Moving Backward.
+D. Leftwards.
+D
+C
+B
+E. Upwards then downwards.
+.02s/it][Rank2]:  42%|████▏     | 79/186 [04:25<05:58,  3.35s/it][Rank5]:  44%|████▍     | 81/185 [04:26<05:56,  3.43s/it][Rank4]:  45%|████▍     | 83/185 [04:26<05:52,  3.45s/it][Rank0]:  46%|████▌     | 85/186 [04:49<07:40,  4.56s/it][Rank6]:  45%|████▍     | 83/185 [04:26<05:57,  3.50s/it][Rank2]:  43%|████▎     | 80/186 [04:28<05:32,  3.14s/it][Rank1]:  44%|████▍     | 82/186 [04:28<04:55,  2.84s/it][Rank5]:  44%|████▍     | 82/185 [04:28<05:23,  3.14s/it][Rank3]:  45%|████▌     | 84/186 [04:29<06:31,  3.84s/it][Rank7]:  45%|████▍     | 83/185 [04:29<05:31,  3.25s/it][Rank2]:  44%|████▎     | 81/186 [04:30<05:06,  2.92s/it][Rank4]:  45%|████▌     | 84/185 [04:31<06:33,  3.90s/it][Rank5]:  45%|████▍     | 83/185 [04:31<05:18,  3.13s/it][Rank1]:  45%|████▍     | 83/186 [04:32<05:35,  3.26s/it][Rank0]:  46%|████▌     | 86/186 [04:56<08:52,  5.32sB. Leftwards.
+B
+B. Downwards then upwards.
+C
+A. Moving Forward.
+D. First to the right then to the left.
+C. Upwards then rightwards.
+B
+A
+C
+C
+A. Left.
+B
+C
+C. Downwards then upwards.
+/it][Rank2]:  44%|████▍     | 82/186 [04:33<05:02,  2.91s/it][Rank6]:  45%|████▌     | 84/185 [04:34<07:48,  4.64s/it][Rank3]:  46%|████▌     | 85/186 [04:35<07:42,  4.58s/it][Rank7]:  45%|████▌     | 84/185 [04:35<06:56,  4.13s/it][Rank2]:  45%|████▍     | 83/186 [04:37<05:25,  3.16s/it][Rank4]:  46%|████▌     | 85/185 [04:37<07:55,  4.75s/it][Rank0]:  47%|████▋     | 87/186 [05:01<08:39,  5.25s/it][Rank5]:  45%|████▌     | 84/185 [04:38<07:12,  4.29s/it][Rank1]:  45%|████▌     | 84/186 [04:39<07:34,  4.46s/it][Rank3]:  46%|████▌     | 86/186 [04:40<07:35,  4.55s/it][Rank0]:  47%|████▋     | 88/186 [05:05<07:31,  4.61s/it][Rank6]:  46%|████▌     | 85/185 [04:41<09:15,  5.55s/it][Rank2]:  45%|████▌     | 84/186 [04:42<06:17,  3.71s/it][Rank4]:  46%|████▋     | 86/185 [04:42<07:52,  4.77s/it][Rank7]:  46%|████▌     | 85/185 [04:42<08:17,  4.98s/it]D.
+A
+A
+B
+C. First to the left then to the right.
+C
+A. Upwards then rightwards.
+A
+A. Upwards then leftwards.
+C. Downwards then upwards.
+A
+D
+C
+C
+C. Leftwards then downwards.
+A
+[Rank0]:  48%|████▊     | 89/186 [05:07<06:31,  4.03s/it][Rank1]:  46%|████▌     | 85/186 [04:44<07:45,  4.61s/it][Rank3]:  47%|████▋     | 87/186 [04:45<07:58,  4.83s/it][Rank6]:  46%|████▋     | 86/185 [04:46<08:37,  5.22s/it][Rank5]:  46%|████▌     | 85/185 [04:46<09:04,  5.44s/it][Rank0]:  48%|████▊     | 90/186 [05:10<05:52,  3.68s/it][Rank4]:  47%|████▋     | 87/185 [04:48<08:11,  5.02s/it][Rank3]:  47%|████▋     | 88/186 [04:48<06:46,  4.15s/it][Rank7]:  46%|████▋     | 86/185 [04:48<08:28,  5.13s/it][Rank2]:  46%|████▌     | 85/186 [04:48<07:27,  4.43s/it][Rank0]:  49%|████▉     | 91/186 [05:12<05:03,  3.19s/it][Rank7]:  47%|████▋     | 87/185 [04:50<06:58,  4.27s/it][Rank3]:  48%|████▊     | 89/186 [04:50<05:59,  3.70s/it][Rank4]:  48%|████▊     | 88/185 [04:50<07:01,  4.35s/it][Rank6]:  47%|████▋     | 87/185 [04:50<08:16,  5.06s/it][RaD. Rightwards then downwards.
+C
+A
+A
+C
+A
+C
+D
+B
+B. Counter-clockwise then clockwise.
+B
+A
+E. Rightwards then upwards.
+D. Upwards then rightwards.
+C
+nk1]:  46%|████▌     | 86/186 [04:51<08:42,  5.23s/it][Rank5]:  46%|████▋     | 86/185 [04:51<08:46,  5.32s/it][Rank0]:  49%|████▉     | 92/186 [05:15<04:47,  3.06s/it][Rank3]:  48%|████▊     | 90/186 [04:53<05:10,  3.23s/it][Rank7]:  48%|████▊     | 88/185 [04:53<06:11,  3.83s/it][Rank6]:  48%|████▊     | 88/185 [04:53<06:54,  4.27s/it][Rank4]:  48%|████▊     | 89/185 [04:53<06:06,  3.81s/it][Rank7]:  48%|████▊     | 89/185 [04:55<05:28,  3.43s/it][Rank2]:  46%|████▌     | 86/186 [04:55<08:46,  5.26s/it][Rank6]:  48%|████▊     | 89/185 [04:55<05:59,  3.75s/it][Rank4]:  49%|████▊     | 90/185 [04:56<05:27,  3.44s/it][Rank3]:  49%|████▉     | 91/186 [04:56<05:04,  3.21s/it][Rank0]:  50%|█████     | 93/186 [05:20<05:33,  3.58s/it][Rank5]:  47%|████▋     | 87/185 [04:57<08:55,  5.46s/it][Rank1]:  47%|████▋     | 87/186 [04:57<09:01,  5.47s/it][Rank4]C. Clockwise throughout.
+C
+D
+C
+B
+C
+A
+A
+B
+A
+A. Upwards then rightwards.
+B
+C
+E. Counter-clockwise then clockwise.
+D
+:  49%|████▉     | 91/185 [04:57<04:31,  2.89s/it][Rank3]:  49%|████▉     | 92/186 [04:58<04:26,  2.83s/it][Rank6]:  49%|████▊     | 90/185 [04:58<05:20,  3.38s/it][Rank1]:  47%|████▋     | 88/186 [04:59<07:22,  4.52s/it][Rank4]:  50%|████▉     | 92/185 [05:00<04:17,  2.76s/it][Rank5]:  48%|████▊     | 88/185 [05:00<07:29,  4.64s/it][Rank7]:  49%|████▊     | 90/185 [05:00<06:04,  3.83s/it][Rank6]:  49%|████▉     | 91/185 [05:00<04:41,  2.99s/it][Rank3]:  50%|█████     | 93/186 [05:00<04:14,  2.73s/it][Rank0]:  51%|█████     | 94/186 [05:24<05:38,  3.68s/it][Rank4]:  50%|█████     | 93/185 [05:01<03:30,  2.28s/it][Rank2]:  47%|████▋     | 87/186 [05:01<08:59,  5.45s/it][Rank1]:  48%|████▊     | 89/186 [05:02<06:27,  3.99s/it][Rank7]:  49%|████▉     | 91/185 [05:03<05:28,  3.50s/it][Rank6]:  50%|████▉     | 92/185 [05:03<04:32,  2.93s/it][Rank0]:  5B
+C. Counter-clockwise then clockwise.
+D
+D
+D
+C. Clockwise then counter-clockwise.
+B
+C
+A
+A
+C
+A
+B
+C
+C
+1%|█████     | 95/186 [05:26<05:09,  3.40s/it][Rank4]:  51%|█████     | 94/185 [05:03<03:30,  2.31s/it][Rank5]:  48%|████▊     | 89/185 [05:03<06:52,  4.30s/it][Rank2]:  47%|████▋     | 88/186 [05:03<07:20,  4.49s/it][Rank1]:  48%|████▊     | 90/186 [05:05<05:54,  3.69s/it][Rank0]:  52%|█████▏    | 96/186 [05:29<04:36,  3.07s/it][Rank5]:  49%|████▊     | 90/185 [05:05<05:45,  3.63s/it][Rank3]:  51%|█████     | 94/186 [05:06<05:30,  3.60s/it][Rank6]:  50%|█████     | 93/185 [05:06<04:27,  2.91s/it][Rank2]:  48%|████▊     | 89/186 [05:06<06:16,  3.88s/it][Rank4]:  51%|█████▏    | 95/185 [05:07<04:04,  2.71s/it][Rank7]:  50%|████▉     | 92/185 [05:07<05:51,  3.78s/it][Rank3]:  51%|█████     | 95/186 [05:07<04:34,  3.02s/it][Rank7]:  50%|█████     | 93/185 [05:08<04:19,  2.82s/it][Rank1]:  49%|████▉     | 91/186 [05:08<05:30,  3.48s/it][Rank0]:  5C
+C
+D
+D. Clockwise throughout.
+C
+A
+D
+C
+A
+C
+E
+C
+A
+C
+2%|█████▏    | 97/186 [05:32<04:30,  3.04s/it][Rank5]:  49%|████▉     | 91/185 [05:09<05:41,  3.64s/it][Rank2]:  48%|████▊     | 90/186 [05:09<05:54,  3.69s/it][Rank0]:  53%|█████▎    | 98/186 [05:33<03:32,  2.41s/it][Rank6]:  51%|█████     | 94/185 [05:10<05:10,  3.41s/it][Rank4]:  52%|█████▏    | 96/185 [05:10<04:21,  2.94s/it][Rank3]:  52%|█████▏    | 96/186 [05:11<04:40,  3.12s/it][Rank5]:  50%|████▉     | 92/185 [05:12<05:08,  3.32s/it][Rank0]:  53%|█████▎    | 99/186 [05:35<03:32,  2.44s/it][Rank7]:  51%|█████     | 94/185 [05:12<04:51,  3.21s/it][Rank2]:  49%|████▉     | 91/186 [05:12<05:30,  3.48s/it][Rank3]:  52%|█████▏    | 97/186 [05:12<04:00,  2.70s/it][Rank1]:  49%|████▉     | 92/186 [05:13<05:55,  3.78s/it][Rank4]:  52%|█████▏    | 97/185 [05:13<04:13,  2.88s/it][Rank7]:  51%|█████▏    | 95/185 [05:13<03:57,  2.64s/it]C
+B. Clockwise then counter-clockwise.
+C
+C
+D
+B
+C
+D
+D. Clockwise throughout.
+A. Clockwise then counter-clockwise.
+D
+C
+B
+B
+C
+[Rank6]:  51%|█████▏    | 95/185 [05:13<04:59,  3.33s/it][Rank5]:  50%|█████     | 93/185 [05:14<04:40,  3.04s/it][Rank3]:  53%|█████▎    | 98/186 [05:14<03:30,  2.39s/it][Rank1]:  50%|█████     | 93/186 [05:14<04:52,  3.14s/it][Rank0]:  54%|█████▍    | 100/186 [05:38<03:42,  2.58s/it][Rank4]:  53%|█████▎    | 98/185 [05:15<03:49,  2.63s/it][Rank2]:  49%|████▉     | 92/186 [05:16<05:29,  3.50s/it][Rank6]:  52%|█████▏    | 96/185 [05:17<04:50,  3.26s/it][Rank1]:  51%|█████     | 94/186 [05:17<04:30,  2.94s/it][Rank5]:  51%|█████     | 94/185 [05:17<04:37,  3.05s/it][Rank3]:  53%|█████▎    | 99/186 [05:17<03:45,  2.59s/it][Rank2]:  50%|█████     | 93/186 [05:17<04:35,  2.96s/it][Rank7]:  52%|█████▏    | 96/185 [05:17<04:38,  3.13s/it][Rank0]:  54%|█████▍    | 101/186 [05:41<03:55,  2.77s/it][Rank4]:  54%|█████▎    | 99/185 [05:19<0A
+A
+B
+B
+B. Clockwise throughout.
+B
+C
+B
+A
+B
+C
+A
+A
+C
+D
+4:11,  2.92s/it][Rank0]:  55%|█████▍    | 102/186 [05:42<03:12,  2.29s/it][Rank1]:  51%|█████     | 95/186 [05:19<04:19,  2.85s/it][Rank5]:  51%|█████▏    | 95/185 [05:20<04:18,  2.87s/it][Rank7]:  52%|█████▏    | 97/185 [05:20<04:12,  2.87s/it][Rank3]:  54%|█████▍    | 100/186 [05:20<03:52,  2.70s/it][Rank2]:  51%|█████     | 94/186 [05:21<04:58,  3.24s/it][Rank1]:  52%|█████▏    | 96/186 [05:21<03:50,  2.56s/it][Rank6]:  52%|█████▏    | 97/185 [05:22<05:36,  3.83s/it][Rank4]:  54%|█████▍    | 100/185 [05:22<04:12,  2.98s/it][Rank3]:  54%|█████▍    | 101/186 [05:22<03:37,  2.56s/it][Rank5]:  52%|█████▏    | 96/185 [05:23<04:25,  2.98s/it][Rank1]:  52%|█████▏    | 97/186 [05:23<03:22,  2.28s/it][Rank6]:  53%|█████▎    | 98/185 [05:23<04:28,  3.09s/it][Rank7]:  53%|█████▎    | 98/185 [05:23<04:33,  3.14s/it][Rank2]:  51%|████�C
+D
+A
+C
+A
+E
+E
+B
+A
+C
+C
+B
+D. Clockwise throughout.
+C
+��     | 95/186 [05:24<04:32,  3.00s/it][Rank4]:  55%|█████▍    | 101/185 [05:24<03:59,  2.85s/it][Rank1]:  53%|█████▎    | 98/186 [05:25<03:08,  2.14s/it][Rank6]:  54%|█████▎    | 99/185 [05:25<03:55,  2.74s/it][Rank4]:  55%|█████▌    | 102/185 [05:25<03:06,  2.24s/it][Rank0]:  55%|█████▌    | 103/186 [05:49<04:51,  3.51s/it][Rank5]:  52%|█████▏    | 97/185 [05:26<04:14,  2.89s/it][Rank3]:  55%|█████▍    | 102/186 [05:26<03:52,  2.77s/it][Rank2]:  52%|█████▏    | 96/186 [05:26<04:13,  2.82s/it][Rank1]:  53%|█████▎    | 99/186 [05:27<02:59,  2.06s/it][Rank6]:  54%|█████▍    | 100/185 [05:27<03:31,  2.49s/it][Rank7]:  54%|█████▎    | 99/185 [05:27<04:43,  3.29s/it][Rank5]:  53%|█████▎    | 98/185 [05:28<03:58,  2.74s/it][Rank6]:  55%|█████▍    | 101/185 [05:28<02:54,  2.08s/it][Rank0]:  56%|█████▌    | 104/186 [05:52<04:32,  3.33s/D
+E
+D. Clockwise then counter-clockwise.
+B
+B
+C
+D
+A
+A
+C
+A
+C
+B
+B
+C
+it][Rank3]:  55%|█████▌    | 103/186 [05:29<03:54,  2.82s/it][Rank1]:  54%|█████▍    | 100/186 [05:29<02:57,  2.07s/it][Rank7]:  54%|█████▍    | 100/185 [05:29<04:04,  2.87s/it][Rank2]:  52%|█████▏    | 97/186 [05:29<04:15,  2.88s/it][Rank5]:  54%|█████▎    | 99/185 [05:29<03:20,  2.33s/it][Rank4]:  56%|█████▌    | 103/185 [05:29<03:49,  2.79s/it][Rank1]:  54%|█████▍    | 101/186 [05:30<02:39,  1.87s/it][Rank7]:  55%|█████▍    | 101/185 [05:31<03:31,  2.52s/it][Rank0]:  56%|█████▋    | 105/186 [05:54<04:09,  3.09s/it][Rank6]:  55%|█████▌    | 102/185 [05:31<03:20,  2.42s/it][Rank1]:  55%|█████▍    | 102/186 [05:31<02:21,  1.68s/it][Rank5]:  54%|█████▍    | 100/185 [05:32<03:16,  2.31s/it][Rank2]:  53%|█████▎    | 98/186 [05:32<04:09,  2.84s/it][Rank3]:  56%|█████▌    | 104/186 [05:32<04:11,  3.07s/it][Rank5]:  55%|█████B
+C
+D. Counter-clockwise throughout.
+C
+D
+D
+B. Counter-clockwise throughout.
+D
+A
+E
+C. Clockwise throughout.
+B. Clockwise then counter-clockwise.
+C
+A
+▍    | 101/185 [05:33<02:46,  1.99s/it][Rank4]:  56%|█████▌    | 104/185 [05:33<04:08,  3.07s/it][Rank6]:  56%|█████▌    | 103/185 [05:34<03:20,  2.44s/it][Rank7]:  55%|█████▌    | 102/185 [05:34<03:56,  2.84s/it][Rank5]:  55%|█████▌    | 102/185 [05:35<02:50,  2.05s/it][Rank3]:  56%|█████▋    | 105/186 [05:35<04:03,  3.01s/it][Rank0]:  57%|█████▋    | 106/186 [05:59<04:47,  3.59s/it][Rank2]:  53%|█████▎    | 99/186 [05:36<04:29,  3.10s/it][Rank4]:  57%|█████▋    | 105/185 [05:36<04:06,  3.08s/it][Rank1]:  55%|█████▌    | 103/186 [05:37<03:47,  2.74s/it][Rank2]:  54%|█████▍    | 100/186 [05:37<03:57,  2.76s/it][Rank6]:  56%|█████▌    | 104/185 [05:38<03:54,  2.89s/it][Rank7]:  56%|█████▌    | 103/185 [05:38<04:15,  3.11s/it][Rank1]:  56%|█████▌    | 104/186 [05:38<03:22,  2.47s/it][Rank7]:  56%|█████▌    | 104/185 [05:39<03:19, D
+B
+A
+B. Counter-clockwise throughout.
+C
+D
+B. Counter-clockwise then clockwise.
+B
+A
+C
+C
+B. Clockwise then counter-clockwise.
+C
+B
+D
+ 2.46s/it][Rank5]:  56%|█████▌    | 103/185 [05:39<03:45,  2.75s/it][Rank3]:  57%|█████▋    | 106/186 [05:39<04:34,  3.43s/it][Rank6]:  57%|█████▋    | 105/185 [05:40<03:29,  2.62s/it][Rank2]:  54%|█████▍    | 101/186 [05:40<03:41,  2.61s/it][Rank2]:  55%|█████▍    | 102/186 [05:41<03:04,  2.19s/it][Rank4]:  57%|█████▋    | 106/185 [05:41<04:55,  3.74s/it][Rank0]:  58%|█████▊    | 107/186 [06:05<05:42,  4.34s/it][Rank1]:  56%|█████▋    | 105/186 [05:42<03:50,  2.85s/it][Rank5]:  56%|█████▌    | 104/185 [05:44<04:21,  3.22s/it][Rank6]:  57%|█████▋    | 106/185 [05:44<04:16,  3.25s/it][Rank2]:  55%|█████▌    | 103/186 [05:44<03:32,  2.56s/it][Rank3]:  58%|█████▊    | 107/186 [05:45<05:09,  3.92s/it][Rank7]:  57%|█████▋    | 105/185 [05:45<04:33,  3.42s/it][Rank4]:  58%|█████▊    | 107/185 [05:46<05:10,  3.98s/it][Rank2]:  56%|█�C
+C
+D. Clockwise throughout.
+D. Counter-clockwise then clockwise.
+B
+D. Clockwise then counter-clockwise.
+C. Counter-clockwise throughout.
+D
+C
+B
+A
+C
+D
+A
+�███▌    | 104/186 [05:46<03:06,  2.27s/it][Rank1]:  57%|█████▋    | 106/186 [05:47<04:47,  3.60s/it][Rank0]:  58%|█████▊    | 108/186 [06:11<06:20,  4.88s/it][Rank5]:  57%|█████▋    | 105/185 [05:48<04:44,  3.55s/it][Rank2]:  56%|█████▋    | 105/186 [05:49<03:12,  2.38s/it][Rank6]:  58%|█████▊    | 107/185 [05:50<05:13,  4.01s/it][Rank7]:  57%|█████▋    | 106/185 [05:50<05:21,  4.06s/it][Rank3]:  58%|█████▊    | 108/186 [05:50<05:52,  4.52s/it][Rank4]:  58%|█████▊    | 108/185 [05:52<05:56,  4.63s/it][Rank1]:  58%|█████▊    | 107/186 [05:52<05:08,  3.90s/it][Rank0]:  59%|█████▊    | 109/186 [06:16<06:08,  4.79s/it][Rank5]:  57%|█████▋    | 106/185 [05:53<05:08,  3.91s/it][Rank2]:  57%|█████▋    | 106/186 [05:53<04:06,  3.08s/it][Rank0]:  59%|█████▉    | 110/186 [06:17<04:50,  3.82s/it][Rank7]:  58%|█████▊    | 107/185 [05D. Counter-clockwise then clockwise.
+A
+C
+B. Clockwise throughout.
+D
+E
+E
+C
+D
+A
+C. Counter-clockwise then clockwise.
+C. Clockwise throughout.
+B
+C
+C. Clockwise then counter-clockwise.
+:55<05:28,  4.21s/it][Rank6]:  58%|█████▊    | 108/185 [05:55<05:34,  4.35s/it][Rank3]:  59%|█████▊    | 109/186 [05:56<06:11,  4.83s/it][Rank4]:  59%|█████▉    | 109/185 [05:56<05:40,  4.48s/it][Rank1]:  58%|█████▊    | 108/186 [05:58<05:42,  4.39s/it][Rank7]:  58%|█████▊    | 108/185 [05:58<04:54,  3.82s/it][Rank5]:  58%|█████▊    | 107/185 [05:58<05:40,  4.36s/it][Rank2]:  58%|█████▊    | 107/186 [05:59<05:07,  3.89s/it][Rank0]:  60%|█████▉    | 111/186 [06:23<05:23,  4.31s/it][Rank6]:  59%|█████▉    | 109/185 [06:01<06:02,  4.77s/it][Rank2]:  58%|█████▊    | 108/186 [06:01<04:23,  3.38s/it][Rank3]:  59%|█████▉    | 110/186 [06:02<06:26,  5.08s/it][Rank4]:  59%|█████▉    | 110/185 [06:02<06:15,  5.00s/it][Rank7]:  59%|█████▉    | 109/185 [06:03<05:18,  4.19s/it][Rank5]:  58%|█████▊    | 108/185 [06:03<05:48,  4.52s/it][Rank1]:A
+D
+C. Counter-clockwise then clockwise.
+B. Counter-clockwise then clockwise.
+B
+C. Counter-clockwise then clockwise.
+D
+D
+C
+C
+B. Clockwise then counter-clockwise.
+A
+A
+C. Clockwise throughout.
+  59%|█████▊    | 109/186 [06:03<06:01,  4.69s/it][Rank3]:  60%|█████▉    | 111/186 [06:04<05:13,  4.17s/it][Rank0]:  60%|██████    | 112/186 [06:27<05:29,  4.46s/it][Rank4]:  60%|██████    | 111/185 [06:05<05:14,  4.25s/it][Rank5]:  59%|█████▉    | 109/185 [06:06<05:04,  4.01s/it][Rank2]:  59%|█████▊    | 109/186 [06:06<04:45,  3.71s/it][Rank6]:  59%|█████▉    | 110/185 [06:06<06:04,  4.86s/it][Rank0]:  61%|██████    | 113/186 [06:30<04:47,  3.94s/it][Rank1]:  59%|█████▉    | 110/186 [06:08<06:04,  4.80s/it][Rank3]:  60%|██████    | 112/186 [06:09<05:28,  4.44s/it][Rank7]:  59%|█████▉    | 110/185 [06:09<06:02,  4.83s/it][Rank4]:  61%|██████    | 112/185 [06:10<05:25,  4.46s/it][Rank5]:  59%|█████▉    | 110/185 [06:11<05:19,  4.26s/it][Rank6]:  60%|██████    | 111/185 [06:11<05:56,  4.82s/it][Rank3]:  61%|██████    | E. Clockwise throughout.
+A
+C
+D
+C
+C
+C
+D. Clockwise throughout.
+D
+B
+C
+D
+A
+D
+113/186 [06:11<04:34,  3.76s/it][Rank2]:  59%|█████▉    | 110/186 [06:12<05:30,  4.35s/it][Rank0]:  61%|██████▏   | 114/186 [06:35<05:03,  4.22s/it][Rank5]:  60%|██████    | 111/185 [06:13<04:22,  3.54s/it][Rank6]:  61%|██████    | 112/185 [06:13<04:56,  4.07s/it][Rank1]:  60%|█████▉    | 111/186 [06:14<06:20,  5.07s/it][Rank7]:  60%|██████    | 111/185 [06:14<06:04,  4.93s/it][Rank5]:  61%|██████    | 112/185 [06:14<03:39,  3.00s/it][Rank0]:  62%|██████▏   | 115/186 [06:38<04:31,  3.83s/it][Rank3]:  61%|██████▏   | 114/186 [06:16<04:52,  4.07s/it][Rank4]:  61%|██████    | 113/185 [06:16<05:53,  4.91s/it][Rank2]:  60%|█████▉    | 111/186 [06:16<05:33,  4.45s/it][Rank7]:  61%|██████    | 112/185 [06:16<05:01,  4.13s/it][Rank0]:  62%|██████▏   | 116/186 [06:40<03:48,  3.27s/it][Rank2]:  60%|██████    | 112/186 [06:18<04:17, C
+B. Counter-clockwise then clockwise.
+C
+D
+A
+A
+D
+A
+C. Counter-clockwise throughout.
+B. Clockwise throughout.
+D. Counter-clockwise then clockwise.
+A
+C
+D. Clockwise then counter-clockwise.
+A
+ 3.48s/it][Rank3]:  62%|██████▏   | 115/186 [06:18<04:10,  3.52s/it][Rank6]:  61%|██████    | 113/185 [06:18<05:16,  4.39s/it][Rank1]:  60%|██████    | 112/186 [06:18<06:04,  4.93s/it][Rank5]:  61%|██████    | 113/185 [06:19<04:17,  3.57s/it][Rank4]:  62%|██████▏   | 114/185 [06:21<05:48,  4.91s/it][Rank7]:  61%|██████    | 113/185 [06:21<05:05,  4.24s/it][Rank6]:  62%|██████▏   | 114/185 [06:21<04:40,  3.95s/it][Rank0]:  63%|██████▎   | 117/186 [06:45<04:13,  3.68s/it][Rank5]:  62%|██████▏   | 114/185 [06:22<04:02,  3.41s/it][Rank2]:  61%|██████    | 113/186 [06:23<04:47,  3.94s/it][Rank3]:  62%|██████▏   | 116/186 [06:23<04:38,  3.97s/it][Rank1]:  61%|██████    | 113/186 [06:23<05:54,  4.85s/it][Rank6]:  62%|██████▏   | 115/185 [06:23<03:59,  3.43s/it][Rank4]:  62%|██████▏   | 115/185 [06:23<04:57,  4.26s/it][RaA. Counter-clockwise throughout.
+B
+A
+B. Clockwise throughout.
+D
+A
+D. Clockwise then counter-clockwise.
+A. Counter-clockwise then clockwise.
+A
+B
+C. Counter-clockwise throughout.
+C
+C
+A. Counter-clockwise then clockwise.
+nk0]:  63%|██████▎   | 118/186 [06:49<04:28,  3.94s/it][Rank7]:  62%|██████▏   | 114/185 [06:26<05:26,  4.60s/it][Rank5]:  62%|██████▏   | 115/185 [06:27<04:22,  3.76s/it][Rank4]:  63%|██████▎   | 116/185 [06:30<05:30,  4.79s/it][Rank0]:  64%|██████▍   | 119/186 [06:53<04:19,  3.88s/it][Rank6]:  63%|██████▎   | 116/185 [06:30<05:05,  4.43s/it][Rank3]:  63%|██████▎   | 117/186 [06:31<05:50,  5.08s/it][Rank2]:  61%|██████▏   | 114/186 [06:31<06:15,  5.21s/it][Rank1]:  61%|██████▏   | 114/186 [06:32<07:15,  6.05s/it][Rank5]:  63%|██████▎   | 116/185 [06:33<04:59,  4.34s/it][Rank7]:  62%|██████▏   | 115/185 [06:32<05:52,  5.04s/it][Rank0]:  65%|██████▍   | 120/186 [06:56<04:02,  3.68s/it][Rank2]:  62%|██████▏   | 115/186 [06:33<05:03,  4.28s/it][Rank6]:  63%|██████▎   | 117/185 [06:35<05:00,  4.42s/it][RankC
+D
+D. Counter-clockwise throughout.
+B. Counter-clockwise throughout.
+A
+A
+B
+D. Clockwise then counter-clockwise.
+A
+D
+D. Clockwise throughout.
+A
+D
+C
+4]:  63%|██████▎   | 117/185 [06:35<05:31,  4.87s/it][Rank1]:  62%|██████▏   | 115/186 [06:35<06:02,  5.11s/it][Rank0]:  65%|██████▌   | 121/186 [06:58<03:32,  3.27s/it][Rank3]:  63%|██████▎   | 118/186 [06:36<05:40,  5.01s/it][Rank5]:  63%|██████▎   | 117/185 [06:37<05:02,  4.45s/it][Rank2]:  62%|██████▏   | 116/186 [06:37<05:07,  4.39s/it][Rank0]:  66%|██████▌   | 122/186 [07:01<03:19,  3.11s/it][Rank3]:  64%|██████▍   | 119/186 [06:38<04:41,  4.20s/it][Rank7]:  63%|██████▎   | 116/185 [06:38<06:03,  5.27s/it][Rank1]:  62%|██████▏   | 116/186 [06:39<05:39,  4.85s/it][Rank6]:  64%|██████▍   | 118/185 [06:39<04:58,  4.46s/it][Rank4]:  64%|██████▍   | 118/185 [06:39<05:25,  4.86s/it][Rank1]:  63%|██████▎   | 117/186 [06:41<04:34,  3.98s/it][Rank6]:  64%|██████▍   | 119/185 [06:42<04:18,  3.91s/it][Rank4]D. Clockwise throughout.
+C
+A
+B
+E. Clockwise then counter-clockwise.
+B
+B
+D
+A. Counter-clockwise then clockwise.
+E. Square/rectangle.
+A
+A
+D. Triangle.
+B
+:  64%|██████▍   | 119/185 [06:42<04:32,  4.12s/it][Rank5]:  64%|██████▍   | 118/185 [06:42<05:09,  4.62s/it][Rank0]:  66%|██████▌   | 123/186 [07:06<03:54,  3.72s/it][Rank2]:  63%|██████▎   | 117/186 [06:43<05:30,  4.79s/it][Rank3]:  65%|██████▍   | 120/186 [06:43<05:03,  4.59s/it][Rank6]:  65%|██████▍   | 120/185 [06:44<03:45,  3.47s/it][Rank5]:  64%|██████▍   | 119/185 [06:45<04:19,  3.94s/it][Rank7]:  63%|██████▎   | 117/185 [06:45<06:18,  5.57s/it][Rank3]:  65%|██████▌   | 121/186 [06:46<04:18,  3.98s/it][Rank1]:  63%|██████▎   | 118/186 [06:46<04:51,  4.28s/it][Rank0]:  67%|██████▋   | 124/186 [07:09<03:38,  3.53s/it][Rank4]:  65%|██████▍   | 120/185 [06:47<04:46,  4.41s/it][Rank2]:  63%|██████▎   | 118/186 [06:48<05:25,  4.79s/it][Rank0]:  67%|██████▋   | 125/186 [07:12<03:19,  3.27s/it][Rank1]: C
+C. Counter-clockwise throughout.
+C
+B
+A
+B
+D
+C. Clockwise then counter-clockwise.
+B
+C. Moving Down.
+D
+C
+C. Clockwise throughout.
+A
+ 64%|██████▍   | 119/186 [06:49<04:16,  3.83s/it][Rank3]:  66%|██████▌   | 122/186 [06:49<04:02,  3.79s/it][Rank7]:  64%|██████▍   | 118/185 [06:49<06:00,  5.38s/it][Rank5]:  65%|██████▍   | 120/185 [06:50<04:38,  4.28s/it][Rank6]:  65%|██████▌   | 121/185 [06:50<04:29,  4.21s/it][Rank4]:  65%|██████▌   | 121/185 [06:51<04:34,  4.29s/it][Rank1]:  65%|██████▍   | 120/186 [06:52<04:04,  3.70s/it][Rank7]:  64%|██████▍   | 119/185 [06:52<05:01,  4.57s/it][Rank2]:  64%|██████▍   | 119/186 [06:52<05:11,  4.65s/it][Rank5]:  65%|██████▌   | 121/185 [06:53<04:10,  3.91s/it][Rank0]:  68%|██████▊   | 126/186 [07:16<03:30,  3.50s/it][Rank4]:  66%|██████▌   | 122/185 [06:53<03:57,  3.77s/it][Rank1]:  65%|██████▌   | 121/186 [06:55<03:39,  3.38s/it][Rank6]:  66%|██████▌   | 122/185 [06:55<04:35,  4.37s/it][Rank0]:  6A
+D
+C
+C
+B
+A
+A
+E
+B
+B. Diamond.
+C. Circle.
+C
+E
+C
+8%|██████▊   | 127/186 [07:19<03:07,  3.18s/it][Rank7]:  65%|██████▍   | 120/185 [06:55<04:29,  4.15s/it][Rank3]:  66%|██████▌   | 123/186 [06:56<04:49,  4.59s/it][Rank5]:  66%|██████▌   | 122/185 [06:57<04:20,  4.14s/it][Rank6]:  66%|██████▋   | 123/185 [06:57<03:57,  3.83s/it][Rank2]:  65%|██████▍   | 120/186 [06:58<05:20,  4.85s/it][Rank3]:  67%|██████▋   | 124/186 [06:58<04:06,  3.97s/it][Rank1]:  66%|██████▌   | 122/186 [06:58<03:37,  3.40s/it][Rank0]:  69%|██████▉   | 128/186 [07:22<03:06,  3.22s/it][Rank4]:  66%|██████▋   | 123/185 [06:59<04:26,  4.30s/it][Rank5]:  66%|██████▋   | 123/185 [07:00<03:49,  3.70s/it][Rank6]:  67%|██████▋   | 124/185 [07:00<03:31,  3.46s/it][Rank2]:  65%|██████▌   | 121/186 [07:00<04:27,  4.12s/it][Rank7]:  65%|██████▌   | 121/185 [07:00<04:37,  4.33s/it][Rank0]:  69%A. Moving Left.
+B
+B
+A. Counter-clockwise then clockwise.
+D. Clockwise throughout.
+B
+B
+B
+A
+A. Moving Up then Down.
+C. Moving Right.
+C. Moving Left.
+C. Right then Left.
+B. Moving Left.
+|██████▉   | 129/186 [07:25<02:59,  3.14s/it][Rank3]:  67%|██████▋   | 125/186 [07:03<04:09,  4.08s/it][Rank5]:  67%|██████▋   | 124/185 [07:03<03:31,  3.46s/it][Rank4]:  67%|██████▋   | 124/185 [07:03<04:16,  4.20s/it][Rank1]:  66%|██████▌   | 123/186 [07:03<04:05,  3.90s/it][Rank7]:  66%|██████▌   | 122/185 [07:04<04:25,  4.22s/it][Rank6]:  68%|██████▊   | 125/185 [07:05<03:46,  3.77s/it][Rank2]:  66%|██████▌   | 122/186 [07:05<04:43,  4.43s/it][Rank3]:  68%|██████▊   | 126/186 [07:05<03:40,  3.67s/it][Rank1]:  67%|██████▋   | 124/186 [07:06<03:43,  3.60s/it][Rank0]:  70%|██████▉   | 130/186 [07:30<03:28,  3.73s/it][Rank6]:  68%|██████▊   | 126/185 [07:07<03:22,  3.44s/it][Rank4]:  68%|██████▊   | 125/185 [07:07<04:14,  4.24s/it][Rank7]:  66%|██████▋   | 123/185 [07:08<04:09,  4.03s/it][Rank3]:  68%|�C. Moving Down.
+D. Circle.
+E. Circle.
+C. Moving Down.
+B. Counter-clockwise then clockwise.
+D
+A
+B. Moving Up then Down.
+C. Moving Left then Right.
+C. Circle.
+A
+D
+B
+C. Moving Down then Up
+��█████▊   | 127/186 [07:08<03:13,  3.28s/it][Rank5]:  68%|██████▊   | 125/185 [07:08<04:02,  4.04s/it][Rank0]:  70%|███████   | 131/186 [07:32<03:01,  3.30s/it][Rank1]:  67%|██████▋   | 125/186 [07:09<03:24,  3.35s/it][Rank6]:  69%|██████▊   | 127/185 [07:10<03:06,  3.21s/it][Rank2]:  66%|██████▌   | 123/186 [07:10<04:48,  4.58s/it][Rank7]:  67%|██████▋   | 124/185 [07:10<03:38,  3.59s/it][Rank5]:  68%|██████▊   | 126/185 [07:11<03:36,  3.68s/it][Rank3]:  69%|██████▉   | 128/186 [07:11<03:13,  3.34s/it][Rank4]:  68%|██████▊   | 126/185 [07:11<04:05,  4.17s/it][Rank0]:  71%|███████   | 132/186 [07:35<02:47,  3.10s/it][Rank1]:  68%|██████▊   | 126/186 [07:12<03:18,  3.30s/it][Rank7]:  68%|██████▊   | 125/185 [07:13<03:13,  3.23s/it][Rank2]:  67%|██████▋   | 124/186 [07:13<04:04,  3.95s/it][Rank0]:  72%|█C. Moving Right then Left
+C. Moving Left then Right.
+C
+C. Moving Down then Up
+D
+B
+C
+E. Moving Up then Down.
+C
+C. Moving Down then Up
+A
+B
+A
+B. Square/rectangle.
+██████▏  | 133/186 [07:37<02:33,  2.89s/it][Rank4]:  69%|██████▊   | 127/185 [07:14<03:40,  3.81s/it][Rank3]:  69%|██████▉   | 129/186 [07:14<03:06,  3.28s/it][Rank6]:  69%|██████▉   | 128/185 [07:14<03:24,  3.59s/it][Rank5]:  69%|██████▊   | 127/185 [07:15<03:32,  3.67s/it][Rank1]:  68%|██████▊   | 127/186 [07:16<03:19,  3.38s/it][Rank7]:  68%|██████▊   | 126/185 [07:16<03:22,  3.43s/it][Rank2]:  67%|██████▋   | 125/186 [07:17<04:07,  4.06s/it][Rank0]:  72%|███████▏  | 134/186 [07:40<02:34,  2.98s/it][Rank7]:  69%|██████▊   | 127/185 [07:19<02:57,  3.06s/it][Rank4]:  69%|██████▉   | 128/185 [07:19<03:54,  4.11s/it][Rank3]:  70%|██████▉   | 130/186 [07:19<03:30,  3.75s/it][Rank1]:  69%|██████▉   | 128/186 [07:19<03:21,  3.48s/it][Rank5]:  69%|██████▉   | 128/185 [07:20<03:49,  4.02s/it][Rank2]:  68%|�C. Trapezoid.
+B
+C. Circle.
+A
+E. Moving Down then Up
+C
+F
+B
+B
+B. Diamond.
+D. Square/rectangle.
+C. Moving Right.
+C. Square/rectangle.
+A
+��█████▊   | 126/186 [07:20<03:51,  3.85s/it][Rank0]:  73%|███████▎  | 135/186 [07:44<02:36,  3.08s/it][Rank6]:  70%|██████▉   | 129/185 [07:21<04:17,  4.59s/it][Rank3]:  70%|███████   | 131/186 [07:21<03:01,  3.30s/it][Rank7]:  69%|██████▉   | 128/185 [07:21<02:48,  2.95s/it][Rank4]:  70%|██████▉   | 129/185 [07:22<03:27,  3.70s/it][Rank5]:  70%|██████▉   | 129/185 [07:22<03:21,  3.59s/it][Rank0]:  73%|███████▎  | 136/186 [07:46<02:21,  2.83s/it][Rank1]:  69%|██████▉   | 129/186 [07:24<03:34,  3.76s/it][Rank3]:  71%|███████   | 132/186 [07:24<02:46,  3.09s/it][Rank6]:  70%|███████   | 130/185 [07:24<03:42,  4.05s/it][Rank4]:  70%|███████   | 130/185 [07:24<03:04,  3.35s/it][Rank2]:  68%|██████▊   | 127/186 [07:24<03:49,  3.90s/it][Rank5]:  70%|███████   | 130/185 [07:25<02:56,  3.22s/it][Rank0]:  74%A. Moving Down then Up
+C
+C. Circle.
+B
+F
+C
+B. Circle.
+B. Circle.
+C
+B
+C
+B
+F
+A
+|███████▎  | 137/186 [07:49<02:16,  2.79s/it][Rank7]:  70%|██████▉   | 129/185 [07:26<03:17,  3.53s/it][Rank4]:  71%|███████   | 131/185 [07:27<02:41,  2.99s/it][Rank6]:  71%|███████   | 131/185 [07:27<03:13,  3.58s/it][Rank3]:  72%|███████▏  | 133/186 [07:27<02:36,  2.96s/it][Rank5]:  71%|███████   | 131/185 [07:27<02:36,  2.90s/it][Rank2]:  69%|██████▉   | 128/186 [07:28<03:36,  3.74s/it][Rank0]:  74%|███████▍  | 138/186 [07:51<02:12,  2.75s/it][Rank7]:  70%|███████   | 130/185 [07:29<02:53,  3.16s/it][Rank1]:  70%|██████▉   | 130/186 [07:29<03:46,  4.05s/it][Rank6]:  71%|███████▏  | 132/185 [07:29<02:48,  3.18s/it][Rank5]:  71%|███████▏  | 132/185 [07:29<02:22,  2.68s/it][Rank4]:  71%|███████▏  | 132/185 [07:29<02:29,  2.82s/it][Rank3]:  72%|███████▏  | 134/186 [07:29<02:26,  2.81s/it][A
+C. Diamond.
+D
+C. Circle.
+A
+C. Moving Up.
+E. Diamond.
+B
+A. Moving Right.
+C
+C
+F
+D
+Rank1]:  70%|███████   | 131/186 [07:31<03:12,  3.50s/it][Rank2]:  69%|██████▉   | 129/186 [07:31<03:25,  3.60s/it][Rank0]:  75%|███████▍  | 139/186 [07:54<02:13,  2.85s/it][Rank6]:  72%|███████▏  | 133/185 [07:31<02:31,  2.91s/it][Rank7]:  71%|███████   | 131/185 [07:31<02:42,  3.01s/it][Rank4]:  72%|███████▏  | 133/185 [07:31<02:19,  2.68s/it][Rank5]:  72%|███████▏  | 133/185 [07:32<02:17,  2.65s/it][Rank3]:  73%|███████▎  | 135/186 [07:32<02:20,  2.76s/it][Rank0]:  75%|███████▌  | 140/186 [07:57<02:03,  2.69s/it][Rank1]:  71%|███████   | 132/186 [07:34<02:58,  3.30s/it][Rank6]:  72%|███████▏  | 134/185 [07:34<02:23,  2.81s/it][Rank7]:  71%|███████▏  | 132/185 [07:34<02:31,  2.85s/it][Rank4]:  72%|███████▏  | 134/185 [07:34<02:15,  2.65s/it][Rank3]:  73%|███████▎  | 136/186 [07:34<0E. Square/rectangle.
+C
+D
+C
+D
+A. Triangle.
+C
+B
+C. Circle.
+A
+D. Circle.
+D. Circle.
+D. Moving Right then Left
+C. Trapezoid.
+2:12,  2.64s/it][Rank5]:  72%|███████▏  | 134/185 [07:34<02:18,  2.72s/it][Rank2]:  70%|██████▉   | 130/186 [07:35<03:28,  3.72s/it][Rank0]:  76%|███████▌  | 141/186 [07:59<01:57,  2.61s/it][Rank1]:  72%|███████▏  | 133/186 [07:36<02:37,  2.96s/it][Rank7]:  72%|███████▏  | 133/185 [07:36<02:18,  2.67s/it][Rank6]:  73%|███████▎  | 135/185 [07:36<02:12,  2.66s/it][Rank4]:  73%|███████▎  | 135/185 [07:36<02:09,  2.58s/it][Rank3]:  74%|███████▎  | 137/186 [07:37<02:07,  2.60s/it][Rank5]:  73%|███████▎  | 135/185 [07:37<02:12,  2.66s/it][Rank2]:  70%|███████   | 131/186 [07:37<02:59,  3.26s/it][Rank1]:  72%|███████▏  | 134/186 [07:39<02:37,  3.03s/it][Rank3]:  74%|███████▍  | 138/186 [07:39<02:01,  2.54s/it][Rank4]:  74%|███████▎  | 136/185 [07:39<02:09,  2.64s/it][Rank7]:  72%|███████�C. Eight-shape.
+D
+B. Moving Up then Down.
+C
+A
+A
+C. Moving Right.
+E. Square/rectangle.
+B
+C. Circle.
+B. Moving Up then Down.
+D. Moving Up then Down.
+C
+A
+��  | 134/185 [07:39<02:23,  2.81s/it][Rank0]:  76%|███████▋  | 142/186 [08:03<02:10,  2.96s/it][Rank6]:  74%|███████▎  | 136/185 [07:40<02:25,  2.98s/it][Rank5]:  74%|███████▎  | 136/185 [07:41<02:25,  2.98s/it][Rank3]:  75%|███████▍  | 139/186 [07:41<01:53,  2.43s/it][Rank2]:  71%|███████   | 132/186 [07:41<03:08,  3.49s/it][Rank7]:  73%|███████▎  | 135/185 [07:41<02:14,  2.69s/it][Rank4]:  74%|███████▍  | 137/185 [07:42<02:04,  2.59s/it][Rank1]:  73%|███████▎  | 135/186 [07:42<02:30,  2.94s/it][Rank5]:  74%|███████▍  | 137/185 [07:43<02:14,  2.79s/it][Rank0]:  77%|███████▋  | 143/186 [08:07<02:16,  3.18s/it][Rank6]:  74%|███████▍  | 137/185 [07:43<02:33,  3.19s/it][Rank2]:  72%|███████▏  | 133/186 [07:44<02:47,  3.16s/it][Rank1]:  73%|███████▎  | 136/186 [07:44<02:18,  2.77s/it][Rank3]:  75D. Moving Up then Down.
+E. Diamond.
+D
+B
+E. Circle.
+E
+E
+D. Moving Up then Down.
+D. Moving Up then Down.
+B
+E. Square/rectangle.
+A
+C. Triangle.
+%|███████▌  | 140/186 [07:44<01:59,  2.60s/it][Rank7]:  74%|███████▎  | 136/185 [07:44<02:11,  2.69s/it][Rank4]:  75%|███████▍  | 138/185 [07:44<02:03,  2.62s/it][Rank5]:  75%|███████▍  | 138/185 [07:46<02:07,  2.71s/it][Rank6]:  75%|███████▍  | 138/185 [07:46<02:20,  2.98s/it][Rank0]:  77%|███████▋  | 144/186 [08:09<02:06,  3.01s/it][Rank2]:  72%|███████▏  | 134/186 [07:46<02:30,  2.90s/it][Rank3]:  76%|███████▌  | 141/186 [07:47<01:54,  2.55s/it][Rank7]:  74%|███████▍  | 137/185 [07:47<02:08,  2.68s/it][Rank1]:  74%|███████▎  | 137/186 [07:47<02:20,  2.88s/it][Rank2]:  73%|███████▎  | 135/186 [07:48<02:16,  2.68s/it][Rank4]:  75%|███████▌  | 139/185 [07:48<02:20,  3.05s/it][Rank0]:  78%|███████▊  | 145/186 [08:12<02:03,  3.01s/it][Rank6]:  75%|███████▌  | 139/185 [07:49<02:2C. Triangle.
+E. Diamond.
+A
+B. Square/rectangle.
+A
+B
+C
+C
+C
+A
+B. Circle.
+A. Square/rectangle.
+C. Square/rectangle.
+D. Moving Left then Right.
+1,  3.09s/it][Rank7]:  75%|███████▍  | 138/185 [07:49<02:02,  2.60s/it][Rank5]:  75%|███████▌  | 139/185 [07:49<02:21,  3.07s/it][Rank1]:  74%|███████▍  | 138/186 [07:49<02:07,  2.66s/it][Rank3]:  76%|███████▋  | 142/186 [07:49<01:55,  2.64s/it][Rank2]:  73%|███████▎  | 136/186 [07:50<02:10,  2.62s/it][Rank4]:  76%|███████▌  | 140/185 [07:51<02:06,  2.81s/it][Rank0]:  78%|███████▊  | 146/186 [08:14<01:50,  2.77s/it][Rank5]:  76%|███████▌  | 140/185 [07:52<02:06,  2.80s/it][Rank1]:  75%|███████▍  | 139/186 [07:52<02:04,  2.65s/it][Rank6]:  76%|███████▌  | 140/185 [07:52<02:15,  3.02s/it][Rank7]:  75%|███████▌  | 139/185 [07:52<02:07,  2.77s/it][Rank4]:  76%|███████▌  | 141/185 [07:53<02:00,  2.73s/it][Rank3]:  77%|███████▋  | 143/186 [07:53<02:07,  2.97s/it][Rank2]:  74%|███████E
+D. Square/rectangle.
+B
+A
+D. Circle.
+D. Circle.
+B
+A. Diamond.
+D
+C
+C
+B
+B
+A. Triangle.
+▎  | 137/186 [07:53<02:10,  2.66s/it][Rank0]:  79%|███████▉  | 147/186 [08:17<01:45,  2.70s/it][Rank5]:  76%|███████▌  | 141/185 [07:54<02:00,  2.73s/it][Rank1]:  75%|███████▌  | 140/186 [07:54<01:55,  2.51s/it][Rank6]:  76%|███████▌  | 141/185 [07:54<02:02,  2.77s/it][Rank7]:  76%|███████▌  | 140/185 [07:55<01:58,  2.64s/it][Rank2]:  74%|███████▍  | 138/186 [07:56<02:03,  2.58s/it][Rank4]:  77%|███████▋  | 142/185 [07:56<01:57,  2.73s/it][Rank1]:  76%|███████▌  | 141/186 [07:56<01:50,  2.46s/it][Rank5]:  77%|███████▋  | 142/185 [07:57<01:55,  2.68s/it][Rank7]:  76%|███████▌  | 141/185 [07:57<01:49,  2.50s/it][Rank3]:  77%|███████▋  | 144/186 [07:57<02:17,  3.29s/it][Rank6]:  77%|███████▋  | 142/185 [07:57<02:01,  2.83s/it][Rank2]:  75%|███████▍  | 139/186 [07:58<02:03,  2.62s/it][Rank4]: C
+C. Trapezoid.
+C
+C. Triangle.
+E. Diamond.
+B. Circle.
+B. Triangle.
+E
+A. Diamond.
+A
+C
+C. Moving Up and Left.
+C. Moving Down.
+ 77%|███████▋  | 143/185 [07:59<02:00,  2.87s/it][Rank1]:  76%|███████▋  | 142/186 [07:59<01:49,  2.48s/it][Rank0]:  80%|███████▉  | 148/186 [08:23<02:15,  3.56s/it][Rank3]:  78%|███████▊  | 145/186 [07:59<01:59,  2.91s/it][Rank5]:  77%|███████▋  | 143/185 [07:59<01:53,  2.70s/it][Rank6]:  77%|███████▋  | 143/185 [08:00<01:55,  2.76s/it][Rank7]:  77%|███████▋  | 142/185 [08:00<01:54,  2.66s/it][Rank3]:  78%|███████▊  | 146/186 [08:02<01:50,  2.76s/it][Rank1]:  77%|███████▋  | 143/186 [08:02<01:47,  2.51s/it][Rank2]:  75%|███████▌  | 140/186 [08:02<02:10,  2.83s/it][Rank5]:  78%|███████▊  | 144/185 [08:02<01:50,  2.70s/it][Rank7]:  77%|███████▋  | 143/185 [08:03<01:50,  2.64s/it][Rank6]:  78%|███████▊  | 144/185 [08:03<01:53,  2.76s/it][Rank4]:  78%|███████▊  | 144/185 [08:04<0F
+C. Square/rectangle.
+B
+D. Diamond.
+D. Circle.
+B. Moving Down.
+A
+A. Moving Down.
+A. Trapezoid.
+C. Not drawing at all.
+A
+C
+C. Left then Right.
+E. Diamond.
+2:21,  3.45s/it][Rank5]:  78%|███████▊  | 145/185 [08:04<01:38,  2.45s/it][Rank2]:  76%|███████▌  | 141/186 [08:04<02:03,  2.75s/it][Rank0]:  80%|████████  | 149/186 [08:28<02:32,  4.13s/it][Rank6]:  78%|███████▊  | 145/185 [08:05<01:42,  2.57s/it][Rank4]:  78%|███████▊  | 145/185 [08:06<02:01,  3.03s/it][Rank7]:  78%|███████▊  | 144/185 [08:06<01:56,  2.83s/it][Rank5]:  79%|███████▉  | 146/185 [08:06<01:32,  2.37s/it][Rank1]:  77%|███████▋  | 144/186 [08:06<02:13,  3.19s/it][Rank2]:  76%|███████▋  | 142/186 [08:07<01:58,  2.70s/it][Rank6]:  79%|███████▉  | 146/185 [08:07<01:36,  2.48s/it][Rank4]:  79%|███████▉  | 146/185 [08:08<01:50,  2.83s/it][Rank7]:  78%|███████▊  | 145/185 [08:08<01:49,  2.73s/it][Rank3]:  79%|███████▉  | 147/186 [08:09<02:40,  4.12s/it][Rank1]:  78%|██████C. Circle.
+A. Moving Right.
+A. Triangle.
+B
+B
+C. Trapezoid.
+B. Moving Right.
+B
+C. Circle.
+D. Circle.
+C. Diamond.
+F. Circle.
+A
+A. Circle.
+█▊  | 145/186 [08:09<02:06,  3.07s/it][Rank2]:  77%|███████▋  | 143/186 [08:09<01:55,  2.68s/it][Rank0]:  81%|████████  | 150/186 [08:33<02:38,  4.41s/it][Rank7]:  79%|███████▉  | 146/185 [08:11<01:42,  2.62s/it][Rank1]:  78%|███████▊  | 146/186 [08:12<01:55,  2.89s/it][Rank5]:  79%|███████▉  | 147/185 [08:12<02:12,  3.48s/it][Rank6]:  79%|███████▉  | 147/185 [08:13<02:13,  3.51s/it][Rank2]:  77%|███████▋  | 144/186 [08:14<02:14,  3.19s/it][Rank0]:  81%|████████  | 151/186 [08:37<02:32,  4.35s/it][Rank3]:  80%|███████▉  | 148/186 [08:14<02:49,  4.46s/it][Rank4]:  79%|███████▉  | 147/185 [08:14<02:24,  3.81s/it][Rank7]:  79%|███████▉  | 147/185 [08:17<02:17,  3.63s/it][Rank2]:  78%|███████▊  | 145/186 [08:17<02:07,  3.12s/it][Rank0]:  82%|████████▏ | 152/186 [08:40<02:14,  3.95s/it][RanC. Diamond.
+A
+B. Moving Down.
+A. Moving Left.
+A
+B
+E
+C
+B. Moving Up.
+B. Moving Left then Right.
+B
+B. Moving Down.
+C. Trapezoid.
+k1]:  79%|███████▉  | 147/186 [08:17<02:20,  3.60s/it][Rank2]:  78%|███████▊  | 146/186 [08:19<01:55,  2.90s/it][Rank0]:  82%|████████▏ | 153/186 [08:43<01:54,  3.46s/it][Rank3]:  80%|████████  | 149/186 [08:20<03:03,  4.96s/it][Rank5]:  80%|████████  | 148/185 [08:22<03:17,  5.33s/it][Rank0]:  83%|████████▎ | 154/186 [08:45<01:42,  3.22s/it][Rank6]:  80%|████████  | 148/185 [08:22<03:13,  5.24s/it][Rank1]:  80%|███████▉  | 148/186 [08:23<02:42,  4.29s/it][Rank2]:  79%|███████▉  | 147/186 [08:24<02:18,  3.55s/it][Rank4]:  80%|████████  | 148/185 [08:25<03:41,  5.99s/it][Rank3]:  81%|████████  | 150/186 [08:26<03:00,  5.02s/it][Rank0]:  83%|████████▎ | 155/186 [08:50<01:53,  3.68s/it][Rank7]:  80%|████████  | 148/185 [08:27<03:32,  5.75s/it][Rank5]:  81%|████████  | 149/1B. Moving Down and Left
+C. Circle.
+A. Moving Right then Left
+A. Moving Up then Down.
+F. Square/rectangle.
+D. Moving Right then Left
+D. Increasing gradually.
+B. Decelerating.
+C. Moving Down.
+A. Decelerating.
+A
+C. Accelerating.
+D
+D
+85 [08:28<03:17,  5.49s/it][Rank1]:  80%|████████  | 149/186 [08:28<02:52,  4.67s/it][Rank2]:  80%|███████▉  | 148/186 [08:30<02:35,  4.09s/it][Rank6]:  81%|████████  | 149/185 [08:30<03:39,  6.11s/it][Rank3]:  81%|████████  | 151/186 [08:31<02:56,  5.04s/it][Rank4]:  81%|████████  | 149/185 [08:31<03:35,  5.98s/it][Rank7]:  81%|████████  | 149/185 [08:32<03:17,  5.47s/it][Rank0]:  84%|████████▍ | 156/186 [08:56<02:10,  4.36s/it][Rank3]:  82%|████████▏ | 152/186 [08:34<02:39,  4.68s/it][Rank2]:  80%|████████  | 149/186 [08:36<02:53,  4.68s/it][Rank0]:  84%|████████▍ | 157/186 [08:59<01:56,  4.00s/it][Rank4]:  81%|████████  | 150/185 [08:37<03:23,  5.83s/it][Rank3]:  82%|████████▏ | 153/186 [08:37<02:16,  4.15s/it][Rank0]:  85%|████████▍ | 158/186 [09:01<01:35,  3.42s/it][Rank5]:  8E
+B. Constant speed.
+C
+A
+C
+B. Decelerating.
+B
+B. Decelerating.
+B
+A. Accelerating.
+B. Moving Down.
+C. Accelerating.
+E. Increasing gradually.
+1%|████████  | 150/185 [08:38<04:06,  7.03s/it][Rank1]:  81%|████████  | 150/186 [08:39<03:47,  6.33s/it][Rank4]:  82%|████████▏ | 151/185 [08:40<02:51,  5.04s/it][Rank6]:  81%|████████  | 150/185 [08:40<04:11,  7.20s/it][Rank2]:  81%|████████  | 150/186 [08:41<02:50,  4.74s/it][Rank3]:  83%|████████▎ | 154/186 [08:41<02:05,  3.91s/it][Rank0]:  85%|████████▌ | 159/186 [09:05<01:32,  3.43s/it][Rank7]:  81%|████████  | 150/185 [08:41<03:51,  6.62s/it][Rank5]:  82%|████████▏ | 151/185 [08:42<03:19,  5.86s/it][Rank4]:  82%|████████▏ | 152/185 [08:43<02:22,  4.32s/it][Rank0]:  86%|████████▌ | 160/186 [09:07<01:17,  2.97s/it][Rank1]:  81%|████████  | 151/186 [08:43<03:23,  5.82s/it][Rank6]:  82%|████████▏ | 151/185 [08:44<03:27,  6.11s/it][Rank5]:  82%|████████▏ | 15E
+A. Decelerating.
+E. Moving Up then Down.
+B
+B. Accelerating.
+B. Constant speed.
+A. Decelerating.
+B
+A. Constant speed.
+B. Decelerating.
+D. Decreasing gradually then speeds up.
+D
+C
+2/185 [08:44<02:42,  4.93s/it][Rank3]:  83%|████████▎ | 155/186 [08:45<02:04,  4.00s/it][Rank7]:  82%|████████▏ | 151/185 [08:45<03:12,  5.67s/it][Rank2]:  81%|████████  | 151/186 [08:45<02:47,  4.80s/it][Rank0]:  87%|████████▋ | 161/186 [09:09<01:10,  2.82s/it][Rank1]:  82%|████████▏ | 152/186 [08:46<02:49,  4.98s/it][Rank4]:  83%|████████▎ | 153/185 [08:47<02:16,  4.28s/it][Rank3]:  84%|████████▍ | 156/186 [08:47<01:45,  3.53s/it][Rank5]:  83%|████████▎ | 153/185 [08:48<02:26,  4.57s/it][Rank0]:  87%|████████▋ | 162/186 [09:12<01:08,  2.85s/it][Rank1]:  82%|████████▏ | 153/186 [08:49<02:18,  4.21s/it][Rank6]:  82%|████████▏ | 152/185 [08:49<03:14,  5.89s/it][Rank7]:  82%|████████▏ | 152/185 [08:50<03:01,  5.49s/it][Rank3]:  84%|████████▍ | 157/186 [08:50<01:35,  3.29A
+B
+C
+C. Decelerating.
+B. Decelerating.
+A. Constant speed.
+B
+D. Accelerating.
+B. Increasing gradually then slows down.
+C
+E. Increasing gradually then slows down.
+E. Increasing gradually.
+A. Decelerating.
+B
+s/it][Rank2]:  82%|████████▏ | 152/186 [08:50<02:45,  4.86s/it][Rank1]:  83%|████████▎ | 154/186 [08:51<02:00,  3.78s/it][Rank4]:  83%|████████▎ | 154/185 [08:52<02:19,  4.51s/it][Rank6]:  83%|████████▎ | 153/185 [08:52<02:42,  5.09s/it][Rank3]:  85%|████████▍ | 158/186 [08:53<01:25,  3.05s/it][Rank0]:  88%|████████▊ | 163/186 [09:16<01:15,  3.27s/it][Rank2]:  82%|████████▏ | 153/186 [08:53<02:17,  4.16s/it][Rank7]:  83%|████████▎ | 153/185 [08:53<02:33,  4.81s/it][Rank5]:  83%|████████▎ | 154/185 [08:54<02:36,  5.04s/it][Rank1]:  83%|████████▎ | 155/186 [08:56<02:07,  4.12s/it][Rank4]:  84%|████████▍ | 155/185 [08:57<02:17,  4.60s/it][Rank6]:  83%|████████▎ | 154/185 [08:57<02:33,  4.96s/it][Rank3]:  85%|████████▌ | 159/186 [08:57<01:33,  3.47s/it][Rank7]:  83%|█A. Decreasing gradually.
+A
+A
+A
+C. Decreasing gradually then speeds up.
+C. Decelerating.
+A
+C. Constant speed.
+D
+B
+B
+C. Accelerating.
+B. Decelerating.
+███████▎ | 154/185 [08:57<02:21,  4.57s/it][Rank2]:  83%|████████▎ | 154/186 [08:57<02:14,  4.19s/it][Rank0]:  88%|████████▊ | 164/186 [09:22<01:27,  3.98s/it][Rank4]:  84%|████████▍ | 156/185 [08:59<01:52,  3.87s/it][Rank6]:  84%|████████▍ | 155/185 [08:59<02:07,  4.24s/it][Rank5]:  84%|████████▍ | 155/185 [09:00<02:39,  5.32s/it][Rank3]:  86%|████████▌ | 160/186 [09:00<01:28,  3.41s/it][Rank7]:  84%|████████▍ | 155/185 [09:01<02:06,  4.21s/it][Rank3]:  87%|████████▋ | 161/186 [09:01<01:06,  2.66s/it][Rank2]:  83%|████████▎ | 155/186 [09:01<02:08,  4.15s/it][Rank1]:  84%|████████▍ | 156/186 [09:01<02:12,  4.41s/it][Rank4]:  85%|████████▍ | 157/185 [09:02<01:41,  3.62s/it][Rank5]:  84%|████████▍ | 156/185 [09:03<02:12,  4.58s/it][Rank6]:  84%|████████�B. Decelerating.
+A
+A. Accelerating.
+C
+C. Accelerating.
+A
+A. Decelerating.
+C
+B
+C. Accelerating.
+A. Accelerating.
+B. Decelerating.
+A. Accelerating.
+� | 156/185 [09:04<02:04,  4.29s/it][Rank0]:  89%|████████▊ | 165/186 [09:27<01:33,  4.44s/it][Rank7]:  84%|████████▍ | 156/185 [09:04<01:55,  3.97s/it][Rank4]:  85%|████████▌ | 158/185 [09:04<01:26,  3.20s/it][Rank3]:  87%|████████▋ | 162/186 [09:05<01:09,  2.89s/it][Rank2]:  84%|████████▍ | 156/186 [09:05<01:58,  3.95s/it][Rank1]:  84%|████████▍ | 157/186 [09:05<02:01,  4.18s/it][Rank5]:  85%|████████▍ | 157/185 [09:06<01:54,  4.08s/it][Rank6]:  85%|████████▍ | 157/185 [09:07<01:49,  3.92s/it][Rank1]:  85%|████████▍ | 158/186 [09:07<01:39,  3.55s/it][Rank7]:  85%|████████▍ | 157/185 [09:07<01:45,  3.78s/it][Rank4]:  86%|████████▌ | 159/185 [09:08<01:25,  3.30s/it][Rank0]:  89%|████████▉ | 166/186 [09:32<01:28,  4.43s/it][Rank2]:  84%|████████▍ | 157/186 [09:08<01:5A
+C. Constant speed.
+A
+C. Accelerating.
+D. Constant speed.
+C. Accelerating.
+B. Decelerating.
+C
+B
+C
+C
+B. Constant speed.
+A
+C
+1,  3.84s/it][Rank5]:  85%|████████▌ | 158/185 [09:09<01:41,  3.76s/it][Rank3]:  88%|████████▊ | 163/186 [09:09<01:17,  3.36s/it][Rank7]:  85%|████████▌ | 158/185 [09:09<01:27,  3.23s/it][Rank6]:  85%|████████▌ | 158/185 [09:10<01:37,  3.62s/it][Rank1]:  85%|████████▌ | 159/186 [09:11<01:38,  3.65s/it][Rank4]:  86%|████████▋ | 160/185 [09:11<01:23,  3.34s/it][Rank2]:  85%|████████▍ | 158/186 [09:12<01:46,  3.80s/it][Rank7]:  86%|████████▌ | 159/185 [09:12<01:21,  3.15s/it][Rank5]:  86%|████████▌ | 159/185 [09:12<01:34,  3.65s/it][Rank6]:  86%|████████▌ | 159/185 [09:13<01:30,  3.49s/it][Rank4]:  87%|████████▋ | 161/185 [09:13<01:10,  2.95s/it][Rank1]:  86%|████████▌ | 160/186 [09:13<01:23,  3.22s/it][Rank3]:  88%|████████▊ | 164/186 [09:14<01:25,  3.89s/it][Rank0]: D. Accelerating.
+B
+C. Decelerating.
+A
+B. Accelerating.
+B. Accelerating.
+C. Decelerating.
+B. Accelerating.
+C. Constant speed.
+A. Accelerating.
+C. Constant speed.
+C. Decelerating.
+C. Decelerating.
+ 90%|████████▉ | 167/186 [09:38<01:32,  4.85s/it][Rank5]:  86%|████████▋ | 160/185 [09:15<01:22,  3.29s/it][Rank7]:  86%|████████▋ | 160/185 [09:15<01:15,  3.02s/it][Rank6]:  86%|████████▋ | 160/185 [09:15<01:17,  3.08s/it][Rank2]:  85%|████████▌ | 159/186 [09:15<01:37,  3.62s/it][Rank5]:  87%|████████▋ | 161/185 [09:16<01:01,  2.57s/it][Rank1]:  87%|████████▋ | 161/186 [09:16<01:14,  2.98s/it][Rank4]:  88%|████████▊ | 162/185 [09:16<01:07,  2.94s/it][Rank2]:  86%|████████▌ | 160/186 [09:17<01:22,  3.18s/it][Rank7]:  87%|████████▋ | 161/185 [09:18<01:09,  2.90s/it][Rank6]:  87%|████████▋ | 161/185 [09:18<01:11,  3.00s/it][Rank5]:  88%|████████▊ | 162/185 [09:18<00:59,  2.60s/it][Rank3]:  89%|████████▊ | 165/186 [09:18<01:23,  4.00s/it][Rank1]:  87%|██████C. Accelerating.
+C. Decelerating.
+A. Accelerating.
+B. Constant speed.
+D. Constant speed.
+D. Accelerating.
+C. Constant speed.
+C. Constant speed.
+C. Constant speed.
+B. Decelerating.
+D
+C. Decelerating.
+C. Constant speed.
+██▋ | 162/186 [09:19<01:15,  3.16s/it][Rank0]:  90%|█████████ | 168/186 [09:43<01:29,  4.96s/it][Rank2]:  87%|████████▋ | 161/186 [09:20<01:14,  2.97s/it][Rank4]:  88%|████████▊ | 163/185 [09:20<01:13,  3.34s/it][Rank6]:  88%|████████▊ | 162/185 [09:21<01:06,  2.88s/it][Rank7]:  88%|████████▊ | 162/185 [09:21<01:07,  2.92s/it][Rank0]:  91%|█████████ | 169/186 [09:45<01:11,  4.19s/it][Rank5]:  88%|████████▊ | 163/185 [09:23<01:08,  3.13s/it][Rank0]:  91%|█████████▏| 170/186 [09:46<00:52,  3.30s/it][Rank2]:  87%|████████▋ | 162/186 [09:23<01:14,  3.10s/it][Rank3]:  89%|████████▉ | 166/186 [09:24<01:26,  4.32s/it][Rank1]:  88%|████████▊ | 163/186 [09:24<01:22,  3.61s/it][Rank7]:  88%|████████▊ | 163/185 [09:24<01:08,  3.12s/it][Rank6]:  88%|████████▊ | 163/185 [D. Constant speed.
+A. Constant speed.
+B. Constant speed.
+C. Constant speed.
+C. Decelerating.
+D. Decelerating.
+A. Decelerating.
+C. Constant speed.
+C. Decelerating.
+A. Constant speed.
+C. Constant speed.
+D. Decelerating.
+C
+09:24<01:08,  3.13s/it][Rank4]:  89%|████████▊ | 164/185 [09:25<01:18,  3.76s/it][Rank0]:  92%|█████████▏| 171/186 [09:50<00:48,  3.24s/it][Rank2]:  88%|████████▊ | 163/186 [09:27<01:15,  3.29s/it][Rank1]:  88%|████████▊ | 164/186 [09:27<01:16,  3.49s/it][Rank5]:  89%|████████▊ | 164/185 [09:28<01:17,  3.68s/it][Rank7]:  89%|████████▊ | 164/185 [09:28<01:08,  3.25s/it][Rank6]:  89%|████████▊ | 164/185 [09:28<01:09,  3.29s/it][Rank3]:  90%|████████▉ | 167/186 [09:30<01:32,  4.88s/it][Rank4]:  89%|████████▉ | 165/185 [09:30<01:21,  4.06s/it][Rank0]:  92%|█████████▏| 172/186 [09:55<00:52,  3.77s/it][Rank2]:  88%|████████▊ | 164/186 [09:32<01:21,  3.70s/it][Rank1]:  89%|████████▊ | 165/186 [09:32<01:22,  3.93s/it][Rank6]:  89%|████████▉ | 165/185 [09:32<01:13,  3.68sB. Accelerating.
+C. Constant speed.
+D. Accelerating.
+D. Constant speed.
+A. Decelerating.
+C
+B. Decelerating.
+C. Accelerating.
+A
+C
+D. Decelerating.
+C. Accelerating.
+B. Constant speed.
+C. Decelerating.
+/it][Rank5]:  89%|████████▉ | 165/185 [09:33<01:22,  4.11s/it][Rank7]:  89%|████████▉ | 165/185 [09:34<01:21,  4.10s/it][Rank4]:  90%|████████▉ | 166/185 [09:34<01:18,  4.12s/it][Rank0]:  93%|█████████▎| 173/186 [09:58<00:46,  3.56s/it][Rank3]:  90%|█████████ | 168/186 [09:35<01:32,  5.15s/it][Rank6]:  90%|████████▉ | 166/185 [09:36<01:09,  3.65s/it][Rank1]:  89%|████████▉ | 166/186 [09:37<01:23,  4.16s/it][Rank5]:  90%|████████▉ | 166/185 [09:37<01:18,  4.11s/it][Rank2]:  89%|████████▊ | 165/186 [09:37<01:28,  4.20s/it][Rank0]:  94%|█████████▎| 174/186 [10:01<00:41,  3.44s/it][Rank7]:  90%|████████▉ | 166/185 [09:38<01:18,  4.11s/it][Rank3]:  91%|█████████ | 169/186 [09:38<01:16,  4.47s/it][Rank0]:  94%|█████████▍| 175/186 [10:03<00:33,  3.08s/it][Rank3]:  91D. Constant speed.
+C. Accelerating.
+B. Accelerating.
+A
+C. Accelerating.
+C
+B. Accelerating.
+C. Constant speed.
+C
+B. Constant speed.
+B. Decelerating.
+C. Decelerating.
+C
+%|█████████▏| 170/186 [09:41<01:00,  3.79s/it][Rank4]:  90%|█████████ | 167/185 [09:41<01:27,  4.85s/it][Rank1]:  90%|████████▉ | 167/186 [09:42<01:23,  4.38s/it][Rank2]:  89%|████████▉ | 166/186 [09:42<01:27,  4.35s/it][Rank0]:  95%|█████████▍| 176/186 [10:05<00:28,  2.85s/it][Rank6]:  90%|█████████ | 167/185 [09:42<01:19,  4.43s/it][Rank4]:  91%|█████████ | 168/185 [09:43<01:07,  3.99s/it][Rank5]:  90%|█████████ | 167/185 [09:43<01:23,  4.65s/it][Rank3]:  92%|█████████▏| 171/186 [09:44<00:53,  3.54s/it][Rank6]:  91%|█████████ | 168/185 [09:45<01:03,  3.76s/it][Rank7]:  90%|█████████ | 167/185 [09:45<01:29,  4.96s/it][Rank5]:  91%|█████████ | 168/185 [09:45<01:06,  3.90s/it][Rank4]:  91%|█████████▏| 169/185 [09:45<00:57,  3.57s/it][Rank6]:  91%|████�C. Decelerating.
+B. Constant speed.
+B. Accelerating.
+C
+C. Accelerating.
+B. Decelerating.
+C. Accelerating.
+D. Constant speed.
+B. Decelerating.
+B
+A. Constant speed.
+C. Decelerating.
+C. Decelerating.
+��████▏| 169/185 [09:46<00:48,  3.03s/it][Rank1]:  90%|█████████ | 168/186 [09:47<01:22,  4.57s/it][Rank3]:  92%|█████████▏| 172/186 [09:47<00:51,  3.66s/it][Rank4]:  92%|█████████▏| 170/185 [09:48<00:48,  3.22s/it][Rank5]:  91%|█████████▏| 169/185 [09:48<00:57,  3.59s/it][Rank7]:  91%|█████████ | 168/185 [09:48<01:15,  4.46s/it][Rank2]:  90%|████████▉ | 167/186 [09:49<01:39,  5.22s/it][Rank1]:  91%|█████████ | 169/186 [09:50<01:12,  4.26s/it][Rank6]:  92%|█████████▏| 170/185 [09:50<00:52,  3.47s/it][Rank3]:  93%|█████████▎| 173/186 [09:50<00:44,  3.45s/it][Rank5]:  92%|█████████▏| 170/185 [09:51<00:50,  3.38s/it][Rank4]:  92%|█████████▏| 171/185 [09:51<00:46,  3.29s/it][Rank0]:  95%|█████████▌| 177/186 [10:15<00:42,  4.76s/it][Rank7]:  91%|██████A. Decelerating.
+D. Constant speed.
+B
+A. Accelerating.
+A. Constant speed.
+B. Constant speed.
+B. Guzheng.
+B
+A
+C. Constant speed.
+C. Constant speed.
+B. Accelerating.
+D. Accelerating.
+███▏| 169/185 [09:51<01:04,  4.03s/it][Rank1]:  91%|█████████▏| 170/186 [09:53<01:02,  3.93s/it][Rank3]:  94%|█████████▎| 174/186 [09:54<00:40,  3.34s/it][Rank7]:  92%|█████████▏| 170/185 [09:54<00:53,  3.54s/it][Rank5]:  92%|█████████▏| 171/185 [09:54<00:46,  3.34s/it][Rank4]:  93%|█████████▎| 172/185 [09:54<00:41,  3.19s/it][Rank6]:  92%|█████████▏| 171/185 [09:54<00:50,  3.61s/it][Rank0]:  96%|█████████▌| 178/186 [10:18<00:36,  4.51s/it][Rank4]:  94%|█████████▎| 173/185 [09:56<00:32,  2.71s/it][Rank5]:  93%|█████████▎| 172/185 [09:56<00:38,  2.93s/it][Rank3]:  94%|█████████▍| 175/186 [09:56<00:33,  3.06s/it][Rank6]:  93%|█████████▎| 172/185 [09:56<00:39,  3.05s/it][Rank2]:  90%|█████████ | 168/186 [09:57<01:46,  5.92s/it][Rank1]:  92%|█████�A
+A. Accelerating.
+D. Constant speed.
+D. Constant speed.
+B
+A. Accelerating.
+C. Accelerating.
+D. Constant speed.
+B
+C. Accelerating.
+B
+D. Accelerating.
+A. Trumpet.
+�███▏| 171/186 [09:57<00:56,  3.77s/it][Rank0]:  96%|█████████▌| 179/186 [10:21<00:26,  3.80s/it][Rank1]:  92%|█████████▏| 172/186 [09:58<00:43,  3.08s/it][Rank3]:  95%|█████████▍| 176/186 [09:59<00:29,  2.92s/it][Rank7]:  92%|█████████▏| 171/185 [09:59<00:55,  3.99s/it][Rank2]:  91%|█████████ | 169/186 [09:59<01:21,  4.82s/it][Rank5]:  94%|█████████▎| 173/185 [09:59<00:35,  2.95s/it][Rank6]:  94%|█████████▎| 173/185 [09:59<00:35,  2.99s/it][Rank4]:  94%|█████████▍| 174/185 [09:59<00:32,  2.95s/it][Rank0]:  97%|█████████▋| 180/186 [10:23<00:19,  3.23s/it][Rank2]:  91%|█████████▏| 170/186 [10:00<00:59,  3.74s/it][Rank0]:  97%|█████████▋| 181/186 [10:24<00:12,  2.57s/it][Rank6]:  94%|█████████▍| 174/185 [10:01<00:30,  2.79s/it][Rank0]:  98%|█████�B. Constant speed.
+A
+B. Decelerating.
+B. Accelerating.
+A. Accelerating.
+C
+C. Piano.
+B
+C. Constant speed.
+B
+C
+A
+B. Accelerating.
+��███▊| 182/186 [10:25<00:08,  2.18s/it][Rank4]:  95%|█████████▍| 175/185 [10:01<00:27,  2.78s/it][Rank5]:  94%|█████████▍| 174/185 [10:02<00:31,  2.85s/it][Rank7]:  93%|█████████▎| 172/185 [10:02<00:51,  3.93s/it][Rank1]:  93%|█████████▎| 173/186 [10:02<00:44,  3.40s/it][Rank2]:  92%|█████████▏| 171/186 [10:03<00:52,  3.47s/it][Rank6]:  95%|█████████▍| 175/185 [10:03<00:26,  2.62s/it][Rank0]:  98%|█████████▊| 183/186 [10:27<00:06,  2.24s/it][Rank1]:  94%|█████████▎| 174/186 [10:05<00:36,  3.03s/it][Rank5]:  95%|█████████▍| 175/185 [10:05<00:30,  3.03s/it][Rank0]:  99%|█████████▉| 184/186 [10:28<00:03,  1.90s/it][Rank7]:  94%|█████████▎| 173/185 [10:05<00:42,  3.58s/it][Rank0]:  99%|█████████▉| 185/186 [10:29<00:01,  1.57s/it][Rank1]:  94%|████�A. Violin.
+��████▍| 175/186 [10:06<00:27,  2.51s/it][Rank0]: 100%|██████████| 186/186 [10:30<00:00,  1.38s/it][Rank0]: 100%|██████████| 186/186 [10:30<00:00,  3.39s/it]
+C. Constant speed.
+B. Accelerating.
+C. Accelerating.
+C. Increasing gradually.
+B. Decelerating.
+C
+C
+A. Accelerating.
+A. Accelerating.
+C
+C
+C
+C. Violin.
+[Rank2]:  92%|█████████▏| 172/186 [10:07<00:52,  3.73s/it][Rank4]:  95%|█████████▌| 176/185 [10:09<00:37,  4.13s/it][Rank7]:  94%|█████████▍| 174/185 [10:09<00:39,  3.62s/it][Rank3]:  95%|█████████▌| 177/186 [10:09<00:47,  5.22s/it][Rank1]:  95%|█████████▍| 176/186 [10:09<00:27,  2.77s/it][Rank2]:  93%|█████████▎| 173/186 [10:10<00:43,  3.32s/it][Rank3]:  96%|█████████▌| 178/186 [10:10<00:30,  3.85s/it][Rank6]:  95%|█████████▌| 176/185 [10:10<00:34,  3.87s/it][Rank7]:  95%|█████████▍| 175/185 [10:11<00:32,  3.22s/it][Rank5]:  95%|█████████▌| 176/185 [10:12<00:38,  4.31s/it][Rank2]:  94%|█████████▎| 174/186 [10:13<00:38,  3.22s/it][Rank6]:  96%|█████████▌| 177/185 [10:13<00:29,  3.66s/it][Rank3]:  96%|█████████▌| 179/186 [10:14<00:27,  3.97s/A
+B
+B
+C
+B. Saxophone.
+D. Flute.
+B. Constant speed.
+D. The left one.
+C
+B. Decelerating.
+A
+D. Increasing gradually.
+C
+it][Rank6]:  96%|█████████▌| 178/185 [10:15<00:20,  2.92s/it][Rank3]:  97%|█████████▋| 180/186 [10:15<00:18,  3.04s/it][Rank6]:  97%|█████████▋| 179/185 [10:15<00:13,  2.29s/it][Rank2]:  94%|█████████▍| 175/186 [10:16<00:35,  3.26s/it][Rank6]:  97%|█████████▋| 180/185 [10:17<00:10,  2.04s/it][Rank3]:  97%|█████████▋| 181/186 [10:17<00:14,  2.82s/it][Rank2]:  95%|█████████▍| 176/186 [10:18<00:29,  2.95s/it][Rank6]:  98%|█████████▊| 181/185 [10:19<00:08,  2.07s/it][Rank3]:  98%|█████████▊| 182/186 [10:19<00:10,  2.59s/it][Rank7]:  95%|█████████▌| 176/185 [10:19<00:42,  4.72s/it][Rank1]:  95%|█████████▌| 177/186 [10:19<00:45,  5.01s/it][Rank4]:  96%|█████████▌| 177/185 [10:20<00:49,  6.25s/it][Rank6]:  98%|█████████▊| 182/185 [10:20<00:05,  1.7C. Guitar.
+C. Violin.
+A
+C. Guitar.
+B. Guitar.
+B
+B. Banjo.
+D. Violin on the left.
+D
+B
+C. Ukulele.
+D
+A
+7s/it][Rank3]:  98%|█████████▊| 183/186 [10:21<00:06,  2.20s/it][Rank7]:  96%|█████████▌| 177/185 [10:21<00:29,  3.69s/it][Rank6]:  99%|█████████▉| 183/185 [10:21<00:03,  1.57s/it][Rank3]:  99%|█████████▉| 184/186 [10:21<00:03,  1.81s/it][Rank4]:  96%|█████████▌| 178/185 [10:21<00:33,  4.83s/it][Rank7]:  96%|█████████▌| 178/185 [10:22<00:20,  2.88s/it][Rank1]:  96%|█████████▌| 178/186 [10:22<00:33,  4.23s/it][Rank4]:  97%|█████████▋| 179/185 [10:23<00:22,  3.71s/it][Rank7]:  97%|█████████▋| 179/185 [10:23<00:14,  2.36s/it][Rank3]:  99%|█████████▉| 185/186 [10:23<00:01,  1.81s/it][Rank1]:  96%|█████████▌| 179/186 [10:23<00:23,  3.38s/it][Rank5]:  96%|█████████▌| 177/185 [10:24<00:51,  6.39s/it][Rank4]:  97%|█████████▋| 180/185 [10:23<00:14,  B
+2.88s/it][Rank3]: 100%|██████████| 186/186 [10:24<00:00,  1.45s/it][Rank3]: 100%|██████████| 186/186 [10:24<00:00,  3.36s/it]
+A
+C. Pipa.
+B
+B. Pipa.
+A. Flute.
+C
+C. Violin on the left.
+A
+A. Increasing gradually then slows down.
+D
+B
+D. The left one.
+C
+[Rank1]:  97%|█████████▋| 180/186 [10:24<00:15,  2.61s/it][Rank7]:  97%|█████████▋| 180/185 [10:24<00:10,  2.06s/it][Rank4]:  98%|█████████▊| 181/185 [10:25<00:09,  2.35s/it][Rank5]:  96%|█████████▌| 178/185 [10:25<00:34,  4.89s/it][Rank7]:  98%|█████████▊| 181/185 [10:25<00:07,  1.78s/it][Rank4]:  98%|█████████▊| 182/185 [10:26<00:05,  1.98s/it][Rank5]:  97%|█████████▋| 179/185 [10:27<00:23,  3.92s/it][Rank1]:  97%|█████████▋| 181/186 [10:27<00:12,  2.59s/it][Rank2]:  95%|█████████▌| 177/186 [10:27<00:42,  4.72s/it][Rank1]:  98%|█████████▊| 182/186 [10:27<00:07,  1.96s/it][Rank4]:  99%|█████████▉| 183/185 [10:27<00:03,  1.88s/it][Rank6]:  99%|█████████▉| 184/185 [10:27<00:02,  2.97s/it][Rank7]:  98%|█████████▊| 182/185 [10:27<00:05,  1.90s/B
+A
+it][Rank5]:  97%|█████████▋| 180/185 [10:28<00:15,  3.17s/it][Rank6]: 100%|██████████| 185/185 [10:29<00:00,  2.42s/it][Rank6]: 100%|██████████| 185/185 [10:29<00:00,  3.40s/it]
+B
+A
+B. Keyboard.
+A
+B
+[Rank1]:  98%|█████████▊| 183/186 [10:29<00:05,  1.89s/it][Rank4]:  99%|█████████▉| 184/185 [10:29<00:01,  1.77s/it][Rank7]:  99%|█████████▉| 183/185 [10:29<00:03,  1.86s/it][Rank2]:  96%|█████████▌| 178/186 [10:29<00:32,  4.01s/it][Rank4]: 100%|██████████| 185/185 [10:30<00:00,  1.54s/it][Rank4]: 100%|██████████| 185/185 [10:30<00:00,  3.41s/it]
+B. Flute.
+D
+B. Both instruments begin simultaneously.
+C
+A
+C. Guitar.
+[Rank5]:  98%|█████████▊| 181/185 [10:30<00:11,  2.81s/it][Rank2]:  96%|█████████▌| 179/186 [10:30<00:21,  3.01s/it][Rank7]:  99%|█████████▉| 184/185 [10:30<00:01,  1.62s/it][Rank5]:  98%|█████████▊| 182/185 [10:31<00:06,  2.16s/it][Rank2]:  97%|█████████▋| 180/186 [10:31<00:13,  2.32s/it][Rank7]: 100%|██████████| 185/185 [10:31<00:00,  1.34s/it][Rank7]: 100%|██████████| 185/185 [10:31<00:00,  3.41s/it]
+B
+A. Violin.
+C. Flute.
+B. Violin.
+A. Piano.
+C
+C
+[Rank2]:  97%|█████████▋| 181/186 [10:31<00:08,  1.79s/it][Rank5]:  99%|█████████▉| 183/185 [10:32<00:03,  1.88s/it][Rank2]:  98%|█████████▊| 182/186 [10:32<00:06,  1.56s/it][Rank2]:  98%|█████████▊| 183/186 [10:34<00:04,  1.46s/it][Rank5]:  99%|█████████▉| 184/185 [10:34<00:02,  2.00s/it][Rank1]:  99%|█████████▉| 184/186 [10:34<00:06,  3.04s/it][Rank5]: 100%|██████████| 185/185 [10:35<00:00,  1.58s/it][Rank5]: 100%|██████████| 185/185 [10:35<00:00,  3.43s/it]
+B. Keyboard.
+C
+B
+[Rank2]:  99%|█████████▉| 184/186 [10:35<00:02,  1.43s/it][Rank1]:  99%|█████████▉| 185/186 [10:35<00:02,  2.33s/it][Rank1]: 100%|██████████| 186/186 [10:36<00:00,  1.83s/it][Rank1]: 100%|██████████| 186/186 [10:36<00:00,  3.42s/it]
+B. Ukulele.
+C
+[Rank2]:  99%|█████████▉| 185/186 [10:43<00:03,  3.41s/it][Rank2]: 100%|██████████| 186/186 [10:44<00:00,  2.64s/it][Rank2]: 100%|██████████| 186/186 [10:44<00:00,  3.46s/it]
+[2026-01-20 12:45:47] INFO - RUN - run.py: main - 378: {'nproc': 4, 'verbose': True, 'retry': 3}

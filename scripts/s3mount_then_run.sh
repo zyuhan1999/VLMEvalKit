@@ -22,4 +22,4 @@ torchrun --nproc-per-node=8 --master_port=10492 run.py \
   --model ${MODEL} \
   --verbose \
   --reuse \
-  --judge qwen3-235b-a22b-thinking-2507
+  --mode infer

@@ -1,0 +1,1027 @@
+fusermount: entry for /mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan not found in /etc/mtab
+bucket zhuyuhan is mounted at /mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan
+fusermount: entry for /mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3 not found in /etc/mtab
+bucket videochat3 is mounted at /mnt/petrelfs/zhuyuhan/s3/pnorm2/videochat3
+W0120 12:34:01.445000 191639 site-packages/torch/distributed/run.py:792] 
+W0120 12:34:01.445000 191639 site-packages/torch/distributed/run.py:792] *****************************************
+W0120 12:34:01.445000 191639 site-packages/torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0120 12:34:01.445000 191639 site-packages/torch/distributed/run.py:792] *****************************************
+RANK: 0, LOCAL_RANK: 0, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 0
+RANK: 1, LOCAL_RANK: 1, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 1
+RANK: 2, LOCAL_RANK: 2, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 2
+RANK: 4, LOCAL_RANK: 4, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 4
+RANK: 3, LOCAL_RANK: 3, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 3
+RANK: 6, LOCAL_RANK: 6, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 6
+RANK: 7, LOCAL_RANK: 7, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 7
+RANK: 5, LOCAL_RANK: 5, WORLD_SIZE: 8,LOCAL_WORLD_SIZE: 8, CUDA_VISIBLE_DEVICES: 5
+[2026-01-20 12:34:23] WARNING - RUN - run.py: main - 221: --reuse is set, will reuse the latest prediction & temporary pickle files
+[rank7]:[W120 12:34:24.559512616 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 7]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W120 12:34:24.559522795 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank4]:[W120 12:34:24.560374675 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 4]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank5]:[W120 12:34:24.563474882 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 5]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank2]:[W120 12:34:24.563663414 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W120 12:34:24.570995536 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W120 12:34:24.573967854 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank6]:[W120 12:34:24.577292679 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 6]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+==========
+./outputs/VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5 T20260120_Gf2bb1025 VideoChat3_4B_train_stage2_debugbase4x2_beedata_minisft_lr8e-5_vtlr2e-5 Video-MME_short_2fps
+==========
+===== Found 0 existing part files ======
+===== Done 0 | Remaining 900 | Total 900 ======
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.03s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.13s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.08s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.36s/it]
+[Rank0]:   0%|          | 0/113 [00:00<?, ?it/s]/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `image_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+🚨 `video_grid_thw` is part of VideoChat3ForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /mnt/petrelfs/zhuyuhan/.cache/huggingface/modules/transformers_modules/hf_hyphen_198/modeling_videochat3.py.
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+You are attempting to use Flash Attention 2 without specifying a torch dtype. This might lead to unexpected behaviour
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in VideoChat3VisionModel is bfloat16. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:07<00:15,  7.90s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.11s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.03s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.10s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.10s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.04s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.10s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:15<00:07,  7.95s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.22s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.19s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.19s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.19s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.16s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:16<00:08,  8.19s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:17<00:00,  4.83s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:17<00:00,  5.68s/it]
+[Rank1]:   0%|          | 0/113 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.24s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.03s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.03s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.27s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.24s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.03s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  5.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.01s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.03s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:18<00:00,  6.03s/it]
+[Rank5]:   0%|          | 0/112 [00:00<?, ?it/s][Rank6]:   0%|          | 0/112 [00:00<?, ?it/s][Rank3]:   0%|          | 0/113 [00:00<?, ?it/s][Rank4]:   0%|          | 0/112 [00:00<?, ?it/s][Rank2]:   0%|          | 0/113 [00:00<?, ?it/s][Rank7]:   0%|          | 0/112 [00:00<?, ?it/s]/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+/mnt/petrelfs/zhuyuhan/workspace/VLMEvalKit/vlmeval/dataset/videomme.py:269: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  line['question'] += '\n' + '\n'.join(eval(line['candidates']))
+A. Apples.
+A
+A. 1.
+C. 5.
+A. Inkstone.
+A
+A
+B
+A. 3.
+C
+C
+B
+B
+B. Two.
+D
+B. Moose.
+B
+B
+[Rank0]:   1%|          | 1/113 [00:26<49:15, 26.38s/it][Rank1]:   1%|          | 1/113 [00:23<43:17, 23.19s/it][Rank2]:   1%|          | 1/113 [00:22<42:23, 22.71s/it][Rank5]:   1%|          | 1/112 [00:27<51:34, 27.88s/it][Rank3]:   1%|          | 1/113 [00:28<53:10, 28.49s/it][Rank4]:   1%|          | 1/112 [00:28<52:57, 28.62s/it][Rank7]:   1%|          | 1/112 [00:36<1:06:52, 36.15s/it][Rank0]:   2%|▏         | 2/113 [00:59<56:01, 30.29s/it][Rank6]:   1%|          | 1/112 [00:38<1:11:30, 38.65s/it][Rank2]:   2%|▏         | 2/113 [00:50<47:15, 25.55s/it][Rank1]:   2%|▏         | 2/113 [00:51<48:27, 26.20s/it][Rank3]:   2%|▏         | 2/113 [00:55<51:17, 27.73s/it][Rank5]:   2%|▏         | 2/112 [01:00<56:41, 30.92s/it][Rank4]:   2%|▏         | 2/112 [01:00<56:23, 30.76s/it][Rank0]:   3%|▎         | 3/113 [01:30<56:09, 30.63s/it][Rank7]:   2%|▏         | 2/112 [01:08<1:02:05, 33.87s/it][Rank6]:   2%|▏         | 2/112 [01:09<1:02:43, 34.21s/it][Rank2]:   3%|▎         | C. Telegraph.
+B
+B
+B
+B
+B. Blue.
+B
+B. 7.
+B
+C
+B
+B
+B
+C
+A. Green.
+C
+C
+3/113 [01:12<43:57, 23.98s/it][Rank3]:   3%|▎         | 3/113 [01:18<46:26, 25.33s/it][Rank1]:   3%|▎         | 3/113 [01:22<52:22, 28.57s/it][Rank4]:   3%|▎         | 3/112 [01:22<48:20, 26.61s/it][Rank0]:   4%|▎         | 4/113 [01:53<50:16, 27.68s/it][Rank2]:   4%|▎         | 4/113 [01:34<42:19, 23.30s/it][Rank5]:   3%|▎         | 3/112 [01:38<1:02:04, 34.17s/it][Rank7]:   3%|▎         | 3/112 [01:41<1:01:10, 33.67s/it][Rank6]:   3%|▎         | 3/112 [01:42<1:00:43, 33.43s/it][Rank1]:   4%|▎         | 4/113 [01:46<48:27, 26.67s/it][Rank2]:   4%|▍         | 5/113 [01:52<38:27, 21.36s/it][Rank3]:   4%|▎         | 4/113 [01:54<53:33, 29.48s/it][Rank4]:   4%|▎         | 4/112 [01:57<54:10, 30.09s/it][Rank1]:   4%|▍         | 5/113 [02:05<42:37, 23.68s/it][Rank0]:   4%|▍         | 5/113 [02:32<56:51, 31.59s/it][Rank3]:   4%|▍         | 5/113 [02:10<44:28, 24.71s/it][Rank5]:   4%|▎         | 4/112 [02:14<1:02:14, 34.58s/it][Rank7]:   4%|▎         | 4/112 [02:17<C. Ballet.
+C
+C
+D. Oil.
+D
+A
+D
+C. Bronze.
+B. 1889.
+D
+C
+B
+D
+A
+C
+A
+C
+1:02:09, 34.53s/it][Rank6]:   4%|▎         | 4/112 [02:18<1:02:05, 34.50s/it][Rank4]:   4%|▍         | 5/112 [02:21<49:34, 27.80s/it][Rank2]:   5%|▌         | 6/113 [02:24<44:41, 25.06s/it][Rank5]:   4%|▍         | 5/112 [02:37<54:08, 30.36s/it]  [Rank6]:   4%|▍         | 5/112 [02:39<52:48, 29.61s/it]  [Rank1]:   5%|▌         | 6/113 [02:40<49:36, 27.82s/it][Rank3]:   5%|▌         | 6/113 [02:41<47:50, 26.83s/it][Rank0]:   5%|▌         | 6/113 [03:05<57:42, 32.36s/it][Rank5]:   5%|▌         | 6/112 [02:46<40:53, 23.14s/it][Rank6]:   5%|▌         | 6/112 [02:46<38:48, 21.97s/it][Rank7]:   4%|▍         | 5/112 [02:53<1:02:41, 35.16s/it][Rank4]:   5%|▌         | 6/112 [02:54<52:21, 29.63s/it][Rank2]:   6%|▌         | 7/113 [02:56<48:22, 27.38s/it][Rank7]:   5%|▌         | 6/112 [03:02<46:15, 26.18s/it]  [Rank3]:   6%|▌         | 7/113 [03:06<46:23, 26.26s/it][Rank5]:   6%|▋         | 7/112 [03:08<40:14, 22.99s/it][Rank1]:   6%|▌         | 7/113 [03:10<50:11, 28C. Four.
+C
+C
+B
+C
+C
+C
+D
+C. Edgar.
+C
+C. Red.
+B
+C
+D
+A
+C
+A
+A
+.41s/it][Rank0]:   6%|▌         | 7/113 [03:33<54:27, 30.82s/it][Rank4]:   6%|▋         | 7/112 [03:19<48:45, 27.86s/it][Rank6]:   6%|▋         | 7/112 [03:19<44:46, 25.58s/it][Rank2]:   7%|▋         | 8/113 [03:27<49:39, 28.38s/it][Rank5]:   7%|▋         | 8/112 [03:34<41:20, 23.85s/it][Rank3]:   7%|▋         | 8/113 [03:35<47:47, 27.31s/it][Rank7]:   6%|▋         | 7/112 [03:36<49:55, 28.53s/it][Rank1]:   7%|▋         | 8/113 [03:41<51:13, 29.27s/it][Rank0]:   7%|▋         | 8/113 [04:04<54:04, 30.90s/it][Rank4]:   7%|▋         | 8/112 [03:44<46:50, 27.03s/it][Rank6]:   7%|▋         | 8/112 [03:45<44:26, 25.64s/it][Rank2]:   8%|▊         | 9/113 [03:53<48:06, 27.76s/it][Rank3]:   8%|▊         | 9/113 [04:01<46:19, 26.72s/it][Rank7]:   7%|▋         | 8/112 [04:04<49:21, 28.48s/it][Rank5]:   8%|▊         | 9/112 [04:07<45:35, 26.55s/it][Rank1]:   8%|▊         | 9/113 [04:09<49:57, 28.82s/it][Rank0]:   8%|▊         | 9/113 [04:31<51:33, 29.75s/it][Rank4]:   8C
+D.
+A
+D
+D. Mitosis.
+C
+C
+B
+B
+C
+B
+B
+A
+A
+C
+D
+B
+%|▊         | 9/112 [04:10<45:54, 26.75s/it][Rank3]:   9%|▉         | 10/113 [04:10<36:44, 21.41s/it][Rank3]:  10%|▉         | 11/113 [04:13<26:54, 15.83s/it][Rank6]:   8%|▊         | 9/112 [04:14<46:02, 26.82s/it][Rank2]:   9%|▉         | 10/113 [04:15<44:19, 25.82s/it][Rank5]:   9%|▉         | 10/112 [04:15<35:51, 21.09s/it][Rank2]:  10%|▉         | 11/113 [04:18<31:51, 18.74s/it][Rank4]:   9%|▉         | 10/112 [04:18<35:52, 21.10s/it][Rank5]:  10%|▉         | 11/112 [04:25<29:27, 17.50s/it][Rank4]:  10%|▉         | 11/112 [04:27<28:55, 17.18s/it][Rank1]:   9%|▉         | 10/113 [04:29<44:45, 26.08s/it][Rank0]:   9%|▉         | 10/113 [04:51<45:37, 26.58s/it][Rank1]:  10%|▉         | 11/113 [04:32<32:09, 18.92s/it][Rank7]:   8%|▊         | 9/112 [04:34<49:54, 29.08s/it][Rank6]:   9%|▉         | 10/112 [04:46<48:23, 28.46s/it][Rank3]:  11%|█         | 12/113 [04:48<36:23, 21.62s/it][Rank2]:  11%|█         | 12/113 [04:51<39:04, 23.21s/it][Rank5]:  11%|█  A
+B
+B. Energy production.
+C
+C. Cancer Research UK.
+C
+A
+B
+C
+C
+C. Blue.
+A
+B
+C
+D
+A
+C
+       | 12/112 [04:53<34:40, 20.80s/it][Rank6]:  10%|▉         | 11/112 [04:55<37:32, 22.30s/it][Rank4]:  11%|█         | 12/112 [04:59<36:18, 21.78s/it][Rank1]:  11%|█         | 12/113 [05:02<37:56, 22.54s/it][Rank0]:  10%|▉         | 11/113 [05:24<48:40, 28.64s/it][Rank7]:   9%|▉         | 10/112 [05:07<51:04, 30.04s/it][Rank3]:  12%|█▏        | 13/113 [05:20<41:19, 24.79s/it][Rank5]:  12%|█▏        | 13/112 [05:23<38:40, 23.44s/it][Rank6]:  11%|█         | 12/112 [05:23<40:18, 24.18s/it][Rank2]:  12%|█▏        | 13/113 [05:25<44:22, 26.62s/it][Rank4]:  12%|█▏        | 13/112 [05:29<40:04, 24.29s/it][Rank0]:  11%|█         | 12/113 [05:55<49:17, 29.29s/it][Rank7]:  10%|▉         | 11/112 [05:35<49:54, 29.65s/it][Rank1]:  12%|█▏        | 13/113 [05:39<44:40, 26.81s/it][Rank6]:  12%|█▏        | 13/112 [05:50<41:27, 25.13s/it][Rank3]:  12%|█▏        | 14/113 [05:53<44:43, 27.11s/it][Rank2]:  12%|█▏        | 14/113 [05:55<45:15, 27.43s/it][Rank5]D
+A
+C
+A. 3.
+C
+D
+D
+A
+C. Pink.
+A
+C
+C
+C
+A
+C
+D
+:  12%|█▎        | 14/112 [05:56<43:12, 26.45s/it][Rank4]:  12%|█▎        | 14/112 [06:00<42:44, 26.16s/it][Rank7]:  11%|█         | 12/112 [06:04<48:52, 29.33s/it][Rank0]:  12%|█▏        | 13/113 [06:29<51:20, 30.80s/it][Rank1]:  12%|█▏        | 14/113 [06:11<46:38, 28.26s/it][Rank5]:  13%|█▎        | 15/112 [06:20<41:21, 25.58s/it][Rank6]:  12%|█▎        | 14/112 [06:21<43:56, 26.90s/it][Rank1]:  13%|█▎        | 15/113 [06:28<40:59, 25.10s/it][Rank2]:  13%|█▎        | 15/113 [06:28<47:44, 29.23s/it][Rank3]:  13%|█▎        | 15/113 [06:28<48:25, 29.65s/it][Rank7]:  12%|█▏        | 13/112 [06:30<46:38, 28.27s/it][Rank5]:  14%|█▍        | 16/112 [06:31<33:57, 21.22s/it][Rank4]:  13%|█▎        | 15/112 [06:32<45:09, 27.94s/it][Rank0]:  12%|█▏        | 14/113 [06:55<48:18, 29.28s/it][Rank3]:  14%|█▍        | 16/113 [06:38<38:00, 23.51s/it][Rank4]:  14%|█▍        | 16/112 [06:43<36:33, 22.85s/it][Rank6]:  13%|█▎        | 15/112 [06:A
+C
+A
+D. 1.
+B
+C. Enjoying a meteor shower.
+C
+A
+C
+A
+D
+D
+A
+C
+D
+C
+C
+45<41:44, 25.82s/it][Rank7]:  12%|█▎        | 14/112 [06:47<40:41, 24.91s/it][Rank0]:  13%|█▎        | 15/113 [07:10<40:54, 25.05s/it][Rank2]:  14%|█▍        | 16/113 [06:50<43:39, 27.00s/it][Rank1]:  14%|█▍        | 16/113 [06:51<39:26, 24.39s/it][Rank5]:  15%|█▌        | 17/112 [06:56<35:31, 22.44s/it][Rank3]:  15%|█▌        | 17/113 [07:02<38:03, 23.79s/it][Rank4]:  15%|█▌        | 17/112 [07:05<35:50, 22.63s/it][Rank5]:  16%|█▌        | 18/112 [07:08<30:04, 19.20s/it][Rank0]:  14%|█▍        | 16/113 [07:30<38:06, 23.57s/it][Rank7]:  13%|█▎        | 15/112 [07:10<39:30, 24.44s/it][Rank2]:  15%|█▌        | 17/113 [07:13<41:07, 25.70s/it][Rank1]:  15%|█▌        | 17/113 [07:14<38:25, 24.01s/it][Rank3]:  16%|█▌        | 18/113 [07:15<32:24, 20.47s/it][Rank4]:  16%|█▌        | 18/112 [07:17<30:28, 19.45s/it][Rank6]:  14%|█▍        | 16/112 [07:20<45:37, 28.52s/it][Rank2]:  16%|█▌        | 18/113 [07:24<33:51, 21.39s/it][Rank5]:  1C
+D. Rooftop.
+C. 2.
+D. 2.
+A
+C
+C
+C
+B
+D
+B
+D
+C
+B
+A. Blue.
+B
+7%|█▋        | 19/112 [07:38<35:10, 22.69s/it][Rank0]:  15%|█▌        | 17/113 [08:04<42:29, 26.56s/it][Rank6]:  15%|█▌        | 17/112 [07:42<42:28, 26.83s/it][Rank7]:  14%|█▍        | 16/112 [07:44<43:28, 27.18s/it][Rank1]:  16%|█▌        | 18/113 [07:45<41:11, 26.02s/it][Rank3]:  17%|█▋        | 19/113 [07:44<36:19, 23.18s/it][Rank2]:  17%|█▋        | 19/113 [07:46<33:37, 21.46s/it][Rank4]:  17%|█▋        | 19/112 [07:46<34:48, 22.46s/it][Rank6]:  16%|█▌        | 18/112 [07:54<35:01, 22.35s/it][Rank1]:  17%|█▋        | 19/113 [08:05<37:48, 24.14s/it][Rank5]:  18%|█▊        | 20/112 [08:08<38:00, 24.79s/it][Rank0]:  16%|█▌        | 18/113 [08:33<43:24, 27.41s/it][Rank7]:  15%|█▌        | 17/112 [08:12<43:40, 27.58s/it][Rank4]:  18%|█▊        | 20/112 [08:13<36:32, 23.83s/it][Rank2]:  18%|█▊        | 20/113 [08:13<36:12, 23.36s/it][Rank3]:  18%|█▊        | 20/113 [08:14<38:51, 25.07s/it][Rank7]:  16%|█▌        | 18/112 [08:24A
+D
+A. Seriousness.
+A
+B
+D
+C
+B
+A. Nature.
+B
+B
+C
+C
+C
+C
+C
+C
+<35:40, 22.77s/it][Rank2]:  19%|█▊        | 21/113 [08:24<30:09, 19.67s/it][Rank3]:  19%|█▊        | 21/113 [08:25<31:49, 20.76s/it][Rank4]:  19%|█▉        | 21/112 [08:25<30:24, 20.05s/it][Rank6]:  17%|█▋        | 19/112 [08:31<41:16, 26.63s/it][Rank0]:  17%|█▋        | 19/113 [08:53<39:31, 25.23s/it][Rank1]:  18%|█▊        | 20/113 [08:33<39:15, 25.33s/it][Rank4]:  20%|█▉        | 22/112 [08:34<25:04, 16.72s/it][Rank3]:  19%|█▉        | 22/113 [08:34<26:10, 17.26s/it][Rank5]:  19%|█▉        | 21/112 [08:45<43:01, 28.37s/it][Rank5]:  20%|█▉        | 22/112 [08:53<33:29, 22.33s/it][Rank2]:  19%|█▉        | 22/113 [08:57<35:31, 23.42s/it][Rank6]:  18%|█▊        | 20/112 [08:58<41:07, 26.82s/it][Rank7]:  17%|█▋        | 19/112 [08:59<40:48, 26.33s/it][Rank4]:  21%|██        | 23/112 [08:59<28:39, 19.32s/it][Rank0]:  18%|█▊        | 20/113 [09:27<42:55, 27.69s/it][Rank1]:  19%|█▊        | 21/113 [09:07<42:48, 27.92s/it][Rank3]:  20%C
+B
+A
+D
+B
+D. River.
+A
+C
+A
+C
+A
+C
+A
+D
+A
+C
+|██        | 23/113 [09:07<33:20, 22.23s/it][Rank5]:  21%|██        | 23/112 [09:19<34:52, 23.51s/it][Rank4]:  21%|██▏       | 24/112 [09:27<32:11, 21.95s/it][Rank2]:  20%|██        | 23/113 [09:29<39:18, 26.21s/it][Rank3]:  21%|██        | 24/113 [09:33<34:16, 23.10s/it][Rank7]:  18%|█▊        | 20/112 [09:35<45:02, 29.37s/it][Rank6]:  19%|█▉        | 21/112 [09:35<45:18, 29.87s/it][Rank1]:  19%|█▉        | 22/113 [09:40<44:39, 29.44s/it][Rank0]:  19%|█▊        | 21/113 [10:02<45:41, 29.80s/it][Rank5]:  21%|██▏       | 24/112 [09:48<36:53, 25.15s/it][Rank2]:  21%|██        | 24/113 [09:55<38:30, 25.96s/it][Rank4]:  22%|██▏       | 25/112 [10:01<36:59, 25.51s/it][Rank3]:  22%|██▏       | 25/113 [10:02<36:44, 25.06s/it][Rank6]:  20%|█▉        | 22/112 [10:06<45:18, 30.21s/it][Rank7]:  19%|█▉        | 21/112 [10:11<47:41, 31.44s/it][Rank2]:  22%|██▏       | 25/113 [10:13<34:40, 23.65s/it][Rank3]:  23%|██▎       | 26/C
+D. Polar bear.
+C
+D
+C
+D
+D
+C
+B
+C
+A
+C. Knee pads.
+B
+A
+C
+C. Judge.
+113 [10:13<30:07, 20.78s/it][Rank0]:  19%|█▉        | 22/113 [10:36<47:16, 31.17s/it][Rank1]:  20%|██        | 23/113 [10:19<48:26, 32.29s/it][Rank5]:  22%|██▏       | 25/112 [10:19<38:46, 26.74s/it][Rank2]:  23%|██▎       | 26/113 [10:20<27:16, 18.81s/it][Rank4]:  23%|██▎       | 26/112 [10:24<35:21, 24.67s/it][Rank6]:  21%|██        | 23/112 [10:33<43:09, 29.10s/it][Rank7]:  20%|█▉        | 22/112 [10:40<45:52, 30.58s/it][Rank5]:  23%|██▎       | 26/112 [10:41<36:16, 25.31s/it][Rank0]:  20%|██        | 23/113 [11:04<45:14, 30.16s/it][Rank3]:  24%|██▍       | 27/113 [10:48<35:51, 25.01s/it][Rank1]:  21%|██        | 24/113 [10:50<47:36, 32.10s/it][Rank5]:  24%|██▍       | 27/112 [10:51<29:29, 20.81s/it][Rank2]:  24%|██▍       | 27/113 [10:55<33:47, 23.58s/it][Rank4]:  24%|██▍       | 27/112 [10:56<38:10, 26.94s/it][Rank6]:  21%|██▏       | 24/112 [10:59<41:18, 28.16s/it][Rank1]:  22%|██▏       | 25/113 [11:10<4A
+D
+C
+A
+C
+D
+A
+C
+D
+A
+C
+B
+C
+D
+B. 3.
+C
+1:31, 28.31s/it][Rank6]:  22%|██▏       | 25/112 [11:09<33:11, 22.89s/it][Rank7]:  21%|██        | 23/112 [11:09<44:50, 30.23s/it][Rank0]:  21%|██        | 24/113 [11:33<44:21, 29.90s/it][Rank3]:  25%|██▍       | 28/113 [11:18<37:24, 26.41s/it][Rank5]:  25%|██▌       | 28/112 [11:18<31:51, 22.76s/it][Rank1]:  23%|██▎       | 26/113 [11:20<32:56, 22.72s/it][Rank4]:  25%|██▌       | 28/112 [11:23<37:41, 26.92s/it][Rank2]:  25%|██▍       | 28/113 [11:26<36:18, 25.63s/it][Rank0]:  22%|██▏       | 25/113 [11:50<38:20, 26.15s/it][Rank6]:  23%|██▎       | 26/112 [11:32<32:35, 22.74s/it][Rank7]:  21%|██▏       | 24/112 [11:37<43:04, 29.37s/it][Rank0]:  23%|██▎       | 26/113 [12:00<30:33, 21.08s/it][Rank3]:  26%|██▌       | 29/113 [11:42<35:56, 25.68s/it][Rank6]:  24%|██▍       | 27/112 [11:42<26:51, 18.95s/it][Rank5]:  26%|██▌       | 29/112 [11:44<32:34, 23.55s/it][Rank7]:  22%|██▏       | 25/112 [11:45<33:21C. Green.
+C
+C. Red.
+C
+C
+C
+B
+B. 4.
+A
+B
+B
+A
+C
+A
+C. 1.
+B
+, 23.00s/it][Rank4]:  26%|██▌       | 29/112 [11:45<35:19, 25.54s/it][Rank1]:  24%|██▍       | 27/113 [11:46<34:23, 23.99s/it][Rank2]:  26%|██▌       | 29/113 [11:47<34:14, 24.45s/it][Rank3]:  27%|██▋       | 30/113 [12:00<32:24, 23.43s/it][Rank5]:  27%|██▋       | 30/112 [12:00<29:06, 21.30s/it][Rank6]:  25%|██▌       | 28/112 [12:01<26:30, 18.93s/it][Rank4]:  27%|██▋       | 30/112 [12:02<31:17, 22.89s/it][Rank0]:  24%|██▍       | 27/113 [12:25<31:59, 22.32s/it][Rank2]:  27%|██▋       | 30/113 [12:04<30:48, 22.27s/it][Rank5]:  28%|██▊       | 31/112 [12:05<22:15, 16.48s/it][Rank3]:  27%|██▋       | 31/113 [12:05<24:38, 18.03s/it][Rank4]:  28%|██▊       | 31/112 [12:06<23:31, 17.43s/it][Rank7]:  23%|██▎       | 26/112 [12:09<33:30, 23.38s/it][Rank1]:  25%|██▍       | 28/113 [12:15<36:05, 25.47s/it][Rank3]:  28%|██▊       | 32/113 [12:18<22:06, 16.38s/it][Rank7]:  24%|██▍       | 27/112 [12:19<27:32B
+A. Car features.
+C
+B
+C
+C
+C. Motorsport.
+D
+C
+C. Chin.
+C
+C
+C
+C
+D
+C
+, 19.44s/it][Rank6]:  26%|██▌       | 29/112 [12:23<27:34, 19.93s/it][Rank2]:  27%|██▋       | 31/113 [12:24<29:06, 21.30s/it][Rank3]:  29%|██▉       | 33/113 [12:24<17:59, 13.49s/it][Rank5]:  29%|██▊       | 32/112 [12:33<26:30, 19.88s/it][Rank0]:  25%|██▍       | 28/113 [12:56<35:08, 24.81s/it][Rank4]:  29%|██▊       | 32/112 [12:34<27:21, 20.51s/it][Rank2]:  28%|██▊       | 32/113 [12:34<24:28, 18.13s/it][Rank1]:  26%|██▌       | 29/113 [12:39<34:45, 24.82s/it][Rank7]:  25%|██▌       | 28/112 [12:38<27:07, 19.37s/it][Rank6]:  27%|██▋       | 30/112 [12:39<25:30, 18.67s/it][Rank2]:  29%|██▉       | 33/113 [12:41<19:31, 14.65s/it][Rank4]:  29%|██▉       | 33/112 [12:42<21:53, 16.63s/it][Rank0]:  26%|██▌       | 29/113 [13:15<32:23, 23.14s/it][Rank7]:  26%|██▌       | 29/112 [12:58<26:51, 19.42s/it][Rank6]:  28%|██▊       | 31/112 [12:58<25:35, 18.95s/it][Rank1]:  27%|██▋       | 30/113 [13:00<32:39C
+B
+A
+C
+C
+D
+C
+D
+C
+B. A dog.
+C
+B. Peaceful.
+C
+D
+B
+B. Dancing.
+, 23.61s/it][Rank5]:  29%|██▉       | 33/112 [13:02<29:58, 22.77s/it][Rank3]:  30%|███       | 34/113 [13:03<27:30, 20.90s/it][Rank0]:  27%|██▋       | 30/113 [13:33<29:56, 21.64s/it][Rank7]:  27%|██▋       | 30/112 [13:15<25:31, 18.67s/it][Rank3]:  31%|███       | 35/113 [13:16<24:25, 18.79s/it][Rank1]:  27%|██▋       | 31/113 [13:18<30:16, 22.15s/it][Rank4]:  30%|███       | 34/112 [13:20<30:10, 23.21s/it][Rank2]:  30%|███       | 34/113 [13:22<29:48, 22.63s/it][Rank6]:  29%|██▊       | 32/112 [13:26<28:41, 21.51s/it][Rank3]:  32%|███▏      | 36/113 [13:26<20:40, 16.12s/it][Rank0]:  27%|██▋       | 31/113 [13:51<28:11, 20.63s/it][Rank4]:  31%|███▏      | 35/112 [13:29<24:17, 18.93s/it][Rank1]:  28%|██▊       | 32/113 [13:33<26:49, 19.87s/it][Rank2]:  31%|███       | 35/113 [13:35<25:45, 19.81s/it][Rank7]:  28%|██▊       | 31/112 [13:35<25:55, 19.20s/it][Rank4]:  32%|███▏      | 36/112 [13:37C
+D. 26.
+B. Big.
+C. 3.
+D
+A
+A
+C
+C. GS8.
+C
+D
+B
+B
+A. Ariel.
+A
+B
+<19:55, 15.73s/it][Rank2]:  32%|███▏      | 36/113 [13:41<20:10, 15.72s/it][Rank5]:  30%|███       | 34/112 [13:44<36:45, 28.28s/it][Rank2]:  33%|███▎      | 37/113 [13:46<15:46, 12.45s/it][Rank0]:  28%|██▊       | 32/113 [14:13<28:08, 20.85s/it][Rank5]:  31%|███▏      | 35/112 [13:53<28:58, 22.58s/it][Rank5]:  32%|███▏      | 36/112 [13:55<21:00, 16.58s/it][Rank6]:  29%|██▉       | 33/112 [13:59<32:56, 25.02s/it][Rank7]:  29%|██▊       | 32/112 [14:00<27:48, 20.85s/it][Rank1]:  29%|██▉       | 33/113 [14:01<29:55, 22.45s/it][Rank2]:  34%|███▎      | 38/113 [14:00<16:10, 12.93s/it][Rank3]:  33%|███▎      | 37/113 [14:04<28:33, 22.54s/it][Rank6]:  30%|███       | 34/112 [14:13<28:09, 21.66s/it][Rank0]:  29%|██▉       | 33/113 [14:36<28:39, 21.49s/it][Rank4]:  33%|███▎      | 37/112 [14:15<28:01, 22.42s/it][Rank3]:  34%|███▎      | 38/113 [14:17<24:27, 19.57s/it][Rank2]:  35%|███▍   C
+A. Mountain.
+B
+C
+D
+C. 7.
+C
+D. AIRBUS A330.
+A
+B
+C
+C
+A
+D. Playing.
+C
+D. Reading a book.
+   | 39/113 [14:19<18:09, 14.73s/it][Rank6]:  31%|███▏      | 35/112 [14:21<22:26, 17.49s/it][Rank6]:  32%|███▏      | 36/112 [14:23<16:19, 12.89s/it][Rank4]:  34%|███▍      | 38/112 [14:29<24:18, 19.72s/it][Rank5]:  33%|███▎      | 37/112 [14:30<27:29, 21.99s/it][Rank7]:  29%|██▉       | 33/112 [14:30<31:13, 23.71s/it][Rank2]:  35%|███▌      | 40/113 [14:34<17:50, 14.66s/it][Rank3]:  35%|███▍      | 39/113 [14:34<23:22, 18.96s/it][Rank1]:  30%|███       | 34/113 [14:41<36:21, 27.62s/it][Rank5]:  34%|███▍      | 38/112 [14:43<23:46, 19.28s/it][Rank7]:  30%|███       | 34/112 [14:43<26:28, 20.36s/it][Rank4]:  35%|███▍      | 39/112 [14:46<23:03, 18.95s/it][Rank0]:  30%|███       | 34/113 [15:11<33:46, 25.66s/it][Rank6]:  33%|███▎      | 37/112 [14:51<21:49, 17.46s/it][Rank1]:  31%|███       | 35/113 [14:56<30:53, 23.76s/it][Rank5]:  35%|███▍      | 39/112 [14:55<20:53, 17.17s/it][Rank2]C. Red.
+D
+A. White.
+A
+A. 1.
+A
+A
+C
+D. She kisses his face.
+D
+D
+C
+B
+A
+C. Medium.
+:  36%|███▋      | 41/113 [14:56<20:18, 16.93s/it][Rank7]:  31%|███▏      | 35/112 [14:57<23:51, 18.59s/it][Rank7]:  32%|███▏      | 36/112 [15:00<17:21, 13.70s/it][Rank3]:  35%|███▌      | 40/113 [15:03<26:39, 21.91s/it][Rank0]:  31%|███       | 35/113 [15:26<29:04, 22.37s/it][Rank6]:  34%|███▍      | 38/112 [15:05<20:11, 16.37s/it][Rank1]:  32%|███▏      | 36/113 [15:09<26:36, 20.74s/it][Rank1]:  33%|███▎      | 37/113 [15:14<20:05, 15.87s/it][Rank2]:  37%|███▋      | 42/113 [15:15<20:47, 17.57s/it][Rank4]:  36%|███▌      | 40/112 [15:16<26:33, 22.13s/it][Rank0]:  32%|███▏      | 36/113 [15:38<25:00, 19.49s/it][Rank6]:  35%|███▍      | 39/112 [15:16<18:12, 14.97s/it][Rank0]:  33%|███▎      | 37/113 [15:43<19:10, 15.14s/it][Rank5]:  36%|███▌      | 40/112 [15:23<24:23, 20.33s/it][Rank3]:  36%|███▋      | 41/113 [15:25<26:15, 21.88s/it][Rank7]:  33%|███▎      | 37/112 [1A. Kangaroo.
+A
+C
+A
+C
+D
+C
+C
+C
+C. 0.
+A. Interested.
+C
+D
+C
+C
+C
+5:26<21:49, 17.46s/it][Rank1]:  34%|███▎      | 38/113 [15:29<19:28, 15.58s/it][Rank4]:  37%|███▋      | 41/112 [15:31<23:38, 19.98s/it][Rank5]:  37%|███▋      | 41/112 [15:36<21:30, 18.18s/it][Rank6]:  36%|███▌      | 40/112 [15:40<21:13, 17.68s/it][Rank3]:  37%|███▋      | 42/113 [15:44<25:05, 21.21s/it][Rank0]:  34%|███▎      | 38/113 [16:08<22:32, 18.04s/it][Rank2]:  38%|███▊      | 43/113 [15:49<26:12, 22.47s/it][Rank4]:  38%|███▊      | 42/112 [15:49<22:49, 19.57s/it][Rank7]:  34%|███▍      | 38/112 [15:53<24:56, 20.23s/it][Rank1]:  35%|███▍      | 39/113 [15:54<22:53, 18.56s/it][Rank6]:  37%|███▋      | 41/112 [15:54<19:20, 16.34s/it][Rank5]:  38%|███▊      | 42/112 [16:00<23:13, 19.90s/it][Rank7]:  35%|███▍      | 39/112 [16:05<21:37, 17.78s/it][Rank1]:  35%|███▌      | 40/113 [16:09<21:12, 17.44s/it][Rank0]:  35%|███▍      | 39/113 [16:33<24:53, 20.18s/it][Rank6]:  3D
+D
+A
+A
+A
+C. Blue.
+B
+C
+A
+B
+B
+B
+C
+C
+A. 2.
+8%|███▊      | 42/112 [16:17<21:35, 18.51s/it][Rank3]:  38%|███▊      | 43/113 [16:18<29:00, 24.87s/it][Rank2]:  39%|███▉      | 44/113 [16:18<28:07, 24.45s/it][Rank4]:  38%|███▊      | 43/112 [16:20<26:20, 22.90s/it][Rank0]:  35%|███▌      | 40/113 [16:47<22:20, 18.36s/it][Rank2]:  40%|███▉      | 45/113 [16:27<22:25, 19.79s/it][Rank7]:  36%|███▌      | 40/112 [16:29<23:44, 19.78s/it][Rank1]:  36%|███▋      | 41/113 [16:32<22:53, 19.08s/it][Rank5]:  38%|███▊      | 43/112 [16:32<27:00, 23.48s/it][Rank3]:  39%|███▉      | 44/113 [16:46<29:51, 25.97s/it][Rank0]:  36%|███▋      | 41/113 [17:11<23:46, 19.81s/it][Rank7]:  37%|███▋      | 41/112 [16:51<24:15, 20.50s/it][Rank1]:  37%|███▋      | 42/113 [16:54<23:31, 19.88s/it][Rank6]:  38%|███▊      | 43/112 [16:53<27:26, 23.86s/it][Rank3]:  40%|███▉      | 45/113 [16:56<23:48, 21.01s/it][Rank4]:  39%|███▉      | 44/112 [16:D
+C
+C
+D
+D
+C
+C
+C. 6.
+C
+C. 3.
+D
+C. Yellow.
+C. Metal.
+D
+C. Pink.
+B
+56<30:37, 27.03s/it][Rank2]:  41%|████      | 46/113 [17:02<27:09, 24.32s/it][Rank4]:  40%|████      | 45/112 [17:06<24:13, 21.69s/it][Rank5]:  39%|███▉      | 44/112 [17:08<31:02, 27.39s/it][Rank0]:  37%|███▋      | 42/113 [17:33<24:28, 20.68s/it][Rank7]:  38%|███▊      | 42/112 [17:15<24:56, 21.38s/it][Rank3]:  41%|████      | 46/113 [17:16<23:08, 20.73s/it][Rank5]:  40%|████      | 45/112 [17:25<27:09, 24.32s/it][Rank1]:  38%|███▊      | 43/113 [17:28<28:04, 24.06s/it][Rank4]:  41%|████      | 46/112 [17:27<23:49, 21.65s/it][Rank6]:  39%|███▉      | 44/112 [17:28<30:39, 27.04s/it][Rank2]:  42%|████▏     | 47/113 [17:36<29:55, 27.21s/it][Rank5]:  41%|████      | 46/112 [17:44<24:59, 22.72s/it][Rank0]:  38%|███▊      | 43/113 [18:07<28:33, 24.47s/it][Rank6]:  40%|████      | 45/112 [17:45<26:43, 23.93s/it][Rank3]:  42%|████▏     | 47/113 [17:50<27:13, 24.74s/it][Rank7]: B. Red and yellow.
+C
+D
+A. 1.
+A
+A
+B. 1.
+C. Calm.
+A. 34.
+D. Blue.
+A
+C
+C. 5.
+C
+B
+ 38%|███▊      | 43/112 [17:51<29:36, 25.74s/it][Rank1]:  39%|███▉      | 44/113 [17:59<30:06, 26.18s/it][Rank4]:  42%|████▏     | 47/112 [18:01<27:24, 25.29s/it][Rank2]:  42%|████▏     | 48/113 [18:08<31:11, 28.79s/it][Rank7]:  39%|███▉      | 44/112 [18:15<28:39, 25.29s/it][Rank1]:  40%|███▉      | 45/113 [18:18<27:26, 24.21s/it][Rank5]:  42%|████▏     | 47/112 [18:18<28:06, 25.95s/it][Rank0]:  39%|███▉      | 44/113 [18:42<31:57, 27.79s/it][Rank3]:  42%|████▏     | 48/113 [18:23<29:37, 27.35s/it][Rank6]:  41%|████      | 46/112 [18:26<32:10, 29.24s/it][Rank7]:  40%|████      | 45/112 [18:31<25:11, 22.56s/it][Rank4]:  43%|████▎     | 48/112 [18:31<28:34, 26.79s/it][Rank2]:  43%|████▎     | 49/113 [18:36<30:21, 28.46s/it][Rank3]:  43%|████▎     | 49/113 [18:38<25:06, 23.54s/it][Rank0]:  40%|███▉      | 45/113 [19:03<29:06, 25.68s/it][Rank4]:  44%|████▍C
+C
+C
+C
+C. Yellow.
+C. Green.
+C. Yellow arrow.
+C. 3.
+B. Happy.
+C
+B. 2.
+B
+C
+B
+C
+     | 49/112 [18:45<23:59, 22.85s/it][Rank2]:  44%|████▍     | 50/113 [18:47<24:33, 23.39s/it][Rank3]:  44%|████▍     | 50/113 [18:48<20:31, 19.54s/it][Rank5]:  43%|████▎     | 48/112 [18:49<29:23, 27.55s/it][Rank4]:  45%|████▍     | 50/112 [18:49<17:51, 17.29s/it][Rank1]:  41%|████      | 46/113 [18:54<30:54, 27.68s/it][Rank2]:  45%|████▌     | 51/113 [18:57<19:58, 19.33s/it][Rank3]:  45%|████▌     | 51/113 [18:57<16:59, 16.44s/it][Rank4]:  46%|████▌     | 51/112 [18:58<14:49, 14.59s/it][Rank6]:  42%|████▏     | 47/112 [19:00<33:10, 30.62s/it][Rank3]:  46%|████▌     | 52/113 [19:01<12:44, 12.54s/it][Rank4]:  46%|████▋     | 52/112 [19:01<11:16, 11.28s/it][Rank5]:  44%|████▍     | 49/112 [19:03<24:35, 23.41s/it][Rank4]:  47%|████▋     | 53/112 [19:06<09:15,  9.41s/it][Rank7]:  41%|████      | 46/112 [19:07<29:13, 26.56s/it][Rank5]:  45%|████▍     | 5C
+B
+A
+C
+C. Joyful.
+A. 7.
+A
+A. 1.
+A
+D
+C
+C
+C. 4.
+B
+C
+0/112 [19:07<18:17, 17.70s/it][Rank3]:  47%|████▋     | 53/113 [19:13<12:29, 12.50s/it][Rank2]:  46%|████▌     | 52/113 [19:14<18:49, 18.52s/it][Rank4]:  48%|████▊     | 54/112 [19:15<09:03,  9.37s/it][Rank0]:  41%|████      | 46/113 [19:38<31:47, 28.47s/it][Rank7]:  42%|████▏     | 47/112 [19:16<23:07, 21.35s/it][Rank5]:  46%|████▌     | 51/112 [19:20<16:26, 16.16s/it][Rank3]:  48%|████▊     | 54/113 [19:23<11:20, 11.54s/it][Rank5]:  46%|████▋     | 52/112 [19:23<12:08, 12.15s/it][Rank2]:  47%|████▋     | 53/113 [19:26<16:33, 16.56s/it][Rank1]:  42%|████▏     | 47/113 [19:27<32:13, 29.30s/it][Rank5]:  47%|████▋     | 53/112 [19:27<09:46,  9.93s/it][Rank6]:  43%|████▎     | 48/112 [19:32<33:12, 31.13s/it][Rank4]:  49%|████▉     | 55/112 [19:33<11:20, 11.93s/it][Rank2]:  48%|████▊     | 54/113 [19:34<13:54, 14.14s/it][Rank1]:  42%|████▏     | 48/113 D
+C
+C
+C. Volleyball.
+C. 2.
+A
+B
+D
+C
+D
+D
+A
+C
+C
+B
+[19:36<25:07, 23.19s/it][Rank3]:  49%|████▊     | 55/113 [19:39<12:37, 13.06s/it][Rank5]:  48%|████▊     | 54/112 [19:41<10:39, 11.02s/it][Rank7]:  43%|████▎     | 48/112 [19:47<25:43, 24.11s/it][Rank2]:  49%|████▊     | 55/113 [19:53<14:53, 15.40s/it][Rank0]:  42%|████▏     | 47/113 [20:15<34:12, 31.10s/it][Rank6]:  44%|████▍     | 49/112 [19:58<30:56, 29.47s/it][Rank5]:  49%|████▉     | 55/112 [19:58<12:16, 12.93s/it][Rank0]:  42%|████▏     | 48/113 [20:24<26:24, 24.38s/it][Rank6]:  45%|████▍     | 50/112 [20:02<22:35, 21.86s/it][Rank1]:  43%|████▎     | 49/113 [20:06<26:55, 25.24s/it][Rank4]:  50%|█████     | 56/112 [20:08<17:26, 18.68s/it][Rank3]:  50%|████▉     | 56/113 [20:10<17:37, 18.55s/it][Rank7]:  44%|████▍     | 49/112 [20:10<25:11, 24.00s/it][Rank7]:  45%|████▍     | 50/112 [20:14<18:23, 17.80s/it][Rank6]:  46%|████▌     | 51/112 [20:A
+B
+C. Brazil.
+C. Hacking.
+C
+C
+A
+A
+D. 3.
+A
+C
+C
+A. Purple.
+C
+A
+14<19:13, 18.92s/it][Rank1]:  44%|████▍     | 50/113 [20:18<22:22, 21.32s/it][Rank1]:  45%|████▌     | 51/113 [20:21<16:23, 15.86s/it][Rank4]:  51%|█████     | 57/112 [20:23<16:08, 17.61s/it][Rank2]:  50%|████▉     | 56/113 [20:23<18:58, 19.98s/it][Rank3]:  50%|█████     | 57/113 [20:24<15:57, 17.10s/it][Rank7]:  46%|████▌     | 51/112 [20:26<16:21, 16.10s/it][Rank0]:  43%|████▎     | 49/113 [20:51<26:58, 25.28s/it][Rank5]:  50%|█████     | 56/112 [20:31<17:33, 18.80s/it][Rank2]:  50%|█████     | 57/113 [20:37<16:50, 18.04s/it][Rank1]:  46%|████▌     | 52/113 [20:38<16:24, 16.14s/it][Rank3]:  51%|█████▏    | 58/113 [20:41<15:32, 16.95s/it][Rank4]:  52%|█████▏    | 58/112 [20:41<15:57, 17.74s/it][Rank6]:  46%|████▋     | 52/112 [20:42<21:43, 21.72s/it][Rank6]:  47%|████▋     | 53/112 [20:48<16:30, 16.79s/it][Rank2]:  51%|█████▏    | 58/113 [2C
+C. Number 16.
+A. Sword.
+A
+B. Flash.
+A. 3.
+C
+B
+A
+A
+A
+B
+B
+C
+B
+0:50<15:15, 16.64s/it][Rank1]:  47%|████▋     | 53/113 [20:52<15:21, 15.36s/it][Rank4]:  53%|█████▎    | 59/112 [20:52<13:55, 15.76s/it][Rank0]:  44%|████▍     | 50/113 [21:15<25:55, 24.69s/it][Rank7]:  46%|████▋     | 52/112 [20:53<19:16, 19.27s/it][Rank0]:  45%|████▌     | 51/113 [21:18<18:46, 18.18s/it][Rank5]:  51%|█████     | 57/112 [20:59<19:48, 21.61s/it][Rank1]:  48%|████▊     | 54/113 [21:01<13:20, 13.57s/it][Rank7]:  47%|████▋     | 53/112 [21:01<15:51, 16.13s/it][Rank6]:  48%|████▊     | 54/112 [21:02<15:32, 16.08s/it][Rank3]:  52%|█████▏    | 59/113 [21:06<17:32, 19.49s/it][Rank0]:  46%|████▌     | 52/113 [21:35<18:16, 17.97s/it][Rank2]:  52%|█████▏    | 59/113 [21:14<16:45, 18.62s/it][Rank7]:  48%|████▊     | 54/112 [21:15<14:50, 15.36s/it][Rank5]:  52%|█████▏    | 58/112 [21:17<18:32, 20.61s/it][Rank1]:  49%|████▊     | 55/11A
+B
+B
+C. Maxi Rodriguez.
+C. Uruguay.
+C
+D
+A. Forward.
+C
+C
+A
+A
+B
+B
+C. TCL.
+3 [21:19<14:13, 14.71s/it][Rank4]:  54%|█████▎    | 60/112 [21:18<16:13, 18.72s/it][Rank6]:  49%|████▉     | 55/112 [21:25<17:08, 18.04s/it][Rank4]:  54%|█████▍    | 61/112 [21:25<13:05, 15.41s/it][Rank5]:  53%|█████▎    | 59/112 [21:28<15:40, 17.74s/it][Rank3]:  53%|█████▎    | 60/113 [21:32<18:56, 21.45s/it][Rank4]:  55%|█████▌    | 62/112 [21:36<11:38, 13.98s/it][Rank7]:  49%|████▉     | 55/112 [21:37<16:30, 17.38s/it][Rank2]:  53%|█████▎    | 60/113 [21:37<17:49, 20.18s/it][Rank3]:  54%|█████▍    | 61/113 [21:38<14:29, 16.72s/it][Rank0]:  47%|████▋     | 53/113 [22:04<21:16, 21.28s/it][Rank5]:  54%|█████▎    | 60/112 [21:47<15:40, 18.10s/it][Rank7]:  50%|█████     | 56/112 [21:50<15:01, 16.10s/it][Rank1]:  50%|████▉     | 56/113 [21:52<19:12, 20.22s/it][Rank0]:  48%|████▊     | 54/113 [22:13<17:21, 17.65s/it][Rank5]:  54%|█████A
+A
+A
+A
+C
+B. 5.
+B
+C
+B
+C. Lilly.
+C. Number 5.
+B
+A. 5.
+D
+C
+▍    | 61/112 [21:54<12:28, 14.68s/it][Rank3]:  55%|█████▍    | 62/113 [21:55<14:23, 16.94s/it][Rank4]:  56%|█████▋    | 63/112 [21:56<12:45, 15.62s/it][Rank6]:  50%|█████     | 56/112 [21:57<20:52, 22.36s/it][Rank1]:  50%|█████     | 57/113 [22:03<16:20, 17.50s/it][Rank2]:  54%|█████▍    | 61/113 [22:02<18:43, 21.61s/it][Rank5]:  55%|█████▌    | 62/112 [22:05<11:14, 13.48s/it][Rank4]:  57%|█████▋    | 64/112 [22:06<11:12, 14.00s/it][Rank0]:  49%|████▊     | 55/113 [22:30<16:50, 17.42s/it][Rank3]:  56%|█████▌    | 63/113 [22:12<14:07, 16.95s/it][Rank1]:  51%|█████▏    | 58/113 [22:15<14:43, 16.06s/it][Rank7]:  51%|█████     | 57/112 [22:16<17:34, 19.17s/it][Rank2]:  55%|█████▍    | 62/113 [22:19<17:03, 20.07s/it][Rank5]:  56%|█████▋    | 63/112 [22:22<11:57, 14.65s/it][Rank3]:  57%|█████▋    | 64/113 [22:24<12:26, 15.23s/it][Rank6]:  5D
+C
+C
+A
+B
+B. Baseball.
+A
+A. 23.
+B
+B
+A
+A. Yahoo.
+C. America.
+B
+1%|█████     | 57/112 [22:24<21:43, 23.69s/it][Rank4]:  58%|█████▊    | 65/112 [22:24<12:04, 15.42s/it][Rank0]:  50%|████▉     | 56/113 [22:53<18:10, 19.13s/it][Rank5]:  57%|█████▋    | 64/112 [22:33<10:51, 13.57s/it][Rank2]:  56%|█████▌    | 63/113 [22:36<15:54, 19.09s/it][Rank1]:  52%|█████▏    | 59/113 [22:40<16:37, 18.47s/it][Rank4]:  59%|█████▉    | 66/112 [22:41<12:08, 15.83s/it][Rank2]:  57%|█████▋    | 64/113 [22:42<12:26, 15.23s/it][Rank0]:  50%|█████     | 57/113 [23:05<15:50, 16.97s/it][Rank5]:  58%|█████▊    | 65/112 [22:52<11:50, 15.12s/it][Rank3]:  58%|█████▊    | 65/113 [22:52<15:19, 19.16s/it][Rank7]:  52%|█████▏    | 58/112 [22:54<22:16, 24.76s/it][Rank0]:  51%|█████▏    | 58/113 [23:17<14:07, 15.42s/it][Rank6]:  52%|█████▏    | 58/112 [22:59<24:25, 27.14s/it][Rank1]:  53%|█████▎    | 60/113 [23:04<17:46, 20A
+A
+B
+A
+A
+A
+C
+A
+A
+B
+A
+C
+B
+C
+C. 7.
+.13s/it][Rank3]:  58%|█████▊    | 66/113 [23:07<14:03, 17.95s/it][Rank4]:  60%|█████▉    | 67/112 [23:07<14:10, 18.90s/it][Rank2]:  58%|█████▊    | 65/113 [23:08<14:48, 18.50s/it][Rank6]:  53%|█████▎    | 59/112 [23:08<19:08, 21.67s/it][Rank7]:  53%|█████▎    | 59/112 [23:18<21:29, 24.32s/it][Rank4]:  61%|██████    | 68/112 [23:18<12:02, 16.41s/it][Rank5]:  59%|█████▉    | 66/112 [23:22<15:07, 19.72s/it][Rank2]:  58%|█████▊    | 66/113 [23:23<13:41, 17.48s/it][Rank4]:  62%|██████▏   | 69/112 [23:25<09:47, 13.65s/it][Rank1]:  54%|█████▍    | 61/113 [23:27<18:26, 21.27s/it][Rank6]:  54%|█████▎    | 60/112 [23:29<18:32, 21.39s/it][Rank4]:  62%|██████▎   | 70/112 [23:31<07:51, 11.24s/it][Rank0]:  52%|█████▏    | 59/113 [23:54<19:37, 21.80s/it][Rank3]:  59%|█████▉    | 67/113 [23:32<15:23, 20.08s/it][Rank6]:  54%|█████�B
+B
+C
+C
+A. 2.
+B
+B
+C
+B
+B
+B
+B
+D
+B. 1.
+B
+�    | 61/112 [23:34<13:56, 16.41s/it][Rank2]:  59%|█████▉    | 67/113 [23:34<11:49, 15.43s/it][Rank4]:  63%|██████▎   | 71/112 [23:36<06:22,  9.34s/it][Rank7]:  54%|█████▎    | 60/112 [23:36<19:27, 22.45s/it][Rank7]:  54%|█████▍    | 61/112 [23:39<14:17, 16.82s/it][Rank1]:  55%|█████▍    | 62/113 [23:44<16:57, 19.95s/it][Rank6]:  55%|█████▌    | 62/112 [23:44<12:08, 14.56s/it][Rank5]:  60%|█████▉    | 67/112 [23:48<16:02, 21.39s/it][Rank3]:  60%|██████    | 68/113 [23:52<15:00, 20.01s/it][Rank2]:  60%|██████    | 68/113 [23:52<12:12, 16.27s/it][Rank0]:  53%|█████▎    | 60/113 [24:16<19:28, 22.05s/it][Rank5]:  61%|██████    | 68/112 [23:57<13:04, 17.82s/it][Rank2]:  61%|██████    | 69/113 [23:59<09:48, 13.37s/it][Rank3]:  61%|██████    | 69/113 [23:59<11:46, 16.06s/it][Rank6]:  56%|█████▋    | 63/112 [24:01<12:27, 15.26s/it][RaC. Electric guitar.
+B
+A
+A. Musical theatre.
+C
+A
+A
+B
+A
+A
+B
+D
+C
+C
+nk3]:  62%|██████▏   | 70/113 [24:04<09:14, 12.90s/it][Rank5]:  62%|██████▏   | 69/112 [24:06<10:47, 15.07s/it][Rank4]:  64%|██████▍   | 72/112 [24:08<10:52, 16.31s/it][Rank2]:  62%|██████▏   | 70/113 [24:09<08:54, 12.43s/it][Rank5]:  62%|██████▎   | 70/112 [24:11<08:23, 12.00s/it][Rank7]:  55%|█████▌    | 62/112 [24:11<17:49, 21.39s/it][Rank1]:  56%|█████▌    | 63/113 [24:14<19:03, 22.87s/it][Rank5]:  63%|██████▎   | 71/112 [24:16<06:45,  9.88s/it][Rank6]:  57%|█████▋    | 64/112 [24:17<12:19, 15.42s/it][Rank3]:  63%|██████▎   | 71/113 [24:18<09:12, 13.15s/it][Rank0]:  54%|█████▍    | 61/113 [24:41<19:49, 22.88s/it][Rank1]:  57%|█████▋    | 64/113 [24:21<14:46, 18.10s/it][Rank2]:  63%|██████▎   | 71/113 [24:22<08:45, 12.52s/it][Rank0]:  55%|█████▍    | 62/113 [24:46<14:43, 17.33s/it][Rank7]:  56%|█████�C
+C
+C
+A
+C
+C
+B
+C. England.
+A
+B
+A
+C
+A
+A
+�    | 63/112 [24:30<16:39, 20.40s/it][Rank6]:  58%|█████▊    | 65/112 [24:35<12:45, 16.29s/it][Rank4]:  65%|██████▌   | 73/112 [24:40<13:38, 21.00s/it][Rank7]:  57%|█████▋    | 64/112 [24:46<15:23, 19.23s/it][Rank1]:  58%|█████▊    | 65/113 [24:49<16:52, 21.10s/it][Rank3]:  64%|██████▎   | 72/113 [24:50<12:49, 18.77s/it][Rank5]:  64%|██████▍   | 72/112 [24:51<11:47, 17.69s/it][Rank2]:  64%|██████▎   | 72/113 [24:52<12:14, 17.92s/it][Rank0]:  56%|█████▌    | 63/113 [25:18<18:12, 21.85s/it][Rank0]:  57%|█████▋    | 64/113 [25:25<14:19, 17.55s/it][Rank6]:  59%|█████▉    | 66/112 [25:07<16:05, 20.99s/it][Rank6]:  60%|█████▉    | 67/112 [25:13<12:27, 16.62s/it][Rank4]:  66%|██████▌   | 74/112 [25:16<16:02, 25.32s/it][Rank0]:  58%|█████▊    | 65/113 [25:40<13:25, 16.79s/it][Rank5]:  65%|██████▌   | 73/112 [25:20<13:42, 21.0C
+C
+D
+B
+C
+C
+C
+C. Red.
+C
+C
+C. Red.
+B
+B. Only Liber Win.
+B. 4.
+D
+8s/it][Rank7]:  58%|█████▊    | 65/112 [25:20<18:36, 23.77s/it][Rank1]:  58%|█████▊    | 66/113 [25:22<19:16, 24.61s/it][Rank3]:  65%|██████▍   | 73/113 [25:21<15:01, 22.54s/it][Rank4]:  67%|██████▋   | 75/112 [25:22<12:05, 19.62s/it][Rank6]:  61%|██████    | 68/112 [25:22<10:34, 14.41s/it][Rank2]:  65%|██████▍   | 73/113 [25:27<15:17, 22.93s/it][Rank1]:  59%|█████▉    | 67/113 [25:33<15:49, 20.63s/it][Rank6]:  62%|██████▏   | 69/112 [25:33<09:29, 13.25s/it][Rank6]:  62%|██████▎   | 70/112 [25:42<08:23, 11.98s/it][Rank6]:  63%|██████▎   | 71/112 [25:47<06:49, 10.00s/it][Rank4]:  68%|██████▊   | 76/112 [25:48<12:59, 21.64s/it][Rank7]:  59%|█████▉    | 66/112 [25:52<19:59, 26.07s/it][Rank0]:  58%|█████▊    | 66/113 [26:15<17:22, 22.18s/it][Rank1]:  60%|██████    | 68/113 [25:55<15:45, 21.02s/it][Rank5]:  66%|███D
+A
+C
+A
+A
+A
+C
+C
+B
+B
+A
+A
+C
+C. 200.
+███▌   | 74/112 [25:55<15:58, 25.23s/it][Rank3]:  65%|██████▌   | 74/113 [25:56<16:58, 26.13s/it][Rank7]:  60%|█████▉    | 67/112 [25:57<14:52, 19.83s/it][Rank2]:  65%|██████▌   | 74/113 [26:01<17:04, 26.26s/it][Rank3]:  66%|██████▋   | 75/113 [26:05<13:16, 20.95s/it][Rank0]:  59%|█████▉    | 67/113 [26:27<14:40, 19.15s/it][Rank2]:  66%|██████▋   | 75/113 [26:06<12:33, 19.83s/it][Rank0]:  60%|██████    | 68/113 [26:32<11:05, 14.78s/it][Rank4]:  69%|██████▉   | 77/112 [26:20<14:19, 24.55s/it][Rank5]:  67%|██████▋   | 75/112 [26:21<15:33, 25.24s/it][Rank6]:  64%|██████▍   | 72/112 [26:23<11:47, 17.70s/it][Rank7]:  61%|██████    | 68/112 [26:24<16:04, 21.93s/it][Rank1]:  61%|██████    | 69/113 [26:25<17:23, 23.71s/it][Rank2]:  67%|██████▋   | 76/113 [26:27<12:32, 20.34s/it][Rank3]:  67%|██████▋   | 76/113 [2C. Adolescents.
+A. 5.
+A
+C
+C
+D
+B
+C
+B
+C. Himself.
+D
+C. 3.
+B
+A
+6:28<13:21, 21.67s/it][Rank7]:  62%|██████▏   | 69/112 [26:33<13:03, 18.22s/it][Rank0]:  61%|██████    | 69/113 [26:57<13:02, 17.79s/it][Rank1]:  62%|██████▏   | 70/113 [26:36<14:09, 19.77s/it][Rank2]:  68%|██████▊   | 77/113 [26:35<10:02, 16.74s/it][Rank3]:  68%|██████▊   | 77/113 [26:36<10:27, 17.44s/it][Rank6]:  65%|██████▌   | 73/112 [26:42<11:49, 18.19s/it][Rank7]:  62%|██████▎   | 70/112 [26:43<10:53, 15.56s/it][Rank5]:  68%|██████▊   | 76/112 [26:44<14:50, 24.75s/it][Rank0]:  62%|██████▏   | 70/113 [27:07<11:10, 15.58s/it][Rank1]:  63%|██████▎   | 71/113 [26:50<12:42, 18.15s/it][Rank0]:  63%|██████▎   | 71/113 [27:15<09:12, 13.14s/it][Rank4]:  70%|██████▉   | 78/112 [26:54<15:30, 27.38s/it][Rank7]:  63%|██████▎   | 71/112 [26:54<09:42, 14.22s/it][Rank1]:  64%|██████▎   | 72/113 [27:00<10:41, 15.64sC
+B
+A. 6.
+C
+D. A microphone.
+A
+A
+A. Chinese clothes.
+A
+A
+D
+C
+A
+D
+A
+/it][Rank0]:  64%|██████▎   | 72/113 [27:24<08:09, 11.94s/it][Rank2]:  69%|██████▉   | 78/113 [27:09<12:42, 21.79s/it][Rank3]:  69%|██████▉   | 78/113 [27:10<13:13, 22.68s/it][Rank5]:  69%|██████▉   | 77/112 [27:17<15:54, 27.26s/it][Rank6]:  66%|██████▌   | 74/112 [27:18<14:46, 23.32s/it][Rank4]:  71%|███████   | 79/112 [27:21<15:06, 27.47s/it][Rank5]:  70%|██████▉   | 78/112 [27:28<12:36, 22.24s/it][Rank7]:  64%|██████▍   | 72/112 [27:28<13:28, 20.21s/it][Rank2]:  70%|██████▉   | 79/113 [27:28<11:54, 21.00s/it][Rank1]:  65%|██████▍   | 73/113 [27:34<14:10, 21.25s/it][Rank0]:  65%|██████▍   | 73/113 [27:56<11:56, 17.91s/it][Rank3]:  70%|██████▉   | 79/113 [27:37<13:31, 23.87s/it][Rank6]:  67%|██████▋   | 75/112 [27:41<14:24, 23.36s/it][Rank4]:  71%|███████▏  | 80/112 [27:43<13:39, 25.61s/it][Rank7]: C. Calm.
+A
+C
+B. Blue.
+B
+C. Coins.
+C. 9.
+C
+B. 3.
+A
+D
+C
+C
+D
+ 65%|██████▌   | 73/112 [27:46<12:38, 19.45s/it][Rank2]:  71%|███████   | 80/113 [27:48<11:17, 20.54s/it][Rank0]:  65%|██████▌   | 74/113 [28:12<11:20, 17.45s/it][Rank5]:  71%|███████   | 79/112 [27:55<13:06, 23.83s/it][Rank3]:  71%|███████   | 80/113 [27:56<12:15, 22.29s/it][Rank7]:  66%|██████▌   | 74/112 [28:05<12:18, 19.45s/it][Rank1]:  65%|██████▌   | 74/113 [28:06<15:56, 24.52s/it][Rank6]:  68%|██████▊   | 76/112 [28:08<14:37, 24.38s/it][Rank0]:  66%|██████▋   | 75/113 [28:30<11:15, 17.77s/it][Rank4]:  72%|███████▏  | 81/112 [28:10<13:32, 26.20s/it][Rank2]:  72%|███████▏  | 81/113 [28:15<11:59, 22.49s/it][Rank5]:  71%|███████▏  | 80/112 [28:18<12:32, 23.50s/it][Rank4]:  73%|███████▎  | 82/112 [28:23<11:04, 22.16s/it][Rank3]:  72%|███████▏  | 81/113 [28:23<12:45, 23.92s/it][Rank1]:  66%|�C
+B
+C
+C
+C
+A
+A. Black.
+D
+A
+A
+A
+C
+A
+A. Grey.
+��█████▋   | 75/113 [28:26<14:32, 22.96s/it][Rank7]:  67%|██████▋   | 75/112 [28:30<12:55, 20.95s/it][Rank0]:  67%|██████▋   | 76/113 [28:53<11:53, 19.29s/it][Rank2]:  73%|███████▎  | 82/113 [28:34<11:03, 21.41s/it][Rank3]:  73%|███████▎  | 82/113 [28:35<10:30, 20.33s/it][Rank5]:  72%|███████▏  | 81/112 [28:39<11:42, 22.68s/it][Rank4]:  74%|███████▍  | 83/112 [28:41<10:06, 20.91s/it][Rank6]:  69%|██████▉   | 77/112 [28:42<15:56, 27.34s/it][Rank1]:  67%|██████▋   | 76/113 [28:48<14:05, 22.86s/it][Rank5]:  73%|███████▎  | 82/112 [28:52<09:54, 19.82s/it][Rank6]:  70%|██████▉   | 78/112 [28:54<12:55, 22.81s/it][Rank1]:  68%|██████▊   | 77/113 [28:56<11:01, 18.38s/it][Rank7]:  68%|██████▊   | 76/112 [28:56<13:37, 22.70s/it][Rank0]:  68%|██████▊   | 77/113 [29:19<12:40, 21.14s/it][Rank2]:  73%|██�A
+C
+C. Orange.
+A
+A
+A
+C
+A
+C
+C
+C
+B. 3.
+D
+A
+��████▎  | 83/113 [28:59<11:14, 22.48s/it][Rank3]:  73%|███████▎  | 83/113 [28:59<10:43, 21.47s/it][Rank4]:  75%|███████▌  | 84/112 [29:00<09:27, 20.28s/it][Rank5]:  74%|███████▍  | 83/112 [29:12<09:34, 19.82s/it][Rank3]:  74%|███████▍  | 84/113 [29:16<09:43, 20.14s/it][Rank5]:  75%|███████▌  | 84/112 [29:18<07:17, 15.62s/it][Rank1]:  69%|██████▉   | 78/113 [29:19<11:26, 19.62s/it][Rank2]:  74%|███████▍  | 84/113 [29:18<10:25, 21.57s/it][Rank0]:  69%|██████▉   | 78/113 [29:40<12:24, 21.29s/it][Rank7]:  69%|██████▉   | 77/112 [29:18<13:06, 22.47s/it][Rank6]:  71%|███████   | 79/112 [29:32<14:57, 27.19s/it][Rank4]:  76%|███████▌  | 85/112 [29:32<10:47, 23.99s/it][Rank7]:  70%|██████▉   | 78/112 [29:34<11:35, 20.44s/it][Rank2]:  75%|███████▌  | 85/113 [29:37<09:45, 20.91s/it][Rank0]:  70%|█�C
+B
+D
+A
+D
+C
+D
+B
+A
+C
+A
+A
+C
+A. Cucumber.
+�████▉   | 79/113 [29:59<11:41, 20.64s/it][Rank1]:  70%|██████▉   | 79/113 [29:39<11:11, 19.76s/it][Rank4]:  77%|███████▋  | 86/112 [29:42<08:28, 19.57s/it][Rank3]:  75%|███████▌  | 85/113 [29:47<10:48, 23.18s/it][Rank5]:  76%|███████▌  | 85/112 [29:48<09:02, 20.08s/it][Rank4]:  78%|███████▊  | 87/112 [29:49<06:41, 16.06s/it][Rank6]:  71%|███████▏  | 80/112 [29:55<13:49, 25.92s/it][Rank1]:  71%|███████   | 80/113 [29:58<10:42, 19.47s/it][Rank5]:  77%|███████▋  | 86/112 [29:59<07:30, 17.32s/it][Rank4]:  79%|███████▊  | 88/112 [30:07<06:38, 16.61s/it][Rank2]:  76%|███████▌  | 86/113 [30:08<10:41, 23.76s/it][Rank7]:  71%|███████   | 79/112 [30:09<13:42, 24.92s/it][Rank0]:  71%|███████   | 80/113 [30:32<13:21, 24.30s/it][Rank6]:  72%|███████▏  | 81/112 [30:13<12:15, 23.72s/it][Rank5]:  78%|█C
+A. Egg.
+C. Chick.
+B. 1.
+C
+A. Pizza.
+A
+B
+C
+B
+A
+B
+C. Horse-vaulting.
+B
+██████▊  | 87/112 [30:14<06:56, 16.67s/it][Rank3]:  76%|███████▌  | 86/113 [30:16<11:12, 24.93s/it][Rank2]:  77%|███████▋  | 87/113 [30:16<08:15, 19.05s/it][Rank4]:  79%|███████▉  | 89/112 [30:19<05:46, 15.04s/it][Rank3]:  77%|███████▋  | 87/113 [30:24<08:34, 19.81s/it][Rank1]:  72%|███████▏  | 81/113 [30:32<12:44, 23.91s/it][Rank5]:  79%|███████▊  | 88/112 [30:31<06:43, 16.83s/it][Rank2]:  78%|███████▊  | 88/113 [30:32<07:38, 18.33s/it][Rank6]:  73%|███████▎  | 82/112 [30:33<11:12, 22.41s/it][Rank5]:  79%|███████▉  | 89/112 [30:40<05:30, 14.36s/it][Rank3]:  78%|███████▊  | 88/113 [30:42<08:06, 19.44s/it][Rank7]:  71%|███████▏  | 80/112 [30:43<14:41, 27.56s/it][Rank0]:  72%|███████▏  | 81/113 [31:05<14:22, 26.96s/it][Rank1]:  73%|███████▎  | 82/113 [30:49<11:15, 21.80s/it][RankC. Light yellow.
+C
+C
+B
+D. It's ripe.
+C
+A
+D
+D
+C
+C
+C
+C
+6]:  74%|███████▍  | 83/112 [30:51<10:16, 21.24s/it][Rank4]:  80%|████████  | 90/112 [30:53<07:38, 20.82s/it][Rank2]:  79%|███████▉  | 89/113 [30:54<07:42, 19.27s/it][Rank6]:  75%|███████▌  | 84/112 [30:57<07:45, 16.63s/it][Rank0]:  73%|███████▎  | 82/113 [31:20<12:01, 23.29s/it][Rank3]:  79%|███████▉  | 89/113 [31:01<07:41, 19.24s/it][Rank7]:  72%|███████▏  | 81/112 [31:02<12:55, 25.01s/it][Rank1]:  73%|███████▎  | 83/113 [31:13<11:14, 22.48s/it][Rank5]:  80%|████████  | 90/112 [31:14<07:28, 20.38s/it][Rank0]:  73%|███████▎  | 83/113 [31:39<10:54, 21.81s/it][Rank7]:  73%|███████▎  | 82/112 [31:19<11:16, 22.55s/it][Rank6]:  76%|███████▌  | 85/112 [31:25<09:01, 20.07s/it][Rank4]:  81%|████████▏ | 91/112 [31:26<08:31, 24.37s/it][Rank2]:  80%|███████▉  | 90/113 [31:26<08:53, 23C
+A
+A. 16.
+A
+D
+A
+B
+A
+A
+C. Kitchen.
+D
+A
+C
+C
+.20s/it][Rank1]:  74%|███████▍  | 84/113 [31:29<09:53, 20.47s/it][Rank0]:  74%|███████▍  | 84/113 [31:53<09:29, 19.62s/it][Rank7]:  74%|███████▍  | 83/112 [31:34<09:47, 20.24s/it][Rank6]:  77%|███████▋  | 86/112 [31:35<07:20, 16.94s/it][Rank3]:  80%|███████▉  | 90/113 [31:36<09:11, 23.97s/it][Rank7]:  75%|███████▌  | 84/112 [31:40<07:23, 15.85s/it][Rank1]:  75%|███████▌  | 85/113 [31:47<09:15, 19.83s/it][Rank0]:  75%|███████▌  | 85/113 [32:10<08:44, 18.73s/it][Rank6]:  78%|███████▊  | 87/112 [31:49<06:39, 15.98s/it][Rank5]:  81%|████████▏ | 91/112 [31:50<08:42, 24.86s/it][Rank4]:  82%|████████▏ | 92/112 [31:53<08:25, 25.26s/it][Rank2]:  81%|████████  | 91/113 [31:54<08:58, 24.50s/it][Rank4]:  83%|████████▎ | 93/112 [32:02<06:27, 20.40s/it][Rank7]:  76%|███████▌  | 85/11B
+A
+A
+C
+D
+A
+B
+A
+C
+B. Makeup artist.
+A
+B. Home decoration.
+D
+C
+2 [32:05<08:24, 18.68s/it][Rank6]:  79%|███████▊  | 88/112 [32:06<06:34, 16.42s/it][Rank3]:  81%|████████  | 91/113 [32:09<09:49, 26.77s/it][Rank2]:  81%|████████▏ | 92/113 [32:11<07:49, 22.38s/it][Rank0]:  76%|███████▌  | 86/113 [32:34<09:07, 20.27s/it][Rank7]:  77%|███████▋  | 86/112 [32:15<07:03, 16.28s/it][Rank1]:  76%|███████▌  | 86/113 [32:17<10:15, 22.79s/it][Rank5]:  82%|████████▏ | 92/112 [32:16<08:26, 25.32s/it][Rank6]:  79%|███████▉  | 89/112 [32:17<05:37, 14.66s/it][Rank0]:  77%|███████▋  | 87/113 [32:42<07:17, 16.82s/it][Rank2]:  82%|████████▏ | 93/113 [32:21<06:12, 18.63s/it][Rank4]:  84%|████████▍ | 94/112 [32:24<06:14, 20.80s/it][Rank3]:  81%|████████▏ | 92/113 [32:26<08:16, 23.64s/it][Rank1]:  77%|███████▋  | 87/113 [32:29<08:32, 19.71s/it][Rank7]:  78%|███�C
+D
+C
+A
+D
+B
+C
+C. 10.
+A
+A
+C. 8.
+A. Rounded.
+C
+C. Red.
+�███▊  | 87/112 [32:31<06:42, 16.09s/it][Rank3]:  82%|████████▏ | 93/113 [32:34<06:23, 19.17s/it][Rank0]:  78%|███████▊  | 88/113 [33:00<07:09, 17.20s/it][Rank1]:  78%|███████▊  | 88/113 [32:46<07:50, 18.82s/it][Rank7]:  79%|███████▊  | 88/112 [32:50<06:46, 16.94s/it][Rank6]:  80%|████████  | 90/112 [32:53<07:44, 21.09s/it][Rank0]:  79%|███████▉  | 89/113 [33:18<06:53, 17.23s/it][Rank3]:  83%|████████▎ | 94/113 [32:56<06:16, 19.82s/it][Rank5]:  83%|████████▎ | 93/112 [32:58<09:35, 30.30s/it][Rank2]:  83%|████████▎ | 94/113 [32:59<07:44, 24.43s/it][Rank4]:  85%|████████▍ | 95/112 [33:01<07:14, 25.59s/it][Rank1]:  79%|███████▉  | 89/113 [33:06<07:38, 19.11s/it][Rank5]:  84%|████████▍ | 94/112 [33:19<08:16, 27.60s/it][Rank7]:  79%|███████▉  | 89/112 [33:20<07:56, 20.73s/it][B
+B
+A
+C
+C
+A
+C. Blue.
+D. Human.
+B
+B
+C
+C. 3.
+C. Leg press.
+Rank6]:  81%|████████▏ | 91/112 [33:21<08:10, 23.37s/it][Rank0]:  80%|███████▉  | 90/113 [33:46<07:53, 20.60s/it][Rank3]:  84%|████████▍ | 95/113 [33:29<07:11, 23.95s/it][Rank2]:  84%|████████▍ | 95/113 [33:31<08:00, 26.71s/it][Rank1]:  80%|███████▉  | 90/113 [33:35<08:28, 22.10s/it][Rank4]:  86%|████████▌ | 96/112 [33:34<07:27, 27.99s/it][Rank6]:  82%|████████▏ | 92/112 [33:49<08:10, 24.52s/it][Rank0]:  81%|████████  | 91/113 [34:14<08:23, 22.88s/it][Rank7]:  80%|████████  | 90/112 [33:54<09:08, 24.94s/it][Rank5]:  85%|████████▍ | 95/112 [33:56<08:34, 30.28s/it][Rank2]:  85%|████████▍ | 96/113 [34:00<07:44, 27.32s/it][Rank1]:  81%|████████  | 91/113 [34:03<08:43, 23.81s/it][Rank3]:  85%|████████▍ | 96/113 [34:03<07:36, 26.86s/it][Rank4]:  87%|████████▋ | 97/B
+C. Dark purple.
+C
+B. 3.
+C
+B. Enjoyable.
+C
+A
+D
+A. 2.
+D
+C. White.
+D. Cooking.
+A. Fishing.
+112 [34:06<07:17, 29.14s/it][Rank4]:  88%|████████▊ | 98/112 [34:16<05:29, 23.51s/it][Rank1]:  81%|████████▏ | 92/113 [34:20<07:38, 21.84s/it][Rank0]:  81%|████████▏ | 92/113 [34:42<08:28, 24.24s/it][Rank7]:  81%|████████▏ | 91/112 [34:21<08:54, 25.46s/it][Rank1]:  82%|████████▏ | 93/113 [34:27<05:47, 17.40s/it][Rank7]:  82%|████████▏ | 92/112 [34:26<06:26, 19.33s/it][Rank0]:  82%|████████▏ | 93/113 [34:49<06:21, 19.07s/it][Rank5]:  86%|████████▌ | 96/112 [34:27<08:10, 30.65s/it][Rank6]:  83%|████████▎ | 93/112 [34:29<09:16, 29.31s/it][Rank2]:  86%|████████▌ | 97/113 [34:31<07:35, 28.49s/it][Rank4]:  88%|████████▊ | 99/112 [34:35<04:47, 22.11s/it][Rank3]:  86%|████████▌ | 97/113 [34:36<07:41, 28.83s/it][Rank6]:  84%|████████▍ | 94/112 [34:54<08:23, 27.99s/it][Rank4]C. Drinking water.
+B
+C
+B
+A
+B
+C. White.
+C
+C. The Arc de Triomphe.
+C
+B
+A
+C
+:  89%|████████▉ | 100/112 [34:58<04:28, 22.39s/it][Rank2]:  87%|████████▋ | 98/113 [34:59<07:03, 28.25s/it][Rank5]:  87%|████████▋ | 97/112 [34:59<07:44, 30.99s/it][Rank1]:  83%|████████▎ | 94/113 [35:03<07:15, 22.91s/it][Rank0]:  83%|████████▎ | 94/113 [35:24<07:33, 23.86s/it][Rank3]:  87%|████████▋ | 98/113 [35:05<07:13, 28.91s/it][Rank7]:  83%|████████▎ | 93/112 [35:07<08:08, 25.70s/it][Rank5]:  88%|████████▊ | 98/112 [35:08<05:42, 24.43s/it][Rank2]:  88%|████████▊ | 99/113 [35:16<05:49, 24.94s/it][Rank3]:  88%|████████▊ | 99/113 [35:23<05:55, 25.42s/it][Rank0]:  84%|████████▍ | 95/113 [35:48<07:10, 23.89s/it][Rank5]:  88%|████████▊ | 99/112 [35:27<04:53, 22.57s/it][Rank7]:  84%|████████▍ | 94/112 [35:30<07:31, 25.06s/it][Rank6]:  85%|████████▍ C. Bike.
+C
+A
+C
+D
+B
+C. Music class.
+B. Bus.
+B
+C
+C. Drum kit.
+B. Black.
+B. White.
+| 95/112 [35:31<08:39, 30.57s/it][Rank4]:  90%|█████████ | 101/112 [35:32<04:44, 25.84s/it][Rank1]:  84%|████████▍ | 95/113 [35:36<07:49, 26.06s/it][Rank2]:  88%|████████▊ | 100/113 [35:38<05:13, 24.15s/it][Rank4]:  91%|█████████ | 102/112 [35:42<03:31, 21.12s/it][Rank3]:  88%|████████▊ | 100/113 [35:45<05:19, 24.58s/it][Rank5]:  89%|████████▉ | 100/112 [35:48<04:28, 22.33s/it][Rank0]:  85%|████████▍ | 96/113 [36:20<07:26, 26.28s/it][Rank7]:  85%|████████▍ | 95/112 [36:01<07:37, 26.89s/it][Rank6]:  86%|████████▌ | 96/112 [36:02<08:14, 30.88s/it][Rank4]:  92%|█████████▏| 103/112 [36:02<03:07, 20.81s/it][Rank1]:  85%|████████▍ | 96/113 [36:10<08:01, 28.33s/it][Rank2]:  89%|████████▉ | 101/113 [36:11<05:21, 26.81s/it][Rank4]:  93%|█████████▎| 104/112 [36:12<02:18, 1D
+C
+C
+A
+C
+A
+A
+A. White.
+C
+A. Afternoon.
+D
+A
+B
+A
+7.35s/it][Rank3]:  89%|████████▉ | 101/113 [36:15<05:14, 26.21s/it][Rank2]:  90%|█████████ | 102/113 [36:22<04:01, 21.95s/it][Rank5]:  90%|█████████ | 101/112 [36:24<04:49, 26.30s/it][Rank6]:  87%|████████▋ | 97/112 [36:24<07:04, 28.28s/it][Rank3]:  90%|█████████ | 102/113 [36:26<03:55, 21.38s/it][Rank0]:  86%|████████▌ | 97/113 [36:52<07:30, 28.13s/it][Rank7]:  86%|████████▌ | 96/112 [36:32<07:27, 27.98s/it][Rank2]:  91%|█████████ | 103/113 [36:32<03:05, 18.52s/it][Rank6]:  88%|████████▊ | 98/112 [36:34<05:17, 22.66s/it][Rank4]:  94%|█████████▍| 105/112 [36:38<02:20, 20.13s/it][Rank1]:  86%|████████▌ | 97/113 [36:42<07:52, 29.54s/it][Rank5]:  91%|█████████ | 102/112 [36:42<03:58, 23.86s/it][Rank3]:  91%|█████████ | 103/113 [36:46<03:31, 21.16s/it][Rank2]:  92%|�D
+D
+A
+C
+C
+B. Summer.
+C
+B
+C
+A
+A
+B. 3.
+A. Natural scenery.
+�████████▏| 104/113 [36:50<02:44, 18.24s/it][Rank6]:  88%|████████▊ | 99/112 [36:53<04:39, 21.53s/it][Rank0]:  87%|████████▋ | 98/113 [37:15<06:38, 26.59s/it][Rank7]:  87%|████████▋ | 97/112 [36:55<06:39, 26.65s/it][Rank5]:  92%|█████████▏| 103/112 [37:03<03:26, 22.90s/it][Rank3]:  92%|█████████▏| 104/113 [37:04<03:02, 20.23s/it][Rank0]:  88%|████████▊ | 99/113 [37:30<05:21, 22.93s/it][Rank1]:  87%|████████▋ | 98/113 [37:10<07:15, 29.04s/it][Rank5]:  93%|█████████▎| 104/112 [37:10<02:26, 18.34s/it][Rank7]:  88%|████████▊ | 98/112 [37:12<05:29, 23.51s/it][Rank4]:  95%|█████████▍| 106/112 [37:12<02:25, 24.23s/it][Rank2]:  93%|█████████▎| 105/113 [37:15<02:42, 20.32s/it][Rank1]:  88%|████████▊ | 99/113 [37:25<05:46, 24.79s/it][Rank6]:  89%|██████�B
+B
+A
+C
+C
+C. Bangkok.
+B
+A
+D. 2.
+B
+B
+C
+C
+�█▉ | 100/112 [37:24<04:53, 24.47s/it][Rank2]:  94%|█████████▍| 106/113 [37:26<02:01, 17.35s/it][Rank7]:  88%|████████▊ | 99/112 [37:30<04:45, 21.97s/it][Rank3]:  93%|█████████▎| 105/113 [37:30<02:55, 21.92s/it][Rank0]:  88%|████████▊ | 100/113 [37:52<04:57, 22.88s/it][Rank5]:  94%|█████████▍| 105/112 [37:37<02:24, 20.69s/it][Rank1]:  88%|████████▊ | 100/113 [37:47<05:11, 23.96s/it][Rank2]:  95%|█████████▍| 107/113 [37:46<01:49, 18.30s/it][Rank4]:  96%|█████████▌| 107/112 [37:47<02:17, 27.56s/it][Rank7]:  89%|████████▉ | 100/112 [37:59<04:50, 24.17s/it][Rank0]:  89%|████████▉ | 101/113 [38:22<04:59, 24.94s/it][Rank6]:  90%|█████████ | 101/112 [38:02<05:14, 28.55s/it][Rank3]:  94%|█████████▍| 106/113 [38:02<02:55, 25.00s/it][Rank5]:  95%|█████████▍| A
+C
+A
+C
+C
+B
+B
+A
+C
+D
+A
+C
+A
+106/112 [38:07<02:21, 23.54s/it][Rank2]:  96%|█████████▌| 108/113 [38:17<01:50, 22.01s/it][Rank1]:  89%|████████▉ | 101/113 [38:18<05:14, 26.17s/it][Rank6]:  91%|█████████ | 102/112 [38:18<04:07, 24.70s/it][Rank4]:  96%|█████████▋| 108/112 [38:18<01:53, 28.49s/it][Rank3]:  95%|█████████▍| 107/113 [38:22<02:20, 23.46s/it][Rank2]:  96%|█████████▋| 109/113 [38:23<01:09, 17.32s/it][Rank6]:  92%|█████████▏| 103/112 [38:26<02:58, 19.80s/it][Rank6]:  93%|█████████▎| 104/112 [38:34<02:09, 16.22s/it][Rank0]:  90%|█████████ | 102/113 [38:57<05:07, 27.98s/it][Rank7]:  90%|█████████ | 101/112 [38:36<05:07, 27.97s/it][Rank5]:  96%|█████████▌| 107/112 [38:40<02:12, 26.54s/it][Rank0]:  91%|█████████ | 103/113 [39:07<03:45, 22.51s/it][Rank4]:  97%|█████████▋| 109/112A. Yellow.
+A
+C. Foot.
+D
+A
+C. Plank.
+A. 3.
+C
+D
+A
+C. Black.
+A. Grey.
+B
+ [38:45<01:23, 27.98s/it][Rank1]:  90%|█████████ | 102/113 [38:53<05:16, 28.75s/it][Rank7]:  91%|█████████ | 102/112 [38:52<04:04, 24.47s/it][Rank3]:  96%|█████████▌| 108/113 [38:53<02:08, 25.62s/it][Rank0]:  92%|█████████▏| 104/113 [39:15<02:44, 18.28s/it][Rank2]:  97%|█████████▋| 110/113 [38:54<01:04, 21.49s/it][Rank5]:  96%|█████████▋| 108/112 [38:59<01:36, 24.13s/it][Rank6]:  94%|█████████▍| 105/112 [38:59<02:11, 18.78s/it][Rank7]:  92%|█████████▏| 103/112 [39:00<02:54, 19.43s/it][Rank1]:  91%|█████████ | 103/113 [39:03<03:50, 23.09s/it][Rank6]:  95%|█████████▍| 106/112 [39:03<01:26, 14.48s/it][Rank0]:  93%|█████████▎| 105/113 [39:39<02:39, 19.91s/it][Rank2]:  98%|█████████▊| 111/113 [39:18<00:43, 21.99s/it][Rank1]:  92%|█████████▏| 104/113 [3A. 6.
+B
+B. 2.
+A
+A
+D
+A
+B
+C
+C
+D. Black iron plate.
+B
+A. 6.
+9:19<03:10, 21.13s/it][Rank3]:  96%|█████████▋| 109/113 [39:20<01:44, 26.06s/it][Rank4]:  98%|█████████▊| 110/112 [39:20<01:00, 30.30s/it][Rank7]:  93%|█████████▎| 104/112 [39:23<02:42, 20.34s/it][Rank5]:  97%|█████████▋| 109/112 [39:24<01:12, 24.33s/it][Rank0]:  94%|█████████▍| 106/113 [39:51<02:01, 17.42s/it][Rank0]:  95%|█████████▍| 107/113 [39:57<01:24, 14.02s/it][Rank6]:  96%|█████████▌| 107/112 [39:38<01:42, 20.41s/it][Rank1]:  93%|█████████▎| 105/113 [39:42<02:53, 21.69s/it][Rank4]:  99%|█████████▉| 111/112 [39:45<00:28, 28.53s/it][Rank7]:  94%|█████████▍| 105/112 [39:48<02:33, 21.97s/it][Rank0]:  96%|█████████▌| 108/113 [40:11<01:10, 14.10s/it][Rank3]:  97%|█████████▋| 110/113 [39:52<01:23, 27.87s/it][Rank1]:  94%|█████████▍| 106/113D
+B. 4.
+B
+ [39:54<02:09, 18.54s/it][Rank7]:  95%|█████████▍| 106/112 [39:53<01:40, 16.74s/it][Rank0]:  96%|█████████▋| 109/113 [40:18<00:47, 11.88s/it][Rank4]: 100%|██████████| 112/112 [39:57<00:00, 23.48s/it][Rank4]: 100%|██████████| 112/112 [39:57<00:00, 21.40s/it]
+D
+C
+A
+B. 6.
+C
+C
+C
+[Rank2]:  99%|█████████▉| 112/113 [39:57<00:27, 27.23s/it][Rank6]:  96%|█████████▋| 108/112 [39:57<01:20, 20.15s/it][Rank5]:  98%|█████████▊| 110/112 [40:01<00:56, 28.28s/it][Rank7]:  96%|█████████▌| 107/112 [40:04<01:15, 15.19s/it][Rank1]:  95%|█████████▍| 107/113 [40:14<01:54, 19.09s/it][Rank3]:  98%|█████████▊| 111/113 [40:15<00:53, 26.50s/it][Rank2]: 100%|██████████| 113/113 [40:19<00:00, 25.52s/it][Rank2]: 100%|██████████| 113/113 [40:19<00:00, 21.41s/it]
+D
+A
+A
+A
+C
+A
+C. Step-ups.
+C
+[Rank7]:  96%|█████████▋| 108/112 [40:23<01:04, 16.22s/it][Rank1]:  96%|█████████▌| 108/113 [40:26<01:24, 16.99s/it][Rank0]:  97%|█████████▋| 110/113 [40:47<00:51, 17.22s/it][Rank6]:  97%|█████████▋| 109/112 [40:26<01:08, 22.78s/it][Rank3]:  99%|█████████▉| 112/113 [40:27<00:22, 22.20s/it][Rank5]:  99%|█████████▉| 111/112 [40:30<00:28, 28.57s/it][Rank1]:  96%|█████████▋| 109/113 [40:33<00:55, 13.90s/it][Rank5]: 100%|██████████| 112/112 [40:43<00:00, 23.68s/it][Rank5]: 100%|██████████| 112/112 [40:43<00:00, 21.81s/it]
+C
+[Rank3]: 100%|██████████| 113/113 [40:48<00:00, 21.80s/it][Rank3]: 100%|██████████| 113/113 [40:48<00:00, 21.67s/it]
+D. Airplane.
+C
+B
+D
+A
+A
+B
+A
+B. White.
+[Rank7]:  97%|█████████▋| 109/112 [40:50<00:58, 19.34s/it][Rank0]:  98%|█████████▊| 111/113 [41:13<00:39, 19.67s/it][Rank6]:  98%|█████████▊| 110/112 [41:02<00:53, 26.85s/it][Rank1]:  97%|█████████▋| 110/113 [41:05<00:58, 19.42s/it][Rank7]:  98%|█████████▊| 110/112 [41:14<00:41, 20.80s/it][Rank0]:  99%|█████████▉| 112/113 [41:49<00:24, 24.53s/it][Rank6]:  99%|█████████▉| 111/112 [41:28<00:26, 26.62s/it][Rank1]:  98%|█████████▊| 111/113 [41:31<00:42, 21.30s/it][Rank0]: 100%|██████████| 113/113 [41:58<00:00, 20.03s/it][Rank0]: 100%|██████████| 113/113 [41:58<00:00, 22.29s/it]
+D
+[Rank6]: 100%|██████████| 112/112 [41:37<00:00, 21.07s/it][Rank6]: 100%|██████████| 112/112 [41:37<00:00, 22.30s/it]
+C
+C
+[Rank7]:  99%|█████████▉| 111/112 [41:38<00:21, 21.91s/it][Rank7]: 100%|██████████| 112/112 [41:47<00:00, 17.77s/it][Rank7]: 100%|██████████| 112/112 [41:47<00:00, 22.38s/it]
+C. Shrimp meat.
+C
+[Rank1]:  99%|█████████▉| 112/113 [42:09<00:26, 26.42s/it][Rank1]: 100%|██████████| 113/113 [42:30<00:00, 24.81s/it][Rank1]: 100%|██████████| 113/113 [42:30<00:00, 22.57s/it]
+[2026-01-20 13:17:37] INFO - RUN - run.py: main - 378: {'nproc': 4, 'verbose': True, 'retry': 3}

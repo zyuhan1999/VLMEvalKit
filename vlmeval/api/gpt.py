@@ -235,6 +235,7 @@ class OpenAIWrapper(BaseAPI):
             # ailab的逆天api不支持格式化content, 还得给他重写
             assert len(payload["messages"][0]["content"]) == 1
             payload["messages"][0]["content"] = payload["messages"][0]["content"][0]["text"] + "/no_think"
+            payload['max_tokens'] = 1024
             response = requests.post(
                 self.api_base,
                 headers=headers, json=payload, timeout=self.timeout * 1.1, verify=False)

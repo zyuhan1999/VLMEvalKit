@@ -103,6 +103,7 @@ def parse_open_response(response):
     https://github.com/MMMU-Benchmark/MMMU/blob/51ce7f3e829c16bb44bc5445782686b4c3508794/eval/eval_utils.py#L122
     """
     if response == "API Error" or response == "":
+        print(f"API Error: {response}")
         return "API Error"
 
     # content = content.strip("\n").strip(".").strip(" ")
@@ -313,6 +314,9 @@ def get_multi_choice_info(options):
 
 def process_results(line):
     pred = line['prediction']
+    # Convert to string if it's not already a string
+    if not isinstance(pred, str):
+        pred = str(pred)
     pred = pred.rpartition('Answer:')[-1].strip()
 
     question_type = line.get("question_type", "None")
@@ -386,6 +390,7 @@ def evaluate_mmmu(samples):
     for sample in samples:
         gold_i = sample["answer"]
         pred_i = sample["parsed_pred"]
+        print(f"gold_i: {gold_i}, pred_i: {pred_i}")
         if sample["question_type"] == "multiple-choice":
             correct = eval_multi_choice(gold_i, pred_i)
         elif sample["question_type"] == "perception":
@@ -464,7 +469,7 @@ class VideoMMMU(VideoBaseDataset):
 
     def prepare_dataset(self,
                         dataset_name='VideoMMMU',
-                        repo_id='/nvme/zhuyuhan/videogpu/zhuyuhan/benchmarks/VideoMMMU'):
+                        repo_id='/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/VideoMMMU'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
@@ -757,45 +762,46 @@ class VideoMMMU(VideoBaseDataset):
 
             return df, updated_local
 
-        if judge_model is None:
-            # Original (rule-based) parsing path
-            data = load(eval_file)
-            lt = len(data)
-            lines = [data.iloc[i] for i in range(lt)]
-            tups = [(line, ) for line in lines]
-            indices = [line['index'] for line in lines]
+        # if judge_model is None:
+        # Original (rule-based) parsing path
+        data = load(eval_file)
+        lt = len(data)
+        lines = [data.iloc[i] for i in range(lt)]
+        tups = [(line, ) for line in lines]
+        indices = [line['index'] for line in lines]
 
-            ans = {}
-            if osp.exists(tmp_file):
-                ans = load(tmp_file)
-            tups = [x for x, i in zip(tups, indices) if i not in ans]
-            indices = [i for i in indices if i not in ans]
+        ans = {}
+        if osp.exists(tmp_file):
+            ans = load(tmp_file)
+        tups = [x for x, i in zip(tups, indices) if i not in ans]
+        indices = [i for i in indices if i not in ans]
 
-            if len(indices):
-                new_results = track_progress_rich(
-                    process_results,
-                    tups,
-                    nproc=nproc,
-                    chunksize=nproc,
-                    keys=indices,
-                    save=tmp_file,
-                )
-                ans = load(tmp_file)
-                for k, v in zip(indices, new_results):
-                    assert k in ans
-                    assert ans[k]['id'] == v['id'] and ans[k][
-                        'parsed_pred'] == v['parsed_pred']
+        if len(indices):
+            new_results = track_progress_rich(
+                process_results,
+                tups,
+                nproc=nproc,
+                chunksize=nproc,
+                keys=indices,
+                save=tmp_file,
+            )
+            ans = load(tmp_file)
+            for k, v in zip(indices, new_results):
+                assert k in ans
+                assert ans[k]['id'] == v['id'] and ans[k][
+                    'parsed_pred'] == v['parsed_pred']
 
-            data['parsed_pred'] = [
-                ans[idx]['parsed_pred'] for idx in data['index']
-            ]
-            dump(data, storage)
-        else:
+        data['parsed_pred'] = [
+            ans[idx]['parsed_pred'] for idx in data['index']
+        ]
+        dump(data, storage)
+
+        if judge_model is not None:
             # Judge-based parsing path (do NOT use the original rule parsing)
-            data = load(eval_file)
+            # data = load(eval_file)
             # initialize parsed_pred so downstream has the column
-            if 'parsed_pred' not in data.columns:
-                data['parsed_pred'] = 'API Error'
+            # if 'parsed_pred' not in data.columns:
+            #     data['parsed_pred'] = data['prediction']
             data, _ = apply_llm_judge_to_parsed_pred(data)
             dump(data, storage)
 
