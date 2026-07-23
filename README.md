@@ -6,7 +6,7 @@
 
 **Reproducible image and video evaluation powered by VLMEvalKit.**
 
-[![License](https://img.shields.io/github/license/zyuhan1999/VLMEvalKit?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
 [![Model](https://img.shields.io/badge/🤗%20Model-VideoChat3--4B-ffd21e?style=flat-square)](https://huggingface.co/MCG-NJU/VideoChat3-4B)
 [![Upstream](https://img.shields.io/badge/Based%20on-VLMEvalKit-5b67d6?style=flat-square)](https://github.com/open-compass/VLMEvalKit)
 
