@@ -49,16 +49,58 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
     TYPE = 'Video-MCQ'
 
-    def __init__(self, dataset='Video-MME', use_subtitle=False, nframe=0, fps=-1):
-        super().__init__(dataset=dataset, nframe=nframe, fps=fps)
+    def __init__(
+        self,
+        dataset='Video-MME',
+        use_subtitle=False,
+        nframe=0,
+        fps=-1,
+        duration_filter=None,
+        frames_limit=2048,
+        min_pixels=28 * 28,
+        max_pixels=448 * 448,
+        total_pixels=32000 * 2 * 4 * 14 * 14,
+        check_extracted_frames=True,
+    ):
+        """
+        Args:
+            dataset (str): 数据集名称，默认为 'Video-MME'
+            use_subtitle (bool): 是否使用字幕
+            nframe (int): 采样帧数（与 fps 互斥）
+            fps (int): 采样帧率（与 nframe 互斥）
+            duration_filter (str | None): 只评估某一时长子集。
+                可选值：'short'、'medium'、'long'；为 None 时不过滤，默认全量评估。
+        """
         self.use_subtitle = use_subtitle
         self.dataset_name = dataset
+        self.frames_limit = frames_limit  # following Qwen3-VL, impose a cap of 2,048 frames per video
+        self.duration_filter = duration_filter
+        self.min_pixels = min_pixels
+        self.max_pixels = max_pixels
+        self.total_pixels = total_pixels
+
+        super().__init__(
+            dataset=dataset, nframe=nframe, fps=fps, check_extracted_frames=check_extracted_frames
+        )
+
+        # 只评估指定 duration 子集（short / medium / long）
+        if self.duration_filter is not None:
+            assert 'duration' in self.data, 'duration 字段不存在，无法按时长子集过滤'
+            assert self.duration_filter in ['short', 'medium', 'long'], \
+                f'不支持的 duration_filter: {self.duration_filter}, 仅支持 short / medium / long。'
+
+            self.data = self.data[self.data['duration'] == self.duration_filter].reset_index(drop=True)
+
+            # 重新根据子集数据更新 videos 列表
+            videos = list(set(self.data['video']))
+            videos.sort()
+            self.videos = videos
 
     @classmethod
     def supported_datasets(cls):
         return ['Video-MME']
 
-    def prepare_dataset(self, dataset_name='Video-MME', repo_id='lmms-lab/Video-MME'):
+    def prepare_dataset(self, dataset_name='Video-MME', repo_id='/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/Video-MME'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
@@ -141,7 +183,9 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
                 data_file.to_csv(osp.join(pth, f'{dataset_name}.tsv'), sep='\t', index=False)
 
-            if modelscope_flag_set():
+            if Path(repo_id).exists():
+                dataset_path = repo_id
+            elif modelscope_flag_set():
                 from modelscope import dataset_snapshot_download
                 dataset_path = dataset_snapshot_download(dataset_id=repo_id)
             else:
@@ -153,7 +197,7 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
         return dict(data_file=data_file, root=dataset_path)
 
-    def save_video_frames(self, video, video_llm=False):
+    def save_video_frames(self, video, video_llm=False, verbose=False):
 
         vid_path = osp.join(self.data_root, 'video', video + '.mp4')
         import decord
@@ -161,6 +205,7 @@ Respond with only the letter (A, B, C, or D) of the correct option.
         video_info = {
             'fps': vid.get_avg_fps(),
             'n_frames': len(vid),
+            'duration': len(vid) / vid.get_avg_fps(),
         }
         if self.nframe > 0 and self.fps < 0:
             step_size = len(vid) / (self.nframe + 1)
@@ -170,21 +215,29 @@ Respond with only the letter (A, B, C, or D) of the correct option.
             # not constrained by num_frames, get frames by fps
             total_duration = video_info['n_frames'] / video_info['fps']
             required_frames = int(total_duration * self.fps)
-            step_size = video_info['fps'] / self.fps
-            indices = [int(i * step_size) for i in range(required_frames)]
-            frame_paths = self.frame_paths_fps(video, len(indices))
+            if required_frames > self.frames_limit:
+                print(f"Warning: Video `{video}` requires {required_frames} frames with {self.fps} fps. Truncating to {self.frames_limit} frames.")
+                step_size = video_info['n_frames'] / (self.frames_limit + 1)
+                indices = [int(i * step_size) for i in range(1, self.frames_limit + 1)]
+                frame_root = osp.join(self.frame_root, video)
+                os.makedirs(frame_root, exist_ok=True)
+                frame_paths = [osp.join(frame_root, self.frame_tmpl.format(i, self.frames_limit)) for i in range(1, self.frames_limit + 1)]
+            else:
+                step_size = video_info['fps'] / self.fps
+                indices = [int(i * step_size) for i in range(required_frames)]
+                frame_paths = self.frame_paths_fps(video, len(indices))
 
-        flag = np.all([osp.exists(p) for p in frame_paths])
+        need_extract = self.check_extracted_frames and (
+            not np.all([osp.exists(p) for p in frame_paths])
+        )
 
-        if not flag:
-            lock_path = osp.splitext(vid_path)[0] + '.lock'
-            with portalocker.Lock(lock_path, 'w', timeout=30):
-                if not np.all([osp.exists(p) for p in frame_paths]):
-                    images = [vid[i].asnumpy() for i in indices]
-                    images = [Image.fromarray(arr) for arr in images]
-                    for im, pth in zip(images, frame_paths):
-                        if not osp.exists(pth):
-                            im.save(pth)
+        if need_extract:
+            images = []
+            for frame_idx in tqdm(indices, desc=f"Reading frames for {video}"):
+                images.append(Image.fromarray(vid[frame_idx].asnumpy()))
+            for im, pth in tqdm(zip(images, frame_paths), total=len(frame_paths), desc=f"Saving frames for {video}"):
+                if not osp.exists(pth):
+                    im.save(pth)
 
         return frame_paths, indices, video_info
 
@@ -215,7 +268,15 @@ Respond with only the letter (A, B, C, or D) of the correct option.
 
         message = [dict(type='text', value=self.SYS)]
         if video_llm:
-            message.append(dict(type='video', value=osp.join(self.data_root, 'video', line['video'] + '.mp4')))
+            assert self.fps > 0
+            # 如果视频帧数达到限制，则使用限制帧数和视频时长计算实际 FPS
+            actual_fps = self.frames_limit / video_info['duration'] if len(frames) == self.frames_limit else self.fps
+            message.append(dict(
+                type='video', value=frames, sample_fps=actual_fps,
+                min_pixels=self.min_pixels,
+                max_pixels=self.max_pixels,
+                total_pixels=self.total_pixels,
+            ))
         else:
             for im in frames:
                 message.append(dict(type='image', value=im))
@@ -238,50 +299,49 @@ Respond with only the letter (A, B, C, or D) of the correct option.
         tgt_file = get_intermediate_file_path(eval_file, '_rating', 'json')
         score_file = get_intermediate_file_path(eval_file, '_score')
 
-        if not osp.exists(score_file):
-            model = judge_kwargs.get('model', 'exact_matching')
-            assert model in ['chatgpt-0125', 'exact_matching', 'gpt-4-0125']
+        model = judge_kwargs.get('model', 'exact_matching')
+        assert model in ['chatgpt-0125', 'exact_matching', 'gpt-4-0125', 'qwen3-235b-a22b-instruct-2507', 'qwen3-235b-a22b-thinking-2507']
 
-            if model == 'exact_matching':
+        if model == 'exact_matching':
+            model = None
+        elif gpt_key_set():
+            model = build_judge(**judge_kwargs)
+            if not model.working():
+                warnings.warn('OPENAI API is not working properly, will use exact matching for evaluation')
+                warnings.warn(DEBUG_MESSAGE)
                 model = None
-            elif gpt_key_set():
-                model = build_judge(**judge_kwargs)
-                if not model.working():
-                    warnings.warn('OPENAI API is not working properly, will use exact matching for evaluation')
-                    warnings.warn(DEBUG_MESSAGE)
-                    model = None
+        else:
+            warnings.warn('OPENAI_API_KEY is not set properly, will use exact matching for evaluation')
+            model = None
+        res = {} if not osp.exists(tmp_file) else load(tmp_file)
+        res = {k: v for k, v in res.items() if FAIL_MSG not in v}
+
+        data = load(eval_file)
+        data_un = data[~pd.isna(data['prediction'])]
+
+        for idx in data['index']:
+            ans = data.loc[data['index'] == idx, 'answer'].values[0]
+            pred = str(data.loc[data['index'] == idx, 'prediction'].values[0])
+
+            if model is not None:
+                extract_pred = extract_option(
+                    model,
+                    data.loc[data['index'] == idx].to_dict(orient='records')[0],
+                    'Video-MME'
+                )
+                data.loc[data['index'] == idx, 'score'] = int(extract_pred == ans)
             else:
-                warnings.warn('OPENAI_API_KEY is not set properly, will use exact matching for evaluation')
-                model = None
-            res = {} if not osp.exists(tmp_file) else load(tmp_file)
-            res = {k: v for k, v in res.items() if FAIL_MSG not in v}
+                data.loc[data['index'] == idx, 'score'] = int(extract_characters_regex(pred) == ans)
 
-            data = load(eval_file)
-            data_un = data[~pd.isna(data['prediction'])]
+        rejected = [x for x in data['score'] if x == -1]
 
-            for idx in data['index']:
-                ans = data.loc[data['index'] == idx, 'answer'].values[0]
-                pred = str(data.loc[data['index'] == idx, 'prediction'].values[0])
+        print(
+            f'Among {len(data)} questions, failed to obtain prediction for {len(data) - len(data_un)} questions, '
+            f'failed to obtain the score for another {len(rejected)} questions. '
+            f'Those questions will be counted as -1 score in ALL rating, and will not be counted in VALID rating.'
+        )
 
-                if extract_characters_regex(pred) == '':
-                    extract_pred = extract_option(
-                        model,
-                        data.loc[data['index'] == idx].to_dict(orient='records')[0],
-                        'Video-MME'
-                    )
-                    data.loc[data['index'] == idx, 'score'] = int(extract_pred == ans)
-                else:
-                    data.loc[data['index'] == idx, 'score'] = int(extract_characters_regex(pred) == ans)
-
-            rejected = [x for x in data['score'] if x == -1]
-
-            print(
-                f'Among {len(data)} questions, failed to obtain prediction for {len(data) - len(data_un)} questions, '
-                f'failed to obtain the score for another {len(rejected)} questions. '
-                f'Those questions will be counted as -1 score in ALL rating, and will not be counted in VALID rating.'
-            )
-
-            dump(data, score_file)
+        dump(data, score_file)
 
         rating = get_dimension_rating(score_file)
         dump(rating, tgt_file)

@@ -88,12 +88,20 @@ class BaseModel:
         elif self.check_content(inputs) == 'listdict':
             for item in inputs:
                 assert 'type' in item and 'value' in item
-                mime, s = parse_file(item['value'])
-                if mime is None:
-                    assert item['type'] == 'text'
+                if isinstance(item['value'], list):
+                    new_value = []
+                    for v in item['value']:
+                        assert item['type'] == 'video'
+                        mime, s = parse_file(v)
+                        new_value.append(s)
+                    item['value'] = new_value
                 else:
-                    assert mime.split('/')[0] == item['type']
-                    item['value'] = s
+                    mime, s = parse_file(item['value'])
+                    if mime is None:
+                        assert item['type'] == 'text'
+                    else:
+                        assert mime.split('/')[0] == item['type']
+                        item['value'] = s
             return inputs
         else:
             return None

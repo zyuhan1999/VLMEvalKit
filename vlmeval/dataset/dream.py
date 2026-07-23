@@ -10,7 +10,6 @@ from ..smp import *
 from ..smp.file import get_intermediate_file_path, get_file_extension
 from .video_base import VideoBaseDataset
 from .utils import build_judge
-from ..api import OpenAIWrapper
 from ..utils import track_progress_rich
 
 EXTRACTION_PROMPT = (

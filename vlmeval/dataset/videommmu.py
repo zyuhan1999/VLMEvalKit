@@ -1,14 +1,16 @@
 import io
 import re
 import json
+import warnings
 from huggingface_hub import snapshot_download
 from pathlib import Path
 
 from vlmeval.utils import track_progress_rich
+from tqdm import tqdm
 from ..smp import *
 from ..smp.file import get_intermediate_file_path, get_file_extension
 from .video_base import VideoBaseDataset
-from .utils import build_judge, DEBUG_MESSAGE
+from .utils import build_judge, DEBUG_MESSAGE, extract_answer_from_item
 
 FAIL_MSG = 'Failed to obtain answer via API.'
 
@@ -101,6 +103,7 @@ def parse_open_response(response):
     https://github.com/MMMU-Benchmark/MMMU/blob/51ce7f3e829c16bb44bc5445782686b4c3508794/eval/eval_utils.py#L122
     """
     if response == "API Error" or response == "":
+        print(f"API Error: {response}")
         return "API Error"
 
     # content = content.strip("\n").strip(".").strip(" ")
@@ -214,7 +217,7 @@ def parse_multi_choice_response(response, all_choices, index2ans):
 
     # Step 2: If no candidates, look for choices with a period after (A. B. C. D.)
     for choice in all_choices:  # e.g., A. B. C. D.
-        if f"{choice}." in response:
+        if f"{choice}." in response or f"{choice}" in response:
             # print(f"Found choice with period after: {choice}")
             candidates.append(choice)
             ans_with_period = True
@@ -311,6 +314,9 @@ def get_multi_choice_info(options):
 
 def process_results(line):
     pred = line['prediction']
+    # Convert to string if it's not already a string
+    if not isinstance(pred, str):
+        pred = str(pred)
     pred = pred.rpartition('Answer:')[-1].strip()
 
     question_type = line.get("question_type", "None")
@@ -384,6 +390,7 @@ def evaluate_mmmu(samples):
     for sample in samples:
         gold_i = sample["answer"]
         pred_i = sample["parsed_pred"]
+        print(f"gold_i: {gold_i}, pred_i: {pred_i}")
         if sample["question_type"] == "multiple-choice":
             correct = eval_multi_choice(gold_i, pred_i)
         elif sample["question_type"] == "perception":
@@ -446,14 +453,27 @@ class VideoMMMU(VideoBaseDataset):
 
     TYPE = 'VideoMMMU'
 
-    def __init__(self,
-                 dataset='VideoMMMU',
-                 nframe=0,
-                 fps=-1,
-                 interleave=False):
-        super().__init__(dataset=dataset, nframe=nframe, fps=fps)
+    def __init__(
+        self,
+        dataset='VideoMMMU',
+        nframe=0,
+        fps=-1,
+        interleave=False,
+        frames_limit=2048,
+        min_pixels=28 * 28,
+        max_pixels=768 * 768,
+        total_pixels=32000 * 2 * 4 * 14 * 14,
+        check_extracted_frames=True,
+    ):
+        super().__init__(
+            dataset=dataset, nframe=nframe, fps=fps, check_extracted_frames=check_extracted_frames
+        )
         self.dataset_name = dataset
         self.interleave = interleave
+        self.frames_limit = frames_limit # following Qwen3-VL, impose a cap of 2,048 frames per video
+        self.min_pixels = min_pixels
+        self.max_pixels = max_pixels
+        self.total_pixels = total_pixels
 
     @classmethod
     def supported_datasets(cls):
@@ -461,7 +481,7 @@ class VideoMMMU(VideoBaseDataset):
 
     def prepare_dataset(self,
                         dataset_name='VideoMMMU',
-                        repo_id='lmms-lab/VideoMMMU'):
+                        repo_id='/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/benchmarks/VideoMMMU'):
 
         def check_integrity(pth):
             data_file = osp.join(pth, f'{dataset_name}.tsv')
@@ -486,10 +506,10 @@ class VideoMMMU(VideoBaseDataset):
                 import zipfile
                 base_dir = Path(pth)
                 target_dir = base_dir / 'videos'
-                target_dir.mkdir(exist_ok=True)
                 zip_files = sorted(base_dir.glob('*.zip'))
 
                 if not target_dir.exists():
+                    target_dir.mkdir(exist_ok=True)
                     for zip_file in zip_files:
                         with zipfile.ZipFile(str(zip_file), 'r') as zip_ref:
                             for member in zip_ref.namelist():
@@ -501,8 +521,9 @@ class VideoMMMU(VideoBaseDataset):
                                     target = target_dir / member
                                     target.parent.mkdir(exist_ok=True)
                                     if not target.exists():
-                                        with source, open(target, 'wb'):
-                                            target.write(source.read())
+                                        with source:
+                                            with open(target, 'wb') as f:
+                                                f.write(source.read())
                     print(
                         'The video file has been restored and stored from the zip file.'
                     )
@@ -557,7 +578,9 @@ class VideoMMMU(VideoBaseDataset):
                     ignore_index=True).reindex(columns=cols).reset_index()
                 df.to_csv(data_file, sep='\t', index=False)
 
-            if modelscope_flag_set():
+            if Path(repo_id).exists():
+                dataset_path = repo_id
+            elif modelscope_flag_set():
                 from modelscope import dataset_snapshot_download
                 dataset_path = dataset_snapshot_download(dataset_id=repo_id)
             else:
@@ -570,7 +593,7 @@ class VideoMMMU(VideoBaseDataset):
 
         return dict(data_file=data_file, root=dataset_path)
 
-    def save_video_frames(self, id_, video_pth, video_llm=False):
+    def save_video_frames(self, id_, video_pth, video_llm=False, verbose=False):
 
         vid_path = osp.join(self.data_root, video_pth)
         import decord
@@ -578,6 +601,7 @@ class VideoMMMU(VideoBaseDataset):
         video_info = {
             'fps': vid.get_avg_fps(),
             'n_frames': len(vid),
+            'duration': len(vid) / vid.get_avg_fps(),
         }
         if self.nframe > 0 and self.fps < 0:
             step_size = len(vid) / (self.nframe + 1)
@@ -587,21 +611,30 @@ class VideoMMMU(VideoBaseDataset):
             # not constrained by num_frames, get frames by fps
             total_duration = video_info['n_frames'] / video_info['fps']
             required_frames = int(total_duration * self.fps)
-            step_size = video_info['fps'] / self.fps
-            indices = [int(i * step_size) for i in range(required_frames)]
-            frame_paths = self.frame_paths_fps(id_, len(indices))
+            if required_frames > self.frames_limit:
+                print(f"Warning: Video `{id_}` requires {required_frames} frames with {self.fps} fps. Truncating to {self.frames_limit} frames.")
+                step_size = video_info['n_frames'] / (self.frames_limit + 1)
+                indices = [int(i * step_size) for i in range(1, self.frames_limit + 1)]
+                frame_root = osp.join(self.frame_root, id_)
+                os.makedirs(frame_root, exist_ok=True)
+                frame_paths = [osp.join(frame_root, self.frame_tmpl.format(i, self.frames_limit)) for i in range(1, self.frames_limit + 1)]
+            else:
+                step_size = video_info['fps'] / self.fps
+                indices = [int(i * step_size) for i in range(required_frames)]
+                frame_paths = self.frame_paths_fps(id_, len(indices))
 
-        flag = np.all([osp.exists(p) for p in frame_paths])
+        need_extract = self.check_extracted_frames and (
+            not np.all([osp.exists(p) for p in frame_paths])
+        )
 
-        if not flag:
-            lock_path = osp.splitext(vid_path)[0] + 'f.lock'
-            with portalocker.Lock(lock_path, 'w', timeout=30):
-                if not np.all([osp.exists(p) for p in frame_paths]):
-                    images = [vid[i].asnumpy() for i in indices]
-                    images = [Image.fromarray(arr) for arr in images]
-                    for im, pth in zip(images, frame_paths):
-                        if not osp.exists(pth):
-                            im.save(pth)
+        if need_extract:
+            # 使用进度条按帧读取与保存，方便观测单个视频内部的处理进度
+            images = []
+            for frame_idx in tqdm(indices, desc=f"Reading frames for {id_}"):
+                images.append(Image.fromarray(vid[frame_idx].asnumpy()))
+            for im, pth in tqdm(zip(images, frame_paths), total=len(frame_paths), desc=f"Saving frames for {id_}"):
+                if not osp.exists(pth):
+                    im.save(pth)
 
         return frame_paths, indices, video_info
 
@@ -615,9 +648,15 @@ class VideoMMMU(VideoBaseDataset):
 
         message = []
         if video_llm:
-            message.append(
-                dict(type='video',
-                     value=osp.join(self.data_root, line['video'])))
+            assert self.fps > 0
+            # 如果视频帧数达到限制，则使用限制帧数和视频时长计算实际 FPS
+            actual_fps = self.frames_limit / video_info['duration'] if len(frames) == self.frames_limit else self.fps
+            message.append(dict(
+                type='video', value=frames, sample_fps=actual_fps,
+                min_pixels=self.min_pixels,
+                max_pixels=self.max_pixels,
+                total_pixels=self.total_pixels,
+            ))
         else:
             message.extend(dict(type='image', value=im) for im in frames)
 
@@ -653,40 +692,133 @@ class VideoMMMU(VideoBaseDataset):
         storage = get_intermediate_file_path(eval_file, '_score')
         nproc = judge_kwargs.pop('nproc', 4)
 
-        if not osp.exists(storage):
-            data = load(eval_file)
-            lt = len(data)
-            lines = [data.iloc[i] for i in range(lt)]
-            tups = [(line, ) for line in lines]
-            indices = [line['index'] for line in lines]
+        # Optional: use an LLM Judge to extract the final option (A/B/C/...)
+        model_name = judge_kwargs.get('model', 'exact_matching')
+        if model_name == 'exact_matching':
+            judge_model = None
+        elif gpt_key_set():
+            judge_model = build_judge(**judge_kwargs)
+            if not judge_model.working():
+                warnings.warn('OPENAI API is not working properly, will use exact matching for evaluation')
+                warnings.warn(DEBUG_MESSAGE)
+                judge_model = None
+        else:
+            warnings.warn('OPENAI_API_KEY is not set properly, will use exact matching for evaluation')
+            judge_model = None
 
-            ans = {}
-            if osp.exists(tmp_file):
-                ans = load(tmp_file)
-            tups = [x for x, i in zip(tups, indices) if i not in ans]
-            indices = [i for i in indices if i not in ans]
+        def apply_llm_judge_to_parsed_pred(df):
+            """
+            When judge_model is available, DO NOT use the original rule-based option parsing.
+            We overwrite parsed_pred for multiple-choice/perception by LLM Judge extraction.
+            """
+            safe_model_name = re.sub(r'[^a-zA-Z0-9._-]+', '_', str(model_name))
+            judge_cache_file = get_intermediate_file_path(
+                eval_file, f'_judge_{safe_model_name}', 'pkl'
+            )
+            judge_cache = {} if not osp.exists(judge_cache_file) else load(judge_cache_file)
 
-            if len(indices):
-                new_results = track_progress_rich(
-                    process_results,
-                    tups,
-                    nproc=nproc,
-                    chunksize=nproc,
-                    keys=indices,
-                    save=tmp_file,
-                )
-                ans = load(tmp_file)
-                for k, v in zip(indices, new_results):
-                    assert k in ans
-                    assert ans[k]['id'] == v['id'] and ans[k][
-                        'parsed_pred'] == v['parsed_pred']
+            updated_local = False
+            for i in tqdm(range(len(df)), desc='LLM-judge extracting options', disable=len(df) < 50):
+                row = df.iloc[i]
+                qtype = row.get('question_type', None)
+                if qtype not in ['multiple-choice', 'perception']:
+                    continue
 
-            data['parsed_pred'] = [
-                ans[idx]['parsed_pred'] for idx in data['index']
-            ]
+                pred_val = row.get('prediction', None)
+                if pred_val is None or (isinstance(pred_val, float) and pd.isna(pred_val)) or pd.isna(pred_val):
+                    df.at[df.index[i], 'parsed_pred'] = 'API Error'
+                    updated_local = True
+                    continue
+
+                options_raw = row.get('options', None)
+                if options_raw is None or (isinstance(options_raw, float) and pd.isna(options_raw)) or pd.isna(options_raw):
+                    df.at[df.index[i], 'parsed_pred'] = 'API Error'
+                    updated_local = True
+                    continue
+
+                if isinstance(options_raw, str):
+                    try:
+                        options = json.loads(options_raw)
+                    except Exception:
+                        options = []
+                else:
+                    try:
+                        options = list(options_raw)
+                    except Exception:
+                        options = []
+
+                if not options:
+                    df.at[df.index[i], 'parsed_pred'] = 'API Error'
+                    updated_local = True
+                    continue
+
+                idx = row.get('index', None)
+                if idx in judge_cache:
+                    judged_opt = judge_cache[idx]
+                else:
+                    item = {
+                        'question': row.get('question', ''),
+                        'prediction': str(pred_val),
+                    }
+                    for k, opt in enumerate(options):
+                        item[chr(ord('A') + k)] = opt
+                    judged_opt = extract_answer_from_item(
+                        judge_model, item, dataset_name='VideoMMMU'
+                    )['opt']
+                    judge_cache[idx] = judged_opt
+                    dump(judge_cache, judge_cache_file)
+
+                # judge_opt may be 'Z' when it cannot be matched to any option;
+                # keep it as-is to be counted as wrong during evaluation.
+                df.at[df.index[i], 'parsed_pred'] = judged_opt
+                updated_local = True
+
+            return df, updated_local
+
+        # if judge_model is None:
+        # Original (rule-based) parsing path
+        data = load(eval_file)
+        lt = len(data)
+        lines = [data.iloc[i] for i in range(lt)]
+        tups = [(line, ) for line in lines]
+        indices = [line['index'] for line in lines]
+
+        ans = {}
+        if osp.exists(tmp_file):
+            ans = load(tmp_file)
+        tups = [x for x, i in zip(tups, indices) if i not in ans]
+        indices = [i for i in indices if i not in ans]
+
+        if len(indices):
+            new_results = track_progress_rich(
+                process_results,
+                tups,
+                nproc=nproc,
+                chunksize=nproc,
+                keys=indices,
+                save=tmp_file,
+            )
+            ans = load(tmp_file)
+            for k, v in zip(indices, new_results):
+                assert k in ans
+                assert ans[k]['id'] == v['id'] and ans[k][
+                    'parsed_pred'] == v['parsed_pred']
+
+        data['parsed_pred'] = [
+            ans[idx]['parsed_pred'] for idx in data['index']
+        ]
+        dump(data, storage)
+
+        if judge_model is not None:
+            # Judge-based parsing path (do NOT use the original rule parsing)
+            # data = load(eval_file)
+            # initialize parsed_pred so downstream has the column
+            # if 'parsed_pred' not in data.columns:
+            #     data['parsed_pred'] = data['prediction']
+            data, _ = apply_llm_judge_to_parsed_pred(data)
             dump(data, storage)
 
-        score = aggregate_results([row for _, row in load(storage).iterrows()])
+        score = aggregate_results([row for _, row in data.iterrows()])
         score_pth = get_intermediate_file_path(storage, '_score', 'csv')
         dump(score, score_pth)
         return score

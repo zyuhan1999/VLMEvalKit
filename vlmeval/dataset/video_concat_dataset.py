@@ -1,7 +1,7 @@
 from ..smp import *
 from ..smp.file import get_intermediate_file_path
 from .video_base import VideoBaseDataset
-
+import os
 
 class ConcatVideoDataset(VideoBaseDataset):
     # This dataset takes multiple dataset names as input and aggregate them into a single dataset.
@@ -61,14 +61,19 @@ class ConcatVideoDataset(VideoBaseDataset):
 
     def evaluate(self, eval_file, **judge_kwargs):
         # First, split the eval_file by dataset
-        data_all = load(eval_file)
-        for dname in self.datasets:
-            tgt = eval_file.replace(self.dataset_name, dname)
-            data_sub = data_all[data_all['SUB_DATASET'] == dname]
-            data_sub.pop('index')
-            data_sub['index'] = data_sub.pop('original_index')
-            data_sub.pop('SUB_DATASET')
-            dump(data_sub, tgt)
+        if os.path.exists(eval_file):
+            data_all = load(eval_file)
+            for dname in self.datasets:
+                tgt = eval_file.replace(self.dataset_name, dname)
+                data_sub = data_all[data_all['SUB_DATASET'] == dname]
+                data_sub.pop('index')
+                data_sub['index'] = data_sub.pop('original_index')
+                data_sub.pop('SUB_DATASET')
+                dump(data_sub, tgt)
+        else:
+            for dname in self.datasets:
+                tgt = eval_file.replace(self.dataset_name, dname)
+                assert os.path.exists(tgt), tgt
         # Then, evaluate each dataset separately
         results_all = {}
         for dname in self.datasets:

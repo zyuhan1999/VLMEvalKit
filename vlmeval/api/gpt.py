@@ -2,6 +2,7 @@ from ..smp import *
 import os
 import sys
 from .base import BaseAPI
+import re
 
 APIBASES = {
     'OFFICIAL': 'https://api.openai.com/v1/chat/completions',
@@ -55,7 +56,10 @@ class OpenAIWrapper(BaseAPI):
         self.temperature = temperature
         self.use_azure = use_azure
 
-        if 'step' in model:
+        if 'qwen' in model.lower():
+            key = os.environ.get('QWEN_API_KEY', '')
+            api_base = os.environ.get('QWEN_API_BASE', '')
+        elif 'step' in model:
             env_key = os.environ.get('STEPAI_API_KEY', '')
             if key is None:
                 key = env_key
@@ -157,7 +161,6 @@ class OpenAIWrapper(BaseAPI):
                 self.api_base = os.environ.get('BOYUE_API_BASE')
                 self.key = os.environ.get('BOYUE_API_KEY')
 
-        self.logger.info(f'Using API Base: {self.api_base}; API Key: {self.key}')
 
     # inputs can be a lvl-2 nested list: [content1, content2, content3, ...]
     # content can be a string or a list of image & text
@@ -228,15 +231,34 @@ class OpenAIWrapper(BaseAPI):
             payload.pop('n')
             payload['reasoning_effort'] = 'high'
 
-        response = requests.post(
-            self.api_base,
-            headers=headers, data=json.dumps(payload), timeout=self.timeout * 1.1)
+        if "10.140.158.153:1020" in self.api_base:
+            # ailab的逆天api不支持格式化content, 对最后一条消息做扁平化为纯文本
+            user_msg = payload["messages"][-1]
+            content = user_msg["content"]
+            if isinstance(content, list):
+                text_parts = [
+                    c.get("text", c.get("value", "")) if isinstance(c, dict) else str(c)
+                    for c in content
+                ]
+                user_msg["content"] = "\n".join(text_parts) + "/no_think"
+            else:
+                user_msg["content"] = str(content) + "/no_think"
+            payload['max_tokens'] = 1024
+            response = requests.post(
+                self.api_base,
+                headers=headers, json=payload, timeout=self.timeout * 1.1, verify=False)
+        else:
+            response = requests.post(
+                self.api_base,
+                headers=headers, data=json.dumps(payload), timeout=self.timeout * 1.1, verify=False)
         ret_code = response.status_code
         ret_code = 0 if (200 <= int(ret_code) < 300) else ret_code
         answer = self.fail_msg
         try:
             resp_struct = json.loads(response.text)
             answer = resp_struct['choices'][0]['message']['content'].strip()
+            if "10.140.158.153:1020" in self.api_base:
+                answer = re.sub(r"<think>.*?</think>\s*", "", answer, flags=re.S)
         except Exception as err:
             if self.verbose:
                 self.logger.error(f'{type(err)}: {err}')

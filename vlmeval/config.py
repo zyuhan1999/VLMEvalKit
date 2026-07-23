@@ -1032,7 +1032,9 @@ internvl3_5 = {
         InternVLChat, model_path="OpenGVLab/InternVL3_5-2B", version="V2.0"
     ),
     "InternVL3_5-4B": partial(
-        InternVLChat, model_path="OpenGVLab/InternVL3_5-4B", version="V2.0"
+        InternVLChat,
+        model_path="/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/checkpoints/InternVL3_5-4B/",
+        version="V2.0"
     ),
     "InternVL3_5-8B": partial(
         InternVLChat, model_path="OpenGVLab/InternVL3_5-8B", version="V2.0"
@@ -1118,11 +1120,11 @@ qwen3vl_series = {
     ),
     "Qwen3-VL-30B-A3B-Instruct": partial(
         Qwen3VLChat,
-        model_path="Qwen/Qwen3-VL-30B-A3B-Instruct",
+        model_path="/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/checkpoints/Qwen3-VL-30B-A3B-Instruct/snapshots/4b184fbdab8886057d8d80c09f35bcfc65fe640e",
         use_custom_prompt=False,
-        use_vllm=True,
+        use_vllm=False,
         temperature=0.7, 
-        max_new_tokens=16384,
+        max_new_tokens=4096,
         repetition_penalty=1.0,
         presence_penalty=1.5,
         top_p=0.8,
@@ -1166,11 +1168,11 @@ qwen3vl_series = {
     ),
     "Qwen3-VL-8B-Instruct": partial(
         Qwen3VLChat,
-        model_path="Qwen/Qwen3-VL-8B-Instruct",
+        model_path="/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/checkpoints/Qwen3-VL-8B-Instruct/snapshots/cadac78306af287f801b75a5565ede58f323f472",
         use_custom_prompt=False,
-        use_vllm=True,
+        use_vllm=False,
         temperature=0.7, 
-        max_new_tokens=16384,
+        max_new_tokens=4096,
         repetition_penalty=1.0,
         presence_penalty=1.5,
         top_p=0.8,
@@ -1178,11 +1180,11 @@ qwen3vl_series = {
     ),
     "Qwen3-VL-4B-Instruct": partial(
         Qwen3VLChat,
-        model_path="Qwen/Qwen3-VL-4B-Instruct",
+        model_path="/mnt/petrelfs/zhuyuhan/workspace/checkpoints/Qwen3-VL-4B-Instruct",
         use_custom_prompt=False,
-        use_vllm=True,
+        use_vllm=False,
         temperature=0.7, 
-        max_new_tokens=16384,
+        max_new_tokens=4096,
         repetition_penalty=1.0,
         presence_penalty=1.5,
         top_p=0.8,
@@ -1190,11 +1192,11 @@ qwen3vl_series = {
     ),
     "Qwen3-VL-2B-Instruct": partial(
         Qwen3VLChat,
-        model_path="Qwen/Qwen3-VL-2B-Instruct",
+        model_path="/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/checkpoints/Qwen3-VL-2B-Instruct",
         use_custom_prompt=False,
-        use_vllm=True,
+        use_vllm=False,
         temperature=0.7, 
-        max_new_tokens=16384,
+        max_new_tokens=4096,
         repetition_penalty=1.0,
         presence_penalty=1.5,
         top_p=0.8,
@@ -1564,7 +1566,7 @@ qwen2vl_series = {
     ),
     "Qwen2.5-VL-3B-Instruct": partial(
         Qwen2VLChat,
-        model_path="Qwen/Qwen2.5-VL-3B-Instruct",
+        model_path="/root/s3/videogpu/zhuyuhan/checkpoints/Qwen2.5-VL-3B-Instruct",
         min_pixels=1280 * 28 * 28,
         max_pixels=16384 * 28 * 28,
         use_custom_prompt=False,
@@ -1590,6 +1592,7 @@ qwen2vl_series = {
         max_pixels=768 * 28 * 28,
         total_pixels=24576 * 28 * 28,
         use_custom_prompt=False,
+        use_vllm=True,
     ),
     "Qwen2.5-VL-7B-Instruct-AWQ": partial(
         Qwen2VLChat,
@@ -1740,6 +1743,11 @@ llama_series = {
     "Llama-4-Scout-17B-16E-Instruct": partial(
         llama4, model_path="meta-llama/Llama-4-Scout-17B-16E-Instruct", use_vllm=True
     ),
+}
+
+
+molmo2_series = {
+    "Molmo2-4B": partial(Molmo2, model_path="/mnt/petrelfs/zhuyuhan/s3/videogpu/zhuyuhan/checkpoints/Molmo2-4B"),
 }
 
 molmo_series = {
@@ -1993,7 +2001,37 @@ interns1_groups = [
 interns1_series = {}
 for group in interns1_groups:
     interns1_series.update(group)
-    
+
+videochat3_series = {
+    "VideoChat3-4B": partial(
+        VideoChat3,
+        model_path="MCG-NJU/VideoChat3-4B",
+        use_custom_prompt=False,
+        use_vllm=False,
+    ),
+}
+
+timelens2_series = {
+    "TimeLens2-2B": partial(
+        Qwen3VLChat,
+        model_path="MCG-NJU/TimeLens2-2B",
+        use_custom_prompt=False,
+        use_vllm=False,
+    ),
+    "TimeLens2-4B": partial(
+        Qwen3VLChat,
+        model_path="MCG-NJU/TimeLens2-4B",
+        use_custom_prompt=False,
+        use_vllm=False,
+    ),
+    "TimeLens2-8B": partial(
+        Qwen3VLChat,
+        model_path="MCG-NJU/TimeLens2-8B",
+        use_custom_prompt=False,
+        use_vllm=False,
+    ),
+}
+
 supported_VLM = {}
 
 model_groups = [
@@ -2003,14 +2041,15 @@ model_groups = [
     janus_series, minicpm_series, cogvlm_series, wemm_series, cambrian_series, 
     chameleon_series, video_models, ovis_series, vila_series, mantis_series,
     mmalaya_series, phi3_series, phi4_series, xgen_mm_series, qwen2vl_series,qwen3vl_series,
-    slime_series, eagle_series, moondream_series, llama_series, molmo_series,
+    slime_series, eagle_series, moondream_series, llama_series, molmo_series, molmo2_series,
     kosmos_series, points_series, nvlm_series, vintern_series, h2ovl_series,
     aria_series, smolvlm_series, sail_series, valley_series, vita_series,
     ross_series, emu_series, ola_series, ursa_series, gemma_series,
     long_vita_series, ristretto_series, kimi_series, aguvis_series, hawkvl_series,
     flash_vl, kimi_vllm_series, oryx_series, treevgr_series, varco_vision_series, qtunevl_series, 
     xvl_series, thyme_series, logics_series, cosmos_series, keye_series, qianfanvl_series, 
-    lfm2vl_series, rbdashmm_api_series_lmdeploy, interns1_series, insight_v_series
+    lfm2vl_series, rbdashmm_api_series_lmdeploy, interns1_series, insight_v_series,
+    videochat3_series, timelens2_series
 ]
 
 for grp in model_groups:

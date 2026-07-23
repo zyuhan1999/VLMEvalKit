@@ -1,155 +1,303 @@
-![LOGO](http://opencompass.openxlab.space/utils/MMLB.jpg)
+<a id="readme-top"></a>
 
-<b>A Toolkit for Evaluating Large Vision-Language Models. </b>
+<div align="center">
 
-[![][github-contributors-shield]][github-contributors-link] • [![][github-forks-shield]][github-forks-link] • [![][github-stars-shield]][github-stars-link] • [![][github-issues-shield]][github-issues-link] • [![][github-license-shield]][github-license-link]
+# VLMEvalKit for VideoChat3 & TimeLens2
 
-English | [简体中文](/docs/zh-CN/README_zh-CN.md) | [日本語](/docs/ja/README_ja.md)
+**Reproducible evaluation for image, video, and temporal-grounding models.**
 
-<a href="https://rank.opencompass.org.cn/leaderboard-multimodal">🏆 OC Learderboard </a> •
-<a href="#%EF%B8%8F-quickstart">🏗️Quickstart </a> •
-<a href="#-datasets-models-and-evaluation-results">📊Datasets & Models </a> •
-<a href="#%EF%B8%8F-development-guide">🛠️Development </a>
+[![License](https://img.shields.io/github/license/zyuhan1999/VLMEvalKit?style=flat-square)](LICENSE)
+[![Models](https://img.shields.io/badge/🤗%20Models-MCG--NJU-ffd21e?style=flat-square)](https://huggingface.co/MCG-NJU)
+[![Upstream](https://img.shields.io/badge/Based%20on-VLMEvalKit-5b67d6?style=flat-square)](https://github.com/open-compass/VLMEvalKit)
 
-<a href="https://huggingface.co/spaces/opencompass/open_vlm_leaderboard">🤗 HF Leaderboard</a> •
-<a href="https://huggingface.co/datasets/VLMEval/OpenVLMRecords">🤗 Evaluation Records</a> •
-<a href="https://huggingface.co/spaces/opencompass/openvlm_video_leaderboard">🤗 HF Video Leaderboard</a> •
+[Models](#models) · [Quick start](#quick-start) · [TimeLens data](#timelens-data) ·
+[Evaluation](#evaluation) · [Results](#results) · [Citation](#citation)
 
-<a href="https://discord.gg/evDT4GZmxN">🔊 Discord</a> •
-<a href="https://www.arxiv.org/abs/2407.11691">📝 Report</a> •
-<a href="#-the-goal-of-vlmevalkit">🎯Goal </a> •
-<a href="#%EF%B8%8F-citation">🖊️Citation </a>
 </div>
 
-**VLMEvalKit** (the python package name is **vlmeval**) is an **open-source evaluation toolkit** of **large vision-language models (LVLMs)**. It enables **one-command evaluation** of LVLMs on various benchmarks, without the heavy workload of data preparation under multiple repositories. In VLMEvalKit, we adopt **generation-based evaluation** for all LVLMs, and provide the evaluation results obtained with both **exact matching** and **LLM-based answer extraction**.
+This repository is a focused extension of
+[OpenCompass VLMEvalKit](https://github.com/open-compass/VLMEvalKit) for evaluating
+[VideoChat3-4B](https://huggingface.co/MCG-NJU/VideoChat3-4B) and the
+[TimeLens2](https://huggingface.co/collections/MCG-NJU/timelens2) model family.
+It keeps the familiar one-command VLMEvalKit workflow while adding temporal-grounding
+datasets, metrics, frame caching, and public evaluation recipes.
 
-## Recent Codebase Changes
-- **[2025-09-12]** **Major Update: Improved Handling for Models with Thinking Mode**
+## Highlights
 
-    A new feature in [PR 1229](https://github.com/open-compass/VLMEvalKit/pull/1175) that improves support for models with thinking mode. VLMEvalKit now allows for the use of a custom `split_thinking` function. **We strongly recommend this for models with thinking mode to ensure the accuracy of evaluation**.  To use this new functionality, please enable the Environment Variable: `SPLIT_THINK=True`. By default, the function will parse content within `<think>...</think>` tags and store it in the `thinking` key of the output. For more advanced customization, you can also create a `split_think` function for model. Please see the InternVL implementation for an example.
-- **[2025-09-12]** **Major Update: Improved Handling for Long Response(More than 16k/32k)**
+- Four Hugging Face checkpoints registered under stable CLI names.
+- Image, video QA, and video temporal-grounding evaluation in one runner.
+- Native TimeLens metrics: **mIoU** and **Recall@1** at IoU 0.3, 0.5, and 0.7.
+- Configurable frame sampling and reusable pre-extracted frame caches.
+- Single-GPU, automatic multi-GPU placement, and `torchrun` data parallelism.
+- No private cluster setup is required by the documented workflows.
 
-    A new feature in [PR 1229](https://github.com/open-compass/VLMEvalKit/pull/1175) that improves support for models with long response outputs. VLMEvalKit can now save prediction files in TSV format. **Since individual cells in an `.xlsx` file are limited to 32,767 characters, we strongly recommend using this feature for models that generate long responses (e.g., exceeding 16k or 32k tokens) to prevent data truncation.** To use this new functionality, please enable the Environment Variable: `PRED_FORMAT=tsv`.
-- **[2025-08-04]** In [PR 1175](https://github.com/open-compass/VLMEvalKit/pull/1175), we refine the `can_infer_option` and `can_infer_text`, which increasingly route the evaluation to LLM choice extractors and empirically leads to slight performance improvement for MCQ benchmarks.
+## Models
 
-## 🆕 News
-- **[2025-07-07]** Supported [**SeePhys**](https://seephys.github.io/), which is a ​full spectrum multimodal benchmark for evaluating physics reasoning across different knowledge levels. thanks to [**Quinn777**](https://github.com/Quinn777) 🔥🔥🔥
-- **[2025-07-02]** Supported [**OvisU1**](https://huggingface.co/AIDC-AI/Ovis-U1-3B), thanks to [**liyang-7**](https://github.com/liyang-7) 🔥🔥🔥
-- **[2025-06-16]** Supported [**PhyX**](https://phyx-bench.github.io/), a benchmark aiming to assess capacity for physics-grounded reasoning in visual scenarios. 🔥🔥🔥
-- **[2025-05-24]** To facilitate faster evaluations for large-scale or thinking models, **VLMEvalKit supports multi-node distributed inference** using **LMDeploy**  (supports *InternVL Series, QwenVL Series, LLaMa4*) or **VLLM**(supports *QwenVL Series, LLaMa4*). You can activate this feature by adding the ```use_lmdeploy``` or ```use_vllm``` flag to your custom model configuration in [config.py](vlmeval/config.py) . Leverage these tools to significantly speed up your evaluation workflows 🔥🔥🔥
-- **[2025-05-24]** Supported Models: **InternVL3 Series, Gemini-2.5-Pro, Kimi-VL, LLaMA4, NVILA, Qwen2.5-Omni, Phi4, SmolVLM2, Grok, SAIL-VL-1.5, WeThink-Qwen2.5VL-7B, Bailingmm, VLM-R1, Taichu-VLR**. Supported Benchmarks: **HLE-Bench, MMVP, MM-AlignBench, Creation-MMBench, MM-IFEval, OmniDocBench, OCR-Reasoning, EMMA, ChaXiv，MedXpertQA, Physics, MSEarthMCQ, MicroBench, MMSci, VGRP-Bench, wildDoc, TDBench, VisuLogic, CVBench, LEGO-Puzzles, Video-MMLU, QBench-Video, MME-CoT, VLM2Bench, VMCBench, MOAT, Spatial457 Benchmark**. Please refer to [**VLMEvalKit Features**](https://aicarrier.feishu.cn/wiki/Qp7wwSzQ9iK1Y6kNUJVcr6zTnPe?table=tblsdEpLieDoCxtb) for more details. Thanks to all contributors 🔥🔥🔥
-- **[2025-02-20]** Supported Models: **InternVL2.5 Series, Qwen2.5VL Series, QVQ-72B, Doubao-VL, Janus-Pro-7B, MiniCPM-o-2.6, InternVL2-MPO, LLaVA-CoT, Hunyuan-Standard-Vision, Ovis2, Valley, SAIL-VL, Ross, Long-VITA, EMU3, SmolVLM**. Supported Benchmarks: **MMMU-Pro, WeMath, 3DSRBench, LogicVista, VL-RewardBench, CC-OCR, CG-Bench, CMMMU, WorldSense**. Thanks to all contributors 🔥🔥🔥
-- **[2024-12-11]** Supported [**NaturalBench**](https://huggingface.co/datasets/BaiqiL/NaturalBench), a vision-centric VQA benchmark (NeurIPS'24) that challenges vision-language models with simple questions about natural imagery.
-- **[2024-12-02]** Supported [**VisOnlyQA**](https://github.com/psunlpgroup/VisOnlyQA/), a benchmark for evaluating the visual perception capabilities 🔥🔥🔥
-- **[2024-11-26]** Supported [**Ovis1.6-Gemma2-27B**](https://huggingface.co/AIDC-AI/Ovis1.6-Gemma2-27B), thanks to [**runninglsy**](https://github.com/runninglsy) 🔥🔥🔥
-- **[2024-11-25]** Create a new flag `VLMEVALKIT_USE_MODELSCOPE`. By setting this environment variable, you can download the video benchmarks supported from [**modelscope**](https://www.modelscope.cn) 🔥🔥🔥
+| CLI name | Hugging Face checkpoint | Implementation |
+| --- | --- | --- |
+| `VideoChat3-4B` | [`MCG-NJU/VideoChat3-4B`](https://huggingface.co/MCG-NJU/VideoChat3-4B) | VideoChat3 |
+| `TimeLens2-2B` | [`MCG-NJU/TimeLens2-2B`](https://huggingface.co/MCG-NJU/TimeLens2-2B) | Qwen3-VL |
+| `TimeLens2-4B` | [`MCG-NJU/TimeLens2-4B`](https://huggingface.co/MCG-NJU/TimeLens2-4B) | Qwen3-VL |
+| `TimeLens2-8B` | [`MCG-NJU/TimeLens2-8B`](https://huggingface.co/MCG-NJU/TimeLens2-8B) | Qwen3-VL |
 
-## 🏗️ QuickStart
+Model weights are downloaded from Hugging Face on first use and cached by
+`huggingface_hub`.
 
-See [[QuickStart](/docs/en/Quickstart.md) | [快速开始](/docs/zh-CN/Quickstart.md)] for a quick start guide.
+## Quick start
 
-## 📊 Datasets, Models, and Evaluation Results
+### 1. Install
 
-### Evaluation Results
+Recommended environment:
 
-**The performance numbers on our official multi-modal leaderboards can be downloaded from here!**
+- Linux
+- Python 3.10+
+- A CUDA-capable GPU with a compatible PyTorch installation
+- FFmpeg/`ffprobe` for video metadata and decoding
 
-[**OpenVLM Leaderboard**](https://huggingface.co/spaces/opencompass/open_vlm_leaderboard): [**Download All DETAILED Results**](http://opencompass.openxlab.space/assets/OpenVLM.json).
+```bash
+git clone https://github.com/zyuhan1999/VLMEvalKit.git
+cd VLMEvalKit
 
-Check **Supported Benchmarks** Tab in [**VLMEvalKit Features**](https://aicarrier.feishu.cn/wiki/Qp7wwSzQ9iK1Y6kNUJVcr6zTnPe?table=tblsdEpLieDoCxtb) to view all supported image & video benchmarks (70+).
-
-Check **Supported LMMs** Tab in [**VLMEvalKit Features**](https://aicarrier.feishu.cn/wiki/Qp7wwSzQ9iK1Y6kNUJVcr6zTnPe?table=tblsdEpLieDoCxtb) to view all supported LMMs, including commercial APIs, open-source models, and more (200+).
-
-**Transformers Version Recommendation:**
-
-Note that some VLMs may not be able to run under certain transformer versions, we recommend the following settings to evaluate each VLM:
-
-- **Please use** `transformers==4.33.0` **for**: `Qwen series`, `Monkey series`, `InternLM-XComposer Series`, `mPLUG-Owl2`, `OpenFlamingo v2`, `IDEFICS series`, `VisualGLM`, `MMAlaya`, `ShareCaptioner`, `MiniGPT-4 series`, `InstructBLIP series`, `PandaGPT`, `VXVERSE`.
-- **Please use** `transformers==4.36.2` **for**: `Moondream1`.
-- **Please use** `transformers==4.37.0` **for**: `LLaVA series`, `ShareGPT4V series`, `TransCore-M`, `LLaVA (XTuner)`, `CogVLM Series`, `EMU2 Series`, `Yi-VL Series`, `MiniCPM-[V1/V2]`, `OmniLMM-12B`, `DeepSeek-VL series`, `InternVL series`, `Cambrian Series`, `VILA Series`, `Llama-3-MixSenseV1_1`, `Parrot-7B`, `PLLaVA Series`.
-- **Please use** `transformers==4.40.0` **for**: `IDEFICS2`, `Bunny-Llama3`, `MiniCPM-Llama3-V2.5`, `360VL-70B`, `Phi-3-Vision`, `WeMM`.
-- **Please use** `transformers==4.42.0` **for**: `AKI`.
-- **Please use** `transformers==4.44.0` **for**: `Moondream2`, `H2OVL series`.
-- **Please use** `transformers==4.45.0` **for**: `Aria`.
-- **Please use** `transformers==latest` **for**: `LLaVA-Next series`, `PaliGemma-3B`, `Chameleon series`, `Video-LLaVA-7B-HF`, `Ovis series`, `Mantis series`, `MiniCPM-V2.6`, `OmChat-v2.0-13B-sinlge-beta`, `Idefics-3`, `GLM-4v-9B`, `VideoChat2-HD`, `RBDash_72b`, `Llama-3.2 series`, `Kosmos series`.
-
-**Torchvision Version Recommendation:**
-
-Note that some VLMs may not be able to run under certain torchvision versions, we recommend the following settings to evaluate each VLM:
-
-- **Please use** `torchvision>=0.16` **for**: `Moondream series` and `Aria`
-
-**Flash-attn Version Recommendation:**
-
-Note that some VLMs may not be able to run under certain flash-attention versions, we recommend the following settings to evaluate each VLM:
-
-- **Please use** `pip install flash-attn --no-build-isolation` **for**: `Aria`
-
-```python
-# Demo
-from vlmeval.config import supported_VLM
-model = supported_VLM['idefics_9b_instruct']()
-# Forward Single Image
-ret = model.generate(['assets/apple.jpg', 'What is in this image?'])
-print(ret)  # The image features a red apple with a leaf on it.
-# Forward Multiple Images
-ret = model.generate(['assets/apple.jpg', 'assets/apple.jpg', 'How many apples are there in the provided images? '])
-print(ret)  # There are two apples in the provided images.
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
 
-## 🛠️ Development Guide
+VideoChat3 uses FlashAttention 2:
 
-To develop custom benchmarks, VLMs, or simply contribute other codes to **VLMEvalKit**, please refer to [[Development_Guide](/docs/en/Development.md) | [开发指南](/docs/zh-CN/Development.md)].
+```bash
+python -m pip install flash-attn --no-build-isolation
+```
 
-**Call for contributions**
+Use a recent `transformers` release with Qwen3-VL support. Match PyTorch,
+FlashAttention, and CUDA versions to the driver installed on your machine.
 
-To promote the contribution from the community and share the corresponding credit (in the next report update):
+### 2. Configure data
 
-- All Contributions will be acknowledged in the report.
-- Contributors with 3 or more major contributions (implementing an MLLM, benchmark, or major feature) can join the author list of [VLMEvalKit Technical Report](https://www.arxiv.org/abs/2407.11691) on ArXiv. Eligible contributors can create an issue or dm kennyutc in [VLMEvalKit Discord Channel](https://discord.com/invite/evDT4GZmxN).
+`LMUData` is the shared data and cache directory used by VLMEvalKit:
 
-Here is a [contributor list](/docs/en/Contributors.md) we curated based on the records.
+```bash
+export LMUData=/absolute/path/to/LMUData
+```
 
-## 🎯 The Goal of VLMEvalKit
+You may place environment variables in a local `.env` file instead. `.env` files
+are ignored by Git; never commit API keys or storage credentials.
 
-**The codebase is designed to:**
+### 3. Run an evaluation
 
-1. Provide an **easy-to-use**, **opensource evaluation toolkit** to make it convenient for researchers & developers to evaluate existing LVLMs and make evaluation results **easy to reproduce**.
-2. Make it easy for VLM developers to evaluate their own models. To evaluate the VLM on multiple supported benchmarks, one just need to **implement a single `generate_inner()` function**, all other workloads (data downloading, data preprocessing, prediction inference, metric calculation) are handled by the codebase.
+Evaluate VideoChat3-4B on Video-MME:
 
-**The codebase is not designed to:**
+```bash
+python run.py \
+  --model VideoChat3-4B \
+  --data Video-MME_2fps \
+  --mode all \
+  --work-dir outputs
+```
 
-1. Reproduce the exact accuracy number reported in the original papers of all **3rd party benchmarks**. The reason can be two-fold:
-   1. VLMEvalKit uses **generation-based evaluation** for all VLMs (and optionally with **LLM-based answer extraction**). Meanwhile, some benchmarks may use different approaches (SEEDBench uses PPL-based evaluation, *eg.*). For those benchmarks, we compare both scores in the corresponding result. We encourage developers to support other evaluation paradigms in the codebase.
-   2. By default, we use the same prompt template for all VLMs to evaluate on a benchmark. Meanwhile, **some VLMs may have their specific prompt templates** (some may not covered by the codebase at this time). We encourage VLM developers to implement their own prompt template in VLMEvalKit, if that is not covered currently. That will help to improve the reproducibility.
+Evaluate TimeLens2-4B on all three TimeLens subsets:
 
-## 🖊️ Citation
+```bash
+python run.py \
+  --model TimeLens2-4B \
+  --data TimeLens_Charades_2fps TimeLens_ActivityNet_2fps TimeLens_QVHighlights_2fps \
+  --mode all \
+  --work-dir outputs
+```
 
-If you find this work helpful, please consider to **star🌟** this repo. Thanks for your support!
+Replace the model name with `TimeLens2-2B` or `TimeLens2-8B` to evaluate another
+checkpoint.
 
-[![Stargazers repo roster for @open-compass/VLMEvalKit](https://reporoster.com/stars/open-compass/VLMEvalKit)](https://github.com/open-compass/VLMEvalKit/stargazers)
+## TimeLens data
 
-If you use VLMEvalKit in your research or wish to refer to published OpenSource evaluation results, please use the following BibTeX entry and the BibTex entry corresponding to the specific VLM / benchmark you used.
+Set `TIMELENS_BENCH_ROOT` to the extracted benchmark directory:
 
-```bib
+```bash
+export TIMELENS_BENCH_ROOT=/absolute/path/to/TimeLens-Bench
+```
+
+Expected layout:
+
+```text
+TimeLens-Bench/
+├── activitynet-timelens.json
+├── charades-timelens.json
+├── qvhighlights-timelens.json
+└── videos/
+    ├── activitynet/
+    │   └── *.mp4
+    ├── charades/
+    │   └── *.mp4
+    └── qvhighlights/
+        └── *.mp4
+```
+
+The first run creates VLMEvalKit metadata and frame-cache files beside the
+annotations and under `LMUData`. Ensure both locations are writable.
+
+To pre-extract frames before evaluation:
+
+```bash
+bash scripts/pre_extract_video_frames/extract_video_frames.sh \
+  --dataset TimeLens_Charades_2fps
+```
+
+Frame availability is checked by default. If a complete cache already exists,
+you can skip the check with `--check-extracted-frames false`.
+
+## Evaluation
+
+### Public helper scripts
+
+```bash
+# TimeLens2; MODEL_NAME defaults to TimeLens2-4B
+MODEL_NAME=TimeLens2-4B \
+  bash scripts/eval_qwen3vl/eval_timelens2.sh TimeLens_Charades_2fps
+
+# VideoChat3; MODEL_NAME defaults to VideoChat3-4B
+bash scripts/eval_videochat3/eval_4b.sh Video-MME_2fps
+```
+
+Both scripts require `LMUData` and accept one or more registered dataset names.
+Set `MODE=infer`, `MODE=eval`, or `MODE=all` to control the stage.
+
+### Useful runner options
+
+| Option | Meaning |
+| --- | --- |
+| `--mode all` | Run inference followed by evaluation. |
+| `--mode infer` | Generate predictions only. |
+| `--mode eval` | Evaluate existing predictions only. |
+| `--reuse` | Reuse the latest compatible prediction/intermediate files. |
+| `--work-dir PATH` | Write outputs under a custom directory. |
+| `--retry N` | Set API-model and judge retry count; the default is `5`. |
+| `--api-nproc N` | Set API request concurrency. |
+| `--check-extracted-frames false` | Trust an existing frame cache without checking it. |
+
+For long model responses, avoid Excel cell-length limits:
+
+```bash
+export PRED_FORMAT=tsv
+```
+
+For benchmarks requiring an API judge, configure the provider credentials through
+environment variables or `.env`, then pass the appropriate `--judge` value. See the
+[upstream quick-start guide](docs/en/Quickstart.md) for provider-specific settings.
+
+### Multiple GPUs
+
+A single process can use all visible GPUs when the model adapter supports automatic
+device placement:
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 python run.py \
+  --model TimeLens2-8B \
+  --data TimeLens_Charades_2fps \
+  --mode all
+```
+
+For data-parallel evaluation, launch multiple processes:
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc-per-node=2 run.py \
+  --model TimeLens2-4B \
+  --data TimeLens_Charades_2fps \
+  --mode all
+```
+
+## Benchmarks
+
+This fork adds first-class support for the three TimeLens temporal-grounding
+subsets and retains VLMEvalKit's broader image/video benchmark registry.
+
+Common video entries include:
+
+- `TimeLens_Charades_*`, `TimeLens_ActivityNet_*`, `TimeLens_QVHighlights_*`
+- `Video-MME_*`, `LongVideoBench_*`, `LVBench_*`, `VideoMMMU_*`
+- `TOMATO_*`, `MMVU_*`, `MotionBench_*`, `TVBench_*`
+
+Sampling rate, frame limit, resolution, and reasoning variants are encoded in the
+registered dataset name. See
+[`vlmeval/dataset/video_dataset_config.py`](vlmeval/dataset/video_dataset_config.py)
+for the complete list and [`vlmeval/config.py`](vlmeval/config.py) for all registered
+models.
+
+## Results
+
+Results are written below:
+
+```text
+<work-dir>/<model>/<run-id>/
+```
+
+Prediction files contain per-sample model outputs; score/rating files contain the
+benchmark metrics. To aggregate temporal-grounding results:
+
+```bash
+python print_grounding_result.py outputs/TimeLens2-4B
+```
+
+To build a broader benchmark summary:
+
+```bash
+python print_result.py outputs/TimeLens2-4B
+```
+
+Both commands write `summary.csv` inside the supplied model output directory.
+
+## Repository layout
+
+```text
+run.py                                  Main evaluation entry point
+vlmeval/config.py                       Model registry
+vlmeval/vlm/videochat3/                 VideoChat3 adapter and prompts
+vlmeval/dataset/timelens.py             TimeLens loading and metrics
+vlmeval/dataset/video_dataset_config.py Video benchmark registry
+scripts/                                Portable evaluation and analysis helpers
+```
+
+For custom models and datasets, refer to the
+[VLMEvalKit development guide](docs/en/Development.md).
+
+## Troubleshooting
+
+- **CUDA out of memory:** use a smaller model, reduce the frame limit/resolution
+  through a registered dataset variant, or expose more GPUs.
+- **FlashAttention import error:** install a FlashAttention build compatible with
+  the active PyTorch and CUDA versions.
+- **Missing TimeLens annotation/video:** verify `TIMELENS_BENCH_ROOT` and the layout
+  above.
+- **Truncated long answers:** set `PRED_FORMAT=tsv` before inference.
+- **Interrupted run:** repeat the command with `--reuse`.
+
+## Citation
+
+Please cite the relevant model and benchmark publications listed on their Hugging
+Face model cards. If you use VLMEvalKit, cite:
+
+```bibtex
 @inproceedings{duan2024vlmevalkit,
-  title={Vlmevalkit: An open-source toolkit for evaluating large multi-modality models},
-  author={Duan, Haodong and Yang, Junming and Qiao, Yuxuan and Fang, Xinyu and Chen, Lin and Liu, Yuan and Dong, Xiaoyi and Zang, Yuhang and Zhang, Pan and Wang, Jiaqi and others},
-  booktitle={Proceedings of the 32nd ACM International Conference on Multimedia},
-  pages={11198--11201},
-  year={2024}
+  title     = {VLMEvalKit: An Open-Source Toolkit for Evaluating Large Multi-Modality Models},
+  author    = {Duan, Haodong and Yang, Junming and Qiao, Yuxuan and Fang, Xinyu and
+               Chen, Lin and Liu, Yuan and Dong, Xiaoyi and Zang, Yuhang and
+               Zhang, Pan and Wang, Jiaqi and others},
+  booktitle = {Proceedings of the 32nd ACM International Conference on Multimedia},
+  pages     = {11198--11201},
+  year      = {2024}
 }
 ```
 
-<p align="right"><a href="#top">🔝Back to top</a></p>
+## Acknowledgements
 
-[github-contributors-link]: https://github.com/open-compass/VLMEvalKit/graphs/contributors
-[github-contributors-shield]: https://img.shields.io/github/contributors/open-compass/VLMEvalKit?color=c4f042&labelColor=black&style=flat-square
-[github-forks-link]: https://github.com/open-compass/VLMEvalKit/network/members
-[github-forks-shield]: https://img.shields.io/github/forks/open-compass/VLMEvalKit?color=8ae8ff&labelColor=black&style=flat-square
-[github-issues-link]: https://github.com/open-compass/VLMEvalKit/issues
-[github-issues-shield]: https://img.shields.io/github/issues/open-compass/VLMEvalKit?color=ff80eb&labelColor=black&style=flat-square
-[github-license-link]: https://github.com/open-compass/VLMEvalKit/blob/main/LICENSE
-[github-license-shield]: https://img.shields.io/github/license/open-compass/VLMEvalKit?color=white&labelColor=black&style=flat-square
-[github-stars-link]: https://github.com/open-compass/VLMEvalKit/stargazers
-[github-stars-shield]: https://img.shields.io/github/stars/open-compass/VLMEvalKit?color=ffcb47&labelColor=black&style=flat-square
+This project builds on
+[OpenCompass/VLMEvalKit](https://github.com/open-compass/VLMEvalKit). We thank its
+authors, benchmark maintainers, and the open-source model community.
+
+## License
+
+The code in this repository is released under the [Apache License 2.0](LICENSE).
+Model weights and datasets may use separate licenses; review their respective terms
+before use.
+
+<div align="right"><a href="#readme-top">Back to top ↑</a></div>

@@ -10,7 +10,8 @@ class VideoBaseDataset:
                  dataset='MMBench-Video',
                  pack=False,
                  nframe=0,
-                 fps=-1):
+                 fps=-1,
+                 check_extracted_frames=True):
         try:
             import decord
         except Exception as e:
@@ -39,6 +40,7 @@ class VideoBaseDataset:
         self.pack = pack
         self.nframe = nframe
         self.fps = fps
+        self.check_extracted_frames = check_extracted_frames
         if self.fps > 0 and self.nframe > 0:
             raise ValueError('fps and nframe should not be set at the same time')
         if self.fps <= 0 and self.nframe <= 0:
@@ -89,6 +91,8 @@ class VideoBaseDataset:
 
             # 提取帧并保存
             frame_paths = self.frame_paths_fps(video, len(indices))
+            if not self.check_extracted_frames:
+                return frame_paths
             flag = np.all([osp.exists(p) for p in frame_paths])
             if flag:
                 return frame_paths
@@ -106,6 +110,8 @@ class VideoBaseDataset:
 
         else:
             frame_paths = self.frame_paths(video)
+            if not self.check_extracted_frames:
+                return frame_paths
             flag = np.all([osp.exists(p) for p in frame_paths])
             if flag:
                 return frame_paths

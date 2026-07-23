@@ -28,6 +28,9 @@ def ensure_image_url(image: str) -> str:
     prefixes = ['http://', 'https://', 'file://', 'data:image']
     if any(image.startswith(prefix) for prefix in prefixes):
         return image
+    if os.environ.get('VLMEVAL_TRUST_LOCAL_IMAGE_PATHS', '0').lower() in ('1', 'true', 'yes', 'y'):
+        if os.path.isabs(image):
+            return 'file://' + image
     if os.path.exists(image):
         return 'file://' + image
     raise ValueError(f'Invalid image: {image}')
@@ -193,7 +196,7 @@ class Qwen3VLChat(Qwen3VLPromptMixin, BaseModel):
                     item['max_pixels'] = self.max_pixels
                 if self.total_pixels is not None:
                     item['total_pixels'] = self.total_pixels
-                for key in ['resized_height', 'resized_width', 'fps', 'nframes', 'sample_fps']:
+                for key in ['min_pixels', 'max_pixels', 'total_pixels', 'resized_height', 'resized_width', 'fps', 'nframes', 'sample_fps']:
                     if key in s and s[key] is not None:
                         item[key] = s[key]
                 if not isinstance(value, list):

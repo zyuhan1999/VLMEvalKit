@@ -1,5 +1,14 @@
 .idea/
 
+# by zhuyuhan
+*.out
+*.log
+batchscript-*
+download_logs/
+phoenix-slurm-*.out
+.env.*
+!.env.example
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -197,7 +206,6 @@ apple.jpg
 assets/LOGO.png
 api_list.txt
 vlmeval/gemini_tmp.py
-run.sh
 run_g.sh
 tmp/
 InternVL*

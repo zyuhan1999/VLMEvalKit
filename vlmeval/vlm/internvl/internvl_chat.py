@@ -230,6 +230,11 @@ class InternVLChat(BaseModel):
 
     def use_custom_prompt(self, dataset):
         assert dataset is not None
+        if not isinstance(dataset, str):
+            if getattr(type(dataset), 'MODALITY', None) == 'VIDEO':
+                return False
+            dataset = getattr(dataset, 'dataset_name', None)
+            assert isinstance(dataset, str), type(dataset)
         if dataset in [
             'atomic_dataset', 'electro_dataset', 'mechanics_dataset',
             'optics_dataset', 'quantum_dataset', 'statistics_dataset'
@@ -247,51 +252,52 @@ class InternVLChat(BaseModel):
         else:
             return True
 
-    def build_prompt(self, line, dataset=None):
-        use_mpo_prompt = self.use_mpo_prompt and (self.use_cot or dataset in ['MMStar', 'HallusionBench', 'OCRBench'])
+    def build_prompt(self, line, dataset=None, video_llm=False):
+        dname = dataset if dataset is None or isinstance(dataset, str) else getattr(dataset, 'dataset_name', None)
+        use_mpo_prompt = self.use_mpo_prompt and (self.use_cot or dname in ['MMStar', 'HallusionBench', 'OCRBench'])
 
         assert self.use_custom_prompt(dataset)
-        assert dataset is None or isinstance(dataset, str)
-        tgt_path = self.dump_image(line, dataset)
-        if dataset is not None and listinstr(['BMMR'], dataset):
+        assert dname is None or isinstance(dname, str)
+        tgt_path = self.dump_image(line, dname)
+        if dname is not None and listinstr(['BMMR'], dname):
             self.kwargs['max_new_tokens'] = max(self.kwargs.get('max_new_tokens', 4096), 8196)
             print(f'[Warning] BMMR dataset requires a larger max_new_tokens, set to {self.kwargs["max_new_tokens"]}')
 
-        if dataset is not None and DATASET_TYPE(dataset) == 'Y/N':
+        if dname is not None and DATASET_TYPE(dname) == 'Y/N':
             question = line['question']
-            if listinstr(['MME'], dataset):
+            if listinstr(['MME'], dname):
                 prompt = question + ' Answer the question using a single word or phrase.'
-            elif listinstr(['HallusionBench', 'AMBER'], dataset):
+            elif listinstr(['HallusionBench', 'AMBER'], dname):
                 prompt = question + ' Please answer yes or no. Answer the question using a single word or phrase.'
             else:
                 prompt = question
-        elif dataset is not None and DATASET_TYPE(dataset) == 'MCQ':
-            prompt = build_multi_choice_prompt(line, dataset)
+        elif dname is not None and DATASET_TYPE(dname) == 'MCQ':
+            prompt = build_multi_choice_prompt(line, dname)
             if os.getenv('USE_COT') == '1':
                 prompt = build_mcq_cot_prompt(line, prompt, self.cot_prompt)
-        elif dataset is not None and DATASET_TYPE(dataset) == 'VQA':
+        elif dname is not None and DATASET_TYPE(dname) == 'VQA':
             question = line['question']
-            if listinstr(['LLaVABench', 'WildVision'], dataset):
+            if listinstr(['LLaVABench', 'WildVision'], dname):
                 prompt = question + '\nAnswer this question in detail.'
             elif listinstr(['OCRVQA', 'TextVQA', 'ChartQA', 'DocVQA', 'InfoVQA', 'OCRBench',
-                            'DUDE', 'SLIDEVQA', 'GQA', 'MMLongBench_DOC'], dataset):
+                            'DUDE', 'SLIDEVQA', 'GQA', 'MMLongBench_DOC'], dname):
                 prompt = question + '\nAnswer the question using a single word or phrase.'
-            elif listinstr(['MathVerse'], dataset):
+            elif listinstr(['MathVerse'], dname):
                 question = question.replace("please directly answer the question and", "please")
                 prompt = question
                 if os.getenv('USE_COT') == '1':
                     prompt = build_qa_cot_prompt(line, prompt, self.cot_prompt)
             elif listinstr(['MathVista', 'MathVision', 'VCR', 'MTVQA', 'MMVet',
                             'MMDU', 'CRPE', 'MIA-Bench', 'MM-Math', 'DynaMath', 'QSpatial',
-                            'WeMath', 'LogicVista', 'MM-IFEval', 'ChartMimic'], dataset):
+                            'WeMath', 'LogicVista', 'MM-IFEval', 'ChartMimic'], dname):
                 prompt = question
                 if os.getenv('USE_COT') == '1':
                     prompt = build_qa_cot_prompt(line, prompt, self.cot_prompt)
             else:
                 prompt = question + '\nAnswer the question using a single word or phrase.'
-        elif dataset is not None and DATASET_TYPE(dataset) == 'GUI':
-            ds_basename = infer_dataset_basename(dataset)
-            ds = build_dataset(dataset, skeleton=True)
+        elif dname is not None and DATASET_TYPE(dname) == 'GUI':
+            ds_basename = infer_dataset_basename(dname)
+            ds = build_dataset(dname, skeleton=True)
             action_space = ds.get_action_space()
             traj_dict = ds.get_trajectory(line)
 
@@ -318,7 +324,7 @@ class InternVLChat(BaseModel):
         message.extend([dict(type='image', value=s) for s in tgt_path])
 
         if use_mpo_prompt:
-            message = build_mpo_prompt(message, line, dataset)
+            message = build_mpo_prompt(message, line, dname)
         return message
 
     def set_max_num(self, dataset):
@@ -358,6 +364,7 @@ class InternVLChat(BaseModel):
         return response
 
     def generate_v1_5(self, message, dataset=None):
+        message = self._expand_video_frames_to_images(message)
         image_num = len([x for x in message if x['type'] == 'image'])
         max_num = max(1, min(self.max_num, self.total_max_num // image_num))
         prompt = '\n'.join([x['value'] for x in message if x['type'] == 'text'])
@@ -385,11 +392,30 @@ class InternVLChat(BaseModel):
                 verbose=True)
         return response
 
+    @staticmethod
+    def _expand_video_frames_to_images(message):
+        """InternVL expects ``type=='image'``; some video datasets pass sampled frames as ``type=='video'``."""
+        if not message:
+            return message
+        if any(x['type'] == 'image' for x in message):
+            return message
+        new_message = []
+        changed = False
+        for x in message:
+            if x['type'] == 'video' and isinstance(x.get('value'), list):
+                for p in x['value']:
+                    new_message.append(dict(type='image', value=p))
+                changed = True
+            else:
+                new_message.append(x)
+        return new_message if changed else message
+
     @torch.no_grad()
     def generate_v2(self, message, dataset=None):
 
         use_mpo_prompt = self.use_mpo_prompt and (self.use_cot or dataset in ['MMStar', 'HallusionBench', 'OCRBench'])
 
+        message = self._expand_video_frames_to_images(message)
         image_num = len([x for x in message if x['type'] == 'image'])
         max_num = max(1, min(self.max_num, self.total_max_num // image_num))
         prompt = reorganize_prompt(message, image_num, dataset=dataset)

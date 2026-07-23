@@ -30,14 +30,30 @@ def get_dimension_rating(data_path):
     return result_board
 
 
+def _pred_is_empty_for_mcq_match(pred) -> bool:
+    """空预测不能参与子串匹配，否则 `'' in '(a)'` 会为 True，被误判为答对。"""
+    if pred is None:
+        return True
+    if isinstance(pred, float) and math.isnan(pred):
+        return True
+    s = str(pred).strip()
+    if not s or s.lower() == 'nan':
+        return True
+    return False
+
+
 def check_ans(pred, gt):
     flag = False
+    if _pred_is_empty_for_mcq_match(pred):
+        return False
+    gt = str(gt)
+    pred = str(pred)
 
     pred_list = pred.lower().strip().split(' ')
     pred_option, _ = pred_list[0], ' '.join(pred_list[1:])
     gt_list = gt.lower().strip().split(' ')
     gt_option, gt_content = gt_list[0], ' '.join(gt_list[1:])
-    if gt_content[-1] == '.':
+    if gt_content.endswith('.'):
         gt_content = gt_content[:-1]
 
     if pred_option.replace('.', '') in gt_option:
@@ -50,12 +66,16 @@ def check_ans(pred, gt):
 
 def check_ans_with_model(pred, gt, model, item, dataset_name='MVBench'):
     flag = False
+    if _pred_is_empty_for_mcq_match(pred):
+        return False
+    gt = str(gt)
+    pred = str(pred)
 
     pred_list = pred.lower().strip().split(' ')
     pred_option, _ = pred_list[0], ' '.join(pred_list[1:])
     gt_list = gt.lower().strip().split(' ')
     gt_option, gt_content = gt_list[0], ' '.join(gt_list[1:])
-    if gt_content[-1] == '.':
+    if gt_content.endswith('.'):
         gt_content = gt_content[:-1]
 
     if pred_option.replace('.', '') in gt_option:
@@ -69,6 +89,10 @@ def check_ans_with_model(pred, gt, model, item, dataset_name='MVBench'):
 
 
 def check_ans_advanced(pred, gt):
+    if _pred_is_empty_for_mcq_match(pred):
+        return False
+    gt = str(gt)
+    pred = str(pred)
     number_table = {
         0: 'zero',
         1: 'one',
@@ -87,7 +111,7 @@ def check_ans_advanced(pred, gt):
     pred_option, _ = pred_list[0], ' '.join(pred_list[1:])
     gt_list = gt.lower().strip().split(' ')
     gt_option, gt_content = gt_list[0], ' '.join(gt_list[1:])
-    if gt_content[-1] == '.':
+    if gt_content.endswith('.'):
         gt_content = gt_content[:-1]
 
     try:

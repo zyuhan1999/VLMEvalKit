@@ -3,6 +3,8 @@ import os
 import subprocess
 from functools import partial
 
+# os.environ["TORCH_DISTRIBUTED_DEBUG"] = "DETAIL"
+# os.environ["TORCH_NCCL_ASYNC_ERROR_HANDLING"] = "1"
 
 # GET the number of GPUs on the node without importing libs like torch
 def get_gpu_list():
@@ -26,7 +28,7 @@ LOCAL_RANK = int(os.environ.get("LOCAL_RANK",1))
 GPU_LIST = get_gpu_list()
 if LOCAL_WORLD_SIZE > 1 and len(GPU_LIST):
     NGPU = len(GPU_LIST)
-    assert NGPU >= LOCAL_WORLD_SIZE, "The number of processes should be less than or equal to the number of GPUs"
+    assert NGPU >= LOCAL_WORLD_SIZE, f"The number of processes should be less than or equal to the number of GPUs: {NGPU} >= {LOCAL_WORLD_SIZE}"
     GPU_PER_PROC = NGPU // LOCAL_WORLD_SIZE
     DEVICE_START_IDX = GPU_PER_PROC * LOCAL_RANK
     CUDA_VISIBLE_DEVICES = [str(i) for i in GPU_LIST[DEVICE_START_IDX: DEVICE_START_IDX + GPU_PER_PROC]]
@@ -93,6 +95,17 @@ def build_dataset_from_config(cfg, dataset_name):
         return cls(**valid_params)
     else:
         raise ValueError(f'Class {cls_name} is not supported in `vlmeval.dataset`')
+
+
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    s = str(v).strip().lower()
+    if s in ('yes', 'true', 't', '1', 'y'):
+        return True
+    if s in ('no', 'false', 'f', '0', 'n'):
+        return False
+    raise ValueError(f'Expected a boolean string, got {v!r}')
 
 
 def parse_args():
@@ -195,6 +208,14 @@ You can launch the evaluation by setting either --data and --model or --config.
     parser.add_argument(
         '--use-vllm', action='store_true', help='use vllm to generate, the flag is only supported in Llama4 for now')
     parser.add_argument('--use-verifier', action='store_true', help='use verifier to evaluate')
+    parser.add_argument(
+        '--check-extracted-frames',
+        type=str2bool,
+        default=True,
+        help='Video datasets: if true, verify frame cache paths and decode/save only when missing. '
+        'If false, assume frames are pre-extracted (skip decode/save; still open video when needed for indices). '
+        'Default: true.',
+    )
 
     args = parser.parse_args()
     return args
@@ -244,7 +265,7 @@ def main():
         import torch.distributed as dist
         dist.init_process_group(
             backend='nccl',
-            timeout=datetime.timedelta(seconds=int(os.environ.get('DIST_TIMEOUT', 3600)))
+            timeout=datetime.timedelta(seconds=int(os.environ.get('DIST_TIMEOUT', 10000)))
         )
 
     for _, model_name in enumerate(args.model):
@@ -287,6 +308,8 @@ def main():
                     dataset_kwargs = {}
                     if dataset_name in ['MMLongBench_DOC', 'DUDE', 'DUDE_MINI', 'SLIDEVQA', 'SLIDEVQA_MINI']:
                         dataset_kwargs['model'] = model_name
+                    if dataset_name in supported_video_datasets:
+                        dataset_kwargs['check_extracted_frames'] = args.check_extracted_frames
 
                     # If distributed, first build the dataset on the main process for doing preparation works
                     if WORLD_SIZE > 1:
@@ -299,10 +322,16 @@ def main():
                         logger.error(f'Dataset {dataset_name} is not valid, will be skipped. ')
                         continue
 
+                # print(f"Prepare {dataset_name} done!")
+                # continue
+
                 # Handling Multi-Turn Dataset
                 result_file = osp.join(pred_root, result_file_base)
                 # Reuse the previous prediction file if exists
                 if RANK == 0 and len(prev_pred_roots):
+                    print('='*10)
+                    print(pred_root_meta, eval_id, model_name, dataset_name)
+                    print('='*10)
                     prepare_reuse_files(
                         pred_root_meta=pred_root_meta, eval_id=eval_id, model_name=model_name,
                         dataset_name=dataset_name, reuse=args.reuse, reuse_aux=args.reuse_aux
@@ -352,7 +381,7 @@ def main():
                 judge_kwargs = {
                     'nproc': args.api_nproc,
                     'verbose': args.verbose,
-                    'retry': args.retry if args.retry is not None else 3,
+                    'retry': args.retry if args.retry is not None else 5,
                     **(json.loads(args.judge_args) if args.judge_args else {}),
                 }
 
@@ -360,48 +389,6 @@ def main():
                     judge_kwargs['retry'] = args.retry
                 if args.judge is not None:
                     judge_kwargs['model'] = args.judge
-                else:
-                    print(dataset_name)
-                    if dataset.TYPE in ['MCQ', 'Y/N', 'MCQ_MMMU_Pro'] or listinstr(
-                        ['moviechat1k', 'mme-reasoning'], dataset_name.lower()
-                    ):
-                        if listinstr(['WeMath', 'MME-Reasoning'], dataset_name):
-                            judge_kwargs['model'] = 'gpt-4o-mini'
-                        elif listinstr(['VisuLogic'], dataset_name):
-                            judge_kwargs['model'] = 'exact_matching'
-                        else:
-                            judge_kwargs['model'] = 'chatgpt-0125'
-                    elif listinstr(['MMVet', 'LLaVABench', 'MMBench_Video'], dataset_name):
-                        if listinstr(['LLaVABench_KO'], dataset_name):
-                            judge_kwargs['model'] = 'gpt-4o-0806'
-                        else:
-                            judge_kwargs['model'] = 'gpt-4-turbo'
-                    elif listinstr(['VGRPBench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['MathVista', 'MathVerse', 'MathVision', 'DynaMath', 'VL-RewardBench', 'LogicVista', 'MOAT', 'OCR_Reasoning'], dataset_name):  # noqa: E501
-                        judge_kwargs['model'] = 'gpt-4o-mini'
-                    elif listinstr(['OlympiadBench'], dataset_name):
-                        use_api_judger = judge_kwargs.get("olympiad_use_api_judger", False)
-                        if use_api_judger:
-                            judge_kwargs['model'] = 'gpt-4o-mini'
-                    elif listinstr(['MMLongBench', 'MMDU', 'DUDE', 'SLIDEVQA', 'MIA-Bench', 'WildVision', 'MMAlignBench', 'MM-IFEval'], dataset_name):  # noqa: E501
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['ChartMimic'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['VDC'], dataset_name):
-                        judge_kwargs['model'] = 'llama31-8b'
-                    elif listinstr(['Video_MMLU_QA', 'Video_MMLU_CAP'], dataset_name):
-                        judge_kwargs['model'] = 'qwen-72b'
-                    elif listinstr(['MMVMBench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['CVQA_EN', 'CVQA_LOC'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4.1'
-                    elif listinstr(['M4Bench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4o'
-                    elif listinstr(['AyaVisionBench'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4.1'
-                    elif listinstr(['MathCanvas'], dataset_name):
-                        judge_kwargs['model'] = 'gpt-4.1-2025-04-14'
 
                 if args.use_verifier:
                     judge_kwargs['use_verifier'] = True

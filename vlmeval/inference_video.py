@@ -1,10 +1,90 @@
 import torch
 import torch.distributed as dist
+import glob
 from vlmeval.config import supported_VLM
 from vlmeval.utils import track_progress_rich
 from vlmeval.smp import *
 
 FAIL_MSG = 'Failed to obtain answer via API.'
+
+
+def _rank_res_keep_keys(sample_indices_sub, initial_keys, assigned_indices):
+    """Keys this rank is allowed to persist in its part pkl."""
+    keep = set(sample_indices_sub)
+    if assigned_indices is not None:
+        keep |= initial_keys
+    return keep
+
+
+def _filter_rank_res(res, keep_keys):
+    return {k: res[k] for k in keep_keys if k in res}
+
+
+def _load_historical_part_pkls(work_dir, stem):
+    """Load all historical per-rank part pkls for this job (any world_size)."""
+    existing_part_files = sorted(glob.glob(osp.join(work_dir, f'*_{stem}.pkl')))
+    cache = {}
+    done = set()
+    for part_file in existing_part_files:
+        if not osp.exists(part_file):
+            continue
+        part_res = load(part_file)
+        if isinstance(part_res, dict):
+            cache.update(part_res)
+            done.update(part_res.keys())
+    return existing_part_files, cache, done
+
+
+def _detect_part_world_sizes(part_files, stem):
+    """Infer world_size values from part pkl filenames like 032_ / 08_."""
+    suffix = f'_{stem}.pkl'
+    world_sizes = set()
+    for path in part_files:
+        name = osp.basename(path)
+        if not name.endswith(suffix):
+            continue
+        prefix = name[: -len(suffix)]
+        for ws in (1, 2, 4, 8, 16, 32, 64, 128):
+            ws_s = str(ws)
+            if not prefix.endswith(ws_s):
+                continue
+            rank_s = prefix[: -len(ws_s)]
+            if rank_s == '' or rank_s.isdigit():
+                rank = int(rank_s) if rank_s else 0
+                if 0 <= rank < ws:
+                    world_sizes.add(ws)
+                    break
+    return world_sizes
+
+
+def _merge_video_part_pkls(work_dir, stem, current_world_size=None):
+    """
+    Merge per-rank part pkls into one dict.
+    Re-scan the directory at merge time (do not rely on a stale snapshot).
+    When the same index exists in both historical and current-world_size files,
+    prefer the current run's files.
+    """
+    part_files = sorted(glob.glob(osp.join(work_dir, f'*_{stem}.pkl')))
+    current_rank_files = []
+    if current_world_size is not None and current_world_size > 0:
+        current_rank_files = [
+            osp.join(work_dir, f'{i}{current_world_size}_{stem}.pkl')
+            for i in range(current_world_size)
+        ]
+    current_rank_files = [p for p in current_rank_files if osp.exists(p)]
+
+    data_all = {}
+    for part_file in part_files:
+        if part_file in current_rank_files:
+            continue
+        part_res = load(part_file)
+        if isinstance(part_res, dict):
+            data_all.update(part_res)
+    for part_file in current_rank_files:
+        part_res = load(part_file)
+        if isinstance(part_res, dict):
+            data_all.update(part_res)
+    return data_all, part_files
 
 
 def parse_args():
@@ -77,17 +157,48 @@ def infer_data_api(model, work_dir, model_name, dataset, samples_dict={}, api_np
     return res
 
 
-def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, api_nproc=4, use_vllm=False):
+def infer_data(
+        model,
+        model_name,
+        work_dir,
+        dataset,
+        out_file,
+        verbose=False,
+        api_nproc=4,
+        use_vllm=False,
+        assigned_indices=None,
+        historical_cache=None):
     res = load(out_file) if osp.exists(out_file) else {}
+
     rank, world_size = get_rank_and_world_size()
+    if dist.is_available() and dist.is_initialized():
+        rank = dist.get_rank()
+        world_size = dist.get_world_size()
     dataset_name = dataset.dataset_name
 
     sample_indices = list(dataset.videos) if getattr(dataset, 'pack', False) else list(dataset.data['index'])
     samples = list(dataset.videos) if getattr(dataset, 'pack', False) else list(range(len(dataset.data)))
     sample_map = {i: s for i, s in zip(sample_indices, samples)}
 
-    sample_indices_sub = sample_indices[rank::world_size]
+    if assigned_indices is not None:
+        sample_indices_sub = assigned_indices
+    else:
+        sample_indices_sub = sample_indices[rank::world_size]
+
+    # Pre-fill from historical part pkls (possibly produced with a different world_size).
+    if historical_cache:
+        for idx in sample_indices_sub:
+            if idx in historical_cache and idx not in res:
+                res[idx] = historical_cache[idx]
+
+    initial_keys = set(res.keys())
+    keep_keys = _rank_res_keep_keys(sample_indices_sub, initial_keys, assigned_indices)
+
+    def _dump_rank_res():
+        dump(_filter_rank_res(res, keep_keys), out_file)
+
     if np.all([idx in res for idx in sample_indices_sub]):
+        _dump_rank_res()
         return model
     sample_indices_subrem = [x for x in sample_indices_sub if x not in res]
 
@@ -105,7 +216,14 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
     # (In VLMEvalKit, we use torchrun to launch multiple model instances on a single node).
     # To bypass this problem, we unset `WORLD_SIZE` before building the model to not use TP parallel.
     ws_bak = os.environ.pop('WORLD_SIZE', None)
-    model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    if dist.is_initialized():
+        if dist.get_rank() == 0:
+            model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+        dist.barrier()
+        if dist.get_rank() != 0:
+            model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    else:
+        model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
     if ws_bak:
         os.environ['WORLD_SIZE'] = ws_bak
 
@@ -122,7 +240,7 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         for k in sample_indices_subrem:
             assert k in supp
         res.update(supp)
-        dump(res, out_file)
+        _dump_rank_res()
         return model
 
     assert not getattr(dataset, 'pack', False), 'Current model not supported pack mode!'
@@ -133,9 +251,7 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         )
         setattr(model, 'VIDEO_LLM', False)
 
-    for i, idx in tqdm(enumerate(sample_indices_subrem)):
-        if idx in res:
-            continue
+    for i, idx in tqdm(enumerate(sample_indices_subrem), total=len(sample_indices_subrem), desc=f"[Rank{rank}]"):
         if getattr(model, 'nframe', None) is not None and getattr(model, 'nframe', 0) > 0:
             if dataset.nframe > 0:
                 if getattr(model, 'nframe', 0) != dataset.nframe:
@@ -176,6 +292,7 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
                 sample_map[idx], video_llm=getattr(model, 'VIDEO_LLM', False)
             )
         if struct is None:
+            warnings.warn(f'[Rank{rank}] build_prompt returned None for index={idx}, skipped.')
             continue
 
         # If `SKIP_ERR` flag is set, the model will skip the generation if error is encountered
@@ -189,17 +306,22 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
                 response = f'{FAIL_MSG}: {type(err)} {str(err)}'
         else:
             response = model.generate(message=struct, dataset=dataset_name)
-        torch.cuda.empty_cache()
+        if i % 10 == 0:
+            torch.cuda.empty_cache()
 
         if verbose:
             print(response, flush=True)
 
         res[idx] = response
-        if (i + 1) % 20 == 0:
-            dump(res, out_file)
+        _dump_rank_res()
 
-    res = {k: res[k] for k in sample_indices_sub}
-    dump(res, out_file)
+    missing = [idx for idx in sample_indices_sub if idx not in res]
+    if missing:
+        raise RuntimeError(
+            f'[Rank{rank}] failed to save {len(missing)}/{len(sample_indices_sub)} predictions; '
+            f'examples: {missing[:10]}'
+        )
+    _dump_rank_res()
     return model
 
 
@@ -216,13 +338,57 @@ def infer_data_job_video(
 
     dataset_name = dataset.dataset_name
     rank, world_size = get_rank_and_world_size()
+    if dist.is_available() and dist.is_initialized():
+        rank = dist.get_rank()
+        world_size = dist.get_world_size()
     result_file = osp.join(work_dir, result_file_name)
     # Dump Predictions to Prev File if result file exists
     if osp.exists(result_file):
         return model
 
-    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{osp.splitext(result_file_name)[0]}.pkl')
+    stem = osp.splitext(result_file_name)[0]
+    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{stem}.pkl')
     out_file = tmpl.format(rank)
+
+    # -------- Dynamic load-balancing for video inference --------
+    # Resume from historical per-rank part pkls (any world_size), then re-balance
+    # the remaining samples evenly across the current world_size.
+    assigned_indices = None
+    historical_cache = {}
+    assigned_indices_all = None
+    existing_part_files = []
+
+    if rank == 0:
+        sample_indices = (
+            list(dataset.videos)
+            if getattr(dataset, 'pack', False)
+            else list(dataset.data['index'])
+        )
+        existing_part_files, historical_cache, done_indices = _load_historical_part_pkls(work_dir, stem)
+        if existing_part_files:
+            hist_ws = sorted(_detect_part_world_sizes(existing_part_files, stem))
+            print(f"===== Found {len(existing_part_files)} existing part files (any world_size) ======")
+            if hist_ws:
+                print(f"===== Historical world_size in part files: {hist_ws}; current world_size: {world_size} ======")
+            for part_file in existing_part_files:
+                print(f"===== Part File {part_file} ======")
+        else:
+            print("===== Found 0 existing part files ======")
+
+        remaining_indices = [idx for idx in sample_indices if idx not in done_indices]
+        print(f"===== Done {len(done_indices)} | Remaining {len(remaining_indices)} | Total {len(sample_indices)} ======")
+
+        assigned_indices_all = [[] for _ in range(world_size)]
+        for j, idx in enumerate(remaining_indices):
+            assigned_indices_all[j % world_size].append(idx)
+
+    if dist.is_available() and dist.is_initialized():
+        obj_list = [assigned_indices_all, historical_cache]
+        dist.broadcast_object_list(obj_list, src=0)
+        assigned_indices_all, historical_cache = obj_list[0], obj_list[1]
+
+    if assigned_indices_all is not None:
+        assigned_indices = assigned_indices_all[rank]
 
     model = infer_data(
         model=model,
@@ -232,28 +398,43 @@ def infer_data_job_video(
         out_file=out_file,
         verbose=verbose,
         api_nproc=api_nproc,
-        use_vllm=use_vllm)
+        use_vllm=use_vllm,
+        assigned_indices=assigned_indices,
+        historical_cache=historical_cache)
 
     if world_size > 1:
         dist.barrier()
 
     if rank == 0:
-        data_all = {}
-        for i in range(world_size):
-            data_all.update(load(tmpl.format(i)))
+        sample_indices = (
+            list(dataset.videos)
+            if getattr(dataset, 'pack', False)
+            else list(dataset.data['index'])
+        )
+        data_all, part_files_to_cleanup = _merge_video_part_pkls(
+            work_dir, stem, current_world_size=world_size)
 
         meta = dataset.data
         if dataset_name == 'MMBench-Video' and getattr(dataset, 'pack', False):
             meta, vstats = dataset.load_pack_answers(data_all)
             print(f'Statitics of Pack Video Inference: {vstats}')
         else:
-            for x in meta['index']:
-                assert x in data_all
+            missing = [x for x in meta['index'] if x not in data_all]
+            if missing:
+                raise RuntimeError(
+                    f'Incomplete video inference: {len(data_all)}/{len(sample_indices)} saved; '
+                    f'missing {len(missing)} indices, examples: {missing[:20]}'
+                )
             meta['prediction'] = [str(data_all[x]) for x in meta['index']]
             if 'image' in meta:
                 meta.pop('image')
 
         dump(meta, result_file)
-        for i in range(world_size):
-            os.remove(tmpl.format(i))
+        # Clean up all partial files we used for this job (both historical and current).
+        for part_file in sorted(set(part_files_to_cleanup)):
+            try:
+                if osp.exists(part_file):
+                    os.remove(part_file)
+            except Exception as e:
+                print(f"[WARN] Failed to remove partial file {part_file}: {e}")
     return model

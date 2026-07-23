@@ -37,6 +37,7 @@ from .simplevqa import SimpleVQA
 
 from .mmbench_video import MMBenchVideo
 from .videomme import VideoMME
+from .videommev2 import VideoMMEv2
 from .video_holmes import Video_Holmes
 from .mvbench import MVBench, MVBench_MP4
 from .tamperbench import MVTamperBench
@@ -44,6 +45,8 @@ from .miabench import MIABench
 from .mlvu import MLVU, MLVU_MCQ, MLVU_OpenEnded
 from .tempcompass import TempCompass, TempCompass_Captioning, TempCompass_MCQ, TempCompass_YorN
 from .longvideobench import LongVideoBench
+from .lvbench import LVBench
+from .videoevalpro import VideoEvalPro, VideoEvalProMCQ
 from .video_concat_dataset import ConcatVideoDataset
 from .mmgenbench import MMGenBench
 from .cgbench import CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded
@@ -60,6 +63,16 @@ from .visfactor import VisFactor
 from .ost_bench import OSTDataset
 from .videommmu import VideoMMMU
 from .vsibench import VSIBench
+from .mmvu import MMVU
+from .tomato import TOMATO
+from .minerva import Minerva
+from .timelens import TimeLens, TimeLens_ActivityNet, TimeLens_Charades, TimeLens_QVHighlights
+from .motionbench import MotionBench
+from .tvbench import TVBench
+from .vidi_vue_tr import VUE_TR
+from .vidi_vue_tr_v2 import VUE_TR_V2
+from .moment_seeker import MomentSeeker
+from .ego4d_nlq_v2 import Ego4DNLQv2
 
 from .EgoExoBench.egoexobench import EgoExoBench_MCQ
 from .videott import VideoTT
@@ -231,15 +244,21 @@ IMAGE_DATASET = [
 ]
 
 VIDEO_DATASET = [
-    MMBenchVideo, VideoMME, MVBench, MVBench_MP4, MVTamperBench,
-    LongVideoBench, WorldSense, VDC, MovieChat1k, MEGABench,
+    MMBenchVideo, VideoMME, VideoMMEv2, MVBench, MVBench_MP4, MVTamperBench,
+    LongVideoBench, LVBench, VideoEvalPro, VideoEvalProMCQ, WorldSense, VDC, MovieChat1k, MEGABench,
     MLVU, MLVU_MCQ, MLVU_OpenEnded,
     TempCompass, TempCompass_MCQ, TempCompass_Captioning, TempCompass_YorN,
     CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded,
     QBench_Video, QBench_Video_MCQ, QBench_Video_VQA,
     Video_MMLU_CAP, Video_MMLU_QA,
     Video_Holmes, VCRBench, CGAVCounting,
-    EgoExoBench_MCQ, DREAM, VideoTT, VideoMMMU, VSIBench
+    EgoExoBench_MCQ, DREAM, VideoTT, VideoMMMU, VSIBench, MMVU
+    , TOMATO, Minerva
+    , TimeLens, TimeLens_ActivityNet, TimeLens_Charades, TimeLens_QVHighlights
+    , MotionBench, TVBench
+    , VUE_TR, VUE_TR_V2
+    , MomentSeeker
+    , Ego4DNLQv2
 
 ]
 
@@ -260,6 +279,12 @@ for DATASET_CLS in DATASET_CLASSES:
 
 
 def DATASET_TYPE(dataset, *, default: str = 'MCQ') -> str:
+    # Registry keys (e.g. Video-MME_2fps) differ from cls.supported_datasets() names (e.g. Video-MME).
+    if isinstance(dataset, str) and dataset in supported_video_datasets:
+        p = supported_video_datasets[dataset]
+        cls = getattr(p, 'func', None)
+        if cls is not None and hasattr(cls, 'TYPE'):
+            return cls.TYPE
     for cls in DATASET_CLASSES:
         if dataset in cls.supported_datasets():
             if hasattr(cls, 'TYPE'):
@@ -281,6 +306,16 @@ def DATASET_MODALITY(dataset, *, default: str = 'IMAGE') -> str:
     if dataset is None:
         warnings.warn(f'Dataset is not specified, will treat modality as {default}. ')
         return default
+    # Keys in supported_video_datasets (e.g. TimeLens_*_2fps_limit_512) often differ from
+    # cls.supported_datasets() names (e.g. QVHighlights-TimeLens); match registry first.
+    if isinstance(dataset, str) and dataset in supported_video_datasets:
+        return 'VIDEO'
+    # TimeLens* VideoBaseDataset uses dataset='TimeLens_Charades' etc.; registry keys are e.g. TimeLens_Charades_1fps_limit_32,
+    # so DATASET_MODALITY must still return VIDEO for that internal name or inference_video picks model.build_prompt and InternVL asserts.
+    if isinstance(dataset, str) and dataset in (
+        'TimeLens_Charades', 'TimeLens_ActivityNet', 'TimeLens_QVHighlights',
+    ):
+        return 'VIDEO'
     for cls in DATASET_CLASSES:
         if dataset in cls.supported_datasets():
             if hasattr(cls, 'MODALITY'):

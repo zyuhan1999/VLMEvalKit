@@ -5,6 +5,7 @@ import sys
 import warnings
 import math
 import logging
+import re
 
 import torch
 from transformers import StoppingCriteria
@@ -208,7 +209,14 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             temperature=temperature,
             repetition_penalty=repetition_penalty,
         )
-        self.system_prompt = system_prompt
+        # self.system_prompt = system_prompt
+        self.system_prompt = """You are an intelligent video assistant.
+Your task is to answer the user's multiple-choice question based on the provided video.
+First, carefully analyze the video content, identifying key events, visual details, and temporal sequences relevant to the question.
+Then, think step-by-step to deduce the correct answer, explicitly referencing evidence from the video to support your reasoning.
+Output your thinking process within `<think>` and `</think>` tags.
+Finally, output the selected option letter within `<answer>` and `</answer>` tags.
+"""
         self.verbose = verbose
         self.post_process = post_process
         self.fps = kwargs.pop('fps', 2)
@@ -231,7 +239,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
                 raise err
             MODEL_CLS = Qwen2_5OmniForConditionalGeneration
             self.processor = Qwen2_5OmniProcessor.from_pretrained(model_path)
-        elif listinstr(['2.5', '2_5', 'qwen25', 'mimo'], model_path.lower()):
+        elif listinstr(['2.5', '2_5', 'qwen25', 'mimo', 'videochat-o3'], model_path.lower()):
             from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
             MODEL_CLS = Qwen2_5_VLForConditionalGeneration
             self.processor = AutoProcessor.from_pretrained(model_path)
@@ -288,7 +296,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             self.device = 'cuda'
         else:
             self.model = MODEL_CLS.from_pretrained(
-                model_path, torch_dtype='auto', device_map="auto", attn_implementation='flash_attention_2'
+                model_path, torch_dtype=torch.bfloat16, device_map="auto", attn_implementation='flash_attention_2'
             )
             self.model.eval()
 
@@ -315,16 +323,20 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
                 if self.total_pixels is not None:
                     item['total_pixels'] = self.total_pixels
             elif s['type'] == 'video':
-                item = {
-                    'type': 'video',
-                    'video': ensure_video_url(s['value'])
-                }
+                if isinstance(s['value'], list):
+                    item = {
+                        'type': 'video',
+                        'video': [ensure_image_url(v) for v in s['value']],
+                        'sample_fps': 2.0,
+                    }
                 if self.min_pixels is not None:
                     item['min_pixels'] = self.min_pixels
                 if self.max_pixels is not None:
                     item['max_pixels'] = self.max_pixels
                 if self.total_pixels is not None:
                     item['total_pixels'] = self.total_pixels
+                if 'sample_fps' in item:
+                    pass
                 if self.fps is not None:
                     item['fps'] = self.fps
                 elif self.nframe is not None:
@@ -479,23 +491,26 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )
         response = out[0]
-        if self.post_process:
-            resp = response.split('\\boxed{')[-1]
-            lt = len(resp)
-            counter, end = 1, None
-            for i in range(lt):
-                if resp[i] == '{':
-                    counter += 1
-                elif resp[i] == '}':
-                    counter -= 1
-                if counter == 0:
-                    end = i
-                    break
-                elif i == lt - 1:
-                    end = lt
-                    break
-            if end is not None:
-                response = resp[:end]
+        # if self.post_process:
+        #     resp = response.split('\\boxed{')[-1]
+        #     lt = len(resp)
+        #     counter, end = 1, None
+        #     for i in range(lt):
+        #         if resp[i] == '{':
+        #             counter += 1
+        #         elif resp[i] == '}':
+        #             counter -= 1
+        #         if counter == 0:
+        #             end = i
+        #             break
+        #         elif i == lt - 1:
+        #             end = lt
+        #             break
+        #     if end is not None:
+        #         response = resp[:end]
+        match = re.search(r"<answer>\s*(.*?)\s*</answer>", response, re.S)
+        if match:
+            response = match.group(1).strip()
 
         if self.verbose:
             print(f'\033[32m{response}\033[0m')
@@ -518,99 +533,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
         return response
 
     def generate_inner_vllm(self, message, dataset=None):
-        from vllm import SamplingParams
-
-        if listinstr(['omni'], self.model_path.lower()):
-            try:
-                from qwen_omni_utils import process_mm_info
-            except Exception as err:
-                logging.critical("qwen_omni_utils not found, please install it via 'pip install qwen-omni-utils[decord]'")  # noqa: E501
-                raise err
-        else:
-            try:
-                from qwen_vl_utils import process_vision_info
-            except Exception as err:
-                logging.critical("qwen_vl_utils not found, please install it via 'pip install qwen-vl-utils'")  # noqa: E501
-                raise err
-
-        messages = []
-        if self.system_prompt is not None:
-            messages.append({'role': 'system', 'content': self.system_prompt})
-        messages.append({'role': 'user', 'content': self._prepare_content_vllm(message, dataset=dataset)})
-        if self.verbose:
-            print(f'\033[31m{messages}\033[0m')
-
-        text = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-        if listinstr(['omni'], self.model_path.lower()):
-            audios, images, videos = process_mm_info(messages, use_audio_in_video=self.use_audio_in_video)
-        else:
-            images, videos = process_vision_info(messages)
-        print('finishing process vision info in vllm.')
-
-        if DATASET_MODALITY(dataset) == 'VIDEO' and 'megabench' not in dataset.lower():
-            assert len(videos) == 1
-            videos_nd = [videos[0].detach().cpu().numpy().transpose(0, 2, 3, 1)]
-
-            video_inputs = {
-                "prompt": text[0],
-                "multi_modal_data": {"video": videos_nd[0]},
-                "mm_processor_kwargs":{}
-            }
-            if self.use_audio_in_video:
-                import vllm
-                assert not vllm.envs.VLLM_USE_V1, ("V1 does not support use_audio_in_video. Please launch this example with `VLLM_USE_V1=0`.")  # noqa: E501
-                video_inputs["multi_modal_data"]["audio"] = audios[0]
-                video_inputs['mm_processor_kwargs']['use_audio_in_video'] = True
-            if videos_nd[0].shape[0] > VLLM_MAX_IMAGE_INPUT_NUM:
-                print('video input sequence may be too long for vllm, Maybe cannot generate response for VLLM')
-        sampling_params = SamplingParams(
-            temperature=0.0, max_tokens=self.max_new_tokens, stop_token_ids=None
-        )
-        if images:
-            outputs = self.llm.generate(
-                {
-                    "prompt": text,
-                    "multi_modal_data": {"image": images},
-                },
-                sampling_params=sampling_params,
-            )
-        elif videos_nd:
-            outputs = self.llm.generate(
-                video_inputs,
-                sampling_params=sampling_params,
-            )
-        else:
-            outputs = self.llm.generate(
-                {
-                    "prompt": text,
-                },
-                sampling_params=sampling_params,
-            )
-
-        for o in outputs:
-            generated_text = o.outputs[0].text
-
-        if self.post_process:
-            resp = generated_text.split('\\boxed{')[-1]
-            lt = len(resp)
-            counter, end = 1, None
-            for i in range(lt):
-                if resp[i] == '{':
-                    counter += 1
-                elif resp[i] == '}':
-                    counter -= 1
-                if counter == 0:
-                    end = i
-                    break
-                elif i == lt - 1:
-                    end = lt
-                    break
-            if end is not None:
-                generated_text = resp[:end]
-
-        if self.verbose:
-            print(f'\033[32m{generated_text}\033[0m')
-        return generated_text
+        raise NotImplementedError("VideoChat3 does not support vLLM")
 
     def generate_inner(self, message, dataset=None):
         if self.use_vllm:
