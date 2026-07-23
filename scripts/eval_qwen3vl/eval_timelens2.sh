@@ -3,7 +3,7 @@ set -euo pipefail
 
 if (( $# == 0 )); then
   echo "Usage: $0 <dataset> [<dataset> ...]" >&2
-  echo "Example: LMUData=/path/to/LMUData $0 TimeLens_2fps" >&2
+  echo "Example: LMUData=/path/to/LMUData $0 TimeLens_Charades_4fps" >&2
   exit 2
 fi
 

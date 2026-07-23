@@ -81,7 +81,7 @@ Video benchmark:
 ```bash
 python run.py \
   --model VideoChat3-4B \
-  --data Video-MME_2fps \
+  --data Video-MME_2fps_limit_1024_448px_80kctx \
   --mode all \
   --work-dir outputs
 ```
@@ -109,15 +109,16 @@ The portable helper accepts one or more registered datasets:
 
 ```bash
 bash scripts/eval_videochat3/eval_4b.sh \
-  Video-MME_2fps LongVideoBench_2fps
+  Video-MME_2fps_limit_1024_448px_80kctx \
+  LongVideoBench_2fps_limit_2048_448px_64kctx
 ```
 
 It requires `LMUData`. Set `MODE=infer`, `MODE=eval`, or `MODE=all` to control the
 stage:
 
 ```bash
-MODE=infer bash scripts/eval_videochat3/eval_4b.sh Video-MME_2fps
-MODE=eval  bash scripts/eval_videochat3/eval_4b.sh Video-MME_2fps
+MODE=infer bash scripts/eval_videochat3/eval_4b.sh Video-MME_2fps_limit_1024_448px_80kctx
+MODE=eval  bash scripts/eval_videochat3/eval_4b.sh Video-MME_2fps_limit_1024_448px_80kctx
 ```
 
 ### Useful runner options
@@ -150,7 +151,7 @@ A single process can use all visible GPUs through automatic device placement:
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 python run.py \
   --model VideoChat3-4B \
-  --data Video-MME_2fps \
+  --data Video-MME_2fps_limit_1024_448px_80kctx \
   --mode all
 ```
 
@@ -159,7 +160,7 @@ For data-parallel evaluation, launch multiple processes:
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc-per-node=2 run.py \
   --model VideoChat3-4B \
-  --data Video-MME_2fps \
+  --data Video-MME_2fps_limit_1024_448px_80kctx \
   --mode all
 ```
 
@@ -172,7 +173,7 @@ Frame extraction can be done before a large evaluation:
 
 ```bash
 bash scripts/pre_extract_video_frames/extract_video_frames.sh \
-  --dataset Video-MME_2fps
+  --dataset Video-MME_2fps_limit_1024_448px_80kctx
 ```
 
 The evaluation runner checks and fills missing cached frames by default. Use

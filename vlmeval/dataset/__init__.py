@@ -279,7 +279,8 @@ for DATASET_CLS in DATASET_CLASSES:
 
 
 def DATASET_TYPE(dataset, *, default: str = 'MCQ') -> str:
-    # Registry keys (e.g. Video-MME_2fps) differ from cls.supported_datasets() names (e.g. Video-MME).
+    # Registry keys (e.g. Video-MME_2fps_limit_1024_448px_80kctx)
+    # differ from cls.supported_datasets() names (e.g. Video-MME).
     if isinstance(dataset, str) and dataset in supported_video_datasets:
         p = supported_video_datasets[dataset]
         cls = getattr(p, 'func', None)
@@ -306,11 +307,12 @@ def DATASET_MODALITY(dataset, *, default: str = 'IMAGE') -> str:
     if dataset is None:
         warnings.warn(f'Dataset is not specified, will treat modality as {default}. ')
         return default
-    # Keys in supported_video_datasets (e.g. TimeLens_*_2fps_limit_512) often differ from
+    # Keys in supported_video_datasets (e.g. TimeLens_*_4fps) often differ from
     # cls.supported_datasets() names (e.g. QVHighlights-TimeLens); match registry first.
     if isinstance(dataset, str) and dataset in supported_video_datasets:
         return 'VIDEO'
-    # TimeLens* VideoBaseDataset uses dataset='TimeLens_Charades' etc.; registry keys are e.g. TimeLens_Charades_1fps_limit_32,
+    # TimeLens* VideoBaseDataset uses dataset='TimeLens_Charades' etc.;
+    # registry keys are e.g. TimeLens_Charades_4fps,
     # so DATASET_MODALITY must still return VIDEO for that internal name or inference_video picks model.build_prompt and InternVL asserts.
     if isinstance(dataset, str) and dataset in (
         'TimeLens_Charades', 'TimeLens_ActivityNet', 'TimeLens_QVHighlights',

@@ -9,10 +9,10 @@ def parse_args():
     parser.add_argument(
         "--dataset",
         type=str,
-        default="VideoMMMU_8frame",
+        default="VideoMMMU_2fps_limit_512_768px_80kctx",
         help=(
-            "Dataset name used by VLMEvalKit, e.g. `VideoMMMU_8frame`, "
-            "`VideoMMMU_64frame`, `VideoMMMU_1fps`, etc. "
+            "Dataset name used by VLMEvalKit, e.g. "
+            "`VideoMMMU_2fps_limit_512_768px_80kctx`. "
             "It should be a key in `supported_video_datasets` or an officially supported dataset name. "
             "VUE_TR_* / VUE_TR_V2_* dedupe by `video_id` (run_vue_tr). "
             "MomentSeeker_* uses `run_moment_seeker` → `MomentSeeker.save_video_frames` (also dedupe by `video_id`). "
