@@ -63,9 +63,11 @@ python -m pip install flash-attn --no-build-isolation
 VideoChat3 uses FlashAttention 2. Match the PyTorch, FlashAttention, CUDA, and
 GPU-driver versions in your environment.
 
-### 2. Configure data
+### 2. Configure Data
 
-`LMUData` is the shared data and cache directory used by VLMEvalKit:
+Set the environment variables required by each dataset to specify its data root and annotation-file paths. Refer to the corresponding implementation under `vlmeval/dataset` for the exact variables and expected directory layout.
+
+`LMUData` is VLMEvalKit’s shared directory for cached data and intermediate files:
 
 ```bash
 export LMUData=/absolute/path/to/LMUData
@@ -95,6 +97,8 @@ python run.py \
   --mode all \
   --work-dir outputs
 ```
+
+For proactive-response benchmarks, use `VideoChat3OVOTiming` to evaluate OVO-Timing and `VideoChat3ProactiveVQA` to evaluate ProactiveVideoQA (see `vlmeval/config.py` for details).
 
 The model checkpoint and supported benchmark metadata are prepared automatically
 when the corresponding provider permits it. Some benchmarks require accepting
