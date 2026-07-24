@@ -118,3 +118,8 @@ from .logics import Logics_Thinking
 from .cosmos import Cosmos
 from .liquid import LFM2VL
 from .insight_v import InsightV
+
+
+from .videochat3_ovotiming import VideoChat3OVOTiming
+
+from .videochat3_proactivevqa import VideoChat3ProactiveVQA

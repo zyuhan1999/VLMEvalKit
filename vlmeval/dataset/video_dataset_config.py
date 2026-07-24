@@ -245,6 +245,60 @@ dream_1k_dataset = {
     'DREAM-1K_0.5fps': partial(DREAM, dataset='DREAM-1K', fps=0.5),
 }
 
+ovbench_dataset = {
+    'OVBench_New_2fps': partial(OVBenchNew, dataset='OVBench_New_2fps', fps=2.0),
+    'OVBench_New_4fps': partial(OVBenchNew, dataset='OVBench_New_4fps', fps=4.0),
+    'OVBench_BBox1000_New_2fps': partial(OVBenchBBox1000New, dataset='OVBench_BBox1000_New_2fps', fps=2.0),
+    'OVBench_BBox1000_New_4fps': partial(OVBenchBBox1000New, dataset='OVBench_BBox1000_New_4fps', fps=4.0),
+}
+
+odvbench_dataset = {
+    'ODVBench_2fps': partial(ODVBench, dataset='ODVBench_2fps', fps=2.0),
+    'ODVBench_4fps': partial(ODVBench, dataset='ODVBench_4fps', fps=4.0),
+    'ODVBench_BBox1000_2fps': partial(ODVBenchBBox1000, dataset='ODVBench_BBox1000_2fps', fps=2.0),
+    'ODVBench_BBox1000_4fps': partial(ODVBenchBBox1000, dataset='ODVBench_BBox1000_4fps', fps=4.0),
+}
+
+
+ovobench_dataset = {
+    'OVOBench_2fps': partial(OVOBench, dataset='OVOBench_2fps', fps=2.0),
+    'OVOBench_4fps': partial(OVOBench, dataset='OVOBench_4fps', fps=4.0),
+    'OVOBench_2fps_online_max32': partial(OVOBench, dataset='OVOBench_2fps', fps=2.0, online_mode=True, max_nframe=32),
+    'OVOBench_4fps_online_max32': partial(OVOBench, dataset='OVOBench_4fps', fps=4.0, online_mode=True, max_nframe=32),
+}
+
+streamingbench_dataset = {
+    'StreamingBench_2fps': partial(StreamingBench, dataset='StreamingBench_2fps', fps=2.0),
+    'StreamingBench_4fps': partial(StreamingBench, dataset='StreamingBench_4fps', fps=4.0),
+    'StreamingBench_2fps_online_max32': partial(StreamingBench, dataset='StreamingBench_2fps', fps=2.0, online_mode=True, max_nframe=32),
+    'StreamingBench_4fps_online_max32': partial(StreamingBench, dataset='StreamingBench_4fps', fps=4.0, online_mode=True, max_nframe=32),
+}
+
+river_dataset = {
+    'RIVER_Bench_1fps': partial(RIVER_Bench, dataset='RIVER_Bench', fps=1.0,frames_limit=512),
+    'RIVER_Bench_2fps': partial(RIVER_Bench, dataset='RIVER_Bench', fps=2.0,frames_limit=512),
+    'RIVER_Bench_4fps': partial(RIVER_Bench, dataset='RIVER_Bench', fps=4.0,frames_limit=512),
+    'RIVER_Bench_1fps_online_max32': partial(RIVER_Bench, dataset='RIVER_Bench', fps=1.0, online_mode=True, max_nframe=32),
+    'RIVER_Bench_2fps_online_max32': partial(RIVER_Bench, dataset='RIVER_Bench', fps=2.0, online_mode=True, max_nframe=32),
+    'RIVER_Bench_4fps_online_max32': partial(RIVER_Bench, dataset='RIVER_Bench', fps=4.0, online_mode=True, max_nframe=32),
+}
+
+ovo_timing_dataset = {
+    'OVO_Timing_1fps_max128f': partial(OVOTiming, dataset='OVO_Timing', fps=1.0, max_num_frames=128),
+    'OVO_Timing_2fps_max128f': partial(OVOTiming, dataset='OVO_Timing', fps=2.0, max_num_frames=128),
+    'OVO_Timing_4fps_max128f': partial(OVOTiming, dataset='OVO_Timing', fps=4.0, max_num_frames=128),
+}
+
+proactive_videoqa_dataset = {
+    k: partial(ProactiveVideoQA, dataset=k, fps=1.0)
+    for k in ProactiveVideoQA.supported_datasets()
+}
+#   i.e.
+#   ProactiveVideoQA_WEB
+#   ProactiveVideoQA_VAD
+#   ProactiveVideoQA_TV
+#   ProactiveVideoQA_EGO
+
 supported_video_datasets = {}
 
 dataset_groups = [
@@ -253,7 +307,7 @@ dataset_groups = [
     mlvu_dataset, tempcompass_dataset, cgbench_dataset, worldsense_dataset, tamperbench_dataset,
     megabench_dataset, qbench_video_dataset, moviechat1k_dataset, vdc_dataset, video_holmes_dataset, vcrbench_dataset,
     cg_av_counting_dataset, video_mmlu_dataset, egoexobench_dataset, dream_1k_dataset, video_tt_dataset,
-    vsibench_dataset, mmvu_dataset, tomato_dataset, minerva_dataset, timelens_dataset, motionbench_dataset, vue_tr_dataset, vue_tr_v2_dataset, moment_seeker_dataset, ego4d_nlq_v2_dataset, tvbench_dataset
+    vsibench_dataset, mmvu_dataset, tomato_dataset, minerva_dataset, timelens_dataset, motionbench_dataset, vue_tr_dataset, vue_tr_v2_dataset, moment_seeker_dataset, ego4d_nlq_v2_dataset, tvbench_dataset, odvbench_dataset, proactive_videoqa_dataset, ovbench_dataset, ovobench_dataset, streamingbench_dataset, river_dataset, ovo_timing_dataset
 ]
 
 for grp in dataset_groups:

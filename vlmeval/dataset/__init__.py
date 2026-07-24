@@ -34,6 +34,15 @@ from .chartmuseum import ChartMuseum
 from .chartqapro import ChartQAPro
 from .refcoco import RefCOCODataset
 from .simplevqa import SimpleVQA
+from .odvbench import ODVBench
+from .odvbench_bbox1000 import ODVBenchBBox1000
+from .ovbench import OVBench
+from .ovbench_new import OVBenchNew, OVBenchBBox1000New
+from .ovobench import OVOBench
+from .ovo_timing import OVOTiming
+from .streamingbench import StreamingBench
+from .proactive_videoqa import ProactiveVideoQA
+from .river import RIVER_Bench
 
 from .mmbench_video import MMBenchVideo
 from .videomme import VideoMME
@@ -254,6 +263,11 @@ VIDEO_DATASET = [
     Video_Holmes, VCRBench, CGAVCounting,
     EgoExoBench_MCQ, DREAM, VideoTT, VideoMMMU, VSIBench, MMVU
     , TOMATO, Minerva
+    , ODVBench, OVBench, OVOBench, StreamingBench
+    , OVOTiming
+    , ODVBenchBBox1000, OVBenchNew, OVBenchBBox1000New
+    , ProactiveVideoQA
+    , RIVER_Bench
     , TimeLens, TimeLens_ActivityNet, TimeLens_Charades, TimeLens_QVHighlights
     , MotionBench, TVBench
     , VUE_TR, VUE_TR_V2
