@@ -8,6 +8,10 @@ download_logs/
 phoenix-slurm-*.out
 .env.*
 !.env.example
+json_data/
+runlogs/
+run.sh
+srun.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
