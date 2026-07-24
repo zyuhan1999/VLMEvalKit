@@ -2005,13 +2005,13 @@ for group in interns1_groups:
 videochat3_series = {
     "VideoChat3-4B": partial(
         VideoChat3,
-        model_path="/root/share/ckpt/VideoChat3-4B",
+        model_path="MCG-NJU/VideoChat3-4B",
         use_custom_prompt=False,
         use_vllm=False,
     ),
     'VideoChat3OVOTiming': partial(
         VideoChat3OVOTiming,
-        model_path="/root/share/ckpt/VideoChat3-4B",
+        model_path="MCG-NJU/VideoChat3-4B",
         use_custom_prompt=False,
         use_vllm=False,
         temperature=0.7,
@@ -2026,7 +2026,7 @@ videochat3_series = {
     ),
     'VideoChat3ProactiveVQA': partial(
         VideoChat3ProactiveVQA,
-        model_path="/root/share/ckpt/VideoChat3-4B",
+        model_path="MCG-NJU/VideoChat3-4B",
         max_rounds=32,
         max_tokens=128,
         target_fps=1.0,
